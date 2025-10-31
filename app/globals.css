@@ -1,0 +1,419 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Enhanced color palette with pink accents */
+  --background: #ffffff;
+  --foreground: #1f2937;
+  --card: #f9fafb;
+  --card-foreground: #1f2937;
+  --popover: #ffffff;
+  --popover-foreground: #1f2937;
+  --primary: #dc2626;
+  --primary-foreground: #ffffff;
+  --secondary: #f3f4f6;
+  --secondary-foreground: #374151;
+  --muted: #f9fafb;
+  --muted-foreground: #6b7280;
+  --accent: #ec4899;
+  --accent-foreground: #ffffff;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --border: #e5e7eb;
+  --input: #ffffff;
+  --ring: rgba(236, 72, 153, 0.3);
+  --chart-1: #dc2626;
+  --chart-2: #f59e0b;
+  --chart-3: #f97316;
+  --chart-4: #10b981;
+  --chart-5: #3b82f6;
+  --radius: 0.75rem;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #1f2937;
+  --sidebar-primary: #f3f4f6;
+  --sidebar-primary-foreground: #1f2937;
+  --sidebar-accent: #ec4899;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #e5e7eb;
+  --sidebar-ring: rgba(236, 72, 153, 0.3);
+  
+  /* Navigation variables - более мягкие цвета */
+  --nav-bg: rgba(0, 0, 0, 0.3);
+  --nav-bg-solid: rgba(0, 0, 0, 0.7);
+  --header-h: 72px;
+  
+  /* Beautiful fonts */
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-accent: 'Space Grotesk', 'Inter', sans-serif;
+}
+
+.dark {
+  --background: #0f172a;
+  --foreground: #f1f5f9;
+  --card: #1e293b;
+  --card-foreground: #f1f5f9;
+  --popover: #1e293b;
+  --popover-foreground: #f1f5f9;
+  --primary: #ef4444;
+  --primary-foreground: #ffffff;
+  --secondary: #334155;
+  --secondary-foreground: #f1f5f9;
+  --muted: #1e293b;
+  --muted-foreground: #94a3b8;
+  --accent: #ec4899;
+  --accent-foreground: #ffffff;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --border: #334155;
+  --input: #1e293b;
+  --ring: rgba(236, 72, 153, 0.3);
+  --chart-1: #ef4444;
+  --chart-2: #f59e0b;
+  --chart-3: #f97316;
+  --chart-4: #10b981;
+  --chart-5: #3b82f6;
+  --sidebar: #0f172a;
+  --sidebar-foreground: #f1f5f9;
+  --sidebar-primary: #1e293b;
+  --sidebar-primary-foreground: #f1f5f9;
+  --sidebar-accent: #ec4899;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #334155;
+  --sidebar-ring: rgba(236, 72, 153, 0.3);
+}
+
+@theme inline {
+  /* Improved font configuration with better hierarchy */
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-poppins);
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  
+  html, body {
+    overflow-x: hidden;
+    background: #000000;
+    margin: 0;
+    padding: 0;
+  }
+  
+  html {
+    background: #000000;
+  }
+  
+  body {
+    @apply bg-background text-foreground font-sans;
+    min-height: min(100svh, 100vh);
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    background: #000000;
+    color: #ffffff;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  html.nav-open {
+    overflow: hidden;
+  }
+
+  html.desktop-nav-open {
+    overflow: hidden;
+  }
+
+  video, iframe {
+    will-change: transform;
+    transform: translateZ(0);
+  }
+
+/* Video background optimizations - ensure video is under navigation */
+.video-background iframe {
+  pointer-events: none;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  z-index: 1 !important;
+  position: relative;
+}
+
+/* Ensure video background container has lowest z-index */
+.video-background {
+  z-index: 1 !important;
+  position: relative !important;
+}
+
+  /* Hide YouTube branding and controls */
+  .video-background iframe::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: transparent;
+    z-index: 1;
+  }
+
+  /* Ensure video starts with high quality */
+  .video-background iframe {
+    filter: contrast(1.1) brightness(1.05);
+  }
+
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Prevent layout shifts */
+  img, video, iframe {
+    aspect-ratio: attr(width) / attr(height);
+    object-fit: cover;
+  }
+  
+  /* GPU compositing for animations */
+  .animate-bounce, .animate-pulse {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+  
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-bounce, .animate-pulse {
+      animation: none;
+    }
+    
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+  
+  /* Mobile performance optimizations */
+  @media (max-width: 768px) {
+    .backdrop-blur-lg {
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    
+    /* Reduce heavy shadows on mobile */
+    .shadow-2xl {
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+  }
+  
+  /* Prevent white stripes and ensure consistent black background */
+  * {
+    box-sizing: border-box;
+  }
+  
+  #__next {
+    background: #000000;
+    min-height: 100vh;
+  }
+  
+  /* Ensure all sections have consistent black background */
+  section, div, main, header, footer {
+    background-color: transparent;
+  }
+  
+  /* Fix for any potential white backgrounds */
+  .bg-white, .bg-gray-50, .bg-gray-100 {
+    background-color: #000000 !important;
+  }
+}
+
+@layer utilities {
+  .gradient-primary {
+    background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+  }
+
+  .gradient-secondary {
+    background: linear-gradient(135deg, #f3f4f6 0%, #ffffff 100%);
+  }
+
+  /* Added pink gradient utilities */
+  .gradient-pink {
+    background: linear-gradient(135deg, #ec4899 0%, #f97316 100%);
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-pink {
+    background: linear-gradient(135deg, #ec4899 0%, #f97316 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glass-effect {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  /* Enhanced typography utilities */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+}
+
+/* Simple header styles */
+
+/* Beautiful typography */
+body {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-accent {
+  font-family: var(--font-accent);
+}
+
+.font-primary {
+  font-family: var(--font-primary);
+}
+
+/* Force elements above YouTube iframe */
+.scroll-button {
+  position: absolute !important;
+  z-index: 9998 !important;
+  pointer-events: auto !important;
+}
+
+
+
+
+
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  /* Safe area insets for iOS */
+  .mobile-safe-top {
+    padding-top: env(safe-area-inset-top, 0);
+  }
+  
+  .mobile-safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+  
+  /* Prevent zoom on input focus */
+  input, textarea, select {
+    font-size: 16px !important;
+  }
+  
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Prevent horizontal scroll */
+  body {
+    overflow-x: hidden;
+  }
+  
+  /* Better touch targets */
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  
+  /* Mobile video background optimizations with zoom */
+  .video-background iframe {
+    filter: contrast(1.2) brightness(1.1) saturate(1.1);
+    transform: scale(1.1) translateZ(0);
+    -webkit-transform: scale(1.1) translateZ(0);
+  }
+  
+  /* Ensure video container handles overflow */
+  .video-background {
+    overflow: hidden;
+  }
+}
+
+
+/* Custom animations */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out forwards;
+  opacity: 0;
+}
