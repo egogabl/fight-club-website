@@ -24,7 +24,14 @@ export const metadata: Metadata = {
   title: "VOLAT - Centrum Sportu i Edukacji",
   description:
     "Nowoczesne centrum sportu i edukacji oferujące kompleksowe szkolenia w zakresie sztuk walki oraz programy kulturalne i edukacyjne.",
-    generator: 'v0.app'
+  generator: 'v0.app',
+  icons: {
+    icon: '/volat-logo-simple.png',
+    apple: [
+      { url: '/apple-touch-icon.png' },
+      { url: '/apple-touch-icon-precomposed.png', rel: 'apple-touch-icon-precomposed' },
+    ],
+  },
 }
 
 export default function RootLayout({

@@ -61,3 +61,21 @@ jspm_packages/
 
 # Netlify
 .netlify/
+
+# Large images (should be optimized)
+# public/*.png
+# public/*.jpg
+# public/*.jpeg
+
+# Temporary image files
+*.jpg
+*.png
+*.jpeg
+*.JPG
+*.PNG
+*.MP
+*.MP-2
+!public/*.jpg
+!public/*.png
+!public/*.jpeg
+!public/*.svg
