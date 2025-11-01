@@ -50,8 +50,12 @@ export default function CoachDetailPageClient({ coachesData }: CoachDetailPageCl
         <div className="container mx-auto px-6">
           <div className="max-w-6xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-12 items-start">
-              <div className="aspect-square overflow-hidden rounded-3xl shadow-2xl">
-                <img src={coach.image || "/placeholder.svg"} alt={coach.name} className="w-full h-full object-cover" />
+              <div className="aspect-square overflow-hidden rounded-3xl shadow-2xl relative bg-transparent dark-bg bg-gradient-to-br from-gray-900 to-black rounded-3xl">
+                <img 
+                  src={coach.image || "/placeholder.svg"} 
+                  alt={coach.name} 
+                  className="w-full h-full object-cover remove-white-bg" 
+                />
               </div>
 
               <div className="space-y-8">

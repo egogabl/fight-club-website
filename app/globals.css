@@ -219,6 +219,31 @@
     transform: translateZ(0);
     will-change: transform;
   }
+
+  /* Remove white background from coach images */
+  .remove-white-bg {
+    /* Убираем белый фон с помощью mix-blend-mode */
+    mix-blend-mode: multiply;
+    /* Альтернативный метод для более точного удаления белого */
+    filter: contrast(1.1) saturate(1.1);
+  }
+
+  /* Для темного фона используем другой режим смешивания */
+  .dark-bg .remove-white-bg,
+  .bg-black .remove-white-bg,
+  .bg-gray-900 .remove-white-bg,
+  .bg-gradient-to-br .remove-white-bg {
+    mix-blend-mode: screen;
+    filter: brightness(1.2) contrast(1.1);
+  }
+
+  /* Fallback для браузеров без поддержки mix-blend-mode */
+  @supports not (mix-blend-mode: multiply) {
+    .remove-white-bg {
+      filter: brightness(1.1) contrast(1.2) saturate(1.1);
+      opacity: 0.95;
+    }
+  }
   
   /* Reduced motion support */
   @media (prefers-reduced-motion: reduce) {
