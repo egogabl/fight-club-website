@@ -1,9 +1,6 @@
 [build]
   command = "npm run build"
-  # publish не указываем - плагин Next.js сам управляет через Build Output API
-
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
+  publish = ".next"
 
 [build.environment]
   NODE_VERSION = "18"
