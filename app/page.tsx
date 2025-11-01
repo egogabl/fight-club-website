@@ -521,12 +521,12 @@ export default function HomePage() {
                               {currentLang === "uk" ? "Тренер" : currentLang === "en" ? "Trainer" : currentLang === "by" ? "Трэнер" : "Trener"}
                             </span>
                           </div>
-                          <p className="text-white text-sm font-primary group-hover/trainer:text-red-100 transition-colors break-words">{currentActivity.trainer}</p>
+                          <p className="text-white text-sm font-primary group-hover/trainer:text-red-100 transition-colors">{currentActivity.trainer}</p>
                         </div>
                       )}
 
-                      {/* Buttons - Only Visible When Expanded */}
-                      <div className="pt-2 flex flex-col space-y-3">
+                      {/* Buttons - Only visible when expanded */}
+                      <div className="px-0 pt-2 flex flex-col space-y-3">
                         <Link
                           href={`/disciplines/${currentActivity.slug}`}
                           className="w-full px-6 py-3 bg-gradient-to-r from-red-600 to-red-500 text-white text-sm font-accent font-medium rounded-xl text-center shadow-lg block"
