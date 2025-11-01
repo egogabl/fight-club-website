@@ -345,9 +345,12 @@ export default function DisciplinesPage() {
                 <div className="relative w-full h-48 sm:h-64 mb-4 rounded-xl overflow-hidden shadow-lg flex-shrink-0">
                   <Image
                     src={discipline.image}
-                    alt={discipline.name}
+                    alt={`${disciplineTranslations[discipline.slug]?.[currentLang] || discipline.name} - trening w klubie VOLAT Warszawa`}
+                    title={`${disciplineTranslations[discipline.slug]?.[currentLang] || discipline.name} - zajęcia w klubie VOLAT Warszawa, trener ${discipline.trainer}`}
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
                     className="object-cover"
+                    loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                 </div>

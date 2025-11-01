@@ -4,6 +4,7 @@ import { Inter, Poppins } from "next/font/google"
 import "./globals.css"
 import Navigation from "@/components/navigation"
 import { LanguageProvider } from "@/components/language-provider"
+import Analytics from "@/components/analytics"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -104,7 +105,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pl" className={`${inter.variable} ${poppins.variable} antialiased`}>
+      <head>
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+      </head>
       <body>
+        <Analytics />
         <LanguageProvider>
           <Navigation />
           {children}

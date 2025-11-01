@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Clock, MapPin, Calendar, ArrowLeft } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 
 interface Coach {
   name: string
@@ -55,8 +56,17 @@ export default function CoachDetailClient({ coach, slug }: CoachDetailClientProp
               </Link>
             </div>
             <div className="grid lg:grid-cols-2 gap-12 items-start">
-              <div className="aspect-square overflow-hidden rounded-3xl shadow-2xl">
-                <img src={coach.image || "/placeholder.svg"} alt={coach.name} className="w-full h-full object-cover" />
+              <div className="aspect-square overflow-hidden rounded-3xl shadow-2xl relative">
+                <Image
+                  src={coach.image || "/placeholder.svg"}
+                  alt={`${coach.name} - ${coach.specialty} w klubie VOLAT Warszawa`}
+                  title={`${coach.name} - Trener ${coach.specialty} w klubie VOLAT Warszawa`}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover"
+                  priority
+                  loading="eager"
+                />
               </div>
 
               <div className="space-y-8">

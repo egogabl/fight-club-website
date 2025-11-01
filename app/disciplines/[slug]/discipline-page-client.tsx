@@ -434,9 +434,13 @@ export default function DisciplinePageClient({ discipline }: DisciplinePageClien
               <div className="relative w-full h-96 lg:h-[500px] rounded-2xl overflow-hidden shadow-2xl">
                 <Image
                   src={discipline.image}
-                  alt={discipline.imageAlt || `${discipline.name} - trening w klubie VOLAT`}
+                  alt={discipline.imageAlt || `${disciplineTranslations[discipline.slug]?.[currentLang] || discipline.name} - trening w klubie VOLAT Warszawa`}
+                  title={`${disciplineTranslations[discipline.slug]?.[currentLang] || discipline.name} - zajęcia w klubie VOLAT Warszawa, trener ${discipline.trainer}`}
                   fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover"
+                  priority
+                  loading="eager"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
               </div>
@@ -463,8 +467,11 @@ export default function DisciplinePageClient({ discipline }: DisciplinePageClien
                         <Image
                           src={galleryImage}
                           alt={altText}
+                          title={`${disciplineTranslations[discipline.slug]?.[currentLang] || discipline.name} - ${altText}`}
                           fill
+                          sizes="(max-width: 1024px) 33vw, 16vw"
                           className="object-cover"
+                          loading="lazy"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
                       </div>

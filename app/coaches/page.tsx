@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { Award, Users, Star } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 import { useLanguage } from "@/components/language-provider"
 
 const coaches = [
@@ -447,11 +448,16 @@ export default function CoachesPage() {
               <div key={index} className="group flex flex-col">
                 <Card className="border-2 border-red-400/30 shadow-2xl rounded-3xl bg-gradient-to-br from-gray-900 to-black hover:shadow-red-400/20 hover:shadow-3xl transition-all duration-300 group overflow-hidden backdrop-blur-md flex-1 flex flex-col min-h-[600px]">
                   <Link href={`/coaches/${coach.id}`} className="flex-1 flex flex-col">
-                    <div className="aspect-square overflow-hidden">
-                      <img
+                    <div className="aspect-square overflow-hidden relative">
+                      <Image
                         src={coach.image || "/placeholder.svg"}
-                        alt={coach.name}
-                        className="w-full h-full object-cover transition-transform duration-200"
+                        alt={`${coach.name} - ${coachT.specialty} w klubie VOLAT`}
+                        title={`${coach.name} - Trener ${coachT.specialty} w klubie VOLAT Warszawa`}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="object-cover transition-transform duration-200"
+                        loading={index < 3 ? "eager" : "lazy"}
+                        priority={index < 3}
                       />
                     </div>
                     <CardHeader className="p-6">
@@ -503,8 +509,8 @@ export default function CoachesPage() {
                         </ul>
                       </div>
                     </CardContent>
-                  </Link>
-                  
+                </Link>
+                
                   {/* Кнопки действий */}
                   <div className="p-6 pt-0">
                     <div className="flex flex-col gap-3">
@@ -522,10 +528,10 @@ export default function CoachesPage() {
                       <Link href={`/coaches/${coach.id}`} className="w-full">
                         <button className="w-full px-4 py-2.5 bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800 text-white text-sm font-medium rounded-xl shadow-lg hover:shadow-xl">
                           {t.viewDetails}
-                        </button>
+                  </button>
                       </Link>
                     </div>
-                  </div>
+                </div>
                 </Card>
               </div>
             )})}
