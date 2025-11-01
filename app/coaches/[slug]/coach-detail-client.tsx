@@ -66,6 +66,7 @@ export default function CoachDetailClient({ coach, slug }: CoachDetailClientProp
                   className="object-cover"
                   priority
                   loading="eager"
+                  quality={70}
                 />
               </div>
 

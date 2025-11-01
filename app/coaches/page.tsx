@@ -444,6 +444,8 @@ export default function CoachesPage() {
                 specialties: coach.specialties,
                 students: coach.students
               }
+              // Priority только для первого изображения для оптимизации загрузки
+              const isPriority = index === 0
               return (
               <div key={index} className="group flex flex-col">
                 <Card className="border-2 border-red-400/30 shadow-2xl rounded-3xl bg-gradient-to-br from-gray-900 to-black hover:shadow-red-400/20 hover:shadow-3xl transition-all duration-300 group overflow-hidden backdrop-blur-md flex-1 flex flex-col min-h-[600px]">
@@ -455,9 +457,10 @@ export default function CoachesPage() {
                         title={`${coach.name} - Trener ${coachT.specialty} w klubie VOLAT Warszawa`}
                         fill
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        className="object-cover transition-transform duration-200"
-                        loading={index < 3 ? "eager" : "lazy"}
-                        priority={index < 3}
+                        className="object-cover"
+                        loading="lazy"
+                        quality={70}
+                        unoptimized={false}
                       />
                     </div>
                     <CardHeader className="p-6">
