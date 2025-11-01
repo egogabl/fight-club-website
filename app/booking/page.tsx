@@ -128,7 +128,7 @@ export default function BookingPage() {
                     setSelectedSlot(null)
                     setFormData({ name: "", email: "", phone: "", experience: "beginner", notes: "" })
                   }}
-                  className="bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700 font-serif text-lg px-8 py-3 rounded-2xl shadow-lg transition-all duration-200 font-bold"
+                  className="bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700 font-serif text-lg px-8 py-3 rounded-2xl shadow-lg font-bold"
                 >
                   Zarezerwuj kolejne zajęcia
                 </Button>
@@ -369,7 +369,7 @@ export default function BookingPage() {
                 </p>
                 <Button
                   onClick={() => window.open("tel:+48733451982", "_self")}
-                  className="bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700 font-serif text-lg px-8 py-3 rounded-2xl shadow-lg transition-all duration-200 font-bold"
+                  className="bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700 font-serif text-lg px-8 py-3 rounded-2xl shadow-lg font-bold"
                 >
                   Zadzwoń: +48 733 451 982
                 </Button>

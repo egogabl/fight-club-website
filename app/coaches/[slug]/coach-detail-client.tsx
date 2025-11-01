@@ -48,7 +48,7 @@ export default function CoachDetailClient({ coach, slug }: CoachDetailClientProp
             {/* Кнопка "Назад" */}
             <div className="mb-8">
               <Link href="/coaches">
-                <Button className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-6 py-3 rounded-xl shadow-lg transition-all duration-200 font-medium">
+                <Button className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-6 py-3 rounded-xl shadow-lg font-medium">
                   <ArrowLeft className="w-4 h-4 mr-2" />
                   Powrót do trenerów
                 </Button>
@@ -120,15 +120,18 @@ export default function CoachDetailClient({ coach, slug }: CoachDetailClientProp
               </div>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-8">
                 <Link href={`/schedule?coach=${slug}`}>
-                  <Button className="bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700 font-medium text-lg px-8 py-4 rounded-2xl shadow-lg transition-all duration-200 w-full sm:w-auto">
+                  <Button className="bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700 font-medium text-lg px-8 py-4 rounded-2xl shadow-lg w-full sm:w-auto">
                     Zobacz pełny rozkład trenera
                   </Button>
                 </Link>
-                <Link href="/booking">
-                  <Button className="bg-gradient-to-r from-gray-600 to-gray-700 text-white hover:from-gray-700 hover:to-gray-800 font-medium text-lg px-8 py-4 rounded-2xl shadow-lg transition-all duration-200 w-full sm:w-auto">
-                    Zapisz się na zajęcia
-                  </Button>
-                </Link>
+                <a
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSdDvBi8fQgmTj10i6GPoU19q3RanUSyJLCZS3QACu5sS9aoMA/viewform"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-gradient-to-r from-gray-600 to-gray-700 text-white font-medium text-lg px-8 py-4 rounded-2xl shadow-lg w-full sm:w-auto block text-center"
+                >
+                  Zapisz się na zajęcia
+                </a>
               </div>
             </div>
           </div>

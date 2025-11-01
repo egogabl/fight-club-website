@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import Navigation from "@/components/navigation"
 import Footer from "@/components/footer"
 
 const languageFlags = {
@@ -201,7 +200,6 @@ export default function EducationalCenterPage() {
 
   return (
     <div className="min-h-screen bg-black text-white relative">
-      <Navigation currentLang={currentLang} onLanguageChange={setCurrentLang} />
       
       <main className="pt-20">
         <div className="container mx-auto px-4 py-20">
@@ -226,15 +224,14 @@ export default function EducationalCenterPage() {
                   </li>
                 ))}
               </ul>
-              <button
-                onClick={() => {
-                  // TODO: Подключить форму записи
-                  alert(`Zapis na program: ${t.sections.chess.title}`)
-                }}
-                className="w-full px-6 py-3 bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 text-white text-sm font-accent font-medium rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSdDvBi8fQgmTj10i6GPoU19q3RanUSyJLCZS3QACu5sS9aoMA/viewform"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full px-6 py-3 bg-gradient-to-r from-red-600 to-red-500 text-white text-sm font-accent font-medium rounded-xl shadow-lg block text-center"
               >
                 {t.bookNow}
-              </button>
+              </a>
             </div>
 
             <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl p-8 hover:border-red-500/50 transition-all duration-300">
@@ -248,15 +245,14 @@ export default function EducationalCenterPage() {
                   </li>
                 ))}
               </ul>
-              <button
-                onClick={() => {
-                  // TODO: Подключить форму записи
-                  alert(`Zapis na program: ${t.sections.language.title}`)
-                }}
-                className="w-full px-6 py-3 bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 text-white text-sm font-accent font-medium rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSdDvBi8fQgmTj10i6GPoU19q3RanUSyJLCZS3QACu5sS9aoMA/viewform"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full px-6 py-3 bg-gradient-to-r from-red-600 to-red-500 text-white text-sm font-accent font-medium rounded-xl shadow-lg block text-center"
               >
                 {t.bookNow}
-              </button>
+              </a>
             </div>
 
             <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl p-8 hover:border-red-500/50 transition-all duration-300">
@@ -270,15 +266,14 @@ export default function EducationalCenterPage() {
                   </li>
                 ))}
               </ul>
-              <button
-                onClick={() => {
-                  // TODO: Подключить форму записи
-                  alert(`Zapis na program: ${t.sections.educational.title}`)
-                }}
-                className="w-full px-6 py-3 bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 text-white text-sm font-accent font-medium rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSdDvBi8fQgmTj10i6GPoU19q3RanUSyJLCZS3QACu5sS9aoMA/viewform"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full px-6 py-3 bg-gradient-to-r from-red-600 to-red-500 text-white text-sm font-accent font-medium rounded-xl shadow-lg block text-center"
               >
                 {t.bookNow}
-              </button>
+              </a>
             </div>
           </div>
         </div>

@@ -14,6 +14,9 @@ export function useResponsiveVideo(config: VideoConfig) {
   const { desktopToken, mobileToken, breakpoint = 768 } = config
 
   useEffect(() => {
+    // Only run on client side
+    if (typeof window === 'undefined') return
+
     const checkScreenSize = () => {
       setIsDesktop(window.innerWidth > breakpoint)
       setIsLoaded(true)

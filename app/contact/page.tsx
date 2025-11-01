@@ -3,12 +3,11 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { MapPin, Phone, Mail, Clock, Navigation, Car, Bus } from "lucide-react"
-import NavigationComponent from "@/components/navigation"
 
 const locations = [
   {
     name: "VOLAT Mokotów",
-    address: "ul. Malawskiego 6, Warszawa",
+    address: "ul. Artura Malawskiego 6, Warszawa",
     phone: "+48 733 451 982",
     email: "vasilvolkau@gmail.com",
     coordinates: "Mokotów, Warszawa",
@@ -37,7 +36,6 @@ const locations = [
 export default function ContactPage() {
   return (
     <div className="min-h-screen bg-black">
-      <NavigationComponent />
 
       <section className="py-32 bg-gradient-to-br from-black via-gray-900 to-black">
         <div className="container mx-auto px-6">
@@ -57,7 +55,7 @@ export default function ContactPage() {
             {locations.map((location, index) => (
               <Card
                 key={index}
-                className="border-2 border-red-400/30 shadow-2xl rounded-3xl bg-gradient-to-br from-gray-900 to-black hover:shadow-red-400/20 hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-2 group backdrop-blur-md"
+                className="border-2 border-red-400/30 shadow-2xl rounded-3xl bg-gradient-to-br from-gray-900 to-black hover:shadow-red-400/20 hover:shadow-3xl transition-all duration-300 group backdrop-blur-md"
               >
                 <CardHeader className="p-8">
                   <CardTitle className="font-display text-2xl text-white mb-4 font-bold flex items-center gap-3 bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">
@@ -141,7 +139,7 @@ export default function ContactPage() {
               </h2>
               <div className="space-y-8">
                 <div className="flex items-center gap-6">
-                  <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-3xl flex items-center justify-center flex-shrink-0 transform hover:scale-125 hover:rotate-12 transition-all duration-500 shadow-2xl">
+                  <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-3xl flex items-center justify-center flex-shrink-0 transition-all duration-300 shadow-2xl">
                     <Phone className="w-8 h-8 text-white" />
                   </div>
                   <div>
@@ -156,7 +154,7 @@ export default function ContactPage() {
                   </div>
                 </div>
                 <div className="flex items-center gap-6">
-                  <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-3xl flex items-center justify-center flex-shrink-0 transform hover:scale-125 hover:rotate-12 transition-all duration-500 shadow-2xl">
+                  <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-3xl flex items-center justify-center flex-shrink-0 transition-all duration-300 shadow-2xl">
                     <Mail className="w-8 h-8 text-white" />
                   </div>
                   <div>
@@ -216,14 +214,14 @@ export default function ContactPage() {
                     // TODO: Подключить форму записи
                     alert('Funkcja zapisu będzie dostępna wkrótce!')
                   }}
-                  className="w-full px-6 py-3 bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700 text-sm font-accent font-medium rounded-xl shadow-lg transform hover:scale-105 transition-all duration-300"
+                  className="w-full px-6 py-3 bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700 text-sm font-accent font-medium rounded-xl shadow-lg"
                 >
                   Umów trening próbny
                 </Button>
 
                 <Button
                   onClick={() => window.open("tel:+48733451982", "_self")}
-                  className="w-full px-6 py-3 bg-gradient-to-r from-gray-800 to-gray-900 text-white hover:from-gray-700 hover:to-gray-800 text-sm font-accent font-medium rounded-xl shadow-lg transform hover:scale-105 transition-all duration-300 border border-gray-600"
+                  className="w-full px-6 py-3 bg-gradient-to-r from-gray-800 to-gray-900 text-white hover:from-gray-700 hover:to-gray-800 text-sm font-accent font-medium rounded-xl shadow-lg border border-gray-600"
                 >
                   Zadzwoń teraz
                 </Button>
@@ -241,13 +239,13 @@ export default function ContactPage() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button
                   onClick={() => window.open("mailto:vasilvolkau@gmail.com", "_self")}
-                  className="bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700 text-sm font-accent font-medium px-6 py-3 rounded-xl shadow-lg transform hover:scale-105 transition-all duration-300"
+                  className="bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700 text-sm font-accent font-medium px-6 py-3 rounded-xl shadow-lg"
                 >
                   Napisz email
                 </Button>
                 <Button
                   onClick={() => window.open("https://wa.me/48733451982", "_blank")}
-                  className="bg-gradient-to-r from-gray-800 to-gray-900 text-white hover:from-gray-700 hover:to-gray-800 text-sm font-accent font-medium px-6 py-3 rounded-xl shadow-lg transform hover:scale-105 transition-all duration-300 border border-gray-600"
+                  className="bg-gradient-to-r from-gray-800 to-gray-900 text-white hover:from-gray-700 hover:to-gray-800 text-sm font-accent font-medium px-6 py-3 rounded-xl shadow-lg border border-gray-600"
                 >
                   WhatsApp
                 </Button>

@@ -4,13 +4,13 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Check, Star, Crown } from "lucide-react"
 import Link from "next/link"
-import Navigation from "@/components/navigation"
 
 const pricingPlans = [
   {
     name: "Program Klubu VOLAT - Dzieci",
     price: "220",
     period: "miesięcznie",
+    summerPrice: "110",
     description: "Nieograniczone zajęcia w jednej wybranej sekcji",
     features: [
       "Nieograniczone zajęcia w jednej sekcji",
@@ -18,7 +18,9 @@ const pricingPlans = [
       "Obowiązuje niezależnie od obecności",
       "Zniżki na merch i sprzęt klubowy",
       "Zniżki na obozy i turnieje",
-      "Zniżki na zajęcia edukacyjne"
+      "Zniżki na zajęcia edukacyjne",
+      "Zniżka rodzinna: 200 zł/miesiąc za każde dziecko",
+      "Zniżka wakacyjna: 50% (lipiec/sierpień)"
     ],
     icon: Star,
     popular: false,
@@ -28,7 +30,8 @@ const pricingPlans = [
     name: "Program Klubu VOLAT - Dorośli",
     price: "280",
     period: "miesięcznie",
-    description: "Najlepszy wybór dla regularnych treningów",
+    summerPrice: "140",
+    description: "Nieograniczone zajęcia w jednej wybranej sekcji",
     features: [
       "Nieograniczone zajęcia w jednej sekcji",
       "Płatność do 10 dnia miesiąca",
@@ -36,67 +39,110 @@ const pricingPlans = [
       "Zniżki na merch i sprzęt klubowy",
       "Zniżki na obozy i turnieje",
       "Zniżki na zajęcia edukacyjne",
-      "Zniżka rodzinna: 200 zł za dziecko"
+      "Zniżka wakacyjna: 50% (lipiec/sierpień)"
     ],
     icon: Crown,
     popular: true,
     buttonText: "Wybierz program dla dorosłych",
   },
+]
+
+const periodPlans = [
   {
-    name: "Abonament 3 miesiące",
-    price: "660",
+    name: "Abonament okresowy - 2 tygodnie",
+    childrenPrice: "180",
+    adultsPrice: "200",
+    period: "za 2 tygodnie",
+    description: "Nieograniczone zajęcia w jednej sekcji",
+  },
+  {
+    name: "Abonament okresowy - 1 miesiąc",
+    childrenPrice: "240",
+    adultsPrice: "300",
+    period: "za 1 miesiąc",
+    description: "Nieograniczone zajęcia w jednej sekcji",
+  },
+  {
+    name: "Abonament okresowy - 3 miesiące",
+    childrenPrice: "660",
+    adultsPrice: "850",
     period: "za 3 miesiące",
-    description: "Najlepszy wybór dla osób regularnych",
-    features: [
-      "Nieograniczone zajęcia w jednej sekcji",
-      "Obowiązuje przez określony czas",
-      "Najlepszy stosunek ceny do jakości",
-      "Dostęp do wszystkich sekcji",
-      "Priorytetowe rezerwacje"
-    ],
-    icon: Crown,
-    popular: false,
-    buttonText: "Wybierz abonament 3-miesięczny",
+    description: "Nieograniczone zajęcia w jednej sekcji",
+  },
+  {
+    name: "Abonament okresowy - 6 miesięcy",
+    childrenPrice: "1200",
+    adultsPrice: "1600",
+    period: "za 6 miesięcy",
+    description: "Nieograniczone zajęcia w jednej sekcji",
   },
 ]
 
-const additionalServices = [
+const entryCards = [
+  {
+    name: "Karnet na liczbę wejść - 1 wejście",
+    price: "60",
+    period: "za 1 wejście",
+    validity: "",
+    description: "Jednorazowe wejście",
+  },
+  {
+    name: "Karnet na liczbę wejść - 2 wejścia",
+    price: "115",
+    period: "za 2 wejścia",
+    validity: "1 mies.",
+    description: "Można przychodzić dowolnie",
+  },
   {
     name: "Karnet na liczbę wejść - 4 wejścia",
     price: "200",
     period: "za 4 wejścia",
-    description: "Ważność: 1 miesiąc, można przychodzić dowolnie",
+    validity: "1 mies.",
+    description: "Można przychodzić dowolnie",
   },
   {
     name: "Karnet na liczbę wejść - 8 wejść",
     price: "360",
     period: "za 8 wejść",
-    description: "Ważność: 2 miesiące, idealne dla elastycznego grafiku",
+    validity: "2 mies.",
+    description: "Idealne dla elastycznego grafiku",
   },
   {
-    name: "Samodzielne wejście na salę",
-    price: "35",
-    period: "za wejście",
-    description: "Nielimitowane korzystanie z sal sportowych i teoretycznych",
+    name: "Karnet na liczbę wejść - 12 wejść",
+    price: "480",
+    period: "za 12 wejść",
+    validity: "3 mies.",
+    description: "Najlepszy wybór dla nieregularnego grafiku",
+  },
+]
+
+const gymAccess = [
+  {
+    name: "Samodzielne wejście na salę - 1 wejście",
+    price: "30",
+    period: "za 1 wejście",
+    validity: "",
+    description: "Nielimitowane korzystanie z sal w czasie wolnym",
   },
   {
-    name: "Wejście miesięczne na salę",
-    price: "150",
+    name: "Samodzielne wejście na salę - miesięczne",
+    price: "130",
     period: "miesięcznie",
+    validity: "1 mies.",
     description: "Nielimitowany dostęp do sal poza zajęciami grupowymi",
   },
   {
-    name: "Wakacyjna zniżka",
-    price: "-50%",
-    period: "2 miesiące",
-    description: "Każdy uczestnik może wykorzystać dwa miesiące zniżki wakacyjnej",
+    name: "Samodzielne wejście na salę - 10 wejść",
+    price: "200",
+    period: "za 10 wejść",
+    validity: "3 mies.",
+    description: "Idealne dla regularnego korzystania z sali",
   },
 ]
 
 export default function PricingPage() {
   return (
     <div className="min-h-screen bg-black">
-      <Navigation />
 
       <section className="py-32 bg-black">
         <div className="container mx-auto px-6">
@@ -123,13 +169,13 @@ export default function PricingPage() {
             </div>
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-8 max-w-7xl mx-auto mb-20">
+          <div className="grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto mb-20">
             {pricingPlans.map((plan, index) => (
               <Card
                 key={index}
-                className={`border transition-all duration-300 hover:-translate-y-1 ${
+                className={`border transition-all duration-300 ${
                   plan.popular
-                    ? "border-red-500 bg-gray-900 hover:shadow-lg hover:shadow-red-500/20 scale-105"
+                    ? "border-red-500 bg-gray-900 hover:shadow-lg hover:shadow-red-500/20"
                     : "border-gray-700 bg-gray-900 hover:border-gray-600 hover:shadow-lg"
                 }`}
               >
@@ -151,6 +197,11 @@ export default function PricingPage() {
                       <span className="text-gray-400 text-lg ml-2 font-accent">zł</span>
                     </div>
                     <span className="text-gray-400 text-lg font-accent">{plan.period}</span>
+                    {plan.summerPrice && (
+                      <div className="mt-2">
+                        <span className="text-red-400 text-sm font-accent">Lato: {plan.summerPrice} zł (lipiec/sierpień)</span>
+                      </div>
+                    )}
                   </div>
                   <p className="text-gray-400 text-base font-primary font-light leading-relaxed">{plan.description}</p>
                 </CardHeader>
@@ -169,7 +220,7 @@ export default function PricingPage() {
 
                   <Link href="/booking">
                     <Button
-                      className={`w-full px-6 py-3 rounded-xl text-sm font-accent font-medium transition-all duration-300 transform hover:scale-105 ${
+                      className={`w-full px-6 py-3 rounded-xl text-sm font-accent font-medium ${
                         plan.popular
                           ? "bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700 shadow-lg hover:shadow-red-500/25"
                           : "bg-gradient-to-r from-gray-800 to-gray-900 text-white hover:from-gray-700 hover:to-gray-800 border border-gray-600 shadow-lg hover:shadow-xl"
@@ -190,32 +241,117 @@ export default function PricingPage() {
             <div className="flex-1 h-px bg-gray-700"></div>
           </div>
 
-          <div className="max-w-6xl mx-auto">
+          {/* Abonament okresowy */}
+          <div className="max-w-6xl mx-auto mb-16">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-4 bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">
-                Dodatkowe usługi
+                Abonament okresowy
               </h2>
-              <p className="text-gray-400 text-lg font-accent">Elastyczne opcje dla każdego</p>
+              <p className="text-gray-400 text-lg font-accent">Dla osób trenujących regularnie</p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {additionalServices.map((service, index) => (
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {periodPlans.map((plan, index) => (
                 <Card
                   key={index}
                   className="border border-gray-700 rounded-lg bg-gray-900 hover:border-gray-600 transition-all duration-300 hover:shadow-lg hover:shadow-red-500/10"
                 >
                   <CardHeader className="p-6 text-center">
-                    <CardTitle className="text-lg text-white mb-3 font-display font-semibold">{service.name}</CardTitle>
+                    <CardTitle className="text-lg text-white mb-3 font-display font-semibold">{plan.name}</CardTitle>
+                    <div className="mb-4 space-y-2">
+                      <div>
+                        <div className="flex items-baseline justify-center">
+                          <span className="text-2xl font-display font-bold bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">
+                            {plan.childrenPrice}
+                          </span>
+                          <span className="text-gray-400 text-sm ml-1 font-accent">zł</span>
+                        </div>
+                        <span className="text-gray-400 text-xs font-accent">Dzieci</span>
+                      </div>
+                      <div>
+                        <div className="flex items-baseline justify-center">
+                          <span className="text-2xl font-display font-bold bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">
+                            {plan.adultsPrice}
+                          </span>
+                          <span className="text-gray-400 text-sm ml-1 font-accent">zł</span>
+                        </div>
+                        <span className="text-gray-400 text-xs font-accent">Dorośli</span>
+                      </div>
+                      <span className="text-gray-400 text-sm font-accent block">{plan.period}</span>
+                    </div>
+                    <p className="text-gray-400 text-sm leading-relaxed font-primary">{plan.description}</p>
+                  </CardHeader>
+                </Card>
+              ))}
+            </div>
+          </div>
+
+          {/* Karnet na liczbę wejść */}
+          <div className="max-w-6xl mx-auto mb-16">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-4 bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">
+                Karnet na liczbę wejść
+              </h2>
+              <p className="text-gray-400 text-lg font-accent">Dla osób z nieregularnym grafikiem</p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {entryCards.map((card, index) => (
+                <Card
+                  key={index}
+                  className="border border-gray-700 rounded-lg bg-gray-900 hover:border-gray-600 transition-all duration-300 hover:shadow-lg hover:shadow-red-500/10"
+                >
+                  <CardHeader className="p-6 text-center">
+                    <CardTitle className="text-lg text-white mb-3 font-display font-semibold">{card.name}</CardTitle>
                     <div className="mb-4">
                       <div className="flex items-baseline justify-center">
                         <span className="text-2xl font-display font-bold bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">
-                          {service.price}
+                          {card.price}
                         </span>
                         <span className="text-gray-400 text-sm ml-1 font-accent">zł</span>
                       </div>
-                      <span className="text-gray-400 text-sm font-accent">{service.period}</span>
+                      <span className="text-gray-400 text-sm font-accent">{card.period}</span>
+                      {card.validity && (
+                        <span className="text-red-400 text-xs font-accent block mt-1">Ważność: {card.validity}</span>
+                      )}
                     </div>
-                    <p className="text-gray-400 text-sm leading-relaxed font-primary">{service.description}</p>
+                    <p className="text-gray-400 text-sm leading-relaxed font-primary">{card.description}</p>
+                  </CardHeader>
+                </Card>
+              ))}
+            </div>
+          </div>
+
+          {/* Samodzielne wejście na salę */}
+          <div className="max-w-6xl mx-auto mb-16">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-4 bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">
+                Samodzielne wejście na salę
+              </h2>
+              <p className="text-gray-400 text-lg font-accent">Nielimitowane korzystanie z sal poza zajęciami grupowymi</p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {gymAccess.map((access, index) => (
+                <Card
+                  key={index}
+                  className="border border-gray-700 rounded-lg bg-gray-900 hover:border-gray-600 transition-all duration-300 hover:shadow-lg hover:shadow-red-500/10"
+                >
+                  <CardHeader className="p-6 text-center">
+                    <CardTitle className="text-lg text-white mb-3 font-display font-semibold">{access.name}</CardTitle>
+                    <div className="mb-4">
+                      <div className="flex items-baseline justify-center">
+                        <span className="text-2xl font-display font-bold bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">
+                          {access.price}
+                        </span>
+                        <span className="text-gray-400 text-sm ml-1 font-accent">zł</span>
+                      </div>
+                      <span className="text-gray-400 text-sm font-accent">{access.period}</span>
+                      {access.validity && (
+                        <span className="text-red-400 text-xs font-accent block mt-1">Ważność: {access.validity}</span>
+                      )}
+                    </div>
+                    <p className="text-gray-400 text-sm leading-relaxed font-primary">{access.description}</p>
                   </CardHeader>
                 </Card>
               ))}
@@ -233,13 +369,13 @@ export default function PricingPage() {
               </p>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <Link href="/contact">
-                      <Button className="bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700 text-sm px-6 py-3 rounded-xl font-accent font-medium transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-red-500/25">
+                      <Button className="bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700 text-sm px-6 py-3 rounded-xl font-accent font-medium shadow-lg hover:shadow-red-500/25">
                         Skontaktuj się z nami
                       </Button>
                     </Link>
                     <Button 
                       onClick={() => window.open("tel:+48733451982", "_self")}
-                      className="bg-gradient-to-r from-gray-800 to-gray-900 text-white hover:from-gray-700 hover:to-gray-800 text-sm px-6 py-3 rounded-xl font-accent font-medium transition-all duration-300 transform hover:scale-105 border border-gray-600 shadow-lg hover:shadow-xl"
+                      className="bg-gradient-to-r from-gray-800 to-gray-900 text-white hover:from-gray-700 hover:to-gray-800 text-sm px-6 py-3 rounded-xl font-accent font-medium border border-gray-600 shadow-lg hover:shadow-xl"
                     >
                       Zadzwoń teraz
                     </Button>
@@ -251,3 +387,4 @@ export default function PricingPage() {
     </div>
   )
 }
+

@@ -79,6 +79,8 @@ export default function Navigation() {
 
   // Close dropdowns when clicking outside
   useEffect(() => {
+    if (typeof window === 'undefined') return
+    
     const handleClickOutside = (event: MouseEvent) => {
       if (languageDropdownRef.current && !languageDropdownRef.current.contains(event.target as Node)) {
         setIsLanguageDropdownOpen(false)
@@ -91,6 +93,8 @@ export default function Navigation() {
 
   // Body scroll lock for mobile menu
   useEffect(() => {
+    if (typeof window === 'undefined') return
+    
     if (isMobileMenuOpen) {
       document.body.style.overflow = 'hidden'
     } else {
@@ -98,7 +102,9 @@ export default function Navigation() {
     }
     
     return () => {
-      document.body.style.overflow = ''
+      if (typeof window !== 'undefined') {
+        document.body.style.overflow = ''
+      }
     }
   }, [isMobileMenuOpen])
 

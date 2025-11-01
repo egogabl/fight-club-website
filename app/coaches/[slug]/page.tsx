@@ -3,10 +3,10 @@ import CoachDetailClient from "./coach-detail-client"
 const coaches = {
   "vital-rak": {
     name: "Vital Rak",
-    specialty: "Główny trener, karate, trening funkcjonalny",
+    specialty: "Główny trener, karate (sportowa grupa, dorośli), trening funkcjonalny",
     experience: "15+ lat doświadczenia",
     description:
-      "Główny trener klubu VOLAT z wieloletnim doświadczeniem w karate i treningu funkcjonalnym. Mistrz sportu, certyfikowany instruktor WKF. Specjalizuje się w przygotowaniu zawodników do zawodów międzynarodowych.",
+      "Główny trener klubu VOLAT z wieloletnim doświadczeniem w karate i treningu funkcjonalnym. Mistrz sportu, certyfikowany instruktor WKF. Specjalizuje się w przygotowaniu zawodników do zawodów międzynarodowych. Prowadzi karate sportową grupę i zajęcia dla dorosłych oraz trening funkcjonalny.",
     image: "/coach-senior-male.png",
     achievements: [
       "Mistrz Sportu w Karate",
@@ -16,29 +16,31 @@ const coaches = {
       "Specjalista Rehabilitacji Sportowej"
     ],
     upcomingSessions: [
-      { day: "Poniedziałek", time: "18:00-19:30", discipline: "Karate WKF", location: "Mokotów" },
-      { day: "Środa", time: "17:00-18:30", discipline: "Karate WKF", location: "Praga" },
-      { day: "Piątek", time: "18:00-19:30", discipline: "Karate WKF", location: "Mokotów" },
+      { day: "Wtorek", time: "17:15-18:15", discipline: "Karate (dzieci 10+, zaczynające)", location: "Mokotów" },
+      { day: "Piątek", time: "20:30-22:00", discipline: "Karate (dorośli)", location: "Mokotów" },
+      { day: "Sobota", time: "15:00-17:00", discipline: "Karate (sportowa grupa)", location: "Mokotów" },
     ],
   },
   "volha-yefimenka": {
     name: "Volha Yefimenka",
-    specialty: "Karate, trening motoryczny dzieci",
+    specialty: "Karate (dzieci 1-й и 2-й год обучения), trening motoryczny VolatMOVE Junior, Muay Thai",
     experience: "12+ lat doświadczenia",
     description:
-      "Specjalistka w karate i treningu motorycznym dzieci. Ma wyjątkowe podejście do najmłodszych zawodników. Certyfikowana instruktorka z wieloletnim doświadczeniem w pracy z dziećmi.",
+      "Specjalistka w karate dla dzieci oraz treningu motorycznym. Prowadzi zajęcia karate dla dzieci w wieku 7-11 lat (1-й и 2-й rok nauki), trening motoryczny VolatMOVE Junior oraz zajęcia Muay Thai. Ma wyjątkowe podejście do najmłodszych zawodników. Certyfikowana instruktorka z wieloletnim doświadczeniem w pracy z dziećmi.",
     image: "/karate-female-trainer.png",
     achievements: [
       "Mistrzyni Białorusi w Karate",
       "Certyfikat Instruktora Dziecięcego",
       "Specjalistka Treningu Motorycznego",
-      "Trener Grup Młodzieżowych",
+      "Trener Grup Dziecięcych",
+      "Instruktor VolatMOVE Junior",
       "Ekspert Rozwoju Koordynacji"
     ],
     upcomingSessions: [
-      { day: "Wtorek", time: "16:00-17:30", discipline: "Karate Dziecięce", location: "Mokotów" },
-      { day: "Czwartek", time: "17:00-18:30", discipline: "Trening Motoryczny", location: "Praga" },
-      { day: "Sobota", time: "10:00-11:30", discipline: "Karate Dziecięce", location: "Mokotów" },
+      { day: "Wtorek", time: "16:00-17:15", discipline: "Karate (2-й rok)", location: "Mokotów" },
+      { day: "Wtorek", time: "17:15-18:15", discipline: "Karate (1-й rok)", location: "Mokotów" },
+      { day: "Wtorek", time: "18:15-19:15", discipline: "VolatMOVE Junior", location: "Mokotów" },
+      { day: "Sobota", time: "11:00-12:30", discipline: "Muay Thai (młodzież)", location: "Mokotów" },
     ],
   },
   "mikola-taczylin": {
@@ -101,24 +103,28 @@ const coaches = {
       { day: "Sobota", time: "11:00-12:30", discipline: "MMA Dorośli", location: "Mokotów" },
     ],
   },
-  "maria-kowalska": {
-    name: "Maria Kowalska",
-    specialty: "Judo / Jiu-Jitsu",
+  "daria-koba": {
+    name: "Daria Koba",
+    specialty: "Trening motoryczny VolatMOVE Kids (dzieci 4-7 lat), Judo dla dzieci",
     experience: "8+ lat doświadczenia",
     description:
-      "Specjalistka w judo i jiu-jitsu z wieloletnim doświadczeniem w trenowaniu zawodników. Certyfikowana instruktorka z międzynarodowymi osiągnięciami. Specjalizuje się w technikach rzutów i walce w parterze.",
+      "Specjalistka w treningu motorycznym dla najmłodszych dzieci oraz judo. Ma wyjątkowe podejście do pracy z dziećmi w wieku przedszkolnym i szkolnym. Certyfikowana instruktorka z wieloletnim doświadczeniem w rozwoju podstawowych umiejętności motorycznych oraz treningu judo dla dzieci.",
     image: "/judo-female-trainer.png",
     achievements: [
-      "Mistrzyni Polski w Judo",
+      "Certyfikat Instruktora Treningu Motorycznego",
       "Certyfikat Instruktora Judo",
-      "Trener Grup Młodzieżowych",
-      "Specjalistka Technik Rzutów",
-      "Ekspert Walki w Parterze"
+      "Specjalistka Pracy z Dziećmi",
+      "Trener Grup Dziecięcych",
+      "Ekspert Rozwoju Koordynacji",
+      "Instruktor VolatMOVE Kids"
     ],
     upcomingSessions: [
-      { day: "Poniedziałek", time: "17:00-18:30", discipline: "Judo", location: "Praga" },
-      { day: "Środa", time: "18:00-19:30", discipline: "Jiu-Jitsu", location: "Mokotów" },
-      { day: "Piątek", time: "17:00-18:30", discipline: "Judo", location: "Praga" },
+      { day: "Poniedziałek", time: "17:30-18:15", discipline: "VolatMOVE Kids", location: "Mokotów" },
+      { day: "Poniedziałek", time: "18:15-19:15", discipline: "Judo (dzieci)", location: "Mokotów" },
+      { day: "Środa", time: "17:30-18:15", discipline: "VolatMOVE Kids", location: "Mokotów" },
+      { day: "Środa", time: "18:15-19:15", discipline: "Judo (dzieci)", location: "Mokotów" },
+      { day: "Piątek", time: "17:30-18:15", discipline: "VolatMOVE Kids", location: "Mokotów" },
+      { day: "Piątek", time: "18:15-19:15", discipline: "Judo (dzieci)", location: "Mokotów" },
     ],
   },
 }

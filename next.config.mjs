@@ -9,6 +9,12 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  // Оптимизации производительности
+  compress: true,
+  poweredByHeader: false,
+  reactStrictMode: true,
+  // Оптимизация компиляции
+  swcMinify: true,
 }
 
 export default nextConfig

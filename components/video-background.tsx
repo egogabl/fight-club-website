@@ -42,6 +42,15 @@ export default function VideoBackground({
 
   const [videoError, setVideoError] = useState(false)
 
+  // Don't render until loaded to prevent hydration mismatch
+  if (!isLoaded) {
+    return (
+      <div className={`absolute inset-0 bg-black ${className}`}>
+        <div className="absolute inset-0 bg-black/20"></div>
+      </div>
+    )
+  }
+
   if (videoError) {
     return (
       <div className={`absolute inset-0 bg-black ${className}`}>

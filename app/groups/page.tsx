@@ -4,7 +4,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Users, Clock, MapPin } from "lucide-react"
 import Link from "next/link"
-import Navigation from "@/components/navigation"
 
 const groupsData = [
   {
@@ -139,7 +138,6 @@ const groupsData = [
 export default function GroupsPage() {
   return (
     <div className="min-h-screen bg-black">
-      <Navigation />
 
       <section className="py-32 bg-gradient-to-br from-black via-gray-900 to-black">
         <div className="container mx-auto px-6">
@@ -156,7 +154,7 @@ export default function GroupsPage() {
             {groupsData.map((group, index) => (
               <Card
                 key={index}
-                className="border-2 border-red-400/30 shadow-2xl rounded-3xl bg-gradient-to-br from-gray-900 to-black hover:shadow-red-400/20 hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-4 hover:scale-105 group backdrop-blur-md"
+                className="border-2 border-red-400/30 shadow-2xl rounded-3xl bg-gradient-to-br from-gray-900 to-black hover:shadow-red-400/20 hover:shadow-3xl transition-all duration-300 group backdrop-blur-md"
               >
                 <CardHeader className="p-8">
                   <div className="flex items-start justify-between mb-4">
@@ -166,7 +164,7 @@ export default function GroupsPage() {
                         {group.description}
                       </p>
                     </div>
-                    <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center ml-4 transform group-hover:scale-125 group-hover:rotate-12 transition-all duration-500 shadow-2xl">
+                    <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center ml-4 transition-all duration-300 shadow-2xl">
                       <Users className="w-8 h-8 text-white" />
                     </div>
                   </div>
@@ -234,15 +232,14 @@ export default function GroupsPage() {
                   </div>
                   
                   <div className="px-8 pb-8 pt-4">
-                    <button
-                      onClick={() => {
-                        // TODO: Подключить форму записи
-                        alert(`Zapis do grupy: ${group.name}`)
-                      }}
-                      className="w-full px-6 py-3 bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 text-white text-sm font-accent font-medium rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+                    <a
+                      href="https://docs.google.com/forms/d/e/1FAIpQLSdDvBi8fQgmTj10i6GPoU19q3RanUSyJLCZS3QACu5sS9aoMA/viewform"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full px-6 py-3 bg-gradient-to-r from-red-600 to-red-500 text-white text-sm font-accent font-medium rounded-xl shadow-lg block text-center"
                     >
                       Zapisz się do grupy
-                    </button>
+                    </a>
                   </div>
                 </CardContent>
               </Card>

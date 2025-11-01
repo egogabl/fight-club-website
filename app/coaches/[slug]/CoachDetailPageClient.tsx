@@ -87,7 +87,7 @@ export default function CoachDetailPageClient({ coachesData }: CoachDetailPageCl
               <div className="grid md:grid-cols-3 gap-6">
                 {coach.upcomingSessions.map((session, index) => (
                   <Link key={index} href={`/schedule?coach=${slug}`}>
-                    <Card className="border-2 border-red-400/30 shadow-2xl rounded-3xl bg-gradient-to-br from-gray-900 to-black hover:shadow-red-400/20 hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-4 group cursor-pointer">
+                    <Card className="border-2 border-red-400/30 shadow-2xl rounded-3xl bg-gradient-to-br from-gray-900 to-black hover:shadow-red-400/20 hover:shadow-3xl transition-all duration-300 group cursor-pointer">
                       <CardHeader className="p-6">
                         <div className="flex items-center gap-4 mb-4">
                           <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center">
@@ -115,7 +115,7 @@ export default function CoachDetailPageClient({ coachesData }: CoachDetailPageCl
               </div>
               <div className="text-center mt-8">
                 <Link href={`/schedule?coach=${slug}`}>
-                  <Button className="bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700 font-serif text-xl px-8 py-4 rounded-2xl shadow-lg transform hover:scale-110 transition-all duration-500 font-bold">
+                  <Button className="bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700 font-serif text-xl px-8 py-4 rounded-2xl shadow-lg font-bold">
                     Zobacz pełny rozkład trenera
                   </Button>
                 </Link>

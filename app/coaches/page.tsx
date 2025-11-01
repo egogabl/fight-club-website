@@ -4,16 +4,15 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { Award, Users, Star } from "lucide-react"
 import Link from "next/link"
-import Navigation from "@/components/navigation"
 
 const coaches = [
   {
     id: "vital-rak",
     name: "Vital Rak",
-    specialty: "Główny trener, karate, trening funkcjonalny",
+    specialty: "Główny trener, karate (sportowa grupa, dorośli), trening funkcjonalny",
     experience: "15+ lat doświadczenia",
     description:
-      "Główny trener klubu VOLAT z wieloletnim doświadczeniem w karate i treningu funkcjonalnym. Mistrz sportu, certyfikowany instruktor WKF. Specjalizuje się w przygotowaniu zawodników do zawodów międzynarodowych.",
+      "Główny trener klubu VOLAT z wieloletnim doświadczeniem w karate i treningu funkcjonalnym. Mistrz sportu, certyfikowany instruktor WKF. Specjalizuje się w przygotowaniu zawodników do zawodów międzynarodowych. Prowadzi karate sportową grupę i zajęcia dla dorosłych oraz trening funkcjonalny.",
     image: "/coach-senior-male.png",
     achievements: [
       "Mistrz Sportu w Karate",
@@ -22,32 +21,31 @@ const coaches = [
       "Instruktor Treningu Funkcjonalnego",
       "Specjalista Rehabilitacji Sportowej"
     ],
-    students: "200+ uczniów",
+    students: "180+ uczniów",
     languages: ["Polski", "Rosyjski", "Angielski"],
-    age: "35 lat",
     education: "Akademia Wychowania Fizycznego",
-    specialties: ["Karate WKF", "Trening Funkcjonalny", "Przygotowanie Fizyczne"]
+    specialties: ["Karate WKF (sportowa grupa)", "Trening Funkcjonalny", "Przygotowanie Fizyczne", "Przygotowanie do Zawodów"]
   },
   {
     id: "volha-yefimenka",
     name: "Volha Yefimenka",
-    specialty: "Karate, trening motoryczny dzieci",
+    specialty: "Karate (dzieci 1-й и 2-й год обучения), trening motoryczny VolatMOVE Junior, Muay Thai",
     experience: "12+ lat doświadczenia",
     description:
-      "Specjalistka w karate i treningu motorycznym dzieci. Ma wyjątkowe podejście do najmłodszych zawodników. Certyfikowana instruktorka z wieloletnim doświadczeniem w pracy z dziećmi.",
+      "Specjalistka w karate dla dzieci oraz treningu motorycznym. Prowadzi zajęcia karate dla dzieci w wieku 7-11 lat (1-й и 2-й rok nauki), trening motoryczny VolatMOVE Junior oraz zajęcia Muay Thai. Ma wyjątkowe podejście do najmłodszych zawodników. Certyfikowana instruktorka z wieloletnim doświadczeniem w pracy z dziećmi.",
     image: "/karate-female-trainer.png",
     achievements: [
       "Mistrzyni Białorusi w Karate",
       "Certyfikat Instruktora Dziecięcego",
       "Specjalistka Treningu Motorycznego",
-      "Trener Grup Młodzieżowych",
+      "Trener Grup Dziecięcych",
+      "Instruktor VolatMOVE Junior",
       "Ekspert Rozwoju Koordynacji"
     ],
-    students: "150+ dzieci",
+    students: "160+ uczniów",
     languages: ["Polski", "Rosyjski", "Białoruski"],
-    age: "32 lata",
     education: "Uniwersytet Sportowy",
-    specialties: ["Karate Dziecięce", "Trening Motoryczny", "Rozwój Koordynacji"]
+    specialties: ["Karate (dzieci 1-2 rok)", "Trening Motoryczny VolatMOVE Junior", "Muay Thai", "Rozwój Koordynacji"]
   },
   {
     id: "mikola-taczylin",
@@ -66,7 +64,6 @@ const coaches = [
     ],
     students: "180+ zawodników",
     languages: ["Polski", "Rosyjski", "Angielski", "Tajski"],
-    age: "38 lat",
     education: "Akademia Sportu i Turystyki",
     specialties: ["Muay Thai", "Boks", "Kickboxing", "Trening Dziecięcy"]
   },
@@ -87,7 +84,6 @@ const coaches = [
     ],
     students: "300+ uczniów",
     languages: ["Polski", "Angielski", "Rosyjski"],
-    age: "45 lat",
     education: "Uniwersytet Warszawski - Matematyka",
     specialties: ["Szachy", "Strategia", "Logika", "Rozwój Intelektualny"]
   },
@@ -108,37 +104,35 @@ const coaches = [
     ],
     students: "120+ zawodników",
     languages: ["Polski", "Angielski"],
-    age: "28 lat",
     education: "Akademia Wychowania Fizycznego",
-    specialties: ["MMA", "Boks", "Judo", "Walka w Parterze"]
+    specialties: ["MMA", "Walka w Parterze", "Techniki Mieszane", "Walka w Klinczu"]
   },
   {
-    id: "maria-kowalska",
-    name: "Maria Kowalska",
-    specialty: "Judo / Jiu-Jitsu",
+    id: "daria-koba",
+    name: "Daria Koba",
+    specialty: "Trening motoryczny VolatMOVE Kids (dzieci 4-7 lat), Judo dla dzieci",
     experience: "8+ lat doświadczenia",
     description:
-      "Specjalistka w judo i jiu-jitsu z wieloletnim doświadczeniem w trenowaniu zawodników. Certyfikowana instruktorka z międzynarodowymi osiągnięciami. Specjalizuje się w technikach rzutów i walce w parterze.",
+      "Specjalistka w treningu motorycznym dla najmłodszych dzieci oraz judo. Ma wyjątkowe podejście do pracy z dziećmi w wieku przedszkolnym i szkolnym. Certyfikowana instruktorka z wieloletnim doświadczeniem w rozwoju podstawowych umiejętności motorycznych oraz treningu judo dla dzieci.",
     image: "/judo-female-trainer.png",
     achievements: [
-      "Mistrzyni Polski w Judo",
+      "Certyfikat Instruktora Treningu Motorycznego",
       "Certyfikat Instruktora Judo",
-      "Trener Grup Młodzieżowych",
-      "Specjalistka Technik Rzutów",
-      "Ekspert Walki w Parterze"
+      "Specjalistka Pracy z Dziećmi",
+      "Trener Grup Dziecięcych",
+      "Ekspert Rozwoju Koordynacji",
+      "Instruktor VolatMOVE Kids"
     ],
-    students: "90+ zawodników",
-    languages: ["Polski", "Angielski", "Niemiecki"],
-    age: "26 lat",
+    students: "120+ dzieci",
+    languages: ["Polski", "Rosyjski", "Białoruski"],
     education: "Akademia Wychowania Fizycznego",
-    specialties: ["Judo", "Jiu-Jitsu", "Techniki Rzutów", "Walka w Parterze"]
+    specialties: ["Judo (dzieci)", "Trening Motoryczny", "VolatMOVE Kids", "Rozwój Koordynacji"]
   },
 ]
 
 export default function CoachesPage() {
   return (
     <div className="min-h-screen bg-black">
-      <Navigation />
 
       <section className="py-32 bg-gradient-to-br from-black via-gray-900 to-black">
         <div className="container mx-auto px-6">
@@ -170,7 +164,7 @@ export default function CoachesPage() {
                       <CardDescription className="font-primary">
                         <Badge
                           variant="secondary"
-                          className="mb-3 bg-gradient-to-r from-red-500 to-red-600 text-white px-3 py-1 text-xs shadow-md transition-transform duration-500 font-accent font-bold"
+                          className="mb-3 bg-gradient-to-r from-red-500 to-red-600 text-white px-3 py-1 text-xs shadow-md font-accent font-bold"
                         >
                           {coach.specialty}
                         </Badge>
@@ -187,11 +181,7 @@ export default function CoachesPage() {
                       </p>
 
                       {/* Дополнительная информация */}
-                      <div className="grid grid-cols-2 gap-3 mb-4">
-                        <div className="bg-gray-800/50 rounded-lg p-2">
-                          <div className="text-red-400 font-accent font-semibold text-xs mb-1">Wiek</div>
-                          <div className="text-white text-xs font-primary">{coach.age}</div>
-                        </div>
+                      <div className="grid grid-cols-1 gap-3 mb-4">
                         <div className="bg-gray-800/50 rounded-lg p-2">
                           <div className="text-red-400 font-accent font-semibold text-xs mb-1">Uczniowie</div>
                           <div className="text-white text-xs font-primary">{coach.students}</div>
@@ -231,18 +221,19 @@ export default function CoachesPage() {
                   {/* Кнопки действий */}
                   <div className="p-6 pt-0">
                     <div className="flex flex-col gap-3">
-                      <button
+                      <a
+                        href="https://docs.google.com/forms/d/e/1FAIpQLSdDvBi8fQgmTj10i6GPoU19q3RanUSyJLCZS3QACu5sS9aoMA/viewform"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         onClick={(e) => {
-                          e.preventDefault();
                           e.stopPropagation();
-                          alert(`Zapis do trenera: ${coach.name}`)
                         }}
-                        className="w-full px-4 py-2.5 bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 text-white text-sm font-medium rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl"
+                        className="w-full px-4 py-2.5 bg-gradient-to-r from-red-600 to-red-500 text-white text-sm font-medium rounded-xl shadow-lg block text-center"
                       >
                         Zapisz się do trenera
-                      </button>
+                      </a>
                       <Link href={`/coaches/${coach.id}`} className="w-full">
-                        <button className="w-full px-4 py-2.5 bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800 text-white text-sm font-medium rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl">
+                        <button className="w-full px-4 py-2.5 bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800 text-white text-sm font-medium rounded-xl shadow-lg hover:shadow-xl">
                           Zobacz szczegóły
                         </button>
                       </Link>

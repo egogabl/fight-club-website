@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
+import Link from "next/link"
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/outline"
 import Footer from "@/components/footer"
 import VideoBackground from "@/components/video-background"
@@ -36,6 +37,7 @@ const translations = {
       expandedDescription:
         "Szczegółowy opis {activity}. Tutaj znajdziesz informacje o technice, zaletach i specyfice tego sportu.",
       bookNow: "Zapisz się",
+      viewDetails: "Dowiedz się więcej",
       viewSchedule: "Zobacz grafik",
       viewTrainers: "Zobacz trenerów",
     },
@@ -59,6 +61,7 @@ const translations = {
       expandedDescription:
         "Детальний опис {activity}. Тут ви знайдете інформацію про техніку, переваги та особливості цього виду спорту.",
       bookNow: "✨ Записатися",
+      viewDetails: "Дізнатися більше",
       viewSchedule: "📅 Подивитися розклад",
       viewTrainers: "👤 Подивитися тренерів",
     },
@@ -82,6 +85,7 @@ const translations = {
       expandedDescription:
         "Detailed description of {activity}. Here you will find information about technique, benefits and specifics of this sport.",
       bookNow: "✨ Book now",
+      viewDetails: "Learn more",
       viewSchedule: "📅 View schedule",
       viewTrainers: "👤 View trainers",
     },
@@ -105,6 +109,7 @@ const translations = {
       expandedDescription:
         "Падрабязны апіс {activity}. Тут вы знойдзеце інфармацыю пра тэхніку, перавагі і асаблівасці гэтага віду спорту.",
       bookNow: "✨ Запісацца",
+      viewDetails: "Даведацца больш",
       viewSchedule: "📅 Паглядзець расклад",
       viewTrainers: "👤 Паглядзець трэнераў",
     },
@@ -117,57 +122,57 @@ const activities = {
       name: "Karate WKF", 
       description: "Sztuki walki", 
       slug: "karate-wkf", 
-      trainer: "Vital Rak", 
+      trainer: "Vital Rak, Volha Yefimenka", 
       trainerId: "vital-rak",
-      detailedDescription: "Karate WKF to tradycyjna sztuka walki, która rozwija nie tylko siłę fizyczną, ale także dyscyplinę, koncentrację i szacunek. Idealne dla osób w każdym wieku, które chcą poprawić kondycję i nauczyć się skutecznej samoobrony."
+      detailedDescription: "Karate WKF to tradycyjna sztuka walki pochodząca z Japonii, która łączy techniki uderzeń, kopnięć i bloków. Trening rozwija siłę, szybkość, koordynację, dyscyplinę i koncentrację. Prowadzimy zajęcia dla dzieci od 7 lat z Volha Yefimenka, młodzieży i dorosłych z Vital Rak. Klub jest członkiem Polskiej Unii Karate i Mazowieckiego Związku Karate, co zapewnia profesjonalny poziom nauczania."
     },
     { 
-      name: "Muay Thai", 
-      description: "Tajski boks", 
+      name: "Muay Thai / Kickboxing", 
+      description: "Sztuki walki", 
       slug: "muaythai", 
       trainer: "Mikoła Taczylin", 
       trainerId: "mikola-taczylin",
-      detailedDescription: "Muay Thai to jedna z najskuteczniejszych sztuk walki, wykorzystująca uderzenia łokciami, kolanami, pięściami i goleniami. Doskonały trening cardio, który wzmacnia całe ciało i poprawia koordynację."
-    },
-    { 
-      name: "MMA", 
-      description: "Mieszane sztuki walki", 
-      slug: "mma", 
-      trainer: "Mikoła Taczylin", 
-      trainerId: "mikola-taczylin",
-      detailedDescription: "MMA łączy najlepsze techniki z różnych sztuk walki. Trening obejmuje walkę w stójce, parterze i klinczu, zapewniając wszechstronny rozwój umiejętności bojowych i kondycji fizycznej."
-    },
-    { 
-      name: "Kickboxing", 
-      description: "Boks z kopnięciami", 
-      slug: "kickboxing", 
-      trainer: "Mikoła Taczylin", 
-      trainerId: "mikola-taczylin",
-      detailedDescription: "Kickboxing to dynamiczna dyscyplina łącząca techniki boksu z kopnięciami. Doskonały trening spalający kalorie, poprawiający kondycję i koordynację ruchową. Idealny dla osób lubiących intensywne treningi."
+      detailedDescription: "Muay Thai / Kickboxing to tajski boks i kickboxing, jedna z najskuteczniejszych sztuk walki na świecie. Charakteryzuje się użyciem uderzeń pięściami, łokciami, kolanami i kopnięciami. Trening jest bardzo intensywny i rozwija wytrzymałość, siłę, szybkość i refleks. Prowadzimy zajęcia dla różnych grup wiekowych, od dzieci po dorosłych, dostosowując program do poziomu zaawansowania uczestników."
     },
     { 
       name: "Judo", 
-      description: "Japońska sztuka walki", 
+      description: "Sztuki walki", 
       slug: "judo", 
-      trainer: "Vital Rak", 
-      trainerId: "vital-rak",
-      detailedDescription: "Judo to sztuka walki oparta na rzutach i technikach parterowych. Rozwija siłę, elastyczność i umiejętność wykorzystania siły przeciwnika. Doskonałe dla rozwoju charakteru i umiejętności samoobrony."
+      trainer: "Daria Koba", 
+      trainerId: "daria-koba",
+      detailedDescription: "Judo to japońska sztuka walki olimpijska, która uczy rzutów, trzymań i dźwigni. Trening rozwija siłę, elastyczność, koordynację i równowagę. Prowadzimy zajęcia dla dzieci w wieku 6-12 lat, dostosowując program do możliwości młodych uczestników. Prowadzi Daria Koba - certyfikowana instruktorka judo z wieloletnim doświadczeniem, która zapewnia bezpieczne i efektywne nauczanie."
     },
     { 
-      name: "Trening funkcjonalny", 
-      description: "Kompleksowy trening kondycyjny", 
+      name: "MMA", 
+      description: "Sztuki walki", 
+      slug: "mma", 
+      trainer: "Paweł Szymkowicz", 
+      trainerId: "pawel-szymkowicz",
+      detailedDescription: "MMA (Mixed Martial Arts) to mieszane sztuki walki, które łączą techniki z różnych dyscyplin. Trening obejmuje walkę w stójce i parterze, uderzenia, kopnięcia, rzuty i dźwignie. MMA łączy techniki boksu, zapasów, judo, brazylijskiego jiu-jitsu, kickboxingu i innych sztuk walki. Prowadzimy zajęcia dla młodzieży od 15 lat i dorosłych z różnym poziomem zaawansowania. Prowadzi Paweł Szymkowicz."
+    },
+    { 
+      name: "VolatMove! KIDS. Trening Motoryczny", 
+      description: "Trening motoryczny dla dzieci 5-7 lat", 
+      slug: "volatmove-kids", 
+      trainer: "Volha Yefimenka, Daria Koba", 
+      trainerId: "volha-yefimenka",
+      detailedDescription: "VolatMove! KIDS to ogólne przygotowanie motoryczne dla przedszkolaków, rozwój koordynacji i motoryki dużej. Program specjalnie zaprojektowany dla najmłodszych dzieci w wieku 5-7 lat, skupiający się na podstawowych umiejętnościach ruchowych i równowadze. Zajęcia prowadzą Volha Yefimenka i Daria Koba, które dostosowują program do możliwości każdego dziecka. Treningi odbywają się w przyjaznej atmosferze, zachęcając do aktywności fizycznej."
+    },
+    { 
+      name: "VolatMove! JUNIOR. Trening Motoryczny", 
+      description: "Trening motoryczny dla dzieci 8-15 lat", 
+      slug: "volatmove-junior", 
+      trainer: "Volha Yefimenka", 
+      trainerId: "volha-yefimenka",
+      detailedDescription: "VolatMove! JUNIOR to trening motoryczny dla dzieci 8-15 lat, skupiający się na korekcji problemów w ruchomości stawów i kształtowaniu prawidłowej postawy. Program obejmuje wzmocnienie stóp, poprawę elastyczności i rozwój siły mięśniowej. Zajęcia specjalnie zaprojektowane dla starszych dzieci i młodzieży, dostosowane do ich potrzeb rozwojowych. Prowadzi Volha Yefimenka z wieloletnim doświadczeniem w pracy z młodymi sportowcami."
+    },
+    { 
+      name: "Trening Funkcjonalny", 
+      description: "Trening funkcjonalny i motoryczny", 
       slug: "functional-training", 
       trainer: "Vital Rak", 
       trainerId: "vital-rak",
-      detailedDescription: "Trening funkcjonalny skupia się na ruchach naturalnych dla człowieka. Poprawia siłę, wytrzymałość, elastyczność i koordynację. Idealny dla osób chcących poprawić sprawność fizyczną w codziennych czynnościach."
-    },
-    { 
-      name: "Trening motoryczny dzieci", 
-      description: "Rozwój motoryki u najmłodszych", 
-      slug: "motor-skills-children", 
-      trainer: "Volha Yefimenka", 
-      trainerId: "volha-yefimenka",
-      detailedDescription: "Specjalny program dla dzieci rozwijający podstawowe umiejętności motoryczne. Poprawia koordynację, równowagę, siłę i elastyczność. Zajęcia prowadzone w formie zabawy, dostosowane do wieku i możliwości dzieci."
+      detailedDescription: "Trening funkcjonalny i motoryczny dla młodzieży od 15 lat i dorosłych. Rozwój siły mięśni, szybkości reakcji, wytrzymałości, elastyczności i koordynacji, korekcja nadwagi. Program kompleksowy, skupiający się na ruchach naturalnych dla człowieka. Prowadzi Vital Rak."
     },
     { 
       name: "Szachy", 
@@ -175,7 +180,7 @@ const activities = {
       slug: "chess", 
       trainer: "Wiktor Murończyk", 
       trainerId: "wiktor-muronczyk",
-      detailedDescription: "Szachy to królewska gra rozwijająca logiczne myślenie, koncentrację i umiejętności strategiczne. Doskonałe dla rozwoju intelektu, cierpliwości i umiejętności podejmowania decyzji. Odpowiednie dla każdego wieku."
+      detailedDescription: "Szachy to gra strategiczna, która rozwija logiczne myślenie, koncentrację i umiejętności planowania. Trening szachowy poprawia pamięć, cierpliwość i umiejętności analityczne. Idealne dla osób w każdym wieku. Prowadzi Wiktor Murończyk - międzynarodowy mistrz szachowy."
     },
   ],
   uk: [
@@ -290,6 +295,7 @@ export default function HomePage() {
   }
 
   const scrollToActivities = () => {
+    if (typeof window === 'undefined') return
     const activitiesSection = document.getElementById("activities")
     if (activitiesSection) {
       activitiesSection.scrollIntoView({ 
@@ -318,12 +324,12 @@ export default function HomePage() {
         {/* Scroll Arrow - Outside main to ensure proper z-index */}
         <button
           onClick={scrollToActivities}
-          className="scroll-button fixed bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce group transition-all duration-200 ease-out hover:animate-none"
+          className="scroll-button fixed bottom-8 left-1/2 transform -translate-x-1/2 group transition-colors duration-200 ease-out"
           style={{ zIndex: 999999 }}
         >
-          <div className="flex flex-col items-center space-y-2 sm:space-y-3 text-white font-bold transition-all duration-500 ease-out bg-transparent backdrop-blur-xl border-2 border-white/50 rounded-2xl px-6 py-4 sm:px-8 sm:py-5 hover:bg-white/10 hover:border-white/70 shadow-2xl hover:shadow-white/30 relative z-[999999] hover:-translate-y-1">
+          <div className="flex flex-col items-center space-y-2 sm:space-y-3 text-white font-bold transition-colors duration-200 ease-out bg-transparent backdrop-blur-xl border-2 border-white/50 rounded-2xl px-6 py-4 sm:px-8 sm:py-5 hover:bg-white/10 hover:border-white/70 shadow-2xl relative z-[999999]">
             <span className="text-sm sm:text-base font-bold font-accent drop-shadow-lg">{t.hero.scrollDown}</span>
-            <svg className="w-6 h-6 sm:w-7 sm:h-7 animate-pulse group-hover:animate-none transition-all duration-300 drop-shadow-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}>
+            <svg className="w-6 h-6 sm:w-7 sm:h-7 drop-shadow-lg" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
             </svg>
           </div>
@@ -337,23 +343,24 @@ export default function HomePage() {
             <p className="text-lg sm:text-xl md:text-2xl text-white/80 max-w-3xl mx-auto font-light leading-relaxed px-4">{t.activities.description}</p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-            {activities[currentLang].slice(0, 8).map((activity, index) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 items-stretch">
+            {(activities[currentLang] || activities.pl || []).slice(0, 8).map((activity, index) => (
               <div
                 key={index}
-                className="group bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl overflow-hidden hover:border-red-500/30 transition-all duration-200 ease-out hover:shadow-2xl hover:shadow-red-500/10 hover:bg-white/10 flex flex-col min-h-[200px]"
+                className="group bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl overflow-hidden hover:border-red-500/30 transition-all duration-200 ease-out hover:shadow-2xl hover:shadow-red-500/10 hover:bg-white/10 flex flex-col h-full"
               >
-                  <div className="p-6 cursor-pointer" onClick={() => toggleActivity(index)}>
-                    <div className="flex items-center justify-between">
-                      <div className="text-center flex-1">
-                        <h3 className="text-xl font-display font-bold text-white mb-3 group-hover:text-red-400 transition-colors duration-300">
-                          {activity.name}
-                        </h3>
-                        <p className="text-white/70 text-sm group-hover:text-white/90 transition-colors duration-300 font-primary">
-                          {activity.description}
-                        </p>
-                      </div>
-                    <div className="ml-4">
+                {/* Header Section - Fixed Height */}
+                <div className="p-6 cursor-pointer flex-shrink-0" onClick={() => toggleActivity(index)}>
+                  <div className="flex items-center justify-between">
+                    <div className="text-center flex-1">
+                      <h3 className="text-xl font-display font-bold text-white mb-3 group-hover:text-red-400 transition-colors duration-300 break-words leading-tight min-h-[60px]">
+                        {activity.name}
+                      </h3>
+                      <p className="text-white/70 text-sm group-hover:text-white/90 transition-colors duration-300 font-primary min-h-[40px]">
+                        {activity.description}
+                      </p>
+                    </div>
+                    <div className="ml-4 flex-shrink-0">
                       {expandedActivities.has(index) ? (
                         <ChevronUpIcon className="w-6 h-6 text-white/70 group-hover:text-red-400 transition-colors duration-300" />
                       ) : (
@@ -363,13 +370,14 @@ export default function HomePage() {
                   </div>
                 </div>
 
+                {/* Expandable Content */}
                 <div
                   className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                    expandedActivities.has(index) ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+                    expandedActivities.has(index) ? "max-h-96 opacity-100" : "max-h-0 opacity-0 pointer-events-none"
                   }`}
                 >
-                  <div className="px-6 pb-6 border-t border-white/20">
-                    <div className="pt-4 space-y-4">
+                  <div className="px-6 pt-4 pb-6 border-t border-white/20">
+                    <div className="pt-4 space-y-4 flex flex-col">
                       <div className="text-white/80 text-sm">
                         <p>{(activity as any).detailedDescription || t.activities.expandedDescription.replace("{activity}", activity.name.toLowerCase())}</p>
                       </div>
@@ -393,22 +401,22 @@ export default function HomePage() {
                         </div>
                       )}
 
+                      {/* Buttons */}
                       <div className="flex flex-col space-y-3">
-                        <button
-                          onClick={() => {
-                            // TODO: Подключить форму записи
-                            alert('Funkcja zapisu będzie dostępna wkrótce!')
-                          }}
-                          className="w-full px-6 py-3 bg-gradient-to-r from-white to-gray-100 hover:from-gray-100 hover:to-white text-black text-sm font-accent font-medium rounded-xl transition-all duration-200 ease-out text-center shadow-lg border border-gray-200"
+                        <Link
+                          href={`/disciplines/${activity.slug}`}
+                          className="w-full px-6 py-3 bg-gradient-to-r from-red-600 to-red-500 text-white text-sm font-accent font-medium rounded-xl text-center shadow-lg block"
+                        >
+                          {t.activities.viewDetails}
+                        </Link>
+                        <a
+                          href="https://docs.google.com/forms/d/e/1FAIpQLSdDvBi8fQgmTj10i6GPoU19q3RanUSyJLCZS3QACu5sS9aoMA/viewform"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="w-full px-6 py-3 bg-gradient-to-r from-white to-gray-100 text-black text-sm font-accent font-medium rounded-xl text-center shadow-lg border border-gray-200 block"
                         >
                           {t.activities.bookNow}
-                        </button>
-                        <a
-                          href="/schedule"
-                          className="w-full px-6 py-3 bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 text-white text-sm font-accent font-medium rounded-xl transition-all duration-200 ease-out text-center shadow-lg"
-                        >
-                          {t.activities.viewSchedule}
-                </a>
+                        </a>
                       </div>
                     </div>
                   </div>

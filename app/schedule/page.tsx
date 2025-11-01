@@ -7,7 +7,6 @@ import { Badge } from "@/components/ui/badge"
 import { Clock, MapPin } from "lucide-react"
 import Link from "next/link"
 import { useSearchParams } from "next/navigation"
-import Navigation from "@/components/navigation"
 import Footer from "@/components/footer"
 import { useLanguage } from "@/components/language-provider"
 
@@ -28,7 +27,7 @@ const scheduleData = [
     time: "18:15-19:15",
     discipline: "Дзюдо",
     location: "Mokotów",
-    coach: { name: "Vital Rak", slug: "vital-rak" },
+    coach: { name: "Daria Koba", slug: "daria-koba" },
     sport: "judo",
     branch: "mokotow",
     ageGroup: "dzieci",
@@ -58,7 +57,7 @@ const scheduleData = [
     time: "18:15-19:15",
     discipline: "Дзюдо",
     location: "Mokotów",
-    coach: { name: "Vital Rak", slug: "vital-rak" },
+    coach: { name: "Daria Koba", slug: "daria-koba" },
     sport: "judo",
     branch: "mokotow",
     ageGroup: "dzieci",
@@ -88,7 +87,7 @@ const scheduleData = [
     time: "18:15-19:15",
     discipline: "Дзюдо",
     location: "Mokotów",
-    coach: { name: "Vital Rak", slug: "vital-rak" },
+    coach: { name: "Daria Koba", slug: "daria-koba" },
     sport: "judo",
     branch: "mokotow",
     ageGroup: "dzieci",
@@ -388,6 +387,29 @@ const translations = {
       dorosli: "Dorośli",
       wszystkie: "Wszystkie grupy",
     },
+    days: {
+      Poniedziałek: "Poniedziałek",
+      Wtorek: "Wtorek",
+      Środa: "Środa",
+      Czwartek: "Czwartek",
+      Piątek: "Piątek",
+      Sobota: "Sobota",
+      Niedziela: "Niedziela",
+    },
+    disciplines: {
+      "volatmove-kids": "Trening motoryczny VolatMove! KIDS",
+      "volatmove-junior": "Trening motoryczny VolatMove! JUNIOR",
+      "functional-training": "Trening motoryczny i funkcjonalny",
+      judo: "Judo",
+      karate: "Karate",
+      "karate-year-2": "Karate (2-й rok nauki)",
+      "karate-year-1": "Karate (1-й rok nauki)",
+      "karate-beginners": "Karate (dzieci 10+, początkujący)",
+      "karate-sport": "Karate (grupa sportowa)",
+      muaythai: "Muay Thai / Kickboxing",
+      mma: "MMA",
+      motoryka: "Motoryka",
+    },
   },
   uk: {
     title: "Розклад занять",
@@ -405,6 +427,29 @@ const translations = {
       mlodziez: "Молодь",
       dorosli: "Дорослі",
       wszystkie: "Всі групи",
+    },
+    days: {
+      Poniedziałek: "Понеділок",
+      Wtorek: "Вівторок",
+      Środa: "Середа",
+      Czwartek: "Четвер",
+      Piątek: "П'ятниця",
+      Sobota: "Субота",
+      Niedziela: "Неділя",
+    },
+    disciplines: {
+      "volatmove-kids": "Тренінг моторики VolatMove! KIDS",
+      "volatmove-junior": "Тренінг моторики VolatMove! JUNIOR",
+      "functional-training": "Тренінг моторики і функціональний",
+      judo: "Дзюдо",
+      karate: "Карате",
+      "karate-year-2": "Карате (2-й рік навчання)",
+      "karate-year-1": "Карате (1-й рік навчання)",
+      "karate-beginners": "Карате (діти 10+, початківці)",
+      "karate-sport": "Карате (спортивна група)",
+      muaythai: "Муай Тай / Кікбоксинг",
+      mma: "ММА",
+      motoryka: "Моторика",
     },
   },
   en: {
@@ -424,6 +469,29 @@ const translations = {
       dorosli: "Adults",
       wszystkie: "All groups",
     },
+    days: {
+      Poniedziałek: "Monday",
+      Wtorek: "Tuesday",
+      Środa: "Wednesday",
+      Czwartek: "Thursday",
+      Piątek: "Friday",
+      Sobota: "Saturday",
+      Niedziela: "Sunday",
+    },
+    disciplines: {
+      "volatmove-kids": "Motor Training VolatMove! KIDS",
+      "volatmove-junior": "Motor Training VolatMove! JUNIOR",
+      "functional-training": "Motor and Functional Training",
+      judo: "Judo",
+      karate: "Karate",
+      "karate-year-2": "Karate (Year 2)",
+      "karate-year-1": "Karate (Year 1)",
+      "karate-beginners": "Karate (Children 10+, Beginners)",
+      "karate-sport": "Karate (Sports Group)",
+      muaythai: "Muay Thai / Kickboxing",
+      mma: "MMA",
+      motoryka: "Motor Skills",
+    },
   },
   by: {
     title: "Расклад заняткаў",
@@ -441,6 +509,29 @@ const translations = {
       mlodziez: "Моладзь",
       dorosli: "Дарослыя",
       wszystkie: "Усе групы",
+    },
+    days: {
+      Poniedziałek: "Панядзелак",
+      Wtorek: "Аўторак",
+      Środa: "Серада",
+      Czwartek: "Чацвер",
+      Piątek: "Пятніца",
+      Sobota: "Субота",
+      Niedziela: "Нядзеля",
+    },
+    disciplines: {
+      "volatmove-kids": "Трэніроўка маторыкі VolatMove! KIDS",
+      "volatmove-junior": "Трэніроўка маторыкі VolatMove! JUNIOR",
+      "functional-training": "Трэніроўка маторыкі і функцыянальная",
+      judo: "Дзюдо",
+      karate: "Каратэ",
+      "karate-year-2": "Каратэ (2-й год навучання)",
+      "karate-year-1": "Каратэ (1-й год навучання)",
+      "karate-beginners": "Каратэ (дзеці 10+, пачаткоўцы)",
+      "karate-sport": "Каратэ (спартыўная група)",
+      muaythai: "Муай Тай / Кікбоксінг",
+      mma: "ММА",
+      motoryka: "Маторыка",
     },
   },
 }
@@ -485,7 +576,6 @@ export default function SchedulePage() {
 
   return (
     <div className="min-h-screen bg-black text-white">
-      <Navigation />
       
       <div className="container mx-auto px-4 py-8">
         <div className="text-center mb-8">
@@ -547,7 +637,7 @@ export default function SchedulePage() {
                 : "bg-gray-900 text-gray-300 hover:bg-gray-800 border-gray-700 hover:border-gray-600"
             }`}
           >
-            🥋 Karate
+            🥋 {t.disciplines.karate || "Karate"}
           </Button>
           <Button
             onClick={() => setSelectedSport("muaythai")}
@@ -558,7 +648,7 @@ export default function SchedulePage() {
                 : "bg-gray-900 text-gray-300 hover:bg-gray-800 border-gray-700 hover:border-gray-600"
             }`}
           >
-            🥊 Muay Thai
+            🥊 {t.disciplines.muaythai || "Muay Thai"}
           </Button>
           <Button
             onClick={() => setSelectedSport("mma")}
@@ -569,7 +659,7 @@ export default function SchedulePage() {
                 : "bg-gray-900 text-gray-300 hover:bg-gray-800 border-gray-700 hover:border-gray-600"
             }`}
           >
-            🥋 MMA
+            🥋 {t.disciplines.mma || "MMA"}
           </Button>
           <Button
             onClick={() => setSelectedSport("judo")}
@@ -580,7 +670,7 @@ export default function SchedulePage() {
                 : "bg-gray-900 text-gray-300 hover:bg-gray-800 border-gray-700 hover:border-gray-600"
             }`}
           >
-            🥋 Judo
+            🥋 {t.disciplines.judo || "Judo"}
           </Button>
           <Button
             onClick={() => setSelectedSport("motoryka")}
@@ -591,7 +681,7 @@ export default function SchedulePage() {
                 : "bg-gray-900 text-gray-300 hover:bg-gray-800 border-gray-700 hover:border-gray-600"
             }`}
           >
-            🏃 Motoryka
+            🏃 {t.disciplines.motoryka || "Motoryka"}
           </Button>
         </div>
 
@@ -654,19 +744,36 @@ export default function SchedulePage() {
               return (
                 <div key={day} className="space-y-4">
                   <h2 className="text-2xl sm:text-3xl font-bold text-center bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent">
-                    {day}
+                    {t.days[day as keyof typeof t.days] || day}
                   </h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {groupedSchedule[day].map((item, index) => (
+                    {groupedSchedule[day].map((item, index) => {
+                      const getDisciplineKey = (discipline: string) => {
+                        if (discipline.includes("VolatMOVE Kids") || discipline.includes("VolatMove! KIDS")) return "volatmove-kids"
+                        if (discipline.includes("VolatMOVE Junior") || discipline.includes("VolatMove! JUNIOR")) return "volatmove-junior"
+                        if (discipline.includes("функциональный") || discipline.includes("funkcjonalny")) return "functional-training"
+                        if (discipline.includes("Дзюдо") || discipline === "Judo") return "judo"
+                        if (discipline.includes("2-й год") || discipline.includes("2-й rok")) return "karate-year-2"
+                        if (discipline.includes("1-й год") || discipline.includes("1-й rok")) return "karate-year-1"
+                        if (discipline.includes("дети 10+") || discipline.includes("dzieci 10+") || discipline.includes("początkujący")) return "karate-beginners"
+                        if (discipline.includes("спортивная") || discipline.includes("sportowa")) return "karate-sport"
+                        if (discipline.includes("Муай Тай") || discipline.includes("Muay Thai")) return "muaythai"
+                        if (discipline.includes("ММА") || discipline === "MMA") return "mma"
+                        return null
+                      }
+                      const disciplineKey = getDisciplineKey(item.discipline)
+                      const disciplineText = disciplineKey ? (t.disciplines[disciplineKey as keyof typeof t.disciplines] || item.discipline) : item.discipline
+                      
+                      return (
                       <Card key={index} className="bg-gray-900 border-gray-700 flex flex-col min-h-[200px]">
                         <CardContent className="p-6 flex flex-col flex-1">
-                          <div className="flex items-center gap-2 mb-3">
-                            <Clock className="h-5 w-5 text-red-500" />
-                            <span className="font-bold text-lg">{item.time}</span>
+                          <div className="flex items-center gap-2 mb-3 bg-red-950/30 px-3 py-2 rounded-lg border border-red-500/20">
+                            <Clock className="h-5 w-5 text-red-400" />
+                            <span className="font-bold text-lg text-white">{item.time}</span>
                           </div>
                           
                           <h3 className="text-xl font-bold mb-2 text-white">
-                            {item.discipline}
+                            {disciplineText}
                           </h3>
                           
                           <div className="flex items-center gap-2 mb-3">
@@ -682,11 +789,11 @@ export default function SchedulePage() {
                           
                           <div className="flex gap-2 mb-4">
                             <Badge variant="outline" className="border-red-500 text-red-500">
-                              {item.sport === "karate" && "🥋 Karate"}
-                              {item.sport === "muaythai" && "🥊 Muay Thai"}
-                              {item.sport === "mma" && "🥋 MMA"}
-                              {item.sport === "judo" && "🥋 Judo"}
-                              {item.sport === "motoryka" && "🏃 Motoryka"}
+                              {item.sport === "karate" && `🥋 ${t.disciplines.karate || "Karate"}`}
+                              {item.sport === "muaythai" && `🥊 ${t.disciplines.muaythai?.split(" /")[0] || "Muay Thai"}`}
+                              {item.sport === "mma" && `🥋 ${t.disciplines.mma || "MMA"}`}
+                              {item.sport === "judo" && `🥋 ${t.disciplines.judo || "Judo"}`}
+                              {item.sport === "motoryka" && `🏃 ${t.disciplines.motoryka || "Motoryka"}`}
                               {item.sport === "szachy" && "♟️ Szachy"}
                             </Badge>
                             <Badge variant="outline" className="border-blue-500 text-blue-500">
@@ -695,15 +802,19 @@ export default function SchedulePage() {
                           </div>
                           
                           <div className="mt-auto">
-                            <Link href={`/booking?coach=${item.coach.slug}&time=${item.time}&day=${item.day}`}>
-                              <Button className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-bold">
-                                {t.bookClass}
-                              </Button>
-                            </Link>
+                            <a
+                              href="https://docs.google.com/forms/d/e/1FAIpQLSdDvBi8fQgmTj10i6GPoU19q3RanUSyJLCZS3QACu5sS9aoMA/viewform"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="w-full px-4 py-2 bg-gradient-to-r from-red-500 to-red-600 text-white font-bold rounded-md block text-center"
+                            >
+                              {t.bookClass}
+                            </a>
                           </div>
                         </CardContent>
                       </Card>
-                    ))}
+                      )
+                    })}
                   </div>
                 </div>
               )

@@ -24,9 +24,9 @@ export default function AboutPage() {
 
           {/* Timeline */}
           <div className="grid md:grid-cols-3 gap-8 sm:gap-12 max-w-5xl mx-auto mb-20">
-            <Card className="text-center border-2 border-red-400/30 shadow-2xl rounded-3xl bg-gradient-to-br from-gray-900 to-black hover:shadow-red-400/20 hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-4 hover:scale-105 group backdrop-blur-md">
+            <Card className="text-center border-2 border-red-400/30 shadow-2xl rounded-3xl bg-gradient-to-br from-gray-900 to-black hover:shadow-red-400/20 hover:shadow-3xl transition-all duration-300 group backdrop-blur-md">
               <CardHeader className="pb-6">
-                <div className="w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-red-500 to-red-600 rounded-3xl flex items-center justify-center mx-auto mb-6 transform group-hover:scale-125 group-hover:rotate-12 transition-all duration-500 shadow-2xl">
+                <div className="w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-red-500 to-red-600 rounded-3xl flex items-center justify-center mx-auto mb-6 transition-all duration-300 shadow-2xl">
                   <Award className="w-10 h-10 sm:w-12 sm:h-12 text-white" />
                 </div>
                 <CardTitle className="font-sans text-2xl sm:text-3xl bg-gradient-to-r from-red-400 to-white bg-clip-text text-transparent font-bold">
@@ -38,9 +38,9 @@ export default function AboutPage() {
                 <p className="font-serif text-gray-400 text-sm font-light">Pierwsze kroki w świecie sztuk walki</p>
               </CardContent>
             </Card>
-            <Card className="text-center border-2 border-red-400/30 shadow-2xl rounded-3xl bg-gradient-to-br from-gray-900 to-black hover:shadow-red-400/20 hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-4 hover:scale-105 group backdrop-blur-md">
+            <Card className="text-center border-2 border-red-400/30 shadow-2xl rounded-3xl bg-gradient-to-br from-gray-900 to-black hover:shadow-red-400/20 hover:shadow-3xl transition-all duration-300 group backdrop-blur-md">
               <CardHeader className="pb-6">
-                <div className="w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-black to-gray-800 border-3 border-red-400 rounded-3xl flex items-center justify-center mx-auto mb-6 transform group-hover:scale-125 group-hover:rotate-12 transition-all duration-500 shadow-2xl">
+                <div className="w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-black to-gray-800 border-3 border-red-400 rounded-3xl flex items-center justify-center mx-auto mb-6 transition-all duration-300 shadow-2xl">
                   <Globe className="w-10 h-10 sm:w-12 sm:h-12 text-red-400" />
                 </div>
                 <CardTitle className="font-sans text-2xl sm:text-3xl bg-gradient-to-r from-red-400 to-white bg-clip-text text-transparent font-bold">
@@ -52,9 +52,9 @@ export default function AboutPage() {
                 <p className="font-serif text-gray-400 text-sm font-light">Ekspansja na polski rynek</p>
               </CardContent>
             </Card>
-            <Card className="text-center border-2 border-red-400/30 shadow-2xl rounded-3xl bg-gradient-to-br from-gray-900 to-black hover:shadow-red-400/20 hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-4 hover:scale-105 group backdrop-blur-md">
+            <Card className="text-center border-2 border-red-400/30 shadow-2xl rounded-3xl bg-gradient-to-br from-gray-900 to-black hover:shadow-red-400/20 hover:shadow-3xl transition-all duration-300 group backdrop-blur-md">
               <CardHeader className="pb-6">
-                <div className="w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-red-500 to-red-600 rounded-3xl flex items-center justify-center mx-auto mb-6 transform group-hover:scale-125 group-hover:rotate-12 transition-all duration-500 shadow-2xl">
+                <div className="w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-red-500 to-red-600 rounded-3xl flex items-center justify-center mx-auto mb-6 transition-all duration-300 shadow-2xl">
                   <Dumbbell className="w-10 h-10 sm:w-12 sm:h-12 text-white" />
                 </div>
                 <CardTitle className="font-sans text-2xl sm:text-3xl bg-gradient-to-r from-red-400 to-white bg-clip-text text-transparent font-bold">
@@ -77,7 +77,7 @@ export default function AboutPage() {
             </h2>
             <div className="grid md:grid-cols-3 gap-8">
               <div className="text-center group">
-                <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center mx-auto mb-6 transform group-hover:scale-110 transition-all duration-300 shadow-xl">
+                <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center mx-auto mb-6 transition-all duration-300 shadow-xl">
                   <Users className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-sans font-bold text-white mb-4">Społeczność</h3>
@@ -86,7 +86,7 @@ export default function AboutPage() {
                 </p>
               </div>
               <div className="text-center group">
-                <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center mx-auto mb-6 transform group-hover:scale-110 transition-all duration-300 shadow-xl">
+                <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center mx-auto mb-6 transition-all duration-300 shadow-xl">
                   <Target className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-sans font-bold text-white mb-4">Doskonałość</h3>
@@ -95,7 +95,7 @@ export default function AboutPage() {
                 </p>
               </div>
               <div className="text-center group">
-                <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center mx-auto mb-6 transform group-hover:scale-110 transition-all duration-300 shadow-xl">
+                <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center mx-auto mb-6 transition-all duration-300 shadow-xl">
                   <Heart className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-sans font-bold text-white mb-4">Pasja</h3>
