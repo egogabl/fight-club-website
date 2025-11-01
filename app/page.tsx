@@ -463,7 +463,10 @@ function HomePage() {
                 ...plActivity,
                 name: activity.name,
                 description: activity.description,
-                slug: activity.slug
+                slug: activity.slug,
+                detailedDescription: activity.detailedDescription || plActivity.detailedDescription,
+                trainer: activity.trainer || plActivity.trainer,
+                trainerId: activity.trainerId || plActivity.trainerId
               }
               return (
               <div
