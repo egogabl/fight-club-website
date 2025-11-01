@@ -9,6 +9,8 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  // Отключаем функции для Netlify (все страницы статические)
+  trailingSlash: true,
   // Оптимизации производительности
   compress: true,
   poweredByHeader: false,
