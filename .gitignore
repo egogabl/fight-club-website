@@ -82,3 +82,8 @@ jspm_packages/
 !public/*.png
 !public/*.jpeg
 !public/*.svg
+
+# ZIP archives
+*.zip
+fight-club-website*.zip
+лох*.zip
