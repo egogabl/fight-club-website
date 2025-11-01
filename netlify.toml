@@ -1,8 +1,13 @@
 [build]
   command = "npm run build"
+  publish = ".next"
 
 [build.environment]
   NODE_VERSION = "18"
+
+# Явно отключаем плагин Next.js - он вызывает ошибки
+# Если плагин установлен в Netlify UI, его нужно удалить вручную
+# Site settings → Build & deploy → Plugins → Remove "@netlify/plugin-nextjs"
 
 
 [[headers]]
