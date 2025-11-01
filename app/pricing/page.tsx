@@ -236,6 +236,62 @@ const translations = {
   }
 }
 
+// Helper function to translate period text
+const translatePeriod = (period: string, lang: string): string => {
+  const periodMap: Record<string, Record<string, string>> = {
+    "za 2 tygodnie": {
+      uk: "за 2 тижні",
+      en: "for 2 weeks",
+      by: "за 2 тыдні",
+      pl: "za 2 tygodnie"
+    },
+    "za 1 miesiąc": {
+      uk: "за 1 місяць",
+      en: "for 1 month",
+      by: "за 1 месяц",
+      pl: "za 1 miesiąc"
+    },
+    "za 3 miesiące": {
+      uk: "за 3 місяці",
+      en: "for 3 months",
+      by: "за 3 месяцы",
+      pl: "za 3 miesiące"
+    },
+    "za 6 miesięcy": {
+      uk: "за 6 місяців",
+      en: "for 6 months",
+      by: "за 6 месяцаў",
+      pl: "za 6 miesięcy"
+    }
+  }
+  return periodMap[period]?.[lang] || period
+}
+
+// Helper function to translate validity
+const translateValidity = (validity: string, lang: string): string => {
+  const validityMap: Record<string, Record<string, string>> = {
+    "1 mies.": {
+      uk: "1 міс.",
+      en: "1 mo.",
+      by: "1 мес.",
+      pl: "1 mies."
+    },
+    "2 mies.": {
+      uk: "2 міс.",
+      en: "2 mo.",
+      by: "2 мес.",
+      pl: "2 mies."
+    },
+    "3 mies.": {
+      uk: "3 міс.",
+      en: "3 mo.",
+      by: "3 мес.",
+      pl: "3 mies."
+    }
+  }
+  return validityMap[validity]?.[lang] || validity
+}
+
 export default function PricingPage() {
   const { currentLang } = useLanguage()
   const t = translations[currentLang] || translations.pl
@@ -380,7 +436,7 @@ export default function PricingPage() {
                         </div>
                         <span className="text-gray-400 text-xs font-accent">{t.adults}</span>
                       </div>
-                      <span className="text-gray-400 text-sm font-accent block">{plan.period === "za 2 tygodnie" ? (currentLang === "uk" ? "за 2 тижні" : currentLang === "en" ? "for 2 weeks" : currentLang === "by" ? "за 2 тыдні" : plan.period) : plan.period === "za 1 miesiąc" ? (currentLang === "uk" ? "за 1 місяць" : currentLang === "en" ? "for 1 month" : currentLang === "by" ? "за 1 месяц" : plan.period) : plan.period === "za 3 miesiące" ? (currentLang === "uk" ? "за 3 місяці" : currentLang === "en" ? "for 3 months" : currentLang === "by" ? "за 3 месяцы" : plan.period) : plan.period === "za 6 miesięcy" ? (currentLang === "uk" ? "за 6 місяців" : currentLang === "en" ? "for 6 months" : currentLang === "by" ? "за 6 месяцаў" : plan.period)}</span>
+                      <span className="text-gray-400 text-sm font-accent block">{translatePeriod(plan.period, currentLang)}</span>
                     </div>
                     <p className="text-gray-400 text-sm leading-relaxed font-primary">{plan.description}</p>
                   </CardHeader>
@@ -415,7 +471,7 @@ export default function PricingPage() {
                       </div>
                       <span className="text-gray-400 text-sm font-accent">{card.period}</span>
                       {card.validity && (
-                        <span className="text-red-400 text-xs font-accent block mt-1">{t.validity}: {card.validity === "1 mies." ? (currentLang === "uk" ? "1 міс." : currentLang === "en" ? "1 mo." : currentLang === "by" ? "1 мес." : card.validity) : card.validity === "2 mies." ? (currentLang === "uk" ? "2 міс." : currentLang === "en" ? "2 mo." : currentLang === "by" ? "2 мес." : card.validity) : card.validity === "3 mies." ? (currentLang === "uk" ? "3 міс." : currentLang === "en" ? "3 mo." : currentLang === "by" ? "3 мес." : card.validity)}</span>
+                        <span className="text-red-400 text-xs font-accent block mt-1">{t.validity}: {translateValidity(card.validity, currentLang)}</span>
                       )}
                     </div>
                     <p className="text-gray-400 text-sm leading-relaxed font-primary">{card.description}</p>
@@ -451,7 +507,7 @@ export default function PricingPage() {
                       </div>
                       <span className="text-gray-400 text-sm font-accent">{access.period}</span>
                       {access.validity && (
-                        <span className="text-red-400 text-xs font-accent block mt-1">{t.validity}: {access.validity === "1 mies." ? (currentLang === "uk" ? "1 міс." : currentLang === "en" ? "1 mo." : currentLang === "by" ? "1 мес." : access.validity) : access.validity === "3 mies." ? (currentLang === "uk" ? "3 міс." : currentLang === "en" ? "3 mo." : currentLang === "by" ? "3 мес." : access.validity) : access.validity}</span>
+                        <span className="text-red-400 text-xs font-accent block mt-1">{t.validity}: {translateValidity(access.validity, currentLang)}</span>
                       )}
                     </div>
                     <p className="text-gray-400 text-sm leading-relaxed font-primary">{access.description}</p>
