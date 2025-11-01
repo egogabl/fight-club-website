@@ -37,7 +37,7 @@ const translations = {
       expandedDescription:
         "Szczegółowy opis {activity}. Tutaj znajdziesz informacje o technice, zaletach i specyfice tego sportu.",
       bookNow: "Zapisz się",
-      viewDetails: "Podробнее",
+      viewDetails: "Zobacz szczegóły",
       viewSchedule: "Zobacz grafik",
       viewTrainers: "Zobacz trenerów",
     },

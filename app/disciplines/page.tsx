@@ -174,7 +174,7 @@ export default function DisciplinesPage() {
     pl: {
       title: "Nasze Dyscypliny",
       subtitle: "Odkryj różnorodność treningów w VOLAT",
-      viewDetails: "Подробнее",
+      viewDetails: "Zobacz szczegóły",
       bookNow: "Zapisz się",
       schedule: "Grafik",
       ageGroups: "Grupy wiekowe",
