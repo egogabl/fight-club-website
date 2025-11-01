@@ -184,96 +184,202 @@ const activities = {
     },
   ],
   uk: [
-    { name: "Карате (WKF)", description: "Бойові мистецтва", slug: "karate-wkf" },
-    { name: "Шахи", description: "Стратегічна гра", slug: "chess" },
-    { name: "Муай Тай", description: "Тайський бокс", slug: "muaythai" },
-    { name: "Дзюдо", description: "Японське бойове мистецтво", slug: "judo" },
-    { name: "ММА", description: "Змішані бойові мистецтва", slug: "mma" },
-    { name: "Бокс", description: "Класичний бокс", slug: "boxing" },
-    { name: "Бразильське Дзю-Дзюцу", description: "Боротьба в партері", slug: "bjj" },
-    { name: "Кікбоксинг", description: "Бокс з ударами ногами", slug: "kickboxing" },
-    {
-      name: "Функціональне та мотиваційне тренування",
-      description: "Комплексне кондиційне тренування",
-      slug: "functional-motivational-training",
+    { 
+      name: "Карате WKF", 
+      description: "Бойові мистецтва", 
+      slug: "karate-wkf",
+      trainer: "Vital Rak, Volha Yefimenka",
+      trainerId: "vital-rak",
+      detailedDescription: "Карате WKF - це традиційне бойове мистецтво з Японії, яке поєднує техніки ударів, ударів ногами та блокувань. Тренування розвиває силу, швидкість, координацію, дисципліну та концентрацію. Ми проводимо заняття для дітей від 7 років з Volha Yefimenka, молоді та дорослих з Vital Rak. Клуб є членом Польської Спілки Карате та Мазовецької Спілки Карате, що забезпечує професійний рівень навчання."
     },
-    { name: "Моторні навички (діти 5–7)", description: "Розвиток моторики у наймолодших", slug: "motor-skills-5-7" },
-    {
-      name: "Моторно-корекційне тренування (молодь 8–15)",
-      description: "Корекція постави та розвиток моторики",
-      slug: "motor-corrective-8-15",
+    { 
+      name: "Муай Тай / Кікбоксинг", 
+      description: "Бойові мистецтва", 
+      slug: "muaythai",
+      trainer: "Mikoła Taczylin",
+      trainerId: "mikola-taczylin",
+      detailedDescription: "Муай Тай / Кікбоксинг - це тайський бокс і кікбоксинг, один з найефективніших видів бойових мистецтв у світі. Характеризується використанням ударів кулаками, ліктями, колінами та ногами. Тренування дуже інтенсивне і розвиває витривалість, силу, швидкість та рефлекси. Ми проводимо заняття для різних вікових груп, від дітей до дорослих, адаптуючи програму до рівня підготовки учасників."
     },
-    {
-      name: "Туристичний клуб",
-      description: "Походи, орієнтування, виживання, навігація, табори",
-      slug: "tourist-club",
+    { 
+      name: "Дзюдо", 
+      description: "Бойові мистецтва", 
+      slug: "judo",
+      trainer: "Daria Koba",
+      trainerId: "daria-koba",
+      detailedDescription: "Дзюдо - це японське олімпійське бойове мистецтво, яке навчає кидків, утримань та заломів. Тренування розвиває силу, гнучкість, координацію та рівновагу. Ми проводимо заняття для дітей віком 6-12 років, адаптуючи програму до можливостей молодих учасників. Проводить Daria Koba - сертифікований інструктор дзюдо з багаторічним досвідом, який забезпечує безпечне та ефективне навчання."
     },
-    {
-      name: "Спортивно-освітні табори",
-      description: "Комплексні табори для дітей та молоді",
-      slug: "sports-educational-camps",
+    { 
+      name: "ММА", 
+      description: "Бойові мистецтва", 
+      slug: "mma",
+      trainer: "Paweł Szymkowicz",
+      trainerId: "pawel-szymkowicz",
+      detailedDescription: "ММА (Mixed Martial Arts) - це змішані бойові мистецтва, які поєднують техніки з різних дисциплін. Тренування включає боротьбу у стійці та партері, удари, удари ногами, кидки та заломи. ММА поєднує техніки боксу, боротьби, дзюдо, бразильського дзю-дзюцу, кікбоксингу та інших бойових мистецтв. Ми проводимо заняття для молоді від 15 років та дорослих з різним рівнем підготовки. Проводить Paweł Szymkowicz."
     },
-    { name: "Спортивно-шахова ліга / турніри", description: "Змагання та турніри", slug: "sports-chess-league" },
+    { 
+      name: "VolatMove! KIDS. Моторичний тренінг", 
+      description: "Моторичний тренінг для дітей 5-7 років", 
+      slug: "volatmove-kids",
+      trainer: "Volha Yefimenka, Daria Koba",
+      trainerId: "volha-yefimenka",
+      detailedDescription: "VolatMove! KIDS - це загальна моторична підготовка для дошкільнят, розвиток координації та великої моторики. Програма спеціально розроблена для наймолодших дітей віком 5-7 років, зосереджуючись на основних рухових навичках та рівновазі. Заняття проводять Volha Yefimenka та Daria Koba, які адаптують програму до можливостей кожної дитини. Тренування проходять у дружній атмосфері, заохочуючи до фізичної активності."
+    },
+    { 
+      name: "VolatMove! JUNIOR. Моторичний тренінг", 
+      description: "Моторичний тренінг для дітей 8-15 років", 
+      slug: "volatmove-junior",
+      trainer: "Volha Yefimenka",
+      trainerId: "volha-yefimenka",
+      detailedDescription: "VolatMove! JUNIOR - це моторичний тренінг для дітей 8-15 років, зосереджений на корекції проблем рухливості суглобів та формуванні правильної постави. Програма включає зміцнення стоп, покращення гнучкості та розвиток м'язової сили. Заняття спеціально розроблені для старших дітей та молоді, адаптовані до їхніх розвиткових потреб. Проводить Volha Yefimenka з багаторічним досвідом роботи з молодими спортсменами."
+    },
+    { 
+      name: "Функціональний тренінг", 
+      description: "Функціональний та моторичний тренінг", 
+      slug: "functional-training",
+      trainer: "Vital Rak",
+      trainerId: "vital-rak",
+      detailedDescription: "Функціональний та моторичний тренінг для молоді від 15 років та дорослих. Розвиток м'язової сили, швидкості реакції, витривалості, гнучкості та координації, корекція надмірної ваги. Комплексна програма, зосереджена на природних рухах людини. Проводить Vital Rak."
+    },
+    { 
+      name: "Шахи", 
+      description: "Стратегічна гра", 
+      slug: "chess",
+      trainer: "Wiktor Murończyk",
+      trainerId: "wiktor-muronczyk",
+      detailedDescription: "Шахи - це стратегічна гра, яка розвиває логічне мислення, концентрацію та навички планування. Шаховий тренінг покращує пам'ять, терпіння та аналітичні навички. Ідеально підходить для людей будь-якого віку. Проводить Wiktor Murończyk - міжнародний шаховий майстер."
+    },
   ],
   en: [
-    { name: "Karate (WKF)", description: "Martial arts", slug: "karate-wkf" },
-    { name: "Chess", description: "Strategic game", slug: "chess" },
-    { name: "Muay Thai", description: "Thai boxing", slug: "muaythai" },
-    { name: "Judo", description: "Japanese martial art", slug: "judo" },
-    { name: "MMA", description: "Mixed martial arts", slug: "mma" },
-    { name: "Boxing", description: "Classical boxing", slug: "boxing" },
-    { name: "Brazilian Jiu-Jitsu", description: "Ground fighting", slug: "bjj" },
-    { name: "Kickboxing", description: "Boxing with kicks", slug: "kickboxing" },
-    {
-      name: "Functional & motivational training",
-      description: "Comprehensive conditioning training",
-      slug: "functional-motivational-training",
+    { 
+      name: "Karate WKF", 
+      description: "Martial arts", 
+      slug: "karate-wkf",
+      trainer: "Vital Rak, Volha Yefimenka",
+      trainerId: "vital-rak",
+      detailedDescription: "Karate WKF is a traditional martial art from Japan that combines striking, kicking, and blocking techniques. Training develops strength, speed, coordination, discipline, and concentration. We conduct classes for children from 7 years old with Volha Yefimenka, youth and adults with Vital Rak. The club is a member of the Polish Karate Union and the Mazovian Karate Association, ensuring a professional level of instruction."
     },
-    { name: "Motor skills (children 5–7)", description: "Motor development for youngest", slug: "motor-skills-5-7" },
-    {
-      name: "Motor & corrective training (youth 8–15)",
-      description: "Posture correction and motor development",
-      slug: "motor-corrective-8-15",
+    { 
+      name: "Muay Thai / Kickboxing", 
+      description: "Martial arts", 
+      slug: "muaythai",
+      trainer: "Mikoła Taczylin",
+      trainerId: "mikola-taczylin",
+      detailedDescription: "Muay Thai / Kickboxing is Thai boxing and kickboxing, one of the most effective martial arts in the world. It is characterized by the use of punches, elbows, knees, and kicks. Training is very intense and develops endurance, strength, speed, and reflexes. We conduct classes for various age groups, from children to adults, adapting the program to the participants' skill level."
     },
-    { name: "Tourist club", description: "Hiking, orientation, survival, navigation, camps", slug: "tourist-club" },
-    {
-      name: "Sports & educational camps",
-      description: "Comprehensive camps for children and youth",
-      slug: "sports-educational-camps",
+    { 
+      name: "Judo", 
+      description: "Martial arts", 
+      slug: "judo",
+      trainer: "Daria Koba",
+      trainerId: "daria-koba",
+      detailedDescription: "Judo is an Olympic Japanese martial art that teaches throws, holds, and locks. Training develops strength, flexibility, coordination, and balance. We conduct classes for children aged 6-12, adapting the program to young participants' capabilities. Led by Daria Koba - a certified judo instructor with years of experience who ensures safe and effective teaching."
     },
-    {
-      name: "Sports & chess league / tournaments",
-      description: "Competitions and tournaments",
-      slug: "sports-chess-league",
+    { 
+      name: "MMA", 
+      description: "Martial arts", 
+      slug: "mma",
+      trainer: "Paweł Szymkowicz",
+      trainerId: "pawel-szymkowicz",
+      detailedDescription: "MMA (Mixed Martial Arts) is mixed martial arts that combines techniques from various disciplines. Training includes stand-up and ground fighting, strikes, kicks, throws, and locks. MMA combines techniques from boxing, wrestling, judo, Brazilian jiu-jitsu, kickboxing, and other martial arts. We conduct classes for youth from 15 years old and adults with various skill levels. Led by Paweł Szymkowicz."
+    },
+    { 
+      name: "VolatMove! KIDS. Motor Training", 
+      description: "Motor training for children 5-7 years", 
+      slug: "volatmove-kids",
+      trainer: "Volha Yefimenka, Daria Koba",
+      trainerId: "volha-yefimenka",
+      detailedDescription: "VolatMove! KIDS is general motor preparation for preschoolers, development of coordination and gross motor skills. The program is specially designed for the youngest children aged 5-7, focusing on basic movement skills and balance. Classes are conducted by Volha Yefimenka and Daria Koba, who adapt the program to each child's capabilities. Training takes place in a friendly atmosphere, encouraging physical activity."
+    },
+    { 
+      name: "VolatMove! JUNIOR. Motor Training", 
+      description: "Motor training for children 8-15 years", 
+      slug: "volatmove-junior",
+      trainer: "Volha Yefimenka",
+      trainerId: "volha-yefimenka",
+      detailedDescription: "VolatMove! JUNIOR is motor training for children 8-15 years, focusing on correcting joint mobility issues and forming proper posture. The program includes strengthening the feet, improving flexibility, and developing muscle strength. Classes are specially designed for older children and youth, adapted to their developmental needs. Led by Volha Yefimenka with years of experience working with young athletes."
+    },
+    { 
+      name: "Functional Training", 
+      description: "Functional and motor training", 
+      slug: "functional-training",
+      trainer: "Vital Rak",
+      trainerId: "vital-rak",
+      detailedDescription: "Functional and motor training for youth from 15 years old and adults. Development of muscle strength, reaction speed, endurance, flexibility, and coordination, correction of excess weight. A comprehensive program focused on natural human movements. Led by Vital Rak."
+    },
+    { 
+      name: "Chess", 
+      description: "Strategic game", 
+      slug: "chess",
+      trainer: "Wiktor Murończyk",
+      trainerId: "wiktor-muronczyk",
+      detailedDescription: "Chess is a strategic game that develops logical thinking, concentration, and planning skills. Chess training improves memory, patience, and analytical skills. Perfect for people of all ages. Led by Wiktor Murończyk - an international chess master."
     },
   ],
   by: [
-    { name: "Каратэ (WKF)", description: "Баявыя мастацтвы", slug: "karate-wkf" },
-    { name: "Шахматы", description: "Стратэгічная гульня", slug: "chess" },
-    { name: "Муай Тай", description: "Тайскі бокс", slug: "muaythai" },
-    { name: "Дзюдо", description: "Японскае баявое мастацтва", slug: "judo" },
-    { name: "ММА", description: "Змешаныя баявыя мастацтвы", slug: "mma" },
-    { name: "Бокс", description: "Класічны бокс", slug: "boxing" },
-    { name: "Бразільскае Дзю-Дзюцу", description: "Барацьба ў партэры", slug: "bjj" },
-    { name: "Кікбоксінг", description: "Бокс з ударамі нагамі", slug: "kickboxing" },
-    {
-      name: "Функцыянальная і матывацыйная трэніроўка",
-      description: "Комплекснае кандыцыйнае трэніроўка",
-      slug: "functional-motivational-training",
+    { 
+      name: "Каратэ WKF", 
+      description: "Баявыя мастацтвы", 
+      slug: "karate-wkf",
+      trainer: "Vital Rak, Volha Yefimenka",
+      trainerId: "vital-rak",
+      detailedDescription: "Каратэ WKF - гэта традыцыйнае баявое мастацтва з Японіі, якое аб'ядноўвае тэхнікі удараў, удараў нагамі і блакаванняў. Трэніроўка развівае сілу, хуткасць, каардынацыю, дысцыпліну і канцэнтрацыю. Мы праводзім заняткі для дзяцей ад 7 гадоў з Volha Yefimenka, моладзі і дарослых з Vital Rak. Клуб з'яўляецца членам Польскай Асацыяцыі Каратэ і Мазавецкай Асацыяцыі Каратэ, што забяспечвае прафесійны ўзровень навучання."
     },
-    { name: "Маторныя навыкі (дзеці 5–7)", description: "Развіццё маторыкі ў najмалодшых", slug: "motor-skills-5-7" },
-    {
-      name: "Маторна-карэкцыйная трэніроўка (моладзь 8–15)",
-      description: "Карэкцыя паставы і развіццё маторыкі",
-      slug: "motor-corrective-8-15",
+    { 
+      name: "Муай Тай / Кікбоксінг", 
+      description: "Баявыя мастацтвы", 
+      slug: "muaythai",
+      trainer: "Mikoła Taczylin",
+      trainerId: "mikola-taczylin",
+      detailedDescription: "Муай Тай / Кікбоксінг - гэта тайскі бокс і кікбоксінг, адзін з самых эфектыўных відаў баявых мастацтваў у свеце. Характарызуецца выкарыстаннем удараў кулакамі, локцямі, каленямі і нагамі. Трэніроўка вельмі інтэнсіўная і развівае вынослівасць, сілу, хуткасць і рэфлексы. Мы праводзім заняткі для розных узроставых груп, ад дзяцей да дарослых, адаптуючы праграму да ўзроўню падрыхтоўкі ўдзельнікаў."
     },
-    { name: "Турысцкі клуб", description: "Паходы, арыентацыя, выжыванне, навігацыя, лагеры", slug: "tourist-club" },
-    {
-      name: "Спартыўна-адукацыйныя лагеры",
-      description: "Комплексныя лагеры для дзяцей і моладзі",
-      slug: "sports-educational-camps",
+    { 
+      name: "Дзюдо", 
+      description: "Баявыя мастацтвы", 
+      slug: "judo",
+      trainer: "Daria Koba",
+      trainerId: "daria-koba",
+      detailedDescription: "Дзюдо - гэта японскае алімпійскае баявое мастацтва, якое навучае кідкоў, трыманняў і заломаў. Трэніроўка развівае сілу, гнуткасць, каардынацыю і раўнавагу. Мы праводзім заняткі для дзяцей ва ўзросце 6-12 гадоў, адаптуючы праграму да магчымасцей маладых удзельнікаў. Праводзіць Daria Koba - сертыфікаваны інструктар дзюдо з шматгадовым досведам, які забяспечвае бяспечнае і эфектыўнае навучанне."
     },
-    { name: "Спартыўна-шахматная ліга / турніры", description: "Спаборніцтвы і турніры", slug: "sports-chess-league" },
+    { 
+      name: "ММА", 
+      description: "Баявыя мастацтвы", 
+      slug: "mma",
+      trainer: "Paweł Szymkowicz",
+      trainerId: "pawel-szymkowicz",
+      detailedDescription: "ММА (Mixed Martial Arts) - гэта змешаныя баявыя мастацтвы, якія аб'ядноўваюць тэхнікі з розных дысцыплін. Трэніроўка ўключае барацьбу ў стаянцы і партэры, удары, удары нагамі, кідкі і заломы. ММА аб'ядноўвае тэхнікі боксу, барацьбы, дзюдо, бразільскага дзю-дзюцу, кікбоксінгу і іншых баявых мастацтваў. Мы праводзім заняткі для моладзі ад 15 гадоў і дарослых з розным узроўнем падрыхтоўкі. Праводзіць Paweł Szymkowicz."
+    },
+    { 
+      name: "VolatMove! KIDS. Маторныя трэніроўкі", 
+      description: "Маторныя трэніроўкі для дзяцей 5-7 гадоў", 
+      slug: "volatmove-kids",
+      trainer: "Volha Yefimenka, Daria Koba",
+      trainerId: "volha-yefimenka",
+      detailedDescription: "VolatMove! KIDS - гэта агульная маторная падрыхтоўка для дашкольнікаў, развіццё каардынацыі і буйной маторыкі. Праграма спецыяльна распрацавана для самых маладых дзяцей ва ўзросце 5-7 гадоў, засяроджваючыся на асноўных рухавых навыках і раўнавазе. Заняткі праводзяць Volha Yefimenka і Daria Koba, якія адаптуюць праграму да магчымасцей кожнага дзіцяці. Трэніроўкі праходзяць у сяброўскай атмасферы, заахвочваючы да фізічнай актыўнасці."
+    },
+    { 
+      name: "VolatMove! JUNIOR. Маторныя трэніроўкі", 
+      description: "Маторныя трэніроўкі для дзяцей 8-15 гадоў", 
+      slug: "volatmove-junior",
+      trainer: "Volha Yefimenka",
+      trainerId: "volha-yefimenka",
+      detailedDescription: "VolatMove! JUNIOR - гэта маторныя трэніроўкі для дзяцей 8-15 гадоў, засяроджаныя на карэкцыі праблем рухомасці суставаў і фарміраванні правільнай паставы. Праграма ўключае ўмацаванне стоп, паляпшэнне гнуткасці і развіццё цягліцавай сілы. Заняткі спецыяльна распрацаваны для старэйшых дзяцей і моладзі, адаптаваныя да іх развіццёвых патрэб. Праводзіць Volha Yefimenka з шматгадовым досведам працы з маладымі спартсменамі."
+    },
+    { 
+      name: "Функцыянальныя трэніроўкі", 
+      description: "Функцыянальныя і маторныя трэніроўкі", 
+      slug: "functional-training",
+      trainer: "Vital Rak",
+      trainerId: "vital-rak",
+      detailedDescription: "Функцыянальныя і маторныя трэніроўкі для моладзі ад 15 гадоў і дарослых. Развіццё цягліцавай сілы, хуткасці рэакцыі, вынослівасці, гнуткасці і каардынацыі, карэкцыя лішняй вагі. Камплексная праграма, засяроджаная на натуральных рухах чалавека. Праводзіць Vital Rak."
+    },
+    { 
+      name: "Шахматы", 
+      description: "Стратэгічная гульня", 
+      slug: "chess",
+      trainer: "Wiktor Murończyk",
+      trainerId: "wiktor-muronczyk",
+      detailedDescription: "Шахматы - гэта стратэгічная гульня, якая развівае лагічнае мысленне, канцэнтрацыю і навыкі планавання. Шахматная трэніроўка паляпшае памяць, цярпенне і аналітычныя навыкі. Ідэальна падыходзіць для людзей любога ўзросту. Праводзіць Wiktor Murończyk - міжнародны шахматны майстар."
+    },
   ],
 }
 
@@ -344,7 +450,16 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 items-stretch">
-            {(activities.pl || []).slice(0, 8).map((activity, index) => (
+            {(activities[currentLang] || activities.pl || []).slice(0, 8).map((activity, index) => {
+              // Находим соответствующий элемент из pl массива для получения полной информации
+              const plActivity = activities.pl?.find(a => a.slug === activity.slug) || activity
+              const currentActivity = {
+                ...plActivity,
+                name: activity.name,
+                description: activity.description,
+                slug: activity.slug
+              }
+              return (
               <div
                 key={index}
                 className="group bg-transparent backdrop-blur-lg border border-white/10 rounded-2xl overflow-hidden hover:border-red-500/30 transition-all duration-200 ease-out hover:shadow-2xl hover:shadow-red-500/10 flex flex-col h-full"
@@ -354,10 +469,10 @@ export default function HomePage() {
                   <div className="flex items-center justify-between">
                     <div className="text-center flex-1">
                       <h3 className="text-xl font-display font-bold text-white mb-3 group-hover:text-red-400 transition-colors duration-300 break-words leading-tight min-h-[60px]">
-                        {activity.name}
+                        {currentActivity.name}
                       </h3>
                       <p className="text-white/70 text-sm group-hover:text-white/90 transition-colors duration-300 font-primary min-h-[40px]">
-                        {activity.description}
+                        {currentActivity.description}
                       </p>
                     </div>
                     <div className="ml-4 flex-shrink-0">
@@ -378,7 +493,7 @@ export default function HomePage() {
                 {/* Buttons - Always Visible */}
                 <div className="px-6 pb-4 flex flex-col space-y-3">
                   <Link
-                    href={`/disciplines/${activity.slug}`}
+                    href={`/disciplines/${currentActivity.slug}`}
                     className="w-full px-6 py-3 bg-gradient-to-r from-red-600 to-red-500 text-white text-sm font-accent font-medium rounded-xl text-center shadow-lg block"
                     onClick={(e) => {
                       e.stopPropagation()
@@ -405,15 +520,15 @@ export default function HomePage() {
                   <div className="px-6 pt-4 pb-6 border-t border-white/20">
                     <div className="pt-4 space-y-4 flex flex-col">
                       <div className="text-white/80 text-sm">
-                        <p>{(activity as any).detailedDescription || t.activities.expandedDescription.replace("{activity}", activity.name.toLowerCase())}</p>
+                        <p>{currentActivity.detailedDescription || t.activities.expandedDescription.replace("{activity}", currentActivity.name.toLowerCase())}</p>
                       </div>
 
                       {/* Информация о тренере */}
-                      {(activity as any).trainer && (
+                      {currentActivity.trainer && (
                         <div 
                           className="bg-white/5 rounded-lg p-3 border border-white/10 hover:bg-white/10 transition-all duration-300 cursor-pointer group/trainer"
                           onClick={() => {
-                            const trainerId = (activity as any).trainerId;
+                            const trainerId = currentActivity.trainerId;
                             if (trainerId) {
                               router.push(`/coaches#${trainerId}`);
                             }
@@ -423,14 +538,15 @@ export default function HomePage() {
                             <div className="w-2 h-2 bg-gradient-to-r from-red-500 to-red-400 rounded-full"></div>
                             <span className="text-red-400 text-xs font-accent font-semibold group-hover/trainer:text-red-300 transition-colors">Trener</span>
                           </div>
-                          <p className="text-white text-sm font-primary group-hover/trainer:text-red-100 transition-colors">{(activity as any).trainer}</p>
+                          <p className="text-white text-sm font-primary group-hover/trainer:text-red-100 transition-colors">{currentActivity.trainer}</p>
                         </div>
                       )}
                     </div>
                   </div>
                 </div>
               </div>
-            ))}
+            )
+            })}
           </div>
         </div>
       </section>

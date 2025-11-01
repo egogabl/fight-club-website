@@ -78,6 +78,58 @@ export default function DisciplinePageClient({ discipline }: DisciplinePageClien
     }
   }
 
+  // Переводы описаний
+  const descriptionTranslations: Record<string, Record<string, string>> = {
+    "karate-wkf": {
+      pl: "Sztuki walki",
+      uk: "Бойові мистецтва",
+      en: "Martial arts",
+      by: "Баявыя мастацтвы"
+    },
+    "muaythai": {
+      pl: "Sztuki walki",
+      uk: "Бойові мистецтва",
+      en: "Martial arts",
+      by: "Баявыя мастацтвы"
+    },
+    "judo": {
+      pl: "Sztuki walki",
+      uk: "Бойові мистецтва",
+      en: "Martial arts",
+      by: "Баявыя мастацтвы"
+    },
+    "mma": {
+      pl: "Sztuki walki",
+      uk: "Бойові мистецтва",
+      en: "Martial arts",
+      by: "Баявыя мастацтвы"
+    },
+    "volatmove-kids": {
+      pl: "Trening motoryczny dla dzieci 5-7 lat",
+      uk: "Моторичний тренінг для дітей 5-7 років",
+      en: "Motor training for children 5-7 years",
+      by: "Маторныя трэніроўкі для дзяцей 5-7 гадоў"
+    },
+    "volatmove-junior": {
+      pl: "Trening motoryczny dla dzieci 8-15 lat",
+      uk: "Моторичний тренінг для дітей 8-15 років",
+      en: "Motor training for children 8-15 years",
+      by: "Маторныя трэніроўкі для дзяцей 8-15 гадоў"
+    },
+    "functional-training": {
+      pl: "Trening funkcjonalny i motoryczny",
+      uk: "Функціональний та моторичний тренінг",
+      en: "Functional and motor training",
+      by: "Функцыянальныя і маторныя трэніроўкі"
+    },
+    "chess": {
+      pl: "Gra strategiczna",
+      uk: "Стратегічна гра",
+      en: "Strategic game",
+      by: "Стратэгічная гульня"
+    }
+  }
+
   // Переводы цен
   const priceTranslations: Record<string, Record<string, string>> = {
     "default": {
@@ -229,7 +281,7 @@ export default function DisciplinePageClient({ discipline }: DisciplinePageClien
                   {disciplineTranslations[discipline.slug]?.[currentLang] || discipline.name}
                 </h1>
                 <p className="text-xl text-gray-300 font-primary mb-2">
-                  {discipline.description}
+                  {descriptionTranslations[discipline.slug]?.[currentLang] || discipline.description}
                 </p>
                 <p className="text-lg text-red-400 font-accent">
                   {t.trainer}: {discipline.trainer}

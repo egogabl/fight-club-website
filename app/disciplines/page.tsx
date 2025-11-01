@@ -170,6 +170,110 @@ const disciplines = [
 export default function DisciplinesPage() {
   const { currentLang } = useLanguage()
   
+  // Переводы названий дисциплин
+  const disciplineTranslations: Record<string, Record<string, string>> = {
+    "karate-wkf": {
+      pl: "Karate WKF",
+      uk: "Карате WKF",
+      en: "Karate WKF",
+      by: "Каратэ WKF"
+    },
+    "muaythai": {
+      pl: "Muay Thai / Kickboxing",
+      uk: "Муай Тай / Кікбоксинг",
+      en: "Muay Thai / Kickboxing",
+      by: "Муай Тай / Кікбоксінг"
+    },
+    "judo": {
+      pl: "Judo",
+      uk: "Дзюдо",
+      en: "Judo",
+      by: "Дзюдо"
+    },
+    "mma": {
+      pl: "MMA",
+      uk: "ММА",
+      en: "MMA",
+      by: "ММА"
+    },
+    "volatmove-kids": {
+      pl: "VolatMove! KIDS. Trening Motoryczny",
+      uk: "VolatMove! KIDS. Моторичний тренінг",
+      en: "VolatMove! KIDS. Motor Training",
+      by: "VolatMove! KIDS. Маторныя трэніроўкі"
+    },
+    "volatmove-junior": {
+      pl: "VolatMove! JUNIOR. Trening Motoryczny",
+      uk: "VolatMove! JUNIOR. Моторичний тренінг",
+      en: "VolatMove! JUNIOR. Motor Training",
+      by: "VolatMove! JUNIOR. Маторныя трэніроўкі"
+    },
+    "functional-training": {
+      pl: "Trening Funkcjonalny",
+      uk: "Функціональний тренінг",
+      en: "Functional Training",
+      by: "Функцыянальныя трэніроўкі"
+    },
+    "chess": {
+      pl: "Szachy",
+      uk: "Шахи",
+      en: "Chess",
+      by: "Шахматы"
+    }
+  }
+
+  // Переводы описаний
+  const descriptionTranslations: Record<string, Record<string, string>> = {
+    "karate-wkf": {
+      pl: "Sztuki walki",
+      uk: "Бойові мистецтва",
+      en: "Martial arts",
+      by: "Баявыя мастацтвы"
+    },
+    "muaythai": {
+      pl: "Sztuki walki",
+      uk: "Бойові мистецтва",
+      en: "Martial arts",
+      by: "Баявыя мастацтвы"
+    },
+    "judo": {
+      pl: "Sztuki walki",
+      uk: "Бойові мистецтва",
+      en: "Martial arts",
+      by: "Баявыя мастацтвы"
+    },
+    "mma": {
+      pl: "Sztuki walki",
+      uk: "Бойові мистецтва",
+      en: "Martial arts",
+      by: "Баявыя мастацтвы"
+    },
+    "volatmove-kids": {
+      pl: "Trening motoryczny dla dzieci 5-7 lat",
+      uk: "Моторичний тренінг для дітей 5-7 років",
+      en: "Motor training for children 5-7 years",
+      by: "Маторныя трэніроўкі для дзяцей 5-7 гадоў"
+    },
+    "volatmove-junior": {
+      pl: "Trening motoryczny dla dzieci 8-15 lat",
+      uk: "Моторичний тренінг для дітей 8-15 років",
+      en: "Motor training for children 8-15 years",
+      by: "Маторныя трэніроўкі для дзяцей 8-15 гадоў"
+    },
+    "functional-training": {
+      pl: "Trening funkcjonalny i motoryczny",
+      uk: "Функціональний та моторичний тренінг",
+      en: "Functional and motor training",
+      by: "Функцыянальныя і маторныя трэніроўкі"
+    },
+    "chess": {
+      pl: "Gra strategiczna",
+      uk: "Стратегічна гра",
+      en: "Strategic game",
+      by: "Стратэгічная гульня"
+    }
+  }
+  
   const translations = {
     pl: {
       title: "Nasze Dyscypliny",
@@ -251,10 +355,10 @@ export default function DisciplinesPage() {
                 {/* Content */}
                 <div className="space-y-2 sm:space-y-3 flex-1 flex flex-col min-h-0">
                   <h3 className="text-lg sm:text-xl font-display font-bold text-white group-hover:text-red-100 transition-colors duration-300 break-words leading-tight">
-                    {discipline.name}
+                    {disciplineTranslations[discipline.slug]?.[currentLang] || discipline.name}
                   </h3>
                   <p className="text-gray-300 font-primary text-sm sm:text-sm min-h-[20px] sm:min-h-[24px]">
-                    {discipline.description}
+                    {descriptionTranslations[discipline.slug]?.[currentLang] || discipline.description}
                   </p>
                   <p className="text-gray-400 font-primary text-xs sm:text-xs">
                     {t.trainer}: {discipline.trainer}
