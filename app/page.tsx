@@ -1,12 +1,14 @@
 "use client"
 
-import { useState } from "react"
+import { useState, lazy, Suspense, memo } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/outline"
-import Footer from "@/components/footer"
-import VideoBackground from "@/components/video-background"
 import { useLanguage } from "@/components/language-provider"
+
+// Lazy load heavy components
+const Footer = lazy(() => import("@/components/footer"))
+const VideoBackground = lazy(() => import("@/components/video-background"))
 
 const languageFlags = {
   pl: "🇵🇱",
@@ -383,7 +385,7 @@ const activities = {
   ],
 }
 
-export default function HomePage() {
+function HomePage() {
   const { currentLang } = useLanguage()
   const router = useRouter()
   const [expandedActivities, setExpandedActivities] = useState<Set<number>>(new Set())
@@ -415,11 +417,13 @@ export default function HomePage() {
   return (
     <div className="min-h-screen relative bg-black">
       <div className="relative h-screen overflow-hidden">
-        <VideoBackground
-          desktopToken="GaKXZ3b0Vmk"
-          mobileToken="WblQx6xivHQ"
-          overlayOpacity={0.15}
-        />
+        <Suspense fallback={<div className="absolute inset-0 bg-black" />}>
+          <VideoBackground
+            desktopToken="GaKXZ3b0Vmk"
+            mobileToken="WblQx6xivHQ"
+            overlayOpacity={0.15}
+          />
+        </Suspense>
 
         <main className="relative z-50 h-full">
           <div className="h-full flex flex-col items-center justify-center relative">
@@ -555,8 +559,13 @@ export default function HomePage() {
         </div>
       </section>
 
-
-      <Footer currentLang={currentLang} />
+      <Suspense fallback={null}>
+        <Footer currentLang={currentLang} />
+      </Suspense>
     </div>
   )
 }
+
+// Memoize to prevent unnecessary re-renders
+const MemoizedHomePage = memo(HomePage)
+export default MemoizedHomePage
