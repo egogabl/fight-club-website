@@ -421,7 +421,7 @@ function HomePage() {
           <VideoBackground
             desktopToken="GaKXZ3b0Vmk"
             mobileToken="WblQx6xivHQ"
-            overlayOpacity={0.35}
+            overlayOpacity={0.15}
           />
         </Suspense>
 

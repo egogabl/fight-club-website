@@ -178,6 +178,7 @@
   -webkit-backface-visibility: hidden;
   z-index: 1 !important;
   position: relative;
+  /* Убраны все эффекты затемнения - видео как на YouTube */
 }
 
 /* Ensure video background container has lowest z-index */

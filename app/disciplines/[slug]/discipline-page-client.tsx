@@ -564,20 +564,20 @@ export default function DisciplinePageClient({ discipline }: DisciplinePageClien
                   href="https://docs.google.com/forms/d/e/1FAIpQLSdDvBi8fQgmTj10i6GPoU19q3RanUSyJLCZS3QACu5sS9aoMA/viewform"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full px-6 py-3 bg-gradient-to-r from-red-600 to-red-500 text-white text-sm font-accent font-medium rounded-xl text-center shadow-lg block"
+                  className="w-full px-6 py-3 bg-gradient-to-r from-red-600 to-red-500 text-white text-sm font-accent font-medium rounded-xl text-center shadow-lg block min-h-[48px] flex items-center justify-center whitespace-nowrap"
                 >
                   {t.bookNow}
                 </a>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <Link
                     href="/schedule"
-                    className="px-6 py-3 bg-gradient-to-r from-white to-gray-100 text-black text-sm font-accent font-medium rounded-xl text-center shadow-lg block"
+                    className="px-6 py-3 bg-gradient-to-r from-white to-gray-100 text-black text-sm font-accent font-medium rounded-xl text-center shadow-lg block min-h-[48px] flex items-center justify-center whitespace-nowrap"
                   >
                     {t.viewSchedule}
                   </Link>
                   <Link
                     href={discipline.trainer.includes(',') ? '/coaches' : `/coaches/${discipline.trainerId}`}
-                    className="px-6 py-3 bg-gradient-to-r from-white to-gray-100 text-black text-sm font-accent font-medium rounded-xl text-center shadow-lg block"
+                    className="px-6 py-3 bg-gradient-to-r from-white to-gray-100 text-black text-sm font-accent font-medium rounded-xl text-center shadow-lg block min-h-[48px] flex items-center justify-center whitespace-nowrap"
                   >
                     {t.viewTrainer}
                   </Link>

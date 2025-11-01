@@ -372,7 +372,7 @@ export default function DisciplinesPage() {
                 <div className="mt-auto pt-4 sm:pt-6 pb-0 flex flex-col gap-3">
                   <Link
                     href={`/disciplines/${discipline.slug}`}
-                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-gradient-to-r from-red-600 to-red-500 text-white text-xs sm:text-sm font-accent font-medium rounded-xl text-center shadow-lg block min-h-[44px] flex items-center justify-center"
+                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-gradient-to-r from-red-600 to-red-500 text-white text-xs sm:text-sm font-accent font-medium rounded-xl text-center shadow-lg block min-h-[48px] flex items-center justify-center whitespace-nowrap"
                   >
                     {t.viewDetails}
                   </Link>
@@ -380,7 +380,7 @@ export default function DisciplinesPage() {
                     href="https://docs.google.com/forms/d/e/1FAIpQLSdDvBi8fQgmTj10i6GPoU19q3RanUSyJLCZS3QACu5sS9aoMA/viewform"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-gradient-to-r from-white to-gray-100 text-black text-xs sm:text-sm font-accent font-medium rounded-xl text-center shadow-lg border border-gray-200 block min-h-[44px] flex items-center justify-center"
+                    className="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-gradient-to-r from-white to-gray-100 text-black text-xs sm:text-sm font-accent font-medium rounded-xl text-center shadow-lg border border-gray-200 block min-h-[48px] flex items-center justify-center whitespace-nowrap"
                   >
                     {t.bookNow}
                   </a>
