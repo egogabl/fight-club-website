@@ -273,7 +273,7 @@ export default function Navigation() {
                     {t.nav.directions}
                   </button>
                   <Link
-                    href="/disciplines"
+                    href="/disciplines/"
                     onClick={() => setIsMobileMenuOpen(false)}
                     className="text-left font-medium text-white/90 hover:text-white transition-all duration-200 ease-out py-4 px-6 rounded-xl hover:bg-white/10 text-lg block hover:shadow-lg hover:shadow-white/10"
                   >

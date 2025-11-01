@@ -321,7 +321,7 @@ export default function DisciplinePage() {
         <div className="pt-20 flex items-center justify-center min-h-screen">
           <div className="text-center">
             <h1 className="text-4xl font-display font-bold text-white mb-4">{t.notFound}</h1>
-            <Link href="/disciplines" className="text-red-400 hover:text-red-300 font-accent">
+            <Link href="/disciplines/" className="text-red-400 hover:text-red-300 font-accent">
               {t.backToDisciplines}
             </Link>
           </div>
@@ -337,7 +337,7 @@ export default function DisciplinePage() {
           {/* Back Button */}
           <div className="mb-8">
             <Link 
-              href="/disciplines" 
+              href="/disciplines/" 
               className="inline-flex items-center text-red-400 hover:text-red-300 font-accent transition-colors duration-300"
             >
               <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

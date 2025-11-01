@@ -264,7 +264,7 @@ export default function DisciplinesPage() {
                 {/* Buttons */}
                 <div className="mt-auto pt-4 sm:pt-6 pb-0 space-y-2">
                   <Link
-                    href={`/disciplines/${discipline.slug}`}
+                    href={`/disciplines/${discipline.slug}/`}
                     className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-gradient-to-r from-red-600 to-red-500 text-white text-xs sm:text-sm font-accent font-medium rounded-xl text-center shadow-lg block"
                   >
                     {t.viewDetails}

@@ -344,7 +344,7 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 items-stretch">
-            {(activities[currentLang] || activities.pl || []).slice(0, 8).map((activity, index) => (
+            {(activities.pl || []).slice(0, 8).map((activity, index) => (
               <div
                 key={index}
                 className="group bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl overflow-hidden hover:border-red-500/30 transition-all duration-200 ease-out hover:shadow-2xl hover:shadow-red-500/10 hover:bg-white/10 flex flex-col h-full"
@@ -404,7 +404,7 @@ export default function HomePage() {
                       {/* Buttons */}
                       <div className="flex flex-col space-y-3">
                         <Link
-                          href={`/disciplines/${activity.slug}`}
+                          href={`/disciplines/${activity.slug}/`}
                           className="w-full px-6 py-3 bg-gradient-to-r from-red-600 to-red-500 text-white text-sm font-accent font-medium rounded-xl text-center shadow-lg block"
                         >
                           {t.activities.viewDetails}
