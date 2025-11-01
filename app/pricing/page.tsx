@@ -221,7 +221,11 @@ export default function PricingPage() {
                     ))}
                   </ul>
 
-                  <Link href="/booking">
+                  <a
+                    href="https://docs.google.com/forms/d/e/1FAIpQLSdDvBi8fQgmTj10i6GPoU19q3RanUSyJLCZS3QACu5sS9aoMA/viewform"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <Button
                       className={`w-full px-6 py-3 rounded-xl text-sm font-accent font-medium ${
                         plan.popular
@@ -231,7 +235,7 @@ export default function PricingPage() {
                     >
                       {plan.buttonText}
                     </Button>
-                  </Link>
+                  </a>
                 </CardContent>
               </Card>
             ))}
