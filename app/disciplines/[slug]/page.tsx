@@ -5,7 +5,8 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useLanguage } from '@/components/language-provider'
 
-const disciplines = [
+// Экспортируем список дисциплин для generateStaticParams
+export const disciplines = [
   {
     id: "karate-wkf",
     name: "Karate WKF",
@@ -26,7 +27,7 @@ const disciplines = [
     ],
     schedule: "Poniedziałek, Środa, Piątek, Wtorek, Czwartek, Sobota",
     ageGroups: "Dzieci od 7 lat, Młodzież, Dorośli",
-    price: "Dzieci: 150 zł/miesiąc, Dorośli: 180 zł/miesiąc"
+    price: "Dzieci: 220 zł/miesiąc, Dorośli: 280 zł/miesiąc"
   },
   {
     id: "muaythai",
@@ -48,7 +49,7 @@ const disciplines = [
     ],
     schedule: "Wtorek, Czwartek 19:00-20:30",
     ageGroups: "Młodzież 14+, Dorośli",
-    price: "Dzieci: 150 zł/miesiąc, Dorośli: 180 zł/miesiąc"
+    price: "Dzieci: 220 zł/miesiąc, Dorośli: 280 zł/miesiąc"
   },
   {
     id: "judo",
@@ -69,7 +70,7 @@ const disciplines = [
     ],
     schedule: "Wtorek, Czwartek 18:00-19:30",
     ageGroups: "Dzieci 5+, Młodzież, Dorośli",
-    price: "Dzieci: 150 zł/miesiąc, Dorośli: 180 zł/miesiąc"
+    price: "Dzieci: 220 zł/miesiąc, Dorośli: 280 zł/miesiąc"
   },
   {
     id: "mma",
@@ -91,7 +92,7 @@ const disciplines = [
     ],
     schedule: "Zapytaj o harmonogram",
     ageGroups: "Młodzież 15+, Dorośli",
-    price: "Dzieci: 150 zł/miesiąc, Dorośli: 180 zł/miesiąc"
+    price: "Dzieci: 220 zł/miesiąc, Dorośli: 280 zł/miesiąc"
   },
   {
     id: "volatmove-kids",
@@ -179,7 +180,7 @@ const disciplines = [
     ],
     schedule: "Zapytaj o harmonogram",
     ageGroups: "Dzieci 6+, Młodzież, Dorośli",
-    price: "Dzieci: 150 zł/miesiąc, Dorośli: 180 zł/miesiąc"
+    price: "Dzieci: 220 zł/miesiąc, Dorośli: 280 zł/miesiąc"
   }
 ]
 
@@ -188,6 +189,74 @@ export default function DisciplinePage() {
   const { currentLang } = useLanguage()
   
   const discipline = disciplines.find(d => d.slug === params.slug)
+
+  // Переводы названий дисциплин
+  const disciplineTranslations: Record<string, Record<string, string>> = {
+    "karate-wkf": {
+      pl: "Karate WKF",
+      uk: "Карате WKF",
+      en: "Karate WKF",
+      by: "Каратэ WKF"
+    },
+    "muaythai": {
+      pl: "Muay Thai / Kickboxing",
+      uk: "Муай Тай / Кікбоксинг",
+      en: "Muay Thai / Kickboxing",
+      by: "Муай Тай / Кікбоксінг"
+    },
+    "judo": {
+      pl: "Judo",
+      uk: "Дзюдо",
+      en: "Judo",
+      by: "Дзюдо"
+    },
+    "mma": {
+      pl: "MMA",
+      uk: "ММА",
+      en: "MMA",
+      by: "ММА"
+    },
+    "volatmove-kids": {
+      pl: "VolatMove! KIDS. Trening Motoryczny",
+      uk: "VolatMove! KIDS. Моторичний тренінг",
+      en: "VolatMove! KIDS. Motor Training",
+      by: "VolatMove! KIDS. Маторныя трэніроўкі"
+    },
+    "volatmove-junior": {
+      pl: "VolatMove! JUNIOR. Trening Motoryczny",
+      uk: "VolatMove! JUNIOR. Моторичний тренінг",
+      en: "VolatMove! JUNIOR. Motor Training",
+      by: "VolatMove! JUNIOR. Маторныя трэніроўкі"
+    },
+    "functional-training": {
+      pl: "Trening Funkcjonalny",
+      uk: "Функціональний тренінг",
+      en: "Functional Training",
+      by: "Функцыянальныя трэніроўкі"
+    },
+    "chess": {
+      pl: "Szachy",
+      uk: "Шахи",
+      en: "Chess",
+      by: "Шахматы"
+    }
+  }
+
+  // Переводы цен
+  const priceTranslations: Record<string, Record<string, string>> = {
+    "default": {
+      pl: "Dzieci: 220 zł/miesiąc, Dorośli: 280 zł/miesiąc",
+      uk: "Діти: 220 zł/місяць, Дорослі: 280 zł/місяць",
+      en: "Children: 220 zł/month, Adults: 280 zł/month",
+      by: "Дзеці: 220 zł/месяц, Дарослыя: 280 zł/месяц"
+    },
+    "ask": {
+      pl: "Zapytaj o cenę",
+      uk: "Запитайте про ціну",
+      en: "Ask about price",
+      by: "Спытайце пра цану"
+    }
+  }
 
   const translations = {
     pl: {
@@ -336,7 +405,7 @@ export default function DisciplinePage() {
               {/* Header */}
               <div>
                 <h1 className="text-4xl sm:text-5xl font-display font-bold text-white mb-4 tracking-tight bg-gradient-to-r from-white via-red-100 to-white bg-clip-text text-transparent break-words leading-tight">
-                  {discipline.name}
+                  {disciplineTranslations[discipline.slug]?.[currentLang] || discipline.name}
                 </h1>
                 <p className="text-xl text-gray-300 font-primary mb-2">
                   {discipline.description}
@@ -394,7 +463,10 @@ export default function DisciplinePage() {
                     {t.price}
                   </h3>
                   <p className="text-red-400 font-accent font-bold text-lg">
-                    {discipline.price}
+                    {discipline.price === "Zapytaj o cenę" 
+                      ? (priceTranslations["ask"][currentLang] || priceTranslations["ask"]["pl"])
+                      : (priceTranslations["default"][currentLang] || priceTranslations["default"]["pl"])
+                    }
                   </p>
                 </div>
               </div>
