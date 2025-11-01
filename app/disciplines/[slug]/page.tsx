@@ -184,6 +184,13 @@ export const disciplines = [
   }
 ]
 
+// Статическая генерация всех страниц дисциплин
+export async function generateStaticParams() {
+  return disciplines.map((discipline) => ({
+    slug: discipline.slug,
+  }))
+}
+
 export default function DisciplinePage() {
   const params = useParams()
   const { currentLang } = useLanguage()
