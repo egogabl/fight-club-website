@@ -1,6 +1,7 @@
 [build]
   command = "npm run build"
-  publish = ".netlify/output/public"
+  # publish directory НЕ указываем здесь - пусть плагин управляет сам
+  # ВАЖНО: В Netlify UI нужно очистить поле "Publish directory" или установить ".netlify/output/public"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"

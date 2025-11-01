@@ -62,6 +62,9 @@ jspm_packages/
 # Netlify
 .netlify/
 
+# Netlify build output (генерируется плагином)
+.netlify/output/
+
 # Large images (should be optimized)
 # public/*.png
 # public/*.jpg
