@@ -56,14 +56,14 @@ export default function CoachDetailClient({ coach, slug }: CoachDetailClientProp
               </Link>
             </div>
             <div className="grid lg:grid-cols-2 gap-12 items-start">
-              <div className="aspect-square overflow-hidden rounded-3xl shadow-2xl relative bg-transparent dark-bg bg-gradient-to-br from-gray-900 to-black rounded-3xl">
+              <div className="aspect-square overflow-hidden rounded-3xl shadow-2xl relative bg-transparent bg-gradient-to-br from-gray-900 to-black rounded-3xl">
                 <Image
                   src={coach.image || "/placeholder.svg"}
                   alt={`${coach.name} - ${coach.specialty} w klubie VOLAT Warszawa`}
                   title={`${coach.name} - Trener ${coach.specialty} w klubie VOLAT Warszawa`}
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-cover remove-white-bg"
+                  className="object-cover"
                   priority
                   loading="eager"
                 />

@@ -15,7 +15,7 @@ const coaches = [
     experience: "15+ lat doświadczenia",
     description:
       "Główny trener klubu VOLAT z wieloletnim doświadczeniem w karate i treningu funkcjonalnym. Mistrz sportu, certyfikowany instruktor WKF. Specjalizuje się w przygotowaniu zawodników do zawodów międzynarodowych. Prowadzi karate sportową grupę i zajęcia dla dorosłych oraz trening funkcjonalny.",
-    image: "/vital-rak.jpg",
+    image: "/vital-rak.png",
     achievements: [
       "Mistrz Sportu w Karate",
       "Certyfikat WKF 3 Dan",
@@ -35,7 +35,7 @@ const coaches = [
     experience: "12+ lat doświadczenia",
     description:
       "Specjalistka w karate dla dzieci oraz treningu motorycznym. Prowadzi zajęcia karate dla dzieci w wieku 7-11 lat (1-й и 2-й rok nauki), trening motoryczny VolatMOVE Junior oraz zajęcia Muay Thai. Ma wyjątkowe podejście do najmłodszych zawodników. Certyfikowana instruktorka z wieloletnim doświadczeniem w pracy z dziećmi.",
-    image: "/volha-yefimenka.jpg",
+    image: "/volha-yefimenka.png",
     achievements: [
       "Mistrzyni Białorusi w Karate",
       "Certyfikat Instruktora Dziecięcego",
@@ -56,7 +56,7 @@ const coaches = [
     experience: "18+ lat doświadczenia",
     description:
       "Ekspert w Muay Thai z wieloletnim doświadczeniem zawodowym. Były zawodnik, obecnie trener przygotowujący zawodników do walk i zawodów na najwyższym poziomie. Specjalizuje się w trenowaniu wszystkich grup wiekowych.",
-    image: "/mikola-taczylin.jpg",
+    image: "/mikola-taczylin.png",
     achievements: [
       "Były Zawodnik Muay Thai",
       "Mistrz Europy Kickboxingu",
@@ -76,7 +76,7 @@ const coaches = [
     experience: "25+ lat doświadczenia",
     description:
       "Mistrz szachowy prowadzący zajęcia dla wszystkich grup wiekowych. Specjalizuje się w rozwoju strategicznego myślenia i przygotowaniu do turniejów. Wieloletni doświadczenie w pracy z dziećmi i dorosłymi.",
-    image: "/wiktor-muronczyk.jpg",
+    image: "/wiktor-muronczyk.png",
     achievements: [
       "Międzynarodowy Mistrz Szachowy",
       "Trener FIDE",
@@ -96,7 +96,7 @@ const coaches = [
     experience: "10+ lat doświadczenia",
     description:
       "Specjalista w MMA z wieloletnim doświadczeniem w trenowaniu zawodników wszystkich grup wiekowych. Certyfikowany instruktor z międzynarodowymi osiągnięciami. Specjalizuje się w technikach mieszanych sztuk walki.",
-    image: "/pawel-szymkowicz.jpg",
+    image: "/pawel-szymkowicz.png",
     achievements: [
       "Mistrz Polski w MMA",
       "Certyfikat Instruktora MMA",
@@ -116,7 +116,7 @@ const coaches = [
     experience: "8+ lat doświadczenia",
     description:
       "Specjalistka w treningu motorycznym dla najmłodszych dzieci oraz judo. Ma wyjątkowe podejście do pracy z dziećmi w wieku przedszkolnym i szkolnym. Certyfikowana instruktorka z wieloletnim doświadczeniem w rozwoju podstawowych umiejętności motorycznych oraz treningu judo dla dzieci.",
-    image: "/judo-female-trainer.jpg",
+    image: "/daria-koba.png",
     achievements: [
       "Certyfikat Instruktora Treningu Motorycznego",
       "Certyfikat Instruktora Judo",
@@ -448,14 +448,14 @@ export default function CoachesPage() {
               <div key={index} className="group flex flex-col">
                 <Card className="border-2 border-red-400/30 shadow-2xl rounded-3xl bg-gradient-to-br from-gray-900 to-black hover:shadow-red-400/20 hover:shadow-3xl transition-all duration-300 group overflow-hidden backdrop-blur-md flex-1 flex flex-col min-h-[600px]">
                   <Link href={`/coaches/${coach.id}`} className="flex-1 flex flex-col">
-                    <div className="aspect-square overflow-hidden relative bg-transparent dark-bg bg-gradient-to-br from-gray-900 to-black">
+                    <div className="aspect-square overflow-hidden relative bg-transparent bg-gradient-to-br from-gray-900 to-black">
                       <Image
                         src={coach.image || "/placeholder.svg"}
                         alt={`${coach.name} - ${coachT.specialty} w klubie VOLAT`}
                         title={`${coach.name} - Trener ${coachT.specialty} w klubie VOLAT Warszawa`}
                         fill
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        className="object-cover transition-transform duration-200 remove-white-bg"
+                        className="object-cover transition-transform duration-200"
                         loading={index < 3 ? "eager" : "lazy"}
                         priority={index < 3}
                       />

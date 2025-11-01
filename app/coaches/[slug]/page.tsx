@@ -7,7 +7,7 @@ const coaches = {
     experience: "15+ lat doświadczenia",
     description:
       "Główny trener klubu VOLAT z wieloletnim doświadczeniem w karate i treningu funkcjonalnym. Mistrz sportu, certyfikowany instruktor WKF. Specjalizuje się w przygotowaniu zawodników do zawodów międzynarodowych. Prowadzi karate sportową grupę i zajęcia dla dorosłych oraz trening funkcjonalny.",
-    image: "/vital-rak.jpg",
+    image: "/vital-rak.png",
     achievements: [
       "Mistrz Sportu w Karate",
       "Certyfikat WKF 3 Dan",
@@ -27,7 +27,7 @@ const coaches = {
     experience: "12+ lat doświadczenia",
     description:
       "Specjalistka w karate dla dzieci oraz treningu motorycznym. Prowadzi zajęcia karate dla dzieci w wieku 7-11 lat (1-й и 2-й rok nauki), trening motoryczny VolatMOVE Junior oraz zajęcia Muay Thai. Ma wyjątkowe podejście do najmłodszych zawodników. Certyfikowana instruktorka z wieloletnim doświadczeniem w pracy z dziećmi.",
-    image: "/volha-yefimenka.jpg",
+    image: "/volha-yefimenka.png",
     achievements: [
       "Mistrzyni Białorusi w Karate",
       "Certyfikat Instruktora Dziecięcego",
@@ -49,7 +49,7 @@ const coaches = {
     experience: "18+ lat doświadczenia",
     description:
       "Ekspert w Muay Thai z wieloletnim doświadczeniem zawodowym. Były zawodnik, obecnie trener przygotowujący zawodników do walk i zawodów na najwyższym poziomie. Specjalizuje się w trenowaniu wszystkich grup wiekowych.",
-    image: "/mikola-taczylin.jpg",
+    image: "/mikola-taczylin.png",
     achievements: [
       "Były Zawodnik Muay Thai",
       "Mistrz Europy Kickboxingu",
@@ -69,7 +69,7 @@ const coaches = {
     experience: "25+ lat doświadczenia",
     description:
       "Mistrz szachowy prowadzący zajęcia dla wszystkich grup wiekowych. Specjalizuje się w rozwoju strategicznego myślenia i przygotowaniu do turniejów. Wieloletni doświadczenie w pracy z dziećmi i dorosłymi.",
-    image: "/wiktor-muronczyk.jpg",
+    image: "/wiktor-muronczyk.png",
     achievements: [
       "Międzynarodowy Mistrz Szachowy",
       "Trener FIDE",
@@ -89,7 +89,7 @@ const coaches = {
     experience: "10+ lat doświadczenia",
     description:
       "Specjalista w MMA z wieloletnim doświadczeniem w trenowaniu zawodników wszystkich grup wiekowych. Certyfikowany instruktor z międzynarodowymi osiągnięciami. Specjalizuje się w technikach mieszanych sztuk walki.",
-    image: "/pawel-szymkowicz.jpg",
+    image: "/pawel-szymkowicz.png",
     achievements: [
       "Mistrz Polski w MMA",
       "Certyfikat Instruktora MMA",
@@ -109,7 +109,7 @@ const coaches = {
     experience: "8+ lat doświadczenia",
     description:
       "Specjalistka w treningu motorycznym dla najmłodszych dzieci oraz judo. Ma wyjątkowe podejście do pracy z dziećmi w wieku przedszkolnym i szkolnym. Certyfikowana instruktorka z wieloletnim doświadczeniem w rozwoju podstawowych umiejętności motorycznych oraz treningu judo dla dzieci.",
-    image: "/judo-female-trainer.jpg",
+    image: "/daria-koba.png",
     achievements: [
       "Certyfikat Instruktora Treningu Motorycznego",
       "Certyfikat Instruktora Judo",
