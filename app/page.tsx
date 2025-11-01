@@ -37,7 +37,7 @@ const translations = {
       expandedDescription:
         "Szczegółowy opis {activity}. Tutaj znajdziesz informacje o technice, zaletach i specyfice tego sportu.",
       bookNow: "Zapisz się",
-      viewDetails: "Dowiedz się więcej",
+      viewDetails: "Podробнее",
       viewSchedule: "Zobacz grafik",
       viewTrainers: "Zobacz trenerów",
     },
@@ -61,7 +61,7 @@ const translations = {
       expandedDescription:
         "Детальний опис {activity}. Тут ви знайдете інформацію про техніку, переваги та особливості цього виду спорту.",
       bookNow: "✨ Записатися",
-      viewDetails: "Дізнатися більше",
+      viewDetails: "Детальніше",
       viewSchedule: "📅 Подивитися розклад",
       viewTrainers: "👤 Подивитися тренерів",
     },
@@ -85,7 +85,7 @@ const translations = {
       expandedDescription:
         "Detailed description of {activity}. Here you will find information about technique, benefits and specifics of this sport.",
       bookNow: "✨ Book now",
-      viewDetails: "Learn more",
+      viewDetails: "More details",
       viewSchedule: "📅 View schedule",
       viewTrainers: "👤 View trainers",
     },
@@ -109,7 +109,7 @@ const translations = {
       expandedDescription:
         "Падрабязны апіс {activity}. Тут вы знойдзеце інфармацыю пра тэхніку, перавагі і асаблівасці гэтага віду спорту.",
       bookNow: "✨ Запісацца",
-      viewDetails: "Даведацца больш",
+      viewDetails: "Падрабязна",
       viewSchedule: "📅 Паглядзець расклад",
       viewTrainers: "👤 Паглядзець трэнераў",
     },
@@ -347,7 +347,7 @@ export default function HomePage() {
             {(activities.pl || []).slice(0, 8).map((activity, index) => (
               <div
                 key={index}
-                className="group bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl overflow-hidden hover:border-red-500/30 transition-all duration-200 ease-out hover:shadow-2xl hover:shadow-red-500/10 hover:bg-white/10 flex flex-col h-full"
+                className="group bg-transparent backdrop-blur-lg border border-white/10 rounded-2xl overflow-hidden hover:border-red-500/30 transition-all duration-200 ease-out hover:shadow-2xl hover:shadow-red-500/10 flex flex-col h-full"
               >
                 {/* Header Section - Fixed Height */}
                 <div className="p-6 flex-shrink-0">
@@ -378,8 +378,11 @@ export default function HomePage() {
                 {/* Buttons - Always Visible */}
                 <div className="px-6 pb-4 flex flex-col space-y-3">
                   <Link
-                    href={`/disciplines/${activity.slug}/`}
+                    href={`/disciplines/${activity.slug}`}
                     className="w-full px-6 py-3 bg-gradient-to-r from-red-600 to-red-500 text-white text-sm font-accent font-medium rounded-xl text-center shadow-lg block"
+                    onClick={(e) => {
+                      e.stopPropagation()
+                    }}
                   >
                     {t.activities.viewDetails}
                   </Link>

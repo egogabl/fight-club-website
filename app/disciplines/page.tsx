@@ -174,7 +174,7 @@ export default function DisciplinesPage() {
     pl: {
       title: "Nasze Dyscypliny",
       subtitle: "Odkryj różnorodność treningów w VOLAT",
-      viewDetails: "Zobacz szczegóły",
+      viewDetails: "Подробнее",
       bookNow: "Zapisz się",
       schedule: "Grafik",
       ageGroups: "Grupy wiekowe",
@@ -194,7 +194,7 @@ export default function DisciplinesPage() {
     en: {
       title: "Our Disciplines",
       subtitle: "Discover the diversity of training in VOLAT",
-      viewDetails: "View details",
+      viewDetails: "More details",
       bookNow: "Book now",
       schedule: "Schedule",
       ageGroups: "Age groups",
@@ -235,7 +235,7 @@ export default function DisciplinesPage() {
             {disciplines.map((discipline) => (
               <div
                 key={discipline.id}
-                className="group bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-4 sm:p-6 hover:from-gray-700/50 hover:to-gray-800/50 hover:border-gray-600/50 transition-all duration-200 hover:shadow-2xl hover:shadow-red-500/10 flex flex-col h-full"
+                className="group bg-transparent backdrop-blur-sm border border-gray-700/50 rounded-2xl p-4 sm:p-6 hover:border-gray-600/50 transition-all duration-200 hover:shadow-2xl hover:shadow-red-500/10 flex flex-col h-full"
               >
                 {/* Main Image */}
                 <div className="relative w-full h-48 sm:h-64 mb-4 rounded-xl overflow-hidden shadow-lg flex-shrink-0">
@@ -264,7 +264,7 @@ export default function DisciplinesPage() {
                 {/* Buttons */}
                 <div className="mt-auto pt-4 sm:pt-6 pb-0 space-y-2">
                   <Link
-                    href={`/disciplines/${discipline.slug}/`}
+                    href={`/disciplines/${discipline.slug}`}
                     className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-gradient-to-r from-red-600 to-red-500 text-white text-xs sm:text-sm font-accent font-medium rounded-xl text-center shadow-lg block"
                   >
                     {t.viewDetails}
