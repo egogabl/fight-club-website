@@ -9,7 +9,7 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  // Отключаем функции для Netlify (все страницы статические)
+  // Для Vercel можно убрать trailingSlash, но оставляем для совместимости
   trailingSlash: true,
   // Оптимизации производительности
   compress: true,
