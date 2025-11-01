@@ -492,31 +492,10 @@ export default function HomePage() {
                   </div>
                 </div>
 
-                {/* Buttons - Always Visible */}
-                <div className="px-6 pb-4 flex flex-col space-y-3">
-                  <Link
-                    href={`/disciplines/${currentActivity.slug}`}
-                    className="w-full px-6 py-3 bg-gradient-to-r from-red-600 to-red-500 text-white text-sm font-accent font-medium rounded-xl text-center shadow-lg block"
-                    onClick={(e) => {
-                      e.stopPropagation()
-                    }}
-                  >
-                    {t.activities.viewDetails}
-                  </Link>
-                  <a
-                    href="https://docs.google.com/forms/d/e/1FAIpQLSdDvBi8fQgmTj10i6GPoU19q3RanUSyJLCZS3QACu5sS9aoMA/viewform"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full px-6 py-3 bg-gradient-to-r from-white to-gray-100 text-black text-sm font-accent font-medium rounded-xl text-center shadow-lg border border-gray-200 block"
-                  >
-                    {t.activities.bookNow}
-                  </a>
-                </div>
-
                 {/* Expandable Content */}
                 <div
                   className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                    expandedActivities.has(index) ? "max-h-96 opacity-100" : "max-h-0 opacity-0 pointer-events-none"
+                    expandedActivities.has(index) ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0 pointer-events-none"
                   }`}
                 >
                   <div className="px-6 pt-4 pb-6 border-t border-white/20">
@@ -542,9 +521,30 @@ export default function HomePage() {
                               {currentLang === "uk" ? "Тренер" : currentLang === "en" ? "Trainer" : currentLang === "by" ? "Трэнер" : "Trener"}
                             </span>
                           </div>
-                          <p className="text-white text-sm font-primary group-hover/trainer:text-red-100 transition-colors">{currentActivity.trainer}</p>
+                          <p className="text-white text-sm font-primary group-hover/trainer:text-red-100 transition-colors break-words">{currentActivity.trainer}</p>
                         </div>
                       )}
+
+                      {/* Buttons - Only Visible When Expanded */}
+                      <div className="pt-2 flex flex-col space-y-3">
+                        <Link
+                          href={`/disciplines/${currentActivity.slug}`}
+                          className="w-full px-6 py-3 bg-gradient-to-r from-red-600 to-red-500 text-white text-sm font-accent font-medium rounded-xl text-center shadow-lg block"
+                          onClick={(e) => {
+                            e.stopPropagation()
+                          }}
+                        >
+                          {t.activities.viewDetails}
+                        </Link>
+                        <a
+                          href="https://docs.google.com/forms/d/e/1FAIpQLSdDvBi8fQgmTj10i6GPoU19q3RanUSyJLCZS3QACu5sS9aoMA/viewform"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="w-full px-6 py-3 bg-gradient-to-r from-white to-gray-100 text-black text-sm font-accent font-medium rounded-xl text-center shadow-lg border border-gray-200 block"
+                        >
+                          {t.activities.bookNow}
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
