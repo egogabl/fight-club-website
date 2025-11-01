@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Check, Star, Crown } from "lucide-react"
 import Link from "next/link"
+import { useLanguage } from "@/components/language-provider"
 
 const pricingPlans = [
   {
@@ -140,9 +141,104 @@ const gymAccess = [
   },
 ]
 
+const translations = {
+  pl: {
+    title: "Cennik i systemy opłat",
+    subtitle: "Wybierz plan treningowy dopasowany do Twoich potrzeb i budżetu",
+    flexiblePayments: "Elastyczne płatności",
+    noCommitments: "Bez zobowiązań",
+    bestPrices: "Najlepsze ceny",
+    mostPopular: "NAJPOPULARNIEJSZY",
+    summer: "Lato",
+    periodicalSubscription: "Abonament okresowy",
+    periodicalDesc: "Dla osób trenujących regularnie",
+    entryCards: "Karnet na liczbę wejść",
+    entryCardsDesc: "Dla osób z nieregularnym grafikiem",
+    gymAccess: "Samodzielne wejście na salę",
+    gymAccessDesc: "Nielimitowane korzystanie z sal poza zajęciami grupowymi",
+    monthly: "miesięcznie",
+    validity: "Ważność",
+    children: "Dzieci",
+    adults: "Dorośli",
+    haveQuestions: "Masz pytania dotyczące cennika?",
+    haveQuestionsDesc: "Skontaktuj się z nami, aby uzyskać więcej informacji o naszych planach i promocjach. Chętnie pomożemy wybrać najlepszą opcję dla Ciebie!",
+    contactUs: "Skontaktuj się z nami",
+    callNow: "Zadzwoń teraz"
+  },
+  uk: {
+    title: "Ціни та системи оплати",
+    subtitle: "Оберіть план тренувань, що відповідає вашим потребам та бюджету",
+    flexiblePayments: "Гнучкі платежі",
+    noCommitments: "Без зобов'язань",
+    bestPrices: "Найкращі ціни",
+    mostPopular: "НАЙПОПУЛЯРНІШИЙ",
+    summer: "Літо",
+    periodicalSubscription: "Періодична підписка",
+    periodicalDesc: "Для осіб, які регулярно тренуються",
+    entryCards: "Абонемент на кількість відвідувань",
+    entryCardsDesc: "Для осіб з нерегулярним розкладом",
+    gymAccess: "Самостійний доступ до залу",
+    gymAccessDesc: "Необмежене використання залів поза груповими заняттями",
+    monthly: "місяць",
+    validity: "Дійсність",
+    children: "Діти",
+    adults: "Дорослі",
+    haveQuestions: "Є питання щодо цін?",
+    haveQuestionsDesc: "Зв'яжіться з нами, щоб дізнатися більше про наші плани та акції. Ми з радістю допоможемо вибрати найкращий варіант для вас!",
+    contactUs: "Зв'яжіться з нами",
+    callNow: "Зателефонуйте зараз"
+  },
+  en: {
+    title: "Pricing and Payment Systems",
+    subtitle: "Choose a training plan that fits your needs and budget",
+    flexiblePayments: "Flexible payments",
+    noCommitments: "No commitments",
+    bestPrices: "Best prices",
+    mostPopular: "MOST POPULAR",
+    summer: "Summer",
+    periodicalSubscription: "Periodical Subscription",
+    periodicalDesc: "For people training regularly",
+    entryCards: "Entry Cards",
+    entryCardsDesc: "For people with irregular schedule",
+    gymAccess: "Gym Access",
+    gymAccessDesc: "Unlimited use of halls outside group classes",
+    monthly: "monthly",
+    validity: "Validity",
+    children: "Children",
+    adults: "Adults",
+    haveQuestions: "Have questions about pricing?",
+    haveQuestionsDesc: "Contact us to learn more about our plans and promotions. We'll be happy to help you choose the best option!",
+    contactUs: "Contact us",
+    callNow: "Call now"
+  },
+  by: {
+    title: "Цэны і сістэмы аплаты",
+    subtitle: "Абярыце план трэніровак, які адпавядае вашым патрэбам і бюджэту",
+    flexiblePayments: "Гнуткія плацяжы",
+    noCommitments: "Без абавязкаў",
+    bestPrices: "Найлепшыя цэны",
+    mostPopular: "НАЙПАПУЛЯРНЕЙШЫ",
+    summer: "Лета",
+    periodicalSubscription: "Перыядычная падпіска",
+    periodicalDesc: "Для асоб, якія рэгулярна трэніруюцца",
+    entryCards: "Абанемент на колькасць наведванняў",
+    entryCardsDesc: "Для асоб з нерэгулярным раскладам",
+    gymAccess: "Самастойны доступ да залы",
+    gymAccessDesc: "Неабмежаванае выкарыстанне зал па-за групавымі заняткамі",
+    monthly: "месяц",
+    validity: "Тэрмін дзеяння",
+    children: "Дзеці",
+    adults: "Дарослыя",
+    haveQuestions: "Ёсць пытанні адносна цэн?",
+    haveQuestionsDesc: "Звяжыцеся з намі, каб даведацца больш пра нашы планы і акцыі. Мы з радасцю дапаможам выбраць найлепшы варыянт для вас!",
+    contactUs: "Звяжыцеся з намі",
+    callNow: "Патэлефануйце зараз"
+  }
+}
+
 export default function PricingPage() {
-  // Translations will be implemented fully later
-  // For now, keeping hardcoded Polish text to avoid build errors
+  const { currentLang } = useLanguage()
+  const t = translations[currentLang] || translations.pl
 
   return (
     <div className="min-h-screen bg-black">
@@ -151,23 +247,23 @@ export default function PricingPage() {
         <div className="container mx-auto px-6">
           <div className="text-center mb-20">
             <h1 className="text-5xl lg:text-6xl font-display font-bold text-white mb-6 tracking-tight bg-gradient-to-r from-white via-red-100 to-white bg-clip-text text-transparent">
-              Cennik i systemy opłat
+              {t.title}
             </h1>
             <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto font-accent font-light mb-8">
-              Wybierz plan treningowy dopasowany do Twoich potrzeb i budżetu
+              {t.subtitle}
             </p>
             <div className="flex flex-wrap justify-center gap-6 text-sm font-primary">
               <div className="flex items-center gap-2 text-gray-400">
                 <div className="w-2 h-2 bg-gradient-to-r from-red-500 to-red-400 rounded-full"></div>
-                <span>Elastyczne płatności</span>
+                <span>{t.flexiblePayments}</span>
               </div>
               <div className="flex items-center gap-2 text-gray-400">
                 <div className="w-2 h-2 bg-gradient-to-r from-red-500 to-red-400 rounded-full"></div>
-                <span>Bez zobowiązań</span>
+                <span>{t.noCommitments}</span>
               </div>
               <div className="flex items-center gap-2 text-gray-400">
                 <div className="w-2 h-2 bg-gradient-to-r from-red-500 to-red-400 rounded-full"></div>
-                <span>Najlepsze ceny</span>
+                <span>{t.bestPrices}</span>
               </div>
             </div>
           </div>
@@ -184,7 +280,7 @@ export default function PricingPage() {
               >
                 {plan.popular && (
                   <div className="absolute top-0 left-0 right-0 bg-red-500 text-white text-center py-2 font-semibold text-sm">
-                    NAJPOPULARNIEJSZY
+                    {t.mostPopular}
                   </div>
                 )}
 
@@ -199,10 +295,10 @@ export default function PricingPage() {
                       </span>
                       <span className="text-gray-400 text-lg ml-2 font-accent">zł</span>
                     </div>
-                    <span className="text-gray-400 text-lg font-accent">{plan.period}</span>
+                    <span className="text-gray-400 text-lg font-accent">{plan.period === "miesięcznie" ? t.monthly : plan.period}</span>
                     {plan.summerPrice && (
                       <div className="mt-2">
-                        <span className="text-red-400 text-sm font-accent">Lato: {plan.summerPrice} zł (lipiec/sierpień)</span>
+                        <span className="text-red-400 text-sm font-accent">{t.summer}: {plan.summerPrice} zł {currentLang === "uk" ? "(липень/серпень)" : currentLang === "en" ? "(July/August)" : currentLang === "by" ? "(ліпень/жнівень)" : "(lipiec/sierpień)"}</span>
                       </div>
                     )}
                   </div>
@@ -252,9 +348,9 @@ export default function PricingPage() {
           <div className="max-w-6xl mx-auto mb-16">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-4 bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">
-                Abonament okresowy
+                {t.periodicalSubscription}
               </h2>
-              <p className="text-gray-400 text-lg font-accent">Dla osób trenujących regularnie</p>
+              <p className="text-gray-400 text-lg font-accent">{t.periodicalDesc}</p>
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -273,7 +369,7 @@ export default function PricingPage() {
                           </span>
                           <span className="text-gray-400 text-sm ml-1 font-accent">zł</span>
                         </div>
-                        <span className="text-gray-400 text-xs font-accent">Dzieci</span>
+                        <span className="text-gray-400 text-xs font-accent">{t.children}</span>
                       </div>
                       <div>
                         <div className="flex items-baseline justify-center">
@@ -282,9 +378,9 @@ export default function PricingPage() {
                           </span>
                           <span className="text-gray-400 text-sm ml-1 font-accent">zł</span>
                         </div>
-                        <span className="text-gray-400 text-xs font-accent">Dorośli</span>
+                        <span className="text-gray-400 text-xs font-accent">{t.adults}</span>
                       </div>
-                      <span className="text-gray-400 text-sm font-accent block">{plan.period}</span>
+                      <span className="text-gray-400 text-sm font-accent block">{plan.period === "za 2 tygodnie" ? (currentLang === "uk" ? "за 2 тижні" : currentLang === "en" ? "for 2 weeks" : currentLang === "by" ? "за 2 тыдні" : plan.period) : plan.period === "za 1 miesiąc" ? (currentLang === "uk" ? "за 1 місяць" : currentLang === "en" ? "for 1 month" : currentLang === "by" ? "за 1 месяц" : plan.period) : plan.period === "za 3 miesiące" ? (currentLang === "uk" ? "за 3 місяці" : currentLang === "en" ? "for 3 months" : currentLang === "by" ? "за 3 месяцы" : plan.period) : plan.period === "za 6 miesięcy" ? (currentLang === "uk" ? "за 6 місяців" : currentLang === "en" ? "for 6 months" : currentLang === "by" ? "за 6 месяцаў" : plan.period)}</span>
                     </div>
                     <p className="text-gray-400 text-sm leading-relaxed font-primary">{plan.description}</p>
                   </CardHeader>
@@ -297,9 +393,9 @@ export default function PricingPage() {
           <div className="max-w-6xl mx-auto mb-16">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-4 bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">
-                Karnet na liczbę wejść
+                {t.entryCards}
               </h2>
-              <p className="text-gray-400 text-lg font-accent">Dla osób z nieregularnym grafikiem</p>
+              <p className="text-gray-400 text-lg font-accent">{t.entryCardsDesc}</p>
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -319,7 +415,7 @@ export default function PricingPage() {
                       </div>
                       <span className="text-gray-400 text-sm font-accent">{card.period}</span>
                       {card.validity && (
-                        <span className="text-red-400 text-xs font-accent block mt-1">Ważność: {card.validity}</span>
+                        <span className="text-red-400 text-xs font-accent block mt-1">{t.validity}: {card.validity === "1 mies." ? (currentLang === "uk" ? "1 міс." : currentLang === "en" ? "1 mo." : currentLang === "by" ? "1 мес." : card.validity) : card.validity === "2 mies." ? (currentLang === "uk" ? "2 міс." : currentLang === "en" ? "2 mo." : currentLang === "by" ? "2 мес." : card.validity) : card.validity === "3 mies." ? (currentLang === "uk" ? "3 міс." : currentLang === "en" ? "3 mo." : currentLang === "by" ? "3 мес." : card.validity)}</span>
                       )}
                     </div>
                     <p className="text-gray-400 text-sm leading-relaxed font-primary">{card.description}</p>
@@ -333,9 +429,9 @@ export default function PricingPage() {
           <div className="max-w-6xl mx-auto mb-16">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-4 bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">
-                Samodzielne wejście na salę
+                {t.gymAccess}
               </h2>
-              <p className="text-gray-400 text-lg font-accent">Nielimitowane korzystanie z sal poza zajęciami grupowymi</p>
+              <p className="text-gray-400 text-lg font-accent">{t.gymAccessDesc}</p>
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -355,7 +451,7 @@ export default function PricingPage() {
                       </div>
                       <span className="text-gray-400 text-sm font-accent">{access.period}</span>
                       {access.validity && (
-                        <span className="text-red-400 text-xs font-accent block mt-1">Ważność: {access.validity}</span>
+                        <span className="text-red-400 text-xs font-accent block mt-1">{t.validity}: {access.validity === "1 mies." ? (currentLang === "uk" ? "1 міс." : currentLang === "en" ? "1 mo." : currentLang === "by" ? "1 мес." : access.validity) : access.validity === "3 mies." ? (currentLang === "uk" ? "3 міс." : currentLang === "en" ? "3 mo." : currentLang === "by" ? "3 мес." : access.validity) : access.validity}</span>
                       )}
                     </div>
                     <p className="text-gray-400 text-sm leading-relaxed font-primary">{access.description}</p>
@@ -368,23 +464,22 @@ export default function PricingPage() {
           <div className="text-center mt-16">
             <div className="bg-gradient-to-br from-gray-900 via-gray-800 to-black rounded-lg p-8 max-w-4xl mx-auto border border-gray-700 shadow-2xl">
               <h3 className="text-2xl font-display font-bold text-white mb-4 bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">
-                Masz pytania dotyczące cennika?
+                {t.haveQuestions}
               </h3>
               <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto font-primary">
-                Skontaktuj się z nami, aby uzyskać więcej informacji o naszych planach i promocjach. 
-                Chętnie pomożemy wybrać najlepszą opcję dla Ciebie!
+                {t.haveQuestionsDesc}
               </p>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <Link href="/contact">
                       <Button className="bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700 text-sm px-6 py-3 rounded-xl font-accent font-medium shadow-lg hover:shadow-red-500/25">
-                        Skontaktuj się z nami
+                        {t.contactUs}
                       </Button>
                     </Link>
                     <Button 
                       onClick={() => window.open("tel:+48733451982", "_self")}
                       className="bg-gradient-to-r from-gray-800 to-gray-900 text-white hover:from-gray-700 hover:to-gray-800 text-sm px-6 py-3 rounded-xl font-accent font-medium border border-gray-600 shadow-lg hover:shadow-xl"
                     >
-                      Zadzwoń teraz
+                      {t.callNow}
                     </Button>
                   </div>
             </div>

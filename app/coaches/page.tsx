@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { Award, Users, Star } from "lucide-react"
 import Link from "next/link"
+import { useLanguage } from "@/components/language-provider"
 
 const coaches = [
   {
@@ -130,7 +131,77 @@ const coaches = [
   },
 ]
 
+const translations = {
+  pl: {
+    title: "Trenerzy Klubu VOLAT",
+    subtitle: "Poznaj naszych doświadczonych trenerów, którzy pomogą Ci osiągnąć cele sportowe",
+    description: "Każdy z naszych trenerów to ekspert w swojej dziedzinie z międzynarodowym doświadczeniem",
+    students: "Uczniowie",
+    specialties: "Specjalizacje",
+    achievements: "Osiągnięcia",
+    bookWithCoach: "Zapisz się do trenera",
+    viewDetails: "Zobacz szczegóły",
+    whyOurCoaches: "Dlaczego Nasi Trenerzy?",
+    whyOurCoachesDesc: "Doświadczeni profesjonaliści z międzynarodowymi certyfikatami i wieloletnim doświadczeniem",
+    activeStudents: "Aktywnych uczniów",
+    yearsExperience: "Lat łącznego doświadczenia",
+    internationalCerts: "Międzynarodowych certyfikatów",
+    experts: "Ekspertów w zespole"
+  },
+  uk: {
+    title: "Тренери Клубу VOLAT",
+    subtitle: "Познайомтеся з нашими досвідченими тренерами, які допоможуть вам досягти спортивних цілей",
+    description: "Кожен з наших тренерів - експерт у своїй галузі з міжнародним досвідом",
+    students: "Учні",
+    specialties: "Спеціалізації",
+    achievements: "Досягнення",
+    bookWithCoach: "Записатися до тренера",
+    viewDetails: "Детальніше",
+    whyOurCoaches: "Чому наші тренери?",
+    whyOurCoachesDesc: "Досвідчені професіонали з міжнародними сертифікатами та багаторічним досвідом",
+    activeStudents: "Активних учнів",
+    yearsExperience: "Років сукупного досвіду",
+    internationalCerts: "Міжнародних сертифікатів",
+    experts: "Експертів у команді"
+  },
+  en: {
+    title: "VOLAT Club Coaches",
+    subtitle: "Meet our experienced coaches who will help you achieve your sports goals",
+    description: "Each of our coaches is an expert in their field with international experience",
+    students: "Students",
+    specialties: "Specialties",
+    achievements: "Achievements",
+    bookWithCoach: "Book with coach",
+    viewDetails: "View details",
+    whyOurCoaches: "Why Our Coaches?",
+    whyOurCoachesDesc: "Experienced professionals with international certificates and years of experience",
+    activeStudents: "Active students",
+    yearsExperience: "Years of combined experience",
+    internationalCerts: "International certificates",
+    experts: "Experts in the team"
+  },
+  by: {
+    title: "Трэнеры Клуба VOLAT",
+    subtitle: "Пазнаёмцеся з нашымі вопытнымі трэнерамі, якія дапамогуць вам дасягнуць спартыўных мэт",
+    description: "Кожны з нашых трэнераў - эксперт у сваёй галіне з міжнародным вопытам",
+    students: "Вучні",
+    specialties: "Спецыялізацыі",
+    achievements: "Дасягненні",
+    bookWithCoach: "Запісацца да трэнера",
+    viewDetails: "Падрабязна",
+    whyOurCoaches: "Чаму нашы трэнеры?",
+    whyOurCoachesDesc: "Вопытныя прафесіяналы з міжнароднымі сертыфікатамі і шматгадовым вопытам",
+    activeStudents: "Актыўных вучняў",
+    yearsExperience: "Гадоў сукупнага вопыту",
+    internationalCerts: "Міжнародных сертыфікатаў",
+    experts: "Экспертаў у камандзе"
+  }
+}
+
 export default function CoachesPage() {
+  const { currentLang } = useLanguage()
+  const t = translations[currentLang] || translations.pl
+
   return (
     <div className="min-h-screen bg-black">
 
@@ -138,13 +209,13 @@ export default function CoachesPage() {
         <div className="container mx-auto px-6">
           <div className="text-center mb-20">
             <h1 className="text-5xl lg:text-6xl font-display font-bold text-white mb-8 tracking-tight bg-gradient-to-r from-white via-red-100 to-white bg-clip-text text-transparent">
-              Trenerzy Klubu VOLAT
+              {t.title}
             </h1>
             <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto font-accent font-light mb-8">
-              Poznaj naszych doświadczonych trenerów, którzy pomogą Ci osiągnąć cele sportowe
+              {t.subtitle}
             </p>
             <p className="text-lg text-gray-400 max-w-2xl mx-auto font-primary font-light">
-              Każdy z naszych trenerów to ekspert w swojej dziedzinie z międzynarodowym doświadczeniem
+              {t.description}
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 max-w-7xl mx-auto">
@@ -183,14 +254,14 @@ export default function CoachesPage() {
                       {/* Дополнительная информация */}
                       <div className="grid grid-cols-1 gap-3 mb-4">
                         <div className="bg-gray-800/50 rounded-lg p-2">
-                          <div className="text-red-400 font-accent font-semibold text-xs mb-1">Uczniowie</div>
+                          <div className="text-red-400 font-accent font-semibold text-xs mb-1">{t.students}</div>
                           <div className="text-white text-xs font-primary">{coach.students}</div>
                         </div>
                       </div>
 
                       {/* Specjalizacje */}
                       <div className="mb-4">
-                        <h4 className="text-red-400 font-accent font-semibold text-xs mb-2">Specjalizacje</h4>
+                        <h4 className="text-red-400 font-accent font-semibold text-xs mb-2">{t.specialties}</h4>
                         <div className="flex flex-wrap gap-1">
                           {coach.specialties.slice(0, 3).map((specialty, i) => (
                             <Badge key={i} variant="outline" className="border-red-500/30 text-red-300 text-xs font-primary bg-red-500/10">
@@ -204,7 +275,7 @@ export default function CoachesPage() {
                       <div className="mb-4">
                         <h4 className="text-red-400 font-accent font-semibold text-xs mb-2 flex items-center gap-1">
                           <Award className="w-3 h-3" />
-                          Osiągnięcia
+                          {t.achievements}
                         </h4>
                         <ul className="text-gray-400 text-xs space-y-1">
                           {coach.achievements.slice(0, 3).map((achievement, i) => (
@@ -230,11 +301,11 @@ export default function CoachesPage() {
                         }}
                         className="w-full px-4 py-2.5 bg-gradient-to-r from-red-600 to-red-500 text-white text-sm font-medium rounded-xl shadow-lg block text-center"
                       >
-                        Zapisz się do trenera
+                        {t.bookWithCoach}
                       </a>
                       <Link href={`/coaches/${coach.id}`} className="w-full">
                         <button className="w-full px-4 py-2.5 bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800 text-white text-sm font-medium rounded-xl shadow-lg hover:shadow-xl">
-                          Zobacz szczegóły
+                          {t.viewDetails}
                         </button>
                       </Link>
                     </div>
@@ -250,10 +321,10 @@ export default function CoachesPage() {
         <div className="container mx-auto px-6">
           <div className="max-w-6xl mx-auto text-center">
             <h2 className="text-4xl font-display font-bold text-white mb-4 bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">
-              Dlaczego Nasi Trenerzy?
+              {t.whyOurCoaches}
             </h2>
             <p className="text-gray-400 text-lg font-accent mb-12 max-w-2xl mx-auto">
-              Doświadczeni profesjonaliści z międzynarodowymi certyfikatami i wieloletnim doświadczeniem
+              {t.whyOurCoachesDesc}
             </p>
             <div className="grid md:grid-cols-4 gap-8">
               <div className="text-center group">
@@ -261,28 +332,28 @@ export default function CoachesPage() {
                   <Users className="w-10 h-10 text-white" />
                 </div>
                 <div className="text-4xl font-display font-bold text-white mb-2">830+</div>
-                <p className="text-gray-400 font-primary">Aktywnych uczniów</p>
+                <p className="text-gray-400 font-primary">{t.activeStudents}</p>
               </div>
               <div className="text-center group">
                 <div className="w-20 h-20 bg-gradient-to-r from-red-500 to-red-600 rounded-full flex items-center justify-center mx-auto mb-4 transition-transform duration-200">
                   <Award className="w-10 h-10 text-white" />
                 </div>
                 <div className="text-4xl font-display font-bold text-white mb-2">70+</div>
-                <p className="text-gray-400 font-primary">Lat łącznego doświadczenia</p>
+                <p className="text-gray-400 font-primary">{t.yearsExperience}</p>
               </div>
               <div className="text-center group">
                 <div className="w-20 h-20 bg-gradient-to-r from-red-500 to-red-600 rounded-full flex items-center justify-center mx-auto mb-4 transition-transform duration-200">
                   <Star className="w-10 h-10 text-white" />
                 </div>
                 <div className="text-4xl font-display font-bold text-white mb-2">25+</div>
-                <p className="text-gray-400 font-primary">Międzynarodowych certyfikatów</p>
+                <p className="text-gray-400 font-primary">{t.internationalCerts}</p>
               </div>
               <div className="text-center group">
                 <div className="w-20 h-20 bg-gradient-to-r from-red-500 to-red-600 rounded-full flex items-center justify-center mx-auto mb-4 transition-transform duration-200">
                   <Award className="w-10 h-10 text-white" />
                 </div>
                 <div className="text-4xl font-display font-bold text-white mb-2">4</div>
-                <p className="text-gray-400 font-primary">Ekspertów w zespole</p>
+                <p className="text-gray-400 font-primary">{t.experts}</p>
               </div>
             </div>
           </div>

@@ -445,7 +445,9 @@ export default function HomePage() {
       <section id="activities" className="relative z-30 bg-gradient-to-br from-black via-gray-900 to-black min-h-screen py-12 sm:py-20 transition-all duration-700 ease-out">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12 sm:mb-20">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-4 sm:mb-8 bg-gradient-to-r from-white via-red-100 to-white bg-clip-text text-transparent">VOLAT. Centrum Sportu i Edukacji</h2>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-4 sm:mb-8 bg-gradient-to-r from-white via-red-100 to-white bg-clip-text text-transparent">
+              VOLAT. {currentLang === "uk" ? "Центр Спорту та Освіти" : currentLang === "en" ? "Sports and Education Center" : currentLang === "by" ? "Цэнтр Спорту і Адукацыі" : "Centrum Sportu i Edukacji"}
+            </h2>
             <p className="text-lg sm:text-xl md:text-2xl text-white/80 max-w-3xl mx-auto font-light leading-relaxed px-4">{t.activities.description}</p>
           </div>
 
@@ -536,7 +538,9 @@ export default function HomePage() {
                         >
                           <div className="flex items-center gap-2 mb-2">
                             <div className="w-2 h-2 bg-gradient-to-r from-red-500 to-red-400 rounded-full"></div>
-                            <span className="text-red-400 text-xs font-accent font-semibold group-hover/trainer:text-red-300 transition-colors">Trener</span>
+                            <span className="text-red-400 text-xs font-accent font-semibold group-hover/trainer:text-red-300 transition-colors">
+                              {currentLang === "uk" ? "Тренер" : currentLang === "en" ? "Trainer" : currentLang === "by" ? "Трэнер" : "Trener"}
+                            </span>
                           </div>
                           <p className="text-white text-sm font-primary group-hover/trainer:text-red-100 transition-colors">{currentActivity.trainer}</p>
                         </div>
