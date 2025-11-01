@@ -200,7 +200,7 @@
 
   /* Ensure video starts with high quality */
   .video-background iframe {
-    filter: contrast(1.1) brightness(1.05);
+    filter: contrast(1.05) brightness(0.9);
   }
 
   * {
