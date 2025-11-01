@@ -142,6 +142,37 @@ const gymAccess = [
 ]
 
 export default function PricingPage() {
+  const { currentLang } = useLanguage()
+  
+  // Placeholder translations - will be implemented fully
+  const t = {
+    title: "Cennik i systemy opłat",
+    subtitle: "Wybierz plan treningowy dopasowany do Twoich potrzeb i budżetu",
+    flexiblePayments: "Elastyczne płatności",
+    noCommitment: "Bez zobowiązań",
+    bestPrices: "Najlepsze ceny",
+    monthly: "miesięcznie",
+    summer: "Lato",
+    popular: "NAJPOPULARNIEJSZY",
+    periodPlans: "Abonament okresowy",
+    periodPlansDesc: "Dla osób trenujących regularnie",
+    entryCards: "Karnet na liczbę wejść",
+    entryCardsDesc: "Dla osób z nieregularnym grafikiem",
+    gymAccess: "Samodzielne wejście na salę",
+    gymAccessDesc: "Nielimitowane korzystanie z sal poza zajęciami grupowymi",
+    children: "Dzieci",
+    adults: "Dorośli",
+    forWeeks: "za 2 tygodnie",
+    forMonth: "za 1 miesiąc",
+    for3Months: "za 3 miesiące",
+    for6Months: "za 6 miesięcy",
+    validity: "Ważność",
+    questions: "Masz pytania dotyczące cennika?",
+    questionsDesc: "Skontaktuj się z nami, aby uzyskać więcej informacji o naszych planach i promocjach. Chętnie pomożemy wybrać najlepszą opcję dla Ciebie!",
+    contactUs: "Skontaktuj się z nami",
+    callNow: "Zadzwoń teraz"
+  }
+
   return (
     <div className="min-h-screen bg-black">
 
