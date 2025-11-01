@@ -220,29 +220,62 @@
     will-change: transform;
   }
 
-  /* Remove white background from coach images */
+  /* Remove white background from coach images - агрессивное удаление белого фона */
   .remove-white-bg {
-    /* Убираем белый фон с помощью mix-blend-mode */
-    mix-blend-mode: multiply;
-    /* Альтернативный метод для более точного удаления белого */
-    filter: contrast(1.1) saturate(1.1);
+    /* Screen режим делает белые пиксели прозрачными на темном фоне */
+    mix-blend-mode: screen;
+    /* Комбинация фильтров для эффективного удаления белого фона */
+    filter: 
+      brightness(1.2) 
+      contrast(1.3) 
+      saturate(1.2)
+      /* Делаем изображение ярче, чтобы белый фон "исчез" */
+      opacity(1);
+    /* Изолируем контекст смешивания */
+    isolation: isolate;
+    position: relative;
   }
 
-  /* Для темного фона используем другой режим смешивания */
+  /* Для темного фона - усиленная обработка */
   .dark-bg .remove-white-bg,
   .bg-black .remove-white-bg,
   .bg-gray-900 .remove-white-bg,
   .bg-gradient-to-br .remove-white-bg {
+    /* Screen режим эффективно удаляет белый фон на темном фоне */
     mix-blend-mode: screen;
-    filter: brightness(1.2) contrast(1.1);
+    /* Более агрессивные фильтры для удаления белого */
+    filter: 
+      brightness(1.25) 
+      contrast(1.35) 
+      saturate(1.25);
+    /* Убеждаемся что белые области становятся прозрачными */
+    opacity: 1;
+  }
+
+  /* Контейнер для изображений с белым фоном */
+  .remove-white-bg {
+    /* Создаем маску для удаления белых областей */
+    backdrop-filter: contrast(1.2);
   }
 
   /* Fallback для браузеров без поддержки mix-blend-mode */
-  @supports not (mix-blend-mode: multiply) {
+  @supports not (mix-blend-mode: screen) {
     .remove-white-bg {
-      filter: brightness(1.1) contrast(1.2) saturate(1.1);
-      opacity: 0.95;
+      filter: 
+        brightness(1.15) 
+        contrast(1.4) 
+        saturate(1.2)
+        /* Попытка инвертировать белый */
+        invert(0.03)
+        /* Делаем изображение более контрастным */
+        sepia(0.05);
+      opacity: 0.97;
     }
+  }
+
+  /* Дополнительная оптимизация для Image компонентов Next.js */
+  .remove-white-bg img {
+    isolation: isolate;
   }
   
   /* Reduced motion support */
