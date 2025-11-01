@@ -142,7 +142,7 @@ const coachTranslations: Record<string, Record<string, {
 }>> = {
   "vital-rak": {
     pl: {
-      specialty: "Główny trener, karate (sportowa grupa, dorośli), trening funkcjonalny",
+      specialty: "Główny trener, karate",
       experience: "15+ lat doświadczenia",
       description: "Główny trener klubu VOLAT z wieloletnim doświadczeniem w karate i treningu funkcjonalnym. Mistrz sportu, certyfikowany instruktor WKF. Specjalizuje się w przygotowaniu zawodników do zawodów międzynarodowych. Prowadzi karate sportową grupę i zajęcia dla dorosłych oraz trening funkcjonalny.",
       achievements: ["Mistrz Sportu w Karate", "Certyfikat WKF 3 Dan", "Trener Kadry Narodowej", "Instruktor Treningu Funkcjonalnego", "Specjalista Rehabilitacji Sportowej"],
@@ -150,7 +150,7 @@ const coachTranslations: Record<string, Record<string, {
       students: "180+ uczniów"
     },
     uk: {
-      specialty: "Головний тренер, карате (спортивна група, дорослі), функціональний тренінг",
+      specialty: "Головний тренер, карате",
       experience: "15+ років досвіду",
       description: "Головний тренер клубу VOLAT з багаторічним досвідом у карате та функціональному тренінгу. Майстер спорту, сертифікований інструктор WKF. Спеціалізується на підготовці спортсменів до міжнародних змагань. Проводить спортивну групу карате та заняття для дорослих, а також функціональний тренінг.",
       achievements: ["Майстер спорту з карате", "Сертифікат WKF 3 Дан", "Тренер національної збірної", "Інструктор функціонального тренінгу", "Спеціаліст спортивної реабілітації"],
@@ -158,7 +158,7 @@ const coachTranslations: Record<string, Record<string, {
       students: "180+ учнів"
     },
     en: {
-      specialty: "Head coach, karate (sports group, adults), functional training",
+      specialty: "Head coach, karate",
       experience: "15+ years of experience",
       description: "Head coach of VOLAT club with years of experience in karate and functional training. Master of Sports, certified WKF instructor. Specializes in preparing athletes for international competitions. Conducts sports karate group and adult classes as well as functional training.",
       achievements: ["Master of Sports in Karate", "WKF 3 Dan Certificate", "National Team Coach", "Functional Training Instructor", "Sports Rehabilitation Specialist"],
@@ -166,7 +166,7 @@ const coachTranslations: Record<string, Record<string, {
       students: "180+ students"
     },
     by: {
-      specialty: "Галоўны трэнер, каратэ (спартыўная група, дарослыя), функцыянальныя трэніроўкі",
+      specialty: "Галоўны трэнер, каратэ",
       experience: "15+ гадоў вопыту",
       description: "Галоўны трэнер клуба VOLAT з шматгадовым вопытам у каратэ і функцыянальных трэніроўках. Майстар спорту, сертыфікаваны інструктар WKF. Спецыялізуецца на падрыхтоўцы спартсменаў да міжнародных спаборніцтваў. Праводзіць спартыўную групу каратэ і заняткі для дарослых, а таксама функцыянальныя трэніроўкі.",
       achievements: ["Майстар спорту па каратэ", "Сертыфікат WKF 3 Дан", "Трэнер нацыянальнай зборнай", "Інструктар функцыянальных трэніровак", "Спецыяліст спартыўнай рэабілітацыі"],
@@ -176,7 +176,7 @@ const coachTranslations: Record<string, Record<string, {
   },
   "volha-yefimenka": {
     pl: {
-      specialty: "Karate (dzieci 1-й и 2-й rok), trening motoryczny VolatMOVE Junior, Muay Thai",
+      specialty: "Karate (dzieci), Muay Thai",
       experience: "12+ lat doświadczenia",
       description: "Specjalistka w karate dla dzieci oraz treningu motorycznym. Prowadzi zajęcia karate dla dzieci w wieku 7-11 lat (1-й и 2-й rok nauki), trening motoryczny VolatMOVE Junior oraz zajęcia Muay Thai. Ma wyjątkowe podejście do najmłodszych zawodników. Certyfikowana instruktorka z wieloletnim doświadczeniem w pracy z dziećmi.",
       achievements: ["Mistrzyni Białorusi w Karate", "Certyfikat Instruktora Dziecięcego", "Specjalistka Treningu Motorycznego", "Trener Grup Dziecięcych", "Instruktor VolatMOVE Junior", "Ekspert Rozwoju Koordynacji"],
@@ -184,7 +184,7 @@ const coachTranslations: Record<string, Record<string, {
       students: "160+ uczniów"
     },
     uk: {
-      specialty: "Карате (діти 1-й та 2-й рік), моторичний тренінг VolatMOVE Junior, Муай Тай",
+      specialty: "Карате (діти), Муай Тай",
       experience: "12+ років досвіду",
       description: "Спеціалістка з карате для дітей та моторичного тренінгу. Проводить заняття карате для дітей віком 7-11 років (1-й та 2-й рік навчання), моторичний тренінг VolatMOVE Junior та заняття Муай Тай. Має унікальний підхід до наймолодших спортсменів. Сертифікована інструкторка з багаторічним досвідом роботи з дітьми.",
       achievements: ["Чемпіонка Білорусі з карате", "Сертифікат дитячого інструктора", "Спеціалістка моторичного тренінгу", "Тренер дитячих груп", "Інструктор VolatMOVE Junior", "Експерт розвитку координації"],
@@ -192,7 +192,7 @@ const coachTranslations: Record<string, Record<string, {
       students: "160+ учнів"
     },
     en: {
-      specialty: "Karate (children 1st and 2nd year), VolatMOVE Junior motor training, Muay Thai",
+      specialty: "Karate (children), Muay Thai",
       experience: "12+ years of experience",
       description: "Specialist in children's karate and motor training. Conducts karate classes for children aged 7-11 (1st and 2nd year), VolatMOVE Junior motor training, and Muay Thai classes. Has a unique approach to the youngest athletes. Certified instructor with years of experience working with children.",
       achievements: ["Belarus Karate Champion", "Children's Instructor Certificate", "Motor Training Specialist", "Children's Group Coach", "VolatMOVE Junior Instructor", "Coordination Development Expert"],
@@ -200,7 +200,7 @@ const coachTranslations: Record<string, Record<string, {
       students: "160+ students"
     },
     by: {
-      specialty: "Каратэ (дзеці 1-й і 2-й год), маторныя трэніроўкі VolatMOVE Junior, Муай Тай",
+      specialty: "Каратэ (дзеці), Муай Тай",
       experience: "12+ гадоў вопыту",
       description: "Спецыялістка па каратэ для дзяцей і маторных трэніроўках. Праводзіць заняткі каратэ для дзяцей ва ўзросце 7-11 гадоў (1-й і 2-й год навучання), маторныя трэніроўкі VolatMOVE Junior і заняткі Муай Тай. Мае унікальны падыход да самых маладых спартсменаў. Сертыфікаваная інструктарка з шматгадовым вопытам працы з дзецьмі.",
       achievements: ["Чэмпіёнка Беларусі па каратэ", "Сертыфікат дзіцячага інструктара", "Спецыялістка маторных трэніровак", "Трэнер дзіцячых груп", "Інструктар VolatMOVE Junior", "Эксперт развіцця каардынацыі"],
@@ -210,7 +210,7 @@ const coachTranslations: Record<string, Record<string, {
   },
   "mikola-taczylin": {
     pl: {
-      specialty: "Trener Muay Thai dla dzieci, młodzieży i dorosłych",
+      specialty: "Trener Muay Thai",
       experience: "18+ lat doświadczenia",
       description: "Ekspert w Muay Thai z wieloletnim doświadczeniem zawodowym. Były zawodnik, obecnie trener przygotowujący zawodników do walk i zawodów na najwyższym poziomie. Specjalizuje się w trenowaniu wszystkich grup wiekowych.",
       achievements: ["Były Zawodnik Muay Thai", "Mistrz Europy Kickboxingu", "Certyfikat IFMA", "Trener Grup Dziecięcych", "Specjalista Techniki Uderzeń"],
@@ -218,7 +218,7 @@ const coachTranslations: Record<string, Record<string, {
       students: "180+ zawodników"
     },
     uk: {
-      specialty: "Тренер Муай Тай для дітей, молоді та дорослих",
+      specialty: "Тренер Муай Тай",
       experience: "18+ років досвіду",
       description: "Експерт з Муай Тай з багаторічним професійним досвідом. Колишній спортсмен, нині тренер, який готує спортсменів до боїв і змагань найвищого рівня. Спеціалізується на тренуванні всіх вікових груп.",
       achievements: ["Колишній спортсмен Муай Тай", "Чемпіон Європи з кікбоксингу", "Сертифікат IFMA", "Тренер дитячих груп", "Спеціаліст техніки ударів"],
@@ -226,7 +226,7 @@ const coachTranslations: Record<string, Record<string, {
       students: "180+ спортсменів"
     },
     en: {
-      specialty: "Muay Thai coach for children, youth and adults",
+      specialty: "Muay Thai coach",
       experience: "18+ years of experience",
       description: "Expert in Muay Thai with years of professional experience. Former athlete, now coach preparing athletes for fights and competitions at the highest level. Specializes in training all age groups.",
       achievements: ["Former Muay Thai Athlete", "European Kickboxing Champion", "IFMA Certificate", "Children's Group Coach", "Strike Technique Specialist"],
@@ -234,7 +234,7 @@ const coachTranslations: Record<string, Record<string, {
       students: "180+ athletes"
     },
     by: {
-      specialty: "Трэнер Муай Тай для дзяцей, моладзі і дарослых",
+      specialty: "Трэнер Муай Тай",
       experience: "18+ гадоў вопыту",
       description: "Эксперт па Муай Тай з шматгадовым прафесійным вопытам. Былы спартсмен, цяпер трэнер, які рыхтуе спартсменаў да баёў і спаборніцтваў найвышэйшага ўзроўню. Спецыялізуецца на трэніроўцы ўсіх узроставых груп.",
       achievements: ["Былы спартсмен Муай Тай", "Чэмпіён Еўропы па кікбоксінгу", "Сертыфікат IFMA", "Трэнер дзіцячых груп", "Спецыяліст тэхнікі удараў"],
@@ -244,7 +244,7 @@ const coachTranslations: Record<string, Record<string, {
   },
   "wiktor-muronczyk": {
     pl: {
-      specialty: "Trener szkoły szachowej",
+      specialty: "Trener szachów",
       experience: "25+ lat doświadczenia",
       description: "Mistrz szachowy prowadzący zajęcia dla wszystkich grup wiekowych. Specjalizuje się w rozwoju strategicznego myślenia i przygotowaniu do turniejów. Wieloletni doświadczenie w pracy z dziećmi i dorosłymi.",
       achievements: ["Międzynarodowy Mistrz Szachowy", "Trener FIDE", "Sędzia Turniejów Szachowych", "Autor Programów Edukacyjnych", "Specjalista Psychologii Sportu"],
@@ -252,7 +252,7 @@ const coachTranslations: Record<string, Record<string, {
       students: "300+ uczniów"
     },
     uk: {
-      specialty: "Тренер шахової школи",
+      specialty: "Тренер шахів",
       experience: "25+ років досвіду",
       description: "Шаховий майстер, який проводить заняття для всіх вікових груп. Спеціалізується на розвитку стратегічного мислення та підготовці до турнірів. Багаторічний досвід роботи з дітьми та дорослими.",
       achievements: ["Міжнародний шаховий майстер", "Тренер FIDE", "Суддя шахових турнірів", "Автор освітніх програм", "Спеціаліст спортивної психології"],
@@ -260,7 +260,7 @@ const coachTranslations: Record<string, Record<string, {
       students: "300+ учнів"
     },
     en: {
-      specialty: "Chess school coach",
+      specialty: "Chess coach",
       experience: "25+ years of experience",
       description: "Chess master conducting classes for all age groups. Specializes in developing strategic thinking and tournament preparation. Years of experience working with children and adults.",
       achievements: ["International Chess Master", "FIDE Coach", "Chess Tournament Judge", "Educational Program Author", "Sports Psychology Specialist"],
@@ -268,7 +268,7 @@ const coachTranslations: Record<string, Record<string, {
       students: "300+ students"
     },
     by: {
-      specialty: "Трэнер шахматнай школы",
+      specialty: "Трэнер шахмат",
       experience: "25+ гадоў вопыту",
       description: "Шахматны майстар, які праводзіць заняткі для ўсіх узроставых груп. Спецыялізуецца на развіцці стратэгічнага мыслення і падрыхтоўцы да турніраў. Шматгадовы вопыт працы з дзецьмі і дарослымі.",
       achievements: ["Міжнародны шахматны майстар", "Трэнер FIDE", "Суддзя шахматных турніраў", "Аўтар адукацыйных праграм", "Спецыяліст спартыўнай псіхалогіі"],
@@ -278,7 +278,7 @@ const coachTranslations: Record<string, Record<string, {
   },
   "pawel-szymkowicz": {
     pl: {
-      specialty: "Trener MMA dla dzieci od 6 lat, młodzieży i dorosłych",
+      specialty: "Trener MMA",
       experience: "10+ lat doświadczenia",
       description: "Specjalista w MMA z wieloletnim doświadczeniem w trenowaniu zawodników wszystkich grup wiekowych. Certyfikowany instruktor z międzynarodowymi osiągnięciami. Specjalizuje się w technikach mieszanych sztuk walki.",
       achievements: ["Mistrz Polski w MMA", "Certyfikat Instruktora MMA", "Trener Grup Dziecięcych", "Specjalista Technik Mieszanych", "Ekspert Walki w Parterze"],
@@ -286,7 +286,7 @@ const coachTranslations: Record<string, Record<string, {
       students: "120+ zawodników"
     },
     uk: {
-      specialty: "Тренер ММА для дітей від 6 років, молоді та дорослих",
+      specialty: "Тренер ММА",
       experience: "10+ років досвіду",
       description: "Спеціаліст з ММА з багаторічним досвідом тренування спортсменів всіх вікових груп. Сертифікований інструктор з міжнародними досягненнями. Спеціалізується на техніках змішаних бойових мистецтв.",
       achievements: ["Чемпіон Польщі з ММА", "Сертифікат інструктора ММА", "Тренер дитячих груп", "Спеціаліст змішаних технік", "Експерт партерної боротьби"],
@@ -294,7 +294,7 @@ const coachTranslations: Record<string, Record<string, {
       students: "120+ спортсменів"
     },
     en: {
-      specialty: "MMA coach for children from 6 years, youth and adults",
+      specialty: "MMA coach",
       experience: "10+ years of experience",
       description: "MMA specialist with years of experience training athletes of all age groups. Certified instructor with international achievements. Specializes in mixed martial arts techniques.",
       achievements: ["Polish MMA Champion", "MMA Instructor Certificate", "Children's Group Coach", "Mixed Techniques Specialist", "Ground Fighting Expert"],
@@ -302,7 +302,7 @@ const coachTranslations: Record<string, Record<string, {
       students: "120+ athletes"
     },
     by: {
-      specialty: "Трэнер ММА для дзяцей ад 6 гадоў, моладзі і дарослых",
+      specialty: "Трэнер ММА",
       experience: "10+ гадоў вопыту",
       description: "Спецыяліст па ММА з шматгадовым вопытам трэніроўкі спартсменаў усіх узроставых груп. Сертыфікаваны інструктар з міжнароднымі дасягненнямі. Спецыялізуецца на тэхніках змяшаных баявых мастацтваў.",
       achievements: ["Чэмпіён Польшчы па ММА", "Сертыфікат інструктара ММА", "Трэнер дзіцячых груп", "Спецыяліст змяшаных тэхнік", "Эксперт партэрнай барацьбы"],
@@ -312,7 +312,7 @@ const coachTranslations: Record<string, Record<string, {
   },
   "daria-koba": {
     pl: {
-      specialty: "Trening motoryczny VolatMOVE Kids (dzieci 4-7 lat), Judo dla dzieci",
+      specialty: "Judo (dzieci), VolatMOVE Kids",
       experience: "8+ lat doświadczenia",
       description: "Specjalistka w treningu motorycznym dla najmłodszych dzieci oraz judo. Ma wyjątkowe podejście do pracy z dziećmi w wieku przedszkolnym i szkolnym. Certyfikowana instruktorka z wieloletnim doświadczeniem w rozwoju podstawowych umiejętności motorycznych oraz treningu judo dla dzieci.",
       achievements: ["Certyfikat Instruktora Treningu Motorycznego", "Certyfikat Instruktora Judo", "Specjalistka Pracy z Dziećmi", "Trener Grup Dziecięcych", "Ekspert Rozwoju Koordynacji", "Instruktor VolatMOVE Kids"],
@@ -320,7 +320,7 @@ const coachTranslations: Record<string, Record<string, {
       students: "120+ dzieci"
     },
     uk: {
-      specialty: "Моторичний тренінг VolatMOVE Kids (діти 4-7 років), Дзюдо для дітей",
+      specialty: "Дзюдо (діти), VolatMOVE Kids",
       experience: "8+ років досвіду",
       description: "Спеціалістка з моторичного тренінгу для наймолодших дітей та дзюдо. Має унікальний підхід до роботи з дітьми дошкільного та шкільного віку. Сертифікована інструкторка з багаторічним досвідом розвитку базових моторичних навичок та тренінгу дзюдо для дітей.",
       achievements: ["Сертифікат інструктора моторичного тренінгу", "Сертифікат інструктора дзюдо", "Спеціалістка роботи з дітьми", "Тренер дитячих груп", "Експерт розвитку координації", "Інструктор VolatMOVE Kids"],
@@ -328,7 +328,7 @@ const coachTranslations: Record<string, Record<string, {
       students: "120+ дітей"
     },
     en: {
-      specialty: "VolatMOVE Kids motor training (children 4-7 years), Judo for children",
+      specialty: "Judo (children), VolatMOVE Kids",
       experience: "8+ years of experience",
       description: "Specialist in motor training for the youngest children and judo. Has a unique approach to working with preschool and school-age children. Certified instructor with years of experience developing basic motor skills and judo training for children.",
       achievements: ["Motor Training Instructor Certificate", "Judo Instructor Certificate", "Children's Work Specialist", "Children's Group Coach", "Coordination Development Expert", "VolatMOVE Kids Instructor"],
@@ -336,7 +336,7 @@ const coachTranslations: Record<string, Record<string, {
       students: "120+ children"
     },
     by: {
-      specialty: "Маторныя трэніроўкі VolatMOVE Kids (дзеці 4-7 гадоў), Дзюдо для дзяцей",
+      specialty: "Дзюдо (дзеці), VolatMOVE Kids",
       experience: "8+ гадоў вопыту",
       description: "Спецыялістка па маторных трэніроўках для самых маладых дзяцей і дзюдо. Мае унікальны падыход да працы з дзецьмі дашкольнага і школьнага ўзросту. Сертыфікаваная інструктарка з шматгадовым вопытам развіцця асноўных маторных навыкаў і трэніроўкі дзюдо для дзяцей.",
       achievements: ["Сертыфікат інструктара маторных трэніровак", "Сертыфікат інструктара дзюдо", "Спецыялістка працы з дзецьмі", "Трэнер дзіцячых груп", "Эксперт развіцця каардынацыі", "Інструктар VolatMOVE Kids"],
@@ -474,14 +474,6 @@ export default function CoachesPage() {
                       <p className="text-gray-400 text-sm leading-relaxed font-primary font-light mb-4 flex-1">
                         {coachT.description}
                       </p>
-
-                      {/* Дополнительная информация */}
-                      <div className="grid grid-cols-1 gap-3 mb-4">
-                        <div className="bg-gray-800/50 rounded-lg p-2">
-                          <div className="text-red-400 font-accent font-semibold text-xs mb-1">{t.students}</div>
-                          <div className="text-white text-xs font-primary">{coachT.students}</div>
-                        </div>
-                      </div>
 
                       {/* Specjalizacje */}
                       <div className="mb-4">
