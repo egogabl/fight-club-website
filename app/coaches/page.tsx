@@ -459,7 +459,7 @@ export default function CoachesPage() {
                       <CardDescription className="font-primary">
                         <Badge
                           variant="secondary"
-                          className="mb-3 bg-red-500/20 backdrop-blur-sm border border-red-500/30 text-red-300 px-3 py-1 text-xs shadow-md font-accent font-bold break-words overflow-wrap-anywhere max-w-full"
+                          className="mb-3 bg-transparent border border-red-500/50 text-red-300 px-3 py-1 text-xs shadow-md font-accent font-bold break-words overflow-wrap-anywhere max-w-full"
                         >
                           {coachT.specialty}
                         </Badge>
