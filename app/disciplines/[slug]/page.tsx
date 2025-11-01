@@ -187,8 +187,9 @@ export async function generateStaticParams() {
   }))
 }
 
-export default function DisciplinePage({ params }: { params: { slug: string } }) {
-  const discipline = disciplines.find(d => d.slug === params.slug)
+export default async function DisciplinePage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const discipline = disciplines.find(d => d.slug === slug)
 
   if (!discipline) {
     return (
