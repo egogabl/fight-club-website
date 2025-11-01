@@ -4,7 +4,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Check, Star, Crown } from "lucide-react"
 import Link from "next/link"
-import { useLanguage } from "@/components/language-provider"
 
 const pricingPlans = [
   {
