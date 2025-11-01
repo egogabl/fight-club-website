@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Clock, MapPin, Calendar } from "lucide-react"
 import Link from "next/link"
 import { useParams } from "next/navigation"
+import Image from "next/image"
 
 interface Coach {
   name: string
@@ -51,10 +52,18 @@ export default function CoachDetailPageClient({ coachesData }: CoachDetailPageCl
           <div className="max-w-6xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-12 items-start">
               <div className="aspect-square overflow-hidden rounded-3xl shadow-2xl relative bg-transparent bg-gradient-to-br from-gray-900 to-black rounded-3xl">
-                <img 
-                  src={coach.image || "/placeholder.svg"} 
-                  alt={coach.name} 
-                  className="w-full h-full object-cover" 
+                <Image
+                  src={coach.image || "/placeholder.svg"}
+                  alt={`${coach.name} - ${coach.specialty} w klubie VOLAT Warszawa`}
+                  title={`${coach.name} - Trener ${coach.specialty} w klubie VOLAT Warszawa`}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 600px"
+                  className="object-cover"
+                  priority
+                  loading="eager"
+                  quality={60}
+                  placeholder="blur"
+                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWEREiMxUf/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                 />
               </div>
 
