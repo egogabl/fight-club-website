@@ -9,8 +9,8 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  // Для Vercel можно убрать trailingSlash, но оставляем для совместимости
-  trailingSlash: true,
+  // Убрали trailingSlash для лучшей совместимости
+  trailingSlash: false,
   // Оптимизации производительности
   compress: true,
   poweredByHeader: false,
