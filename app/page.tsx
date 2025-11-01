@@ -350,7 +350,7 @@ export default function HomePage() {
                 className="group bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl overflow-hidden hover:border-red-500/30 transition-all duration-200 ease-out hover:shadow-2xl hover:shadow-red-500/10 hover:bg-white/10 flex flex-col h-full"
               >
                 {/* Header Section - Fixed Height */}
-                <div className="p-6 cursor-pointer flex-shrink-0" onClick={() => toggleActivity(index)}>
+                <div className="p-6 flex-shrink-0">
                   <div className="flex items-center justify-between">
                     <div className="text-center flex-1">
                       <h3 className="text-xl font-display font-bold text-white mb-3 group-hover:text-red-400 transition-colors duration-300 break-words leading-tight min-h-[60px]">
@@ -361,13 +361,36 @@ export default function HomePage() {
                       </p>
                     </div>
                     <div className="ml-4 flex-shrink-0">
-                      {expandedActivities.has(index) ? (
-                        <ChevronUpIcon className="w-6 h-6 text-white/70 group-hover:text-red-400 transition-colors duration-300" />
-                      ) : (
-                        <ChevronDownIcon className="w-6 h-6 text-white/70 group-hover:text-red-400 transition-colors duration-300" />
-                      )}
+                      <button
+                        onClick={() => toggleActivity(index)}
+                        className="p-2 rounded-lg hover:bg-white/10 transition-colors"
+                      >
+                        {expandedActivities.has(index) ? (
+                          <ChevronUpIcon className="w-6 h-6 text-white/70 group-hover:text-red-400 transition-colors duration-300" />
+                        ) : (
+                          <ChevronDownIcon className="w-6 h-6 text-white/70 group-hover:text-red-400 transition-colors duration-300" />
+                        )}
+                      </button>
                     </div>
                   </div>
+                </div>
+
+                {/* Buttons - Always Visible */}
+                <div className="px-6 pb-4 flex flex-col space-y-3">
+                  <Link
+                    href={`/disciplines/${activity.slug}/`}
+                    className="w-full px-6 py-3 bg-gradient-to-r from-red-600 to-red-500 text-white text-sm font-accent font-medium rounded-xl text-center shadow-lg block"
+                  >
+                    {t.activities.viewDetails}
+                  </Link>
+                  <a
+                    href="https://docs.google.com/forms/d/e/1FAIpQLSdDvBi8fQgmTj10i6GPoU19q3RanUSyJLCZS3QACu5sS9aoMA/viewform"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full px-6 py-3 bg-gradient-to-r from-white to-gray-100 text-black text-sm font-accent font-medium rounded-xl text-center shadow-lg border border-gray-200 block"
+                  >
+                    {t.activities.bookNow}
+                  </a>
                 </div>
 
                 {/* Expandable Content */}
@@ -400,24 +423,6 @@ export default function HomePage() {
                           <p className="text-white text-sm font-primary group-hover/trainer:text-red-100 transition-colors">{(activity as any).trainer}</p>
                         </div>
                       )}
-
-                      {/* Buttons */}
-                      <div className="flex flex-col space-y-3">
-                        <Link
-                          href={`/disciplines/${activity.slug}/`}
-                          className="w-full px-6 py-3 bg-gradient-to-r from-red-600 to-red-500 text-white text-sm font-accent font-medium rounded-xl text-center shadow-lg block"
-                        >
-                          {t.activities.viewDetails}
-                        </Link>
-                        <a
-                          href="https://docs.google.com/forms/d/e/1FAIpQLSdDvBi8fQgmTj10i6GPoU19q3RanUSyJLCZS3QACu5sS9aoMA/viewform"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="w-full px-6 py-3 bg-gradient-to-r from-white to-gray-100 text-black text-sm font-accent font-medium rounded-xl text-center shadow-lg border border-gray-200 block"
-                        >
-                          {t.activities.bookNow}
-                        </a>
-                      </div>
                     </div>
                   </div>
                 </div>
