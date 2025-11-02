@@ -1,10 +1,10 @@
-import Link from 'next/link'
-import { Metadata } from 'next'
-import DisciplinePageClient from './discipline-page-client'
-import StructuredData from '@/components/structured-data'
+"use client"
 
-// Экспортируем список дисциплин для generateStaticParams
-export const disciplines = [
+import Link from 'next/link'
+import Image from 'next/image'
+import { useLanguage } from '@/components/language-provider'
+
+const disciplines = [
   {
     id: "karate-wkf",
     name: "Karate WKF",
@@ -13,8 +13,7 @@ export const disciplines = [
     trainer: "Vital Rak, Volha Yefimenka",
     trainerId: "vital-rak",
     image: "/karate-trening-dzieci-volat.jpg",
-    imageAlt: "Karate WKF trening dla dzieci w klubie VOLAT - zajęcia karate dla dzieci z trenerami Vital Rak i Volha Yefimenka", // SEO alt текст для основного фото
-    gallery: ["/karate-trening-aktywny-volat.jpg", "/karate-mistrzostwa-volat-nagrody.jpg", "/karate-trening-rozgrzewka-volat.jpg"], // Массив объектов: { src: string, alt: string }
+    gallery: ["/karate-trening-aktywny-volat.jpg", "/karate-mistrzostwa-volat-nagrody.jpg", "/karate-trening-rozgrzewka-volat.jpg"],
     fullDescription: "Karate WKF to tradycyjna sztuka walki pochodząca z Japonii, która łączy techniki uderzeń, kopnięć i bloków. Trening rozwija siłę, szybkość, koordynację, dyscyplinę i koncentrację. Prowadzimy zajęcia dla dzieci od 7 lat z Volha Yefimenka, młodzieży i dorosłych z Vital Rak. Klub jest członkiem Polskiej Unii Karate i Mazowieckiego Związku Karate, co zapewnia profesjonalny poziom nauczania.",
     benefits: [
       "Poprawa kondycji fizycznej",
@@ -23,9 +22,8 @@ export const disciplines = [
       "Nauka samodyscypliny",
       "Redukcja stresu"
     ],
-    schedule: "Poniedziałek, Środa, Piątek, Wtorek, Czwartek, Sobota (Mokotów) | Poniedziałek, Środa 18:00-19:00 (Praga)",
-    ageGroups: "Dzieci od 7 lat, Młodzież, Dorośli",
-    price: "Dzieci: 220 zł/miesiąc, Dorośli: 280 zł/miesiąc"
+    schedule: "Wtorek, Czwartek, Sobota",
+    ageGroups: "Dzieci od 7 lat, Młodzież, Dorośli"
   },
   {
     id: "muaythai",
@@ -35,7 +33,6 @@ export const disciplines = [
     trainer: "Mikoła Taczylin",
     trainerId: "mikola-taczylin",
     image: "/muaythai-trening-dzieci-volat.jpg",
-    imageAlt: "Muay Thai / Kickboxing trening dzieci w klubie VOLAT - techniki kopnięć i uderzeń w tajskim boksie i kickboxingu z trenerem Mikoła Taczylin",
     gallery: ["/muaythai-trening-grupa-volat.jpg", "/muaythai-trening-uderzenia-volat.jpg", "/muaythai-trening-kopięcia-volat.jpg"],
     fullDescription: "Muay Thai / Kickboxing to tajski boks i kickboxing, jedna z najskuteczniejszych sztuk walki na świecie. Charakteryzuje się użyciem uderzeń pięściami, łokciami, kolanami i kopnięciami. Trening jest bardzo intensywny i rozwija wytrzymałość, siłę, szybkość i refleks. Prowadzimy zajęcia dla różnych grup wiekowych, od dzieci po dorosłych, dostosowując program do poziomu zaawansowania uczestników.",
     benefits: [
@@ -46,8 +43,7 @@ export const disciplines = [
       "Wzrost pewności siebie"
     ],
     schedule: "Wtorek, Czwartek 19:00-20:30",
-    ageGroups: "Młodzież 14+, Dorośli",
-    price: "Dzieci: 220 zł/miesiąc, Dorośli: 280 zł/miesiąc"
+    ageGroups: "Młodzież 14+, Dorośli"
   },
   {
     id: "judo",
@@ -67,8 +63,7 @@ export const disciplines = [
       "Rozwój charakteru"
     ],
     schedule: "Wtorek, Czwartek 18:00-19:30",
-    ageGroups: "Dzieci 5+, Młodzież, Dorośli",
-    price: "Dzieci: 220 zł/miesiąc, Dorośli: 280 zł/miesiąc"
+    ageGroups: "Dzieci 5+, Młodzież, Dorośli"
   },
   {
     id: "mma",
@@ -78,7 +73,6 @@ export const disciplines = [
     trainer: "Paweł Szymkowicz",
     trainerId: "pawel-szymkowicz",
     image: "/mma-trening-volat.jpg",
-    imageAlt: "MMA trening w klubie VOLAT - mieszane sztuki walki, walka w parterze i techniki grapplingu z trenerem Paweł Szymkowicz",
     gallery: ["/mma-trening-grappling-volat.jpg", "/mma-trening-parter-volat.jpg", "/mma-trening-volat-3.jpg"],
     fullDescription: "MMA (Mixed Martial Arts) to mieszane sztuki walki, które łączą techniki z różnych dyscyplin. Trening obejmuje walkę w stójce i parterze, uderzenia, kopnięcia, rzuty i dźwignie. MMA łączy techniki boksu, zapasów, judo, brazylijskiego jiu-jitsu, kickboxingu i innych sztuk walki. Prowadzimy zajęcia dla młodzieży od 15 lat i dorosłych z różnym poziomem zaawansowania. Prowadzi Paweł Szymkowicz. Dostępne w filii Volat Mokotów.",
     benefits: [
@@ -89,8 +83,7 @@ export const disciplines = [
       "Nauka strategii walki"
     ],
     schedule: "Zapytaj o harmonogram",
-    ageGroups: "Młodzież 15+, Dorośli",
-    price: "Dzieci: 220 zł/miesiąc, Dorośli: 280 zł/miesiąc"
+    ageGroups: "Młodzież 15+, Dorośli"
   },
   {
     id: "volatmove-kids",
@@ -100,7 +93,6 @@ export const disciplines = [
     trainer: "Volha Yefimenka, Daria Koba",
     trainerId: "volha-yefimenka",
     image: "/volatmove-kids-trening-volat.jpg",
-    imageAlt: "VolatMove! KIDS trening motoryczny dla dzieci 5-7 lat w klubie VOLAT - ogólne przygotowanie motoryczne dla przedszkolaków",
     gallery: [] as string[],
     fullDescription: "VolatMove! KIDS to ogólne przygotowanie motoryczne dla przedszkolaków, rozwój koordynacji i motoryki dużej. Program specjalnie zaprojektowany dla najmłodszych dzieci w wieku 5-7 lat, skupiający się na podstawowych umiejętnościach ruchowych i równowadze. Zajęcia prowadzą Volha Yefimenka i Daria Koba, które dostosowują program do możliwości każdego dziecka. Treningi odbywają się w przyjaznej atmosferze, zachęcając do aktywności fizycznej. Dostępne w filiach Volat Mokotów i Volat Praga.",
     benefits: [
@@ -111,8 +103,7 @@ export const disciplines = [
       "Przygotowanie do aktywności sportowych"
     ],
     schedule: "Poniedziałek, Środa 17:00-17:55 (Praga)",
-    ageGroups: "Dzieci 5-7 lat",
-    price: "Zapytaj o cenę"
+    ageGroups: "Dzieci 5-7 lat"
   },
   {
     id: "volatmove-junior",
@@ -122,7 +113,6 @@ export const disciplines = [
     trainer: "Volha Yefimenka",
     trainerId: "volha-yefimenka",
     image: "/volatmove-junior-trening-volat.jpg",
-    imageAlt: "VolatMove! JUNIOR trening motoryczny dla dzieci 8-15 lat w klubie VOLAT - korekcja postawy i wzmocnienie stóp",
     gallery: [] as string[],
     fullDescription: "VolatMove! JUNIOR to trening motoryczny dla dzieci 8-15 lat, skupiający się na korekcji problemów w ruchomości stawów i kształtowaniu prawidłowej postawy. Program obejmuje wzmocnienie stóp, poprawę elastyczności i rozwój siły mięśniowej. Zajęcia specjalnie zaprojektowane dla starszych dzieci i młodzieży, dostosowane do ich potrzeb rozwojowych. Prowadzi Volha Yefimenka z wieloletnim doświadczeniem w pracy z młodymi sportowcami. Dostępne w filiach Volat Mokotów i Volat Praga.",
     benefits: [
@@ -133,8 +123,7 @@ export const disciplines = [
       "Rozwój siły i koordynacji"
     ],
     schedule: "Zapytaj o harmonogram",
-    ageGroups: "Dzieci 8-15 lat",
-    price: "Zapytaj o cenę"
+    ageGroups: "Dzieci 8-15 lat"
   },
   {
     id: "functional-training",
@@ -144,7 +133,6 @@ export const disciplines = [
     trainer: "Vital Rak",
     trainerId: "vital-rak",
     image: "/functional-trening-1-volat.jpg",
-    imageAlt: "Trening funkcjonalny i motoryczny w klubie VOLAT - rozwój siły, wytrzymałości i koordynacji z trenerem Vital Rak",
     gallery: ["/functional-trening-2-volat.jpg", "/functional-trening-3-volat.jpg", "/functional-trening-4-volat.jpg"],
     fullDescription: "Trening funkcjonalny i motoryczny dla młodzieży od 15 lat i dorosłych. Rozwój siły mięśni, szybkości reakcji, wytrzymałości, elastyczności i koordynacji, korekcja nadwagi. Program kompleksowy, skupiający się na ruchach naturalnych dla człowieka. Prowadzi Vital Rak. Dostępne w filii Volat Mokotów.",
     benefits: [
@@ -155,8 +143,7 @@ export const disciplines = [
       "Korekcja nadwagi"
     ],
     schedule: "Zapytaj o harmonogram",
-    ageGroups: "Młodzież 15+, Dorośli",
-    price: "Zapytaj o cenę"
+    ageGroups: "Młodzież 15+, Dorośli"
   },
   {
     id: "chess",
@@ -166,7 +153,6 @@ export const disciplines = [
     trainer: "Wiktor Murończyk",
     trainerId: "wiktor-muronczyk",
     image: "/chess-trening-volat.jpg",
-    imageAlt: "Szachy trening w klubie VOLAT - gra strategiczna dla dzieci i dorosłych z trenerem Wiktor Murończyk",
     gallery: [] as string[],
     fullDescription: "Szachy to gra strategiczna, która rozwija logiczne myślenie, koncentrację i umiejętności planowania. Trening szachowy poprawia pamięć, cierpliwość i umiejętności analityczne. Idealne dla osób w każdym wieku. Prowadzi Wiktor Murończyk - międzynarodowy mistrz szachowy.",
     benefits: [
@@ -177,110 +163,99 @@ export const disciplines = [
       "Nauka cierpliwości"
     ],
     schedule: "Zapytaj o harmonogram",
-    ageGroups: "Dzieci 6+, Młodzież, Dorośli",
-    price: "Dzieci: 220 zł/miesiąc, Dorośli: 280 zł/miesiąc"
+    ageGroups: "Dzieci 6+, Młodzież, Dorośli"
   }
 ]
 
-// Статическая генерация всех страниц дисциплин
-export async function generateStaticParams() {
-  return disciplines.map((discipline) => ({
-    slug: discipline.slug,
-  }))
+const translations = {
+  pl: {
+    title: "Dyscypliny",
+    description: "Wybierz swoją ścieżkę w świecie sztuk walki i sportu",
+    viewDetails: "Zobacz szczegóły",
+    bookNow: "Zapisz się",
+  },
+  uk: {
+    title: "Дисципліни",
+    description: "Оберіть свій шлях у світі бойових мистецтв та спорту",
+    viewDetails: "Детальніше",
+    bookNow: "Записатися",
+  },
+  en: {
+    title: "Disciplines",
+    description: "Choose your path in the world of martial arts and sports",
+    viewDetails: "View details",
+    bookNow: "Book now",
+  },
+  by: {
+    title: "Дысцыпліны",
+    description: "Выберыце свой шлях у свеце баявых мастацтваў і спорту",
+    viewDetails: "Дэталі",
+    bookNow: "Запісацца",
+  },
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
-  const { slug } = await params
-  const discipline = disciplines.find(d => d.slug === slug)
-  
-  if (!discipline) {
-    return {
-      title: "Dyscyplina nie znaleziona | VOLAT",
-    }
-  }
-
-  const title = `${discipline.name} - Zajęcia ${discipline.name.toLowerCase()} w Warszawie | VOLAT`
-  const description = discipline.fullDescription.substring(0, 160) + "..."
-  
-  return {
-    title,
-    description,
-    keywords: [
-      `${discipline.name.toLowerCase()} warszawa`,
-      `zajęcia ${discipline.name.toLowerCase()} mokotów`,
-      `${discipline.name.toLowerCase()} dla dzieci`,
-      `${discipline.name.toLowerCase()} trening`,
-      `klub ${discipline.name.toLowerCase()} warszawa`,
-      "VOLAT",
-      "sztuki walki warszawa",
-    ],
-    openGraph: {
-      title,
-      description,
-      url: `https://volat.pl/disciplines/${slug}`,
-      siteName: 'VOLAT',
-      images: [
-        {
-          url: discipline.image.startsWith('/') ? `https://volat.pl${discipline.image}` : discipline.image,
-          width: 1200,
-          height: 630,
-          alt: discipline.name,
-        },
-      ],
-      locale: 'pl_PL',
-      type: 'website',
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title,
-      description,
-      images: [discipline.image.startsWith('/') ? `https://volat.pl${discipline.image}` : discipline.image],
-    },
-    alternates: {
-      canonical: `/disciplines/${slug}`,
-    },
-  }
-}
-
-export default async function DisciplinePage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params
-  const discipline = disciplines.find(d => d.slug === slug)
-
-  if (!discipline) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black">
-        <div className="pt-20 flex items-center justify-center min-h-screen">
-          <div className="text-center">
-            <h1 className="text-4xl font-display font-bold text-white mb-4">Dyscyplina nie znaleziona</h1>
-            <Link href="/disciplines" className="text-red-400 hover:text-red-300 font-accent">
-              ← Wróć do dyscyplin
-            </Link>
-          </div>
-        </div>
-      </div>
-    )
-  }
-
-  const structuredData = {
-    name: discipline.name,
-    description: discipline.fullDescription,
-    provider: {
-      "@type": "Organization",
-      name: "VOLAT",
-      url: "https://volat.pl"
-    },
-    coursePrerequisites: discipline.ageGroups,
-    offers: {
-      "@type": "Offer",
-      price: discipline.price,
-      priceCurrency: "PLN"
-    }
-  }
+export default function DisciplinesPageClient() {
+  const { currentLang } = useLanguage()
+  const t = translations[currentLang] || translations.pl
 
   return (
-    <>
-      <StructuredData type="Course" data={structuredData} />
-      <DisciplinePageClient discipline={discipline} />
-    </>
+    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black pt-28 sm:pt-32">
+      <div className="container mx-auto px-4 sm:px-6 py-12 sm:py-16">
+        <div className="text-center mb-12 sm:mb-16">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-black bg-gradient-to-r from-red-500 via-white to-red-500 bg-clip-text text-transparent mb-4 sm:mb-6">
+            {t.title}
+          </h1>
+          <p className="text-lg sm:text-xl text-gray-300 font-primary max-w-2xl mx-auto">
+            {t.description}
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          {disciplines.map((discipline) => (
+            <div
+              key={discipline.id}
+              className="group bg-gradient-to-br from-gray-900/90 to-black/90 rounded-3xl overflow-hidden shadow-2xl border border-gray-800 hover:border-red-500/50 transition-all duration-300 hover:shadow-red-500/20 hover:scale-[1.02] flex flex-col"
+            >
+              <div className="relative h-64 sm:h-72 overflow-hidden">
+                <Image
+                  src={discipline.image}
+                  alt={`${discipline.name} - ${discipline.description} w klubie VOLAT Warszawa`}
+                  title={`${discipline.name} - Zajęcia w klubie VOLAT`}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  loading="lazy"
+                />
+              </div>
+              <div className="p-6 sm:p-8 flex-1 flex flex-col">
+                <h2 className="text-2xl sm:text-3xl font-display font-bold text-white mb-3 sm:mb-4">
+                  {discipline.name}
+                </h2>
+                <p className="text-gray-400 font-primary mb-4 sm:mb-6 flex-1 line-clamp-3">
+                  {discipline.fullDescription.substring(0, 120)}...
+                </p>
+                <div className="mt-auto pt-4 sm:pt-6 pb-0 flex flex-col gap-3">
+                  <Link
+                    href={`/disciplines/${discipline.slug}`}
+                    className="w-full px-4 py-3 bg-gradient-to-r from-red-600 to-red-500 text-white text-sm font-accent font-medium rounded-xl shadow-lg h-[48px] flex items-center justify-center whitespace-nowrap no-underline"
+                  >
+                    <span className="text-center">{t.viewDetails}</span>
+                  </Link>
+                  <a
+                    href="https://docs.google.com/forms/d/e/1FAIpQLSdDvBi8fQgmTj10i6GPoU19q3RanUSyJLCZS3QACuC5sS9aoMA/viewform"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full px-4 py-3 bg-gradient-to-r from-white to-gray-100 text-black text-sm font-accent font-medium rounded-xl shadow-lg border border-gray-200 h-[48px] flex items-center justify-center whitespace-nowrap no-underline"
+                  >
+                    <span className="text-center">{t.bookNow}</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
   )
 }
+

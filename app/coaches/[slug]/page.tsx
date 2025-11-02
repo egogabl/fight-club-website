@@ -1,4 +1,6 @@
+import { Metadata } from 'next'
 import CoachDetailClient from "./coach-detail-client"
+import StructuredData from '@/components/structured-data'
 
 const coaches = {
   "vital-rak": {
@@ -135,8 +137,84 @@ export async function generateStaticParams() {
   }))
 }
 
-export default function CoachDetailPage({ params }: { params: { slug: string } }) {
-  const coach = coaches[params.slug as keyof typeof coaches] || null
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params
+  const coach = coaches[slug as keyof typeof coaches]
+  
+  if (!coach) {
+    return {
+      title: "Trener nie znaleziony | VOLAT",
+    }
+  }
 
-  return <CoachDetailClient coach={coach} slug={params.slug} />
+  const title = `${coach.name} - Trener ${coach.specialty} w Warszawie | VOLAT`
+  const description = coach.description.substring(0, 160) + "..."
+  
+  return {
+    title,
+    description,
+    keywords: [
+      `${coach.name.toLowerCase()} trener warszawa`,
+      `trener ${coach.specialty.toLowerCase()}`,
+      `${coach.name.toLowerCase()} karate`,
+      "trener sztuk walki warszawa",
+      "VOLAT trenerzy",
+      "instruktor karate warszawa",
+    ],
+    openGraph: {
+      title,
+      description,
+      url: `https://volat.pl/coaches/${slug}`,
+      siteName: 'VOLAT',
+      images: [
+        {
+          url: coach.image.startsWith('/') ? `https://volat.pl${coach.image}` : coach.image,
+          width: 1200,
+          height: 630,
+          alt: coach.name,
+        },
+      ],
+      locale: 'pl_PL',
+      type: 'profile',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [coach.image.startsWith('/') ? `https://volat.pl${coach.image}` : coach.image],
+    },
+    alternates: {
+      canonical: `/coaches/${slug}`,
+    },
+  }
+}
+
+export default async function CoachDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const coach = coaches[slug as keyof typeof coaches] || null
+
+  if (!coach) {
+    return <CoachDetailClient coach={coach} slug={slug} />
+  }
+
+  const structuredData = {
+    name: coach.name,
+    jobTitle: coach.specialty,
+    description: coach.description,
+    worksFor: {
+      "@type": "Organization",
+      name: "VOLAT",
+      url: "https://volat.pl"
+    },
+    alumniOf: "Akademia Wychowania Fizycznego",
+    knowsAbout: [coach.specialty],
+    image: coach.image.startsWith('/') ? `https://volat.pl${coach.image}` : coach.image,
+  }
+
+  return (
+    <>
+      <StructuredData type="Person" data={structuredData} />
+      <CoachDetailClient coach={coach} slug={slug} />
+    </>
+  )
 }
