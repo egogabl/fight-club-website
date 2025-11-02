@@ -365,7 +365,12 @@ export default function DisciplinePageClient({ discipline }: DisciplinePageClien
       ageGroups: "Grupy wiekowe",
       price: "Cena",
       trainer: "Trener",
-      notFound: "Dyscyplina nie znaleziona"
+      notFound: "Dyscyplina nie znaleziona",
+      locations: "Lokalizacje",
+      faq: "Często zadawane pytania",
+      mokotowInfo: "Nowoczesna sala treningowa z pełnym wyposażeniem. Szatnie z prysznicami, parking, klimatyzacja.",
+      pragaInfo: "Przestronna sala treningowa. Szatnie z prysznicami, recepcja, klimatyzacja.",
+      viewOnMap: "Zobacz na mapie"
     },
     uk: {
       backToDisciplines: "← Повернутися до дисциплін",
@@ -378,7 +383,12 @@ export default function DisciplinePageClient({ discipline }: DisciplinePageClien
       ageGroups: "Вікові групи",
       price: "Ціна",
       trainer: "Тренер",
-      notFound: "Дисципліну не знайдено"
+      notFound: "Дисципліну не знайдено",
+      locations: "Локації",
+      faq: "Часто задавані питання",
+      mokotowInfo: "Сучасний тренувальний зал з повним обладнанням. Роздягальні з душем, паркінг, кондиціонер.",
+      pragaInfo: "Просторий тренувальний зал. Роздягальні з душем, рецепція, кондиціонер.",
+      viewOnMap: "Подивитися на карті"
     },
     en: {
       backToDisciplines: "← Back to disciplines",
@@ -391,7 +401,12 @@ export default function DisciplinePageClient({ discipline }: DisciplinePageClien
       ageGroups: "Age groups",
       price: "Price",
       trainer: "Trainer",
-      notFound: "Discipline not found"
+      notFound: "Discipline not found",
+      locations: "Locations",
+      faq: "Frequently asked questions",
+      mokotowInfo: "Modern training hall with full equipment. Changing rooms with showers, parking, air conditioning.",
+      pragaInfo: "Spacious training hall. Changing rooms with showers, reception, air conditioning.",
+      viewOnMap: "View on map"
     },
     by: {
       backToDisciplines: "← Вярнуцца да дысцыплін",
@@ -404,11 +419,85 @@ export default function DisciplinePageClient({ discipline }: DisciplinePageClien
       ageGroups: "Узроставыя групы",
       price: "Цана",
       trainer: "Трэнер",
-      notFound: "Дысцыпліну не знойдзена"
+      notFound: "Дысцыпліну не знойдзена",
+      locations: "Лакацыі",
+      faq: "Часта задаваныя пытанні",
+      mokotowInfo: "Сучасная трэнавальная зала з поўным абсталяваннем. Раздзявальні з душэм, паркоўка, кандыцыянер.",
+      pragaInfo: "Прасторная трэнавальная зала. Раздзявальні з душэм, рэцэпцыя, кандыцыянер.",
+      viewOnMap: "Паглядзець на карце"
     }
   }
 
   const t = translations[currentLang] || translations.pl
+
+  // Определяем локации для FAQ
+  const hasMokotow = (scheduleTranslations[discipline.slug]?.[currentLang] || discipline.schedule).includes("Mokotów")
+  const hasPraga = (scheduleTranslations[discipline.slug]?.[currentLang] || discipline.schedule).includes("Praga")
+  
+  // FAQ items для каждой дисциплины
+  const disciplineName = disciplineTranslations[discipline.slug]?.[currentLang] || discipline.name
+  
+  const faqItems = [
+    {
+      question: currentLang === 'pl' ? `Jakie są ceny zajęć ${disciplineName}?` 
+        : currentLang === 'uk' ? `Які ціни занять ${disciplineName}?`
+        : currentLang === 'en' ? `What are the prices for ${disciplineName}?`
+        : `Якія кошты заняткаў ${disciplineName}?`,
+      answer: discipline.price === "Zapytaj o cenę" 
+        ? (currentLang === 'pl' ? "Skontaktuj się z nami, aby uzyskać szczegółowe informacje o cenach." 
+          : currentLang === 'uk' ? "Зв'яжіться з нами, щоб дізнатися детальну інформацію про ціни."
+          : currentLang === 'en' ? "Contact us for detailed pricing information."
+          : "Звяжыцеся з намі, каб даведацца дэтальную інфармацыю пра кошты.")
+        : discipline.price
+    },
+    {
+      question: currentLang === 'pl' ? `Gdzie odbywają się zajęcia ${disciplineName}?`
+        : currentLang === 'uk' ? `Де проводяться заняття ${disciplineName}?`
+        : currentLang === 'en' ? `Where are ${disciplineName} classes held?`
+        : `Дзе праводзяцца заняткі ${disciplineName}?`,
+      answer: hasMokotow && hasPraga
+        ? (currentLang === 'pl' ? "Zajęcia odbywają się w dwóch lokalizacjach: VOLAT Mokotów (ul. Artura Malawskiego 6) i VOLAT Praga Północ (ul. Kowieńska 12/20)."
+          : currentLang === 'uk' ? "Заняття проводяться в двох локаціях: VOLAT Mokotów (вул. Artura Malawskiego 6) і VOLAT Praga Północ (вул. Kowieńska 12/20)."
+          : currentLang === 'en' ? "Classes are held in two locations: VOLAT Mokotów (ul. Artura Malawskiego 6) and VOLAT Praga Północ (ul. Kowieńska 12/20)."
+          : "Заняткі праводзяцца ў двух лакацыях: VOLAT Mokotów (вул. Artura Malawskiego 6) і VOLAT Praga Północ (вул. Kowieńska 12/20).")
+        : hasMokotow
+        ? (currentLang === 'pl' ? "Zajęcia odbywają się w VOLAT Mokotów, ul. Artura Malawskiego 6, Warszawa."
+          : currentLang === 'uk' ? "Заняття проводяться в VOLAT Mokotów, вул. Artura Malawskiego 6, Варшава."
+          : currentLang === 'en' ? "Classes are held at VOLAT Mokotów, ul. Artura Malawskiego 6, Warszawa."
+          : "Заняткі праводзяцца ў VOLAT Mokotów, вул. Artura Malawskiego 6, Варшава.")
+        : (currentLang === 'pl' ? "Zajęcia odbywają się w VOLAT Praga Północ, ul. Kowieńska 12/20, Warszawa."
+          : currentLang === 'uk' ? "Заняття проводяться в VOLAT Praga Północ, вул. Kowieńska 12/20, Варшава."
+          : currentLang === 'en' ? "Classes are held at VOLAT Praga Północ, ul. Kowieńska 12/20, Warszawa."
+          : "Заняткі праводзяцца ў VOLAT Praga Północ, вул. Kowieńska 12/20, Варшава.")
+    },
+    {
+      question: currentLang === 'pl' ? `Od jakiego wieku można rozpocząć ${disciplineName}?`
+        : currentLang === 'uk' ? `З якого віку можна почати ${disciplineName}?`
+        : currentLang === 'en' ? `From what age can you start ${disciplineName}?`
+        : `З якога ўзросту можна пачаць ${disciplineName}?`,
+      answer: ageGroupsTranslations[discipline.slug]?.[currentLang] || discipline.ageGroups
+    },
+    {
+      question: currentLang === 'pl' ? "Jak wygląda pierwsze zajęcia?"
+        : currentLang === 'uk' ? "Як виглядає перше заняття?"
+        : currentLang === 'en' ? "What does the first class look like?"
+        : "Як выглядае першае занятне?",
+      answer: currentLang === 'pl' ? "Pierwsze zajęcia są bezpłatne i służą zapoznaniu się z klubem oraz trenerem. Przyjdź w wygodnym stroju sportowym. Nie potrzebujesz żadnego specjalnego sprzętu."
+        : currentLang === 'uk' ? "Перше заняття безкоштовне і слугує для знайомства з клубом та тренером. Прийдіть у зручному спортивному одязі. Вам не потрібен спеціальний інвентар."
+        : currentLang === 'en' ? "The first class is free and serves to get acquainted with the club and trainer. Come in comfortable sports attire. You don't need any special equipment."
+        : "Першае занятне бясплатнае і служыць для знаёмства з клубам і трэнерам. Прыйдзіце ў зручным спартыўным адзенні. Вам не патрэбен спецыяльны інвентар."
+    },
+    {
+      question: currentLang === 'pl' ? "Jaki sprzęt jest potrzebny na zajęcia?"
+        : currentLang === 'uk' ? "Який інвентар потрібен на заняття?"
+        : currentLang === 'en' ? "What equipment is needed for classes?"
+        : "Які інвентар патрэбен на заняткі?",
+      answer: currentLang === 'pl' ? "Na pierwsze zajęcia wystarczy wygodny strój sportowy. Wszelki specjalistyczny sprzęt jest dostępny w klubie. Trener poinformuje o szczegółach po pierwszym zajęciu."
+        : currentLang === 'uk' ? "На перші заняття достатньо зручного спортивного одягу. Весь спеціалізований інвентар доступний у клубі. Тренер повідомить про деталі після першого заняття."
+        : currentLang === 'en' ? "For the first class, comfortable sportswear is enough. All specialized equipment is available at the club. The trainer will inform you about details after the first class."
+        : "На першыя заняткі дастаткова зручнага спартыўнага адзення. Увесь спецыялізаваны інвентар даступны ў клубе. Трэнер паведаміць пра дэталі пасля першага занятка."
+    }
+  ]
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black">
@@ -583,6 +672,64 @@ export default function DisciplinePageClient({ discipline }: DisciplinePageClien
                   </Link>
                 </div>
               </div>
+            </div>
+          </div>
+
+          {/* Lokalizacje Section */}
+          <div className="mt-12 space-y-6">
+            <h2 className="text-3xl font-display font-bold text-white mb-6 text-center lg:text-left">
+              {t.locations || "Lokalizacje"}
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {(scheduleTranslations[discipline.slug]?.[currentLang] || discipline.schedule).includes("Mokotów") && (
+                <div className="bg-transparent backdrop-blur-sm border border-gray-700/50 rounded-xl p-6">
+                  <h3 className="text-xl font-display font-bold text-white mb-3">VOLAT Mokotów</h3>
+                  <p className="text-gray-300 font-primary mb-2 break-words">ul. Artura Malawskiego 6, Warszawa</p>
+                  <p className="text-gray-400 font-primary text-sm mb-4 break-words">
+                    {t.mokotowInfo || "Nowoczesna sala treningowa z pełnym wyposażeniem. Szatnie z prysznicami, parking, klimatyzacja."}
+                  </p>
+                  <a 
+                    href="https://maps.google.com/?q=ul.+Artura+Malawskiego+6,+Warszawa"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-red-400 hover:text-red-300 font-accent text-sm inline-flex items-center"
+                  >
+                    {t.viewOnMap || "Zobacz na mapie"} →
+                  </a>
+                </div>
+              )}
+              {(scheduleTranslations[discipline.slug]?.[currentLang] || discipline.schedule).includes("Praga") && (
+                <div className="bg-transparent backdrop-blur-sm border border-gray-700/50 rounded-xl p-6">
+                  <h3 className="text-xl font-display font-bold text-white mb-3">VOLAT Praga Północ</h3>
+                  <p className="text-gray-300 font-primary mb-2 break-words">ul. Kowieńska 12/20, Warszawa</p>
+                  <p className="text-gray-400 font-primary text-sm mb-4 break-words">
+                    {t.pragaInfo || "Przestronna sala treningowa. Szatnie z prysznicami, recepcja, klimatyzacja."}
+                  </p>
+                  <a 
+                    href="https://maps.google.com/?q=ul.+Kowieńska+12/20,+Warszawa"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-red-400 hover:text-red-300 font-accent text-sm inline-flex items-center"
+                  >
+                    {t.viewOnMap || "Zobacz na mapie"} →
+                  </a>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* FAQ Section */}
+          <div className="mt-12 space-y-6">
+            <h2 className="text-3xl font-display font-bold text-white mb-6 text-center lg:text-left">
+              {t.faq || "Często zadawane pytania"}
+            </h2>
+            <div className="space-y-4">
+              {faqItems.map((faq, index) => (
+                <div key={index} className="bg-transparent backdrop-blur-sm border border-gray-700/50 rounded-xl p-6">
+                  <h3 className="text-xl font-display font-bold text-white mb-3">{faq.question}</h3>
+                  <p className="text-gray-300 font-primary leading-relaxed break-words">{faq.answer}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>

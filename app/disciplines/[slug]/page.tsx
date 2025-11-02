@@ -189,6 +189,18 @@ export async function generateStaticParams() {
   }))
 }
 
+// Определяем локации для каждой дисциплины
+const disciplineLocations: Record<string, { mokotow?: boolean; praga?: boolean }> = {
+  "karate-wkf": { mokotow: true, praga: true },
+  "muaythai": { mokotow: true, praga: true },
+  "judo": { mokotow: true },
+  "mma": { mokotow: true },
+  "volatmove-kids": { mokotow: true, praga: true },
+  "volatmove-junior": { mokotow: true, praga: true },
+  "functional-training": { mokotow: true },
+  "chess": { mokotow: true, praga: true },
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params
   const discipline = disciplines.find(d => d.slug === slug)
@@ -199,21 +211,67 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     }
   }
 
-  const title = `${discipline.name} - Zajęcia ${discipline.name.toLowerCase()} w Warszawie | VOLAT`
-  const description = discipline.fullDescription.substring(0, 160) + "..."
+  const locations = disciplineLocations[slug] || {}
+  const hasMokotow = locations.mokotow
+  const hasPraga = locations.praga
+  
+  // Формируем локации в тексте
+  let locationsText = ""
+  if (hasMokotow && hasPraga) {
+    locationsText = "Mokotów i Praga Północ"
+  } else if (hasMokotow) {
+    locationsText = "Mokotów"
+  } else if (hasPraga) {
+    locationsText = "Praga Północ"
+  }
+
+  // Улучшенный title с локализацией
+  const title = `${discipline.name} w Warszawie ${locationsText ? locationsText + ' - ' : ''}Zajęcia ${discipline.name.toLowerCase()} | VOLAT`
+  
+  // Улучшенное description с адресами
+  let description = discipline.fullDescription.substring(0, 120)
+  if (hasMokotow && hasPraga) {
+    description += " Lokalizacje: Mokotów ul. Artura Malawskiego 6 i Praga Północ ul. Kowieńska 12/20."
+  } else if (hasMokotow) {
+    description += " Lokalizacja: Mokotów ul. Artura Malawskiego 6."
+  } else if (hasPraga) {
+    description += " Lokalizacja: Praga Północ ul. Kowieńska 12/20."
+  }
+  description = description.substring(0, 160) + "..."
+  
+  // Расширенные keywords с локализацией
+  const keywords = [
+    `${discipline.name.toLowerCase()} warszawa`,
+    `zajęcia ${discipline.name.toLowerCase()} warszawa`,
+    `${discipline.name.toLowerCase()} dla dzieci warszawa`,
+    `${discipline.name.toLowerCase()} trening warszawa`,
+    `klub ${discipline.name.toLowerCase()} warszawa`,
+    "VOLAT",
+    "sztuki walki warszawa",
+  ]
+  
+  if (hasMokotow) {
+    keywords.push(
+      `${discipline.name.toLowerCase()} warszawa mokotów`,
+      `zajęcia ${discipline.name.toLowerCase()} mokotów`,
+      `${discipline.name.toLowerCase()} mokotów ul. artura malawskiego`,
+      `klub ${discipline.name.toLowerCase()} mokotów`
+    )
+  }
+  
+  if (hasPraga) {
+    keywords.push(
+      `${discipline.name.toLowerCase()} warszawa praga północ`,
+      `zajęcia ${discipline.name.toLowerCase()} praga`,
+      `${discipline.name.toLowerCase()} praga ul. kowieńska`,
+      `klub ${discipline.name.toLowerCase()} praga`
+    )
+  }
   
   return {
     title,
     description,
-    keywords: [
-      `${discipline.name.toLowerCase()} warszawa`,
-      `zajęcia ${discipline.name.toLowerCase()} mokotów`,
-      `${discipline.name.toLowerCase()} dla dzieci`,
-      `${discipline.name.toLowerCase()} trening`,
-      `klub ${discipline.name.toLowerCase()} warszawa`,
-      "VOLAT",
-      "sztuki walki warszawa",
-    ],
+    keywords,
     openGraph: {
       title,
       description,
@@ -261,7 +319,38 @@ export default async function DisciplinePage({ params }: { params: Promise<{ slu
     )
   }
 
-  const structuredData = {
+  const locations = disciplineLocations[slug] || {}
+  const hasMokotow = locations.mokotow
+  const hasPraga = locations.praga
+  
+  // Breadcrumbs structured data
+  const breadcrumbStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Strona główna",
+        item: "https://volat.pl"
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Dyscypliny",
+        item: "https://volat.pl/disciplines"
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: discipline.name,
+        item: `https://volat.pl/disciplines/${slug}`
+      }
+    ]
+  }
+
+  // Course structured data с улучшенной информацией
+  const courseStructuredData = {
     name: discipline.name,
     description: discipline.fullDescription,
     provider: {
@@ -274,12 +363,98 @@ export default async function DisciplinePage({ params }: { params: Promise<{ slu
       "@type": "Offer",
       price: discipline.price,
       priceCurrency: "PLN"
-    }
+    },
+    ...(hasMokotow || hasPraga ? {
+      location: [
+        ...(hasMokotow ? [{
+          "@type": "Place",
+          name: "VOLAT Mokotów",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "ul. Artura Malawskiego 6",
+            addressLocality: "Warszawa",
+            addressRegion: "Mazowieckie",
+            postalCode: "02-341",
+            addressCountry: "PL"
+          }
+        }] : []),
+        ...(hasPraga ? [{
+          "@type": "Place",
+          name: "VOLAT Praga Północ",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "ul. Kowieńska 12/20",
+            addressLocality: "Warszawa",
+            addressRegion: "Mazowieckie",
+            postalCode: "03-470",
+            addressCountry: "PL"
+          }
+        }] : [])
+      ]
+    } : {})
+  }
+
+  // FAQ structured data
+  const locationsText = hasMokotow && hasPraga
+    ? "Zajęcia odbywają się w dwóch lokalizacjach: VOLAT Mokotów (ul. Artura Malawskiego 6) i VOLAT Praga Północ (ul. Kowieńska 12/20)."
+    : hasMokotow
+    ? "Zajęcia odbywają się w VOLAT Mokotów, ul. Artura Malawskiego 6, Warszawa."
+    : "Zajęcia odbywają się w VOLAT Praga Północ, ul. Kowieńska 12/20, Warszawa."
+
+  const priceAnswer = discipline.price === "Zapytaj o cenę"
+    ? "Skontaktuj się z nami, aby uzyskać szczegółowe informacje o cenach."
+    : discipline.price
+
+  const faqStructuredData = {
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: `Jakie są ceny zajęć ${discipline.name}?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: priceAnswer
+        }
+      },
+      {
+        "@type": "Question",
+        name: `Gdzie odbywają się zajęcia ${discipline.name}?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: locationsText
+        }
+      },
+      {
+        "@type": "Question",
+        name: `Od jakiego wieku można rozpocząć ${discipline.name}?`,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: discipline.ageGroups
+        }
+      },
+      {
+        "@type": "Question",
+        name: "Jak wygląda pierwsze zajęcia?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Pierwsze zajęcia są bezpłatne i służą zapoznaniu się z klubem oraz trenerem. Przyjdź w wygodnym stroju sportowym. Nie potrzebujesz żadnego specjalnego sprzętu."
+        }
+      },
+      {
+        "@type": "Question",
+        name: "Jaki sprzęt jest potrzebny na zajęcia?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Na pierwsze zajęcia wystarczy wygodny strój sportowy. Wszelki specjalistyczny sprzęt jest dostępny w klubie. Trener poinformuje o szczegółach po pierwszym zajęciu."
+        }
+      }
+    ]
   }
 
   return (
     <>
-      <StructuredData type="Course" data={structuredData} />
+      <StructuredData type="Course" data={courseStructuredData} />
+      <StructuredData type="BreadcrumbList" data={breadcrumbStructuredData} />
+      <StructuredData type="FAQPage" data={faqStructuredData} />
       <DisciplinePageClient discipline={discipline} />
     </>
   )
