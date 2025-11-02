@@ -1,5 +1,5 @@
 import type React from "react"
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { Inter, Poppins } from "next/font/google"
 import "./globals.css"
 import Navigation from "@/components/navigation"
@@ -26,16 +26,17 @@ const poppins = Poppins({
   adjustFontFallback: true,
 })
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+}
+
 export const metadata: Metadata = {
   title: "VOLAT - Centrum Sportu i Edukacji | Sztuki Walki Warszawa",
   description:
     "Nowoczesne centrum sportu i edukacji w Warszawie oferujące kompleksowe szkolenia w zakresie karate, judo, muay thai, MMA oraz programy kulturalne i edukacyjne. Zajęcia dla dzieci, młodzieży i dorosłych.",
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 1,
-    userScalable: false,
-  },
   keywords: [
     "karate warszawa",
     "sztuki walki warszawa",

@@ -28,7 +28,6 @@ const nextConfig = {
   // Оптимизация bundle
   experimental: {
     optimizePackageImports: ['lucide-react', '@heroicons/react', '@radix-ui/react-accordion', '@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu'],
-    optimizeCss: true,
   },
   // Оптимизация заголовков и кеширования
   async headers() {
