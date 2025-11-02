@@ -280,6 +280,12 @@ export default function Navigation() {
                     {t.nav.disciplines}
                   </Link>
                   <button
+                    onClick={() => handleNavigation("educationalCenter")}
+                    className="text-left font-medium text-white/90 hover:text-white transition-all duration-200 ease-out py-4 px-6 rounded-xl hover:bg-white/10 text-lg hover:shadow-lg hover:shadow-white/10"
+                  >
+                    {t.nav.educationalCenter}
+                  </button>
+                  <button
                     onClick={() => handleNavigation("schedule")}
                     className="text-left font-medium text-white/90 hover:text-white transition-all duration-200 ease-out py-4 px-6 rounded-xl hover:bg-white/10 text-lg hover:shadow-lg hover:shadow-white/10"
                   >
