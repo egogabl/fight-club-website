@@ -112,6 +112,7 @@ export default function RootLayout({
   return (
     <html lang="pl" className={`${inter.variable} ${poppins.variable} antialiased`}>
       <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
       </head>

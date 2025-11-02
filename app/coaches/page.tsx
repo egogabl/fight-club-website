@@ -449,7 +449,18 @@ export default function CoachesPage() {
               return (
               <div key={index} className="group flex flex-col">
                 <Card className="border-2 border-red-400/30 shadow-2xl rounded-3xl bg-gradient-to-br from-gray-900 to-black hover:shadow-red-400/20 hover:shadow-3xl transition-all duration-300 group overflow-hidden backdrop-blur-md flex-1 flex flex-col min-h-[600px]">
-                  <Link href={`/coaches/${coach.id}`} className="flex-1 flex flex-col">
+                  <Link 
+                    href={`/coaches/${coach.id}`} 
+                    className="flex-1 flex flex-col"
+                    onClick={(e) => {
+                      // Prevent zoom on iOS Safari
+                      if (e.currentTarget) {
+                        e.preventDefault();
+                        window.location.href = `/coaches/${coach.id}`;
+                      }
+                    }}
+                    style={{ touchAction: 'manipulation' }}
+                  >
                     <div className="aspect-square overflow-hidden relative bg-transparent bg-gradient-to-br from-gray-900 to-black">
                       <Image
                         src={coach.image || "/placeholder.svg"}
@@ -527,10 +538,25 @@ export default function CoachesPage() {
                       >
                         {t.bookWithCoach}
                       </a>
-                      <Link href={`/coaches/${coach.id}`} className="w-full">
-                        <button className="w-full px-4 py-2.5 bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800 text-white text-sm font-medium rounded-xl shadow-lg hover:shadow-xl">
+                      <Link 
+                        href={`/coaches/${coach.id}`} 
+                        className="w-full"
+                        onClick={(e) => {
+                          // Prevent zoom on iOS Safari
+                          e.stopPropagation();
+                          if (e.currentTarget) {
+                            e.preventDefault();
+                            window.location.href = `/coaches/${coach.id}`;
+                          }
+                        }}
+                        style={{ touchAction: 'manipulation' }}
+                      >
+                        <button 
+                          className="w-full px-4 py-2.5 bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800 text-white text-sm font-medium rounded-xl shadow-lg hover:shadow-xl"
+                          style={{ touchAction: 'manipulation' }}
+                        >
                           {t.viewDetails}
-                  </button>
+                        </button>
                       </Link>
                     </div>
                 </div>
