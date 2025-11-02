@@ -235,31 +235,33 @@ export default function Navigation() {
           
           {/* Menu Panel - Responsive width */}
           <div className="absolute top-0 right-0 w-96 h-full bg-black/90 backdrop-blur-lg border-l border-white/20 lg:w-[400px] z-[10002] animate-in slide-in-from-right duration-500 ease-out">
-            <div className="p-8 h-full flex flex-col">
+            <div className="h-full flex flex-col">
               {/* Header */}
-              <div className="flex items-center justify-between mb-10">
-                <div className="flex items-center space-x-4">
-                  <img
-                    src="/volat-logo-simple.png"
-                    alt="VOLAT Logo"
-                    className="h-10 w-auto object-contain"
-                  />
-                  <span className="text-white font-bold text-xl">VOLAT</span>
+              <div className="flex-shrink-0 p-8 pb-6">
+                <div className="flex items-center justify-between mb-10">
+                  <div className="flex items-center space-x-4">
+                    <img
+                      src="/volat-logo-simple.png"
+                      alt="VOLAT Logo"
+                      className="h-10 w-auto object-contain"
+                    />
+                    <span className="text-white font-bold text-xl">VOLAT</span>
+                  </div>
+                  <button
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="p-3 rounded-xl bg-white/10 hover:bg-white/20 transition-all duration-200 ease-out hover:shadow-lg hover:shadow-white/10"
+                    aria-label="Close menu"
+                  >
+                    <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
                 </div>
-                <button
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="p-3 rounded-xl bg-white/10 hover:bg-white/20 transition-all duration-200 ease-out hover:shadow-lg hover:shadow-white/10"
-                  aria-label="Close menu"
-                >
-                  <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
               </div>
 
-              {/* Navigation - Bigger buttons */}
-              <nav className="flex-1">
-                <div className="flex flex-col space-y-3">
+              {/* Navigation - Scrollable */}
+              <nav className="flex-1 overflow-y-auto px-8">
+                <div className="flex flex-col space-y-3 pb-4">
                   <button
                     onClick={() => handleNavigation("home")}
                     className="text-left font-medium text-white/90 hover:text-white transition-all duration-200 ease-out py-4 px-6 rounded-xl hover:bg-white/10 text-lg hover:shadow-lg hover:shadow-white/10"
@@ -318,8 +320,8 @@ export default function Navigation() {
                 </div>
               </nav>
 
-              {/* Language Selection - Bigger */}
-              <div className="pt-8 border-t border-white/10">
+              {/* Language Selection - Fixed at bottom */}
+              <div className="flex-shrink-0 p-8 pt-6 border-t border-white/10">
                 <h3 className="text-white/70 text-sm font-medium mb-4 text-center">Wybierz język / Choose language</h3>
                 <div className="flex items-center justify-center space-x-4">
                   {Object.entries(languageFlags).map(([lang, flag]) => (
