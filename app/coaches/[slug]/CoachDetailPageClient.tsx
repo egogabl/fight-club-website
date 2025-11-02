@@ -127,8 +127,8 @@ export default function CoachDetailPageClient({ coachesData }: CoachDetailPageCl
                 ))}
               </div>
               <div className="text-center mt-8">
-                <Link href={`/schedule?coach=${slug}`}>
-                  <Button className="bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700 font-serif text-xl px-8 py-4 rounded-2xl shadow-lg font-bold">
+                <Link href={`/schedule?coach=${slug}`} className="inline-block">
+                  <Button className="bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700 font-serif text-xl px-8 py-4 rounded-2xl shadow-lg font-bold h-[56px] flex items-center justify-center whitespace-nowrap">
                     Zobacz pełny rozkład trenera
                   </Button>
                 </Link>
