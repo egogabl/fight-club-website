@@ -50,8 +50,8 @@ export default function CoachDetailPageClient({ coachesData }: CoachDetailPageCl
       <section className="pt-28 sm:pt-32 pb-20 bg-gradient-to-br from-black via-gray-900 to-black">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-6xl mx-auto w-full">
-            <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-start">
-              <div className="w-full max-w-full h-[500px] sm:h-[600px] lg:h-[700px] overflow-hidden rounded-3xl shadow-2xl relative bg-transparent bg-gradient-to-br from-gray-900 to-black mx-auto">
+            <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 sm:gap-12 items-center lg:items-start">
+              <div className="w-full max-w-md lg:max-w-full h-[500px] sm:h-[600px] lg:h-[700px] overflow-hidden rounded-3xl shadow-2xl relative bg-transparent bg-gradient-to-br from-gray-900 to-black mx-auto">
                 <Image
                   src={coach.image || "/placeholder.svg"}
                   alt={`${coach.name} - ${coach.specialty} w klubie VOLAT Warszawa`}
@@ -65,18 +65,18 @@ export default function CoachDetailPageClient({ coachesData }: CoachDetailPageCl
                 />
               </div>
 
-              <div className="space-y-8 text-center lg:text-left">
+              <div className="w-full space-y-8 text-center lg:text-left">
                 <div>
-                  <h1 className="text-5xl lg:text-6xl font-sans font-black bg-gradient-to-r from-red-500 via-white to-red-500 bg-clip-text text-transparent mb-4">
+                  <h1 className="text-4xl sm:text-5xl lg:text-6xl font-sans font-black bg-gradient-to-r from-red-500 via-white to-red-500 bg-clip-text text-transparent mb-4 break-words">
                     {coach.name}
                   </h1>
                   <div className="flex justify-center lg:justify-start mb-6">
-                    <Badge className="bg-gradient-to-r from-red-500 to-red-600 text-white px-6 py-3 text-lg font-bold">
+                    <Badge className="bg-gradient-to-r from-red-500 to-red-600 text-white px-4 sm:px-6 py-2 sm:py-3 text-base sm:text-lg font-bold break-words text-center max-w-full">
                       {coach.specialty}
                     </Badge>
                   </div>
-                  <p className="text-2xl text-gray-300 font-serif mb-6 font-light">{coach.experience}</p>
-                  <p className="text-xl text-gray-400 font-serif leading-relaxed font-light">{coach.description}</p>
+                  <p className="text-xl sm:text-2xl text-gray-300 font-serif mb-6 font-light break-words">{coach.experience}</p>
+                  <p className="text-lg sm:text-xl text-gray-400 font-serif leading-relaxed font-light break-words">{coach.description}</p>
                 </div>
 
                 <div>
