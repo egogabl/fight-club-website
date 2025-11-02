@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge"
 import { Award, Users, Star } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
+import { useRouter } from "next/navigation"
 import { useLanguage } from "@/components/language-provider"
 
 const coaches = [
@@ -454,10 +455,8 @@ export default function CoachesPage() {
                     className="flex-1 flex flex-col"
                     onClick={(e) => {
                       // Prevent zoom on iOS Safari
-                      if (e.currentTarget) {
-                        e.preventDefault();
-                        window.location.href = `/coaches/${coach.id}`;
-                      }
+                      e.preventDefault();
+                      router.push(`/coaches/${coach.id}`);
                     }}
                     style={{ touchAction: 'manipulation' }}
                   >
@@ -544,10 +543,8 @@ export default function CoachesPage() {
                         onClick={(e) => {
                           // Prevent zoom on iOS Safari
                           e.stopPropagation();
-                          if (e.currentTarget) {
-                            e.preventDefault();
-                            window.location.href = `/coaches/${coach.id}`;
-                          }
+                          e.preventDefault();
+                          router.push(`/coaches/${coach.id}`);
                         }}
                         style={{ touchAction: 'manipulation' }}
                       >
