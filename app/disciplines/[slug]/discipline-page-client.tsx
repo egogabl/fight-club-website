@@ -564,22 +564,22 @@ export default function DisciplinePageClient({ discipline }: DisciplinePageClien
                   href="https://docs.google.com/forms/d/e/1FAIpQLSdDvBi8fQgmTj10i6GPoU19q3RanUSyJLCZS3QACu5sS9aoMA/viewform"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full px-6 py-3 bg-gradient-to-r from-red-600 to-red-500 text-white text-sm font-accent font-medium rounded-xl shadow-lg min-h-[48px] flex items-center justify-center whitespace-nowrap no-underline"
+                  className="w-full px-6 py-3 bg-gradient-to-r from-red-600 to-red-500 text-white text-sm font-accent font-medium rounded-xl shadow-lg h-[48px] flex items-center justify-center whitespace-nowrap no-underline"
                 >
-                  <span className="text-center w-full">{t.bookNow}</span>
+                  <span className="text-center">{t.bookNow}</span>
                 </a>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <Link
                     href="/schedule"
-                    className="px-6 py-3 bg-gradient-to-r from-white to-gray-100 text-black text-sm font-accent font-medium rounded-xl shadow-lg min-h-[48px] flex items-center justify-center whitespace-nowrap no-underline"
+                    className="px-6 py-3 bg-gradient-to-r from-white to-gray-100 text-black text-sm font-accent font-medium rounded-xl shadow-lg h-[48px] flex items-center justify-center whitespace-nowrap no-underline"
                   >
-                    <span className="text-center w-full">{t.viewSchedule}</span>
+                    <span className="text-center">{t.viewSchedule}</span>
                   </Link>
                   <Link
                     href={discipline.trainer.includes(',') ? '/coaches' : `/coaches/${discipline.trainerId}`}
-                    className="px-6 py-3 bg-gradient-to-r from-white to-gray-100 text-black text-sm font-accent font-medium rounded-xl shadow-lg min-h-[48px] flex items-center justify-center whitespace-nowrap no-underline"
+                    className="px-6 py-3 bg-gradient-to-r from-white to-gray-100 text-black text-sm font-accent font-medium rounded-xl shadow-lg h-[48px] flex items-center justify-center whitespace-nowrap no-underline"
                   >
-                    <span className="text-center w-full">{t.viewTrainer}</span>
+                    <span className="text-center">{t.viewTrainer}</span>
                   </Link>
                 </div>
               </div>

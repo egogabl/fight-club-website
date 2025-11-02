@@ -536,20 +536,20 @@ function HomePage() {
                       <div className="px-0 pt-2 flex flex-col gap-3">
                         <Link
                           href={`/disciplines/${currentActivity.slug}`}
-                          className="w-full px-6 py-3 bg-gradient-to-r from-red-600 to-red-500 text-white text-sm font-accent font-medium rounded-xl shadow-lg min-h-[48px] flex items-center justify-center whitespace-nowrap no-underline"
+                          className="w-full px-6 py-3 bg-gradient-to-r from-red-600 to-red-500 text-white text-sm font-accent font-medium rounded-xl shadow-lg h-[48px] flex items-center justify-center whitespace-nowrap no-underline"
                           onClick={(e) => {
                             e.stopPropagation()
                           }}
                         >
-                          <span className="text-center w-full">{t.activities.viewDetails}</span>
+                          <span className="text-center">{t.activities.viewDetails}</span>
                         </Link>
                         <a
                           href="https://docs.google.com/forms/d/e/1FAIpQLSdDvBi8fQgmTj10i6GPoU19q3RanUSyJLCZS3QACu5sS9aoMA/viewform"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="w-full px-6 py-3 bg-gradient-to-r from-white to-gray-100 text-black text-sm font-accent font-medium rounded-xl shadow-lg border border-gray-200 min-h-[48px] flex items-center justify-center whitespace-nowrap no-underline"
+                          className="w-full px-6 py-3 bg-gradient-to-r from-white to-gray-100 text-black text-sm font-accent font-medium rounded-xl shadow-lg border border-gray-200 h-[48px] flex items-center justify-center whitespace-nowrap no-underline"
                         >
-                          <span className="text-center w-full">{t.activities.bookNow}</span>
+                          <span className="text-center">{t.activities.bookNow}</span>
                         </a>
                       </div>
                     </div>
