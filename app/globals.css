@@ -476,3 +476,28 @@ h1, h2, h3, h4, h5, h6 {
   animation: fade-in-up 0.6s ease-out forwards;
   opacity: 0;
 }
+
+/* Prevent zoom on tap for iOS Safari */
+html {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Prevent automatic zoom on input focus in iOS Safari */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+input[type="password"],
+select,
+textarea {
+  font-size: 16px !important;
+}
+
+/* Prevent zoom on tap for interactive elements */
+button,
+a,
+[role="button"] {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
