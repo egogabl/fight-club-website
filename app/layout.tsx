@@ -25,6 +25,12 @@ export const metadata: Metadata = {
   title: "VOLAT - Centrum Sportu i Edukacji | Sztuki Walki Warszawa",
   description:
     "Nowoczesne centrum sportu i edukacji w Warszawie oferujące kompleksowe szkolenia w zakresie karate, judo, muay thai, MMA oraz programy kulturalne i edukacyjne. Zajęcia dla dzieci, młodzieży i dorosłych.",
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+    userScalable: false,
+  },
   keywords: [
     "karate warszawa",
     "sztuki walki warszawa",

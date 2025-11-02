@@ -47,7 +47,7 @@ export default function CoachDetailPageClient({ coachesData }: CoachDetailPageCl
 
   return (
     <div className="min-h-screen bg-white">
-      <section className="py-20 bg-gradient-to-br from-black via-gray-900 to-black">
+      <section className="pt-28 sm:pt-32 pb-20 bg-gradient-to-br from-black via-gray-900 to-black">
         <div className="container mx-auto px-6">
           <div className="max-w-6xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-12 items-start">

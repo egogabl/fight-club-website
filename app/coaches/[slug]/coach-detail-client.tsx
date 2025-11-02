@@ -43,7 +43,7 @@ export default function CoachDetailClient({ coach, slug }: CoachDetailClientProp
 
   return (
     <div className="min-h-screen bg-black">
-      <section className="py-20 bg-gradient-to-br from-black via-gray-900 to-black">
+      <section className="pt-28 sm:pt-32 pb-20 bg-gradient-to-br from-black via-gray-900 to-black">
         <div className="container mx-auto px-6">
           <div className="max-w-6xl mx-auto">
             {/* Кнопка "Назад" */}
