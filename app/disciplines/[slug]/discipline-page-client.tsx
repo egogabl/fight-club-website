@@ -529,27 +529,27 @@ export default function DisciplinePageClient({ discipline }: DisciplinePageClien
 
               {/* Details */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div className="bg-transparent backdrop-blur-sm border border-gray-700/50 rounded-xl p-4">
+                <div className="bg-transparent backdrop-blur-sm border border-gray-700/50 rounded-xl p-4 text-center lg:text-left">
                   <h3 className="text-lg font-display font-bold text-white mb-2">
                     {t.schedule}
                   </h3>
-                  <p className="text-gray-300 font-primary text-sm">
+                  <p className="text-gray-300 font-primary text-sm break-words">
                     {scheduleTranslations[discipline.slug]?.[currentLang] || discipline.schedule}
                   </p>
                 </div>
-                <div className="bg-transparent backdrop-blur-sm border border-gray-700/50 rounded-xl p-4">
+                <div className="bg-transparent backdrop-blur-sm border border-gray-700/50 rounded-xl p-4 text-center lg:text-left">
                   <h3 className="text-lg font-display font-bold text-white mb-2">
                     {t.ageGroups}
                   </h3>
-                  <p className="text-gray-300 font-primary text-sm">
+                  <p className="text-gray-300 font-primary text-sm break-words">
                     {ageGroupsTranslations[discipline.slug]?.[currentLang] || discipline.ageGroups}
                   </p>
                 </div>
-                <div className="bg-transparent backdrop-blur-sm border border-gray-700/50 rounded-xl p-4">
+                <div className="bg-transparent backdrop-blur-sm border border-gray-700/50 rounded-xl p-4 text-center lg:text-left">
                   <h3 className="text-lg font-display font-bold text-white mb-2">
                     {t.price}
                   </h3>
-                  <p className="text-red-400 font-accent font-bold text-lg">
+                  <p className="text-red-400 font-accent font-bold text-lg break-words">
                     {discipline.price === "Zapytaj o cenę" 
                       ? (priceTranslations["ask"][currentLang] || priceTranslations["ask"]["pl"])
                       : (priceTranslations["default"][currentLang] || priceTranslations["default"]["pl"])
