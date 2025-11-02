@@ -56,12 +56,6 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://volat.pl'),
   alternates: {
     canonical: '/',
-    languages: {
-      'pl': '/',
-      'uk': '/',
-      'en': '/',
-      'by': '/',
-    },
   },
   openGraph: {
     title: "VOLAT - Centrum Sportu i Edukacji",
@@ -120,7 +114,7 @@ const organizationStructuredData = {
       addressRegion: "Mazowieckie",
       postalCode: "02-341",
       addressCountry: "PL",
-      addressRegion: "Mokotów"
+      areaServed: "Mokotów"
     },
     {
       "@type": "PostalAddress",
@@ -129,7 +123,7 @@ const organizationStructuredData = {
       addressRegion: "Mazowieckie",
       postalCode: "03-470",
       addressCountry: "PL",
-      addressRegion: "Praga Północ"
+      areaServed: "Praga Północ"
     }
   ],
   contactPoint: {
