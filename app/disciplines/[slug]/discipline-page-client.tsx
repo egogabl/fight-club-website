@@ -488,7 +488,7 @@ export default function DisciplinePageClient({ discipline }: DisciplinePageClien
             </div>
 
             {/* Content */}
-            <div className="space-y-8">
+            <div className="space-y-8 text-center lg:text-left">
               {/* Header */}
               <div>
                 <h1 className="text-4xl sm:text-5xl font-display font-bold text-white mb-4 tracking-tight bg-gradient-to-r from-white via-red-100 to-white bg-clip-text text-transparent break-words leading-tight">
@@ -507,7 +507,7 @@ export default function DisciplinePageClient({ discipline }: DisciplinePageClien
                 <h2 className="text-2xl font-display font-bold text-white mb-4">
                   {t.description}
                 </h2>
-                <p className="text-gray-300 font-primary leading-relaxed">
+                <p className="text-gray-300 font-primary leading-relaxed break-words">
                   {fullDescriptionTranslations[discipline.slug]?.[currentLang] || discipline.fullDescription}
                 </p>
               </div>
@@ -519,9 +519,9 @@ export default function DisciplinePageClient({ discipline }: DisciplinePageClien
                 </h2>
                 <ul className="space-y-2">
                   {(benefitsTranslations[discipline.slug]?.[currentLang] || discipline.benefits).map((benefit, index) => (
-                    <li key={index} className="flex items-center text-gray-300 font-primary">
+                    <li key={index} className="flex items-center justify-center lg:justify-start text-gray-300 font-primary text-center lg:text-left">
                       <div className="w-2 h-2 bg-gradient-to-r from-red-500 to-red-600 rounded-full mr-3 flex-shrink-0"></div>
-                      {benefit}
+                      <span className="break-words">{benefit}</span>
                     </li>
                   ))}
                 </ul>
