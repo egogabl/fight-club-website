@@ -1,14 +1,15 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, lazy, Suspense } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Clock, MapPin } from "lucide-react"
 import Link from "next/link"
 import { useSearchParams } from "next/navigation"
-import Footer from "@/components/footer"
 import { useLanguage } from "@/components/language-provider"
+
+const Footer = lazy(() => import("@/components/footer"))
 
 const scheduleData = [
   // Понедельник / Среда / Пятница - Duża
@@ -1060,7 +1061,9 @@ export default function SchedulePage() {
         )}
       </div>
       
-      <Footer />
+      <Suspense fallback={null}>
+        <Footer />
+      </Suspense>
     </div>
   )
 }

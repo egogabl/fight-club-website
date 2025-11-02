@@ -1,8 +1,10 @@
 "use client"
 
-import Footer from "@/components/footer"
+import { lazy, Suspense } from "react"
 import { useLanguage } from "@/components/language-provider"
 import Image from "next/image"
+
+const Footer = lazy(() => import("@/components/footer"))
 
 const translations = {
   pl: {
@@ -205,7 +207,9 @@ export default function NewsPage() {
         </div>
       </div>
 
-      <Footer />
+      <Suspense fallback={null}>
+        <Footer />
+      </Suspense>
     </div>
   )
 }

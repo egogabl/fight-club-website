@@ -1,10 +1,12 @@
 "use client"
 
-import Footer from "@/components/footer"
+import { lazy, Suspense } from "react"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Star, Quote } from "lucide-react"
 import { useLanguage } from "@/components/language-provider"
+
+const Footer = lazy(() => import("@/components/footer"))
 
 const translations = {
   pl: {
@@ -247,7 +249,9 @@ export default function ReviewsPage() {
           </div>
         </div>
       </section>
-      <Footer />
+      <Suspense fallback={null}>
+        <Footer />
+      </Suspense>
     </div>
   )
 }

@@ -1,7 +1,9 @@
 "use client"
 
-import Footer from "@/components/footer"
+import { lazy, Suspense } from "react"
 import { useLanguage } from "@/components/language-provider"
+
+const Footer = lazy(() => import("@/components/footer"))
 
 const translations = {
   pl: {
@@ -271,7 +273,9 @@ export default function EducationalCenterPage() {
         </div>
       </main>
 
-      <Footer currentLang={currentLang} />
+      <Suspense fallback={null}>
+        <Footer currentLang={currentLang} />
+      </Suspense>
     </div>
   )
 }
