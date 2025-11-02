@@ -195,21 +195,25 @@ const coachTranslations: Record<string, Record<string, {
 
 const translations = {
   pl: {
+    backToCoaches: "Powrót do trenerów",
     upcomingSessions: "Najbliższe zajęcia trenera",
     viewFullSchedule: "Zobacz pełny rozkład trenera",
     bookNow: "Zapisz się na zajęcia"
   },
   uk: {
+    backToCoaches: "Повернутися до тренерів",
     upcomingSessions: "Найближчі заняття тренера",
     viewFullSchedule: "Переглянути повний розклад тренера",
     bookNow: "Записатися на заняття"
   },
   en: {
+    backToCoaches: "Back to coaches",
     upcomingSessions: "Coach's upcoming sessions",
     viewFullSchedule: "View full coach schedule",
     bookNow: "Book now"
   },
   by: {
+    backToCoaches: "Вярнуцца да трэнераў",
     upcomingSessions: "Найбліжэйшыя заняткі трэнера",
     viewFullSchedule: "Паглядзець поўны расклад трэнера",
     bookNow: "Запісацца на заняткі"
