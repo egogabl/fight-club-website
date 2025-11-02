@@ -528,7 +528,7 @@ export default function CoachesPage() {
                   <div className="p-6 pt-0">
                     <div className="flex flex-col gap-3">
                       <a
-                        href="https://docs.google.com/forms/d/e/1FAIpQLSdDvBi8fQgmTj10i6GPoU19q3RanUSyJLCZS3QACu5sS9aoMA/viewform"
+                        href="https://docs.google.com/forms/d/1LhF3J7PteAcxbpV8jA2c8SA6aBDkPmN8yBp_j5UQTPU/viewform"
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={(e) => {

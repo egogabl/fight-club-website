@@ -1040,7 +1040,7 @@ export default function SchedulePage() {
                           
                           <div className="mt-auto">
                             <a
-                              href="https://docs.google.com/forms/d/e/1FAIpQLSdDvBi8fQgmTj10i6GPoU19q3RanUSyJLCZS3QACu5sS9aoMA/viewform"
+                              href="https://docs.google.com/forms/d/1LhF3J7PteAcxbpV8jA2c8SA6aBDkPmN8yBp_j5UQTPU/viewform"
                               target="_blank"
                               rel="noopener noreferrer"
                               className="w-full px-4 py-2 bg-gradient-to-r from-red-500 to-red-600 text-white font-bold rounded-md block text-center"
