@@ -231,12 +231,14 @@ export default function CoachDetailClient({ coach, slug }: CoachDetailClientProp
   const t = translations[currentLang] || translations.pl
   
   if (!coach) {
+    const { currentLang: errorLang } = useLanguage()
+    const errorT = translations[errorLang] || translations.pl
     return (
       <div className="min-h-screen bg-black flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-4xl font-bold text-white mb-4">Trener nie znaleziony</h1>
           <Link href="/coaches">
-            <Button className="bg-red-600 hover:bg-red-700">Powrót do trenerów</Button>
+            <Button className="bg-red-600 hover:bg-red-700">{errorT.backToCoaches}</Button>
           </Link>
         </div>
       </div>
