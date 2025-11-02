@@ -51,14 +51,14 @@ export default function CoachDetailPageClient({ coachesData }: CoachDetailPageCl
         <div className="container mx-auto px-6">
           <div className="max-w-6xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-12 items-start">
-              <div className="aspect-square overflow-hidden rounded-3xl shadow-2xl relative bg-transparent bg-gradient-to-br from-gray-900 to-black rounded-3xl">
+              <div className="w-full h-[500px] sm:h-[600px] lg:h-[700px] overflow-hidden rounded-3xl shadow-2xl relative bg-transparent bg-gradient-to-br from-gray-900 to-black">
                 <Image
                   src={coach.image || "/placeholder.svg"}
                   alt={`${coach.name} - ${coach.specialty} w klubie VOLAT Warszawa`}
                   title={`${coach.name} - Trener ${coach.specialty} w klubie VOLAT Warszawa`}
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 600px"
-                  className="object-cover transition-opacity duration-300"
+                  className="object-contain transition-opacity duration-300"
                   priority
                   loading="eager"
                   quality={60}
