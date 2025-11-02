@@ -61,8 +61,8 @@ export default function Footer({ currentLang = "pl" }: FooterProps) {
   return (
     <footer className="bg-black/80 backdrop-blur-lg border-t border-white/10 py-8">
       <div className="container mx-auto px-4">
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          <div className="flex items-center space-x-3 mb-4 md:mb-0">
+        <div className="flex flex-col items-center justify-center text-center space-y-6">
+          <div className="flex items-center space-x-3">
             <img
               src="/volat-logo-simple.png"
               alt="VOLAT Logo"
@@ -70,7 +70,7 @@ export default function Footer({ currentLang = "pl" }: FooterProps) {
             />
             <span className="text-white font-bold text-lg">VOLAT</span>
           </div>
-          <div className="flex flex-wrap gap-4 text-sm text-white/70">
+          <div className="flex flex-wrap justify-center gap-4 text-sm text-white/70">
             <a href="/" className="hover:text-red-400 transition-colors">{t.nav.home}</a>
             <a href="/#activities" className="hover:text-red-400 transition-colors">{t.nav.directions}</a>
             <a href="/educational-center" className="hover:text-red-400 transition-colors">{t.nav.educationalCenter}</a>
@@ -80,7 +80,7 @@ export default function Footer({ currentLang = "pl" }: FooterProps) {
             <a href="/contact" className="hover:text-red-400 transition-colors">{t.nav.contacts}</a>
           </div>
         </div>
-        <div className="mt-4 pt-4 border-t border-white/10 text-center text-sm text-white/50">
+        <div className="mt-6 pt-4 border-t border-white/10 text-center text-sm text-white/50">
           © 2025 VOLAT. {t.copyright}
         </div>
       </div>
