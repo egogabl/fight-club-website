@@ -56,7 +56,7 @@ export default function CoachDetailClient({ coach, slug }: CoachDetailClientProp
               </Link>
             </div>
             <div className="grid lg:grid-cols-2 gap-12 items-start">
-              <div className="w-full h-[500px] sm:h-[600px] lg:h-[700px] overflow-hidden rounded-3xl shadow-2xl relative bg-transparent bg-gradient-to-br from-gray-900 to-black">
+              <div className="w-full h-[500px] sm:h-[600px] lg:h-[700px] overflow-hidden rounded-3xl shadow-2xl relative bg-transparent bg-gradient-to-br from-gray-900 to-black mx-auto">
                 <Image
                   src={coach.image || "/placeholder.svg"}
                   alt={`${coach.name} - ${coach.specialty} w klubie VOLAT Warszawa`}
@@ -70,24 +70,26 @@ export default function CoachDetailClient({ coach, slug }: CoachDetailClientProp
                 />
               </div>
 
-              <div className="space-y-8">
+              <div className="space-y-8 text-center lg:text-left">
                 <div>
                   <h1 className="text-5xl lg:text-6xl font-sans font-black bg-gradient-to-r from-red-500 via-white to-red-500 bg-clip-text text-transparent mb-4">
                     {coach.name}
                   </h1>
-                  <Badge className="mb-6 bg-gradient-to-r from-red-500 to-red-600 text-white px-6 py-3 text-lg font-bold">
-                    {coach.specialty}
-                  </Badge>
+                  <div className="flex justify-center lg:justify-start mb-6">
+                    <Badge className="bg-gradient-to-r from-red-500 to-red-600 text-white px-6 py-3 text-lg font-bold">
+                      {coach.specialty}
+                    </Badge>
+                  </div>
                   <p className="text-2xl text-gray-300 font-serif mb-6 font-light">{coach.experience}</p>
                   <p className="text-xl text-gray-400 font-serif leading-relaxed font-light">{coach.description}</p>
                 </div>
 
                 <div>
                   <h3 className="text-2xl font-sans font-bold text-white mb-4">Osiągnięcia</h3>
-                  <ul className="space-y-2">
+                  <ul className="space-y-2 text-left lg:text-left">
                     {coach.achievements.map((achievement, index) => (
-                      <li key={index} className="text-gray-300 font-serif text-lg flex items-center">
-                        <span className="w-2 h-2 bg-red-500 rounded-full mr-3"></span>
+                      <li key={index} className="text-gray-300 font-serif text-lg flex items-center justify-center lg:justify-start">
+                        <span className="w-2 h-2 bg-red-500 rounded-full mr-3 flex-shrink-0"></span>
                         {achievement}
                       </li>
                     ))}
