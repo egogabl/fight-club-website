@@ -42,12 +42,12 @@ export default function CoachDetailClient({ coach, slug }: CoachDetailClientProp
   }
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-black overflow-x-hidden">
       <section className="pt-28 sm:pt-32 pb-20 bg-gradient-to-br from-black via-gray-900 to-black">
-        <div className="container mx-auto px-6">
-          <div className="max-w-6xl mx-auto">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="max-w-6xl mx-auto w-full">
             {/* Кнопка "Назад" */}
-            <div className="mb-8">
+            <div className="mb-8 flex justify-center sm:justify-start">
               <Link href="/coaches">
                 <Button className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-6 py-3 rounded-xl shadow-lg font-medium">
                   <ArrowLeft className="w-4 h-4 mr-2" />
@@ -55,8 +55,8 @@ export default function CoachDetailClient({ coach, slug }: CoachDetailClientProp
                 </Button>
               </Link>
             </div>
-            <div className="grid lg:grid-cols-2 gap-12 items-start">
-              <div className="w-full h-[500px] sm:h-[600px] lg:h-[700px] overflow-hidden rounded-3xl shadow-2xl relative bg-transparent bg-gradient-to-br from-gray-900 to-black mx-auto">
+            <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-start">
+              <div className="w-full max-w-full h-[500px] sm:h-[600px] lg:h-[700px] overflow-hidden rounded-3xl shadow-2xl relative bg-transparent bg-gradient-to-br from-gray-900 to-black mx-auto">
                 <Image
                   src={coach.image || "/placeholder.svg"}
                   alt={`${coach.name} - ${coach.specialty} w klubie VOLAT Warszawa`}
