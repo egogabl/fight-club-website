@@ -553,6 +553,52 @@ const scheduleData = [
     ageGroup: "dzieci",
     room: "Mała",
   },
+  
+  // PRAGA - Понедельник | Среда
+  {
+    day: "Poniedziałek",
+    time: "17:00-17:55",
+    discipline: "Trening motoryczny VolatMOVE KIDS (dzieci 5-7 lat)",
+    location: "Praga - Sala",
+    coach: { name: "Volha Yefimenka", slug: "volha-yefimenka" },
+    sport: "motoryka",
+    branch: "praga",
+    ageGroup: "dzieci",
+    room: "Sala",
+  },
+  {
+    day: "Poniedziałek",
+    time: "18:00-19:00",
+    discipline: "Karate (dzieci 7-13 lat)",
+    location: "Praga - Sala",
+    coach: { name: "Volha Yefimenka", slug: "volha-yefimenka" },
+    sport: "karate",
+    branch: "praga",
+    ageGroup: "dzieci",
+    room: "Sala",
+  },
+  {
+    day: "Środa",
+    time: "17:00-17:55",
+    discipline: "Trening motoryczny VolatMOVE KIDS (dzieci 5-7 lat)",
+    location: "Praga - Sala",
+    coach: { name: "Volha Yefimenka", slug: "volha-yefimenka" },
+    sport: "motoryka",
+    branch: "praga",
+    ageGroup: "dzieci",
+    room: "Sala",
+  },
+  {
+    day: "Środa",
+    time: "18:00-19:00",
+    discipline: "Karate (dzieci 7-13 lat)",
+    location: "Praga - Sala",
+    coach: { name: "Volha Yefimenka", slug: "volha-yefimenka" },
+    sport: "karate",
+    branch: "praga",
+    ageGroup: "dzieci",
+    room: "Sala",
+  },
 ]
 
 const translations = {

@@ -21,7 +21,7 @@ export const disciplines = [
       "Nauka samodyscypliny",
       "Redukcja stresu"
     ],
-    schedule: "Poniedziałek, Środa, Piątek, Wtorek, Czwartek, Sobota",
+    schedule: "Poniedziałek, Środa, Piątek, Wtorek, Czwartek, Sobota (Mokotów) | Poniedziałek, Środa 18:00-19:00 (Praga)",
     ageGroups: "Dzieci od 7 lat, Młodzież, Dorośli",
     price: "Dzieci: 220 zł/miesiąc, Dorośli: 280 zł/miesiąc"
   },
@@ -108,7 +108,7 @@ export const disciplines = [
       "Poprawa równowagi i elastyczności",
       "Przygotowanie do aktywności sportowych"
     ],
-    schedule: "Zapytaj o harmonogram",
+    schedule: "Poniedziałek, Środa 17:00-17:55 (Praga)",
     ageGroups: "Dzieci 5-7 lat",
     price: "Zapytaj o cenę"
   },

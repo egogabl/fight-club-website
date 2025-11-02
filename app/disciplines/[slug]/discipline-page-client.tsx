@@ -253,10 +253,10 @@ export default function DisciplinePageClient({ discipline }: DisciplinePageClien
   // Переводы расписания и возрастных групп
   const scheduleTranslations: Record<string, Record<string, string>> = {
     "karate-wkf": {
-      pl: "Poniedziałek, Środa, Piątek, Wtorek, Czwartek, Sobota",
-      uk: "Понеділок, Середа, П'ятниця, Вівторок, Четвер, Субота",
-      en: "Monday, Wednesday, Friday, Tuesday, Thursday, Saturday",
-      by: "Панядзелак, Серада, Пятніца, Аўторак, Чацвер, Субота"
+      pl: "Poniedziałek, Środa, Piątek, Wtorek, Czwartek, Sobota (Mokotów) | Poniedziałek, Środa 18:00-19:00 (Praga)",
+      uk: "Понеділок, Середа, П'ятниця, Вівторок, Четвер, Субота (Мокотув) | Понеділок, Середа 18:00-19:00 (Прага)",
+      en: "Monday, Wednesday, Friday, Tuesday, Thursday, Saturday (Mokotów) | Monday, Wednesday 18:00-19:00 (Praga)",
+      by: "Панядзелак, Серада, Пятніца, Аўторак, Чацвер, Субота (Макотув) | Панядзелак, Серада 18:00-19:00 (Прага)"
     },
     "muaythai": {
       pl: "Wtorek, Czwartek 19:00-20:30",
@@ -277,10 +277,10 @@ export default function DisciplinePageClient({ discipline }: DisciplinePageClien
       by: "Спытайце пра расклад"
     },
     "volatmove-kids": {
-      pl: "Zapytaj o harmonogram",
-      uk: "Запитайте про розклад",
-      en: "Ask about schedule",
-      by: "Спытайце пра расклад"
+      pl: "Poniedziałek, Środa 17:00-17:55 (Praga)",
+      uk: "Понеділок, Середа 17:00-17:55 (Прага)",
+      en: "Monday, Wednesday 17:00-17:55 (Praga)",
+      by: "Панядзелак, Серада 17:00-17:55 (Прага)"
     },
     "volatmove-junior": {
       pl: "Zapytaj o harmonogram",
