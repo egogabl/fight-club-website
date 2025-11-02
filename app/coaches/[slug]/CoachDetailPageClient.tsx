@@ -196,27 +196,175 @@ const coachTranslations: Record<string, Record<string, {
 const translations = {
   pl: {
     backToCoaches: "Powrót do trenerów",
+    achievements: "Osiągnięcia",
     upcomingSessions: "Najbliższe zajęcia trenera",
     viewFullSchedule: "Zobacz pełny rozkład trenera",
-    bookNow: "Zapisz się na zajęcia"
+    bookNow: "Zapisz się na zajęcia",
+    days: {
+      Poniedziałek: "Poniedziałek",
+      Wtorek: "Wtorek",
+      Środa: "Środa",
+      Czwartek: "Czwartek",
+      Piątek: "Piątek",
+      Sobota: "Sobota",
+      Niedziela: "Niedziela",
+    },
+    locations: {
+      "Mokotów": "Mokotów",
+      "Praga": "Praga Północ",
+      "Praga Północ": "Praga Północ",
+    },
+    disciplines: {
+      "Karate": "Karate",
+      "Karate (dzieci 10+, zaczynające)": "Karate (dzieci 10+, początkujący)",
+      "Karate (dorośli)": "Karate (dorośli)",
+      "Karate (sportowa grupa)": "Karate (grupa sportowa)",
+      "Karate (dzieci 1-й и 2-й rok nauki)": "Karate (dzieci 1-2 rok)",
+      "Karate (1-й rok)": "Karate (1-й rok)",
+      "Karate (2-й rok)": "Karate (2-й rok)",
+      "Muay Thai": "Muay Thai / Kickboxing",
+      "Muay Thai (młodzież)": "Muay Thai / Kickboxing (młodzież)",
+      "Boks": "Boks",
+      "Kickboxing": "Kickboxing",
+      "VolatMOVE Junior": "VolatMOVE Junior",
+      "VolatMOVE Kids": "VolatMOVE Kids",
+      "Judo (dzieci)": "Judo (dzieci)",
+      "Judo": "Judo",
+      "MMA Dziecięce": "MMA (dzieci)",
+      "MMA Młodzież": "MMA (młodzież)",
+      "MMA Dorośli": "MMA (dorośli)",
+      "MMA": "MMA",
+      "Szachy": "Szachy",
+    }
   },
   uk: {
     backToCoaches: "Повернутися до тренерів",
+    achievements: "Досягнення",
     upcomingSessions: "Найближчі заняття тренера",
     viewFullSchedule: "Переглянути повний розклад тренера",
-    bookNow: "Записатися на заняття"
+    bookNow: "Записатися на заняття",
+    days: {
+      Poniedziałek: "Понеділок",
+      Wtorek: "Вівторок",
+      Środa: "Середа",
+      Czwartek: "Четвер",
+      Piątek: "П'ятниця",
+      Sobota: "Субота",
+      Niedziela: "Неділя",
+    },
+    locations: {
+      "Mokotów": "Мокотув",
+      "Praga": "Прага Північна",
+      "Praga Północ": "Прага Північна",
+    },
+    disciplines: {
+      "Karate": "Карате",
+      "Karate (dzieci 10+, zaczynające)": "Карате (діти 10+, початківці)",
+      "Karate (dorośli)": "Карате (дорослі)",
+      "Karate (sportowa grupa)": "Карате (спортивна група)",
+      "Karate (dzieci 1-й и 2-й rok nauki)": "Карате (діти 1-2 рік)",
+      "Karate (1-й rok)": "Карате (1-й рік)",
+      "Karate (2-й rok)": "Карате (2-й рік)",
+      "Muay Thai": "Муай Тай / Кікбоксинг",
+      "Muay Thai (młodzież)": "Муай Тай / Кікбоксинг (молодь)",
+      "Boks": "Бокс",
+      "Kickboxing": "Кікбоксинг",
+      "VolatMOVE Junior": "VolatMOVE Junior",
+      "VolatMOVE Kids": "VolatMOVE Kids",
+      "Judo (dzieci)": "Дзюдо (діти)",
+      "Judo": "Дзюдо",
+      "MMA Dziecięce": "ММА (діти)",
+      "MMA Młodzież": "ММА (молодь)",
+      "MMA Dorośli": "ММА (дорослі)",
+      "MMA": "ММА",
+      "Szachy": "Шахи",
+    }
   },
   en: {
     backToCoaches: "Back to coaches",
+    achievements: "Achievements",
     upcomingSessions: "Coach's upcoming sessions",
     viewFullSchedule: "View full coach schedule",
-    bookNow: "Book now"
+    bookNow: "Book now",
+    days: {
+      Poniedziałek: "Monday",
+      Wtorek: "Tuesday",
+      Środa: "Wednesday",
+      Czwartek: "Thursday",
+      Piątek: "Friday",
+      Sobota: "Saturday",
+      Niedziela: "Sunday",
+    },
+    locations: {
+      "Mokotów": "Mokotów",
+      "Praga": "Praga Północ",
+      "Praga Północ": "Praga Północ",
+    },
+    disciplines: {
+      "Karate": "Karate",
+      "Karate (dzieci 10+, zaczynające)": "Karate (children 10+, beginners)",
+      "Karate (dorośli)": "Karate (adults)",
+      "Karate (sportowa grupa)": "Karate (sports group)",
+      "Karate (dzieci 1-й и 2-й rok nauki)": "Karate (children 1-2 year)",
+      "Karate (1-й rok)": "Karate (1st year)",
+      "Karate (2-й rok)": "Karate (2nd year)",
+      "Muay Thai": "Muay Thai / Kickboxing",
+      "Muay Thai (młodzież)": "Muay Thai / Kickboxing (youth)",
+      "Boks": "Boxing",
+      "Kickboxing": "Kickboxing",
+      "VolatMOVE Junior": "VolatMOVE Junior",
+      "VolatMOVE Kids": "VolatMOVE Kids",
+      "Judo (dzieci)": "Judo (children)",
+      "Judo": "Judo",
+      "MMA Dziecięce": "MMA (children)",
+      "MMA Młodzież": "MMA (youth)",
+      "MMA Dorośli": "MMA (adults)",
+      "MMA": "MMA",
+      "Szachy": "Chess",
+    }
   },
   by: {
     backToCoaches: "Вярнуцца да трэнераў",
+    achievements: "Дасягненні",
     upcomingSessions: "Найбліжэйшыя заняткі трэнера",
     viewFullSchedule: "Паглядзець поўны расклад трэнера",
-    bookNow: "Запісацца на заняткі"
+    bookNow: "Запісацца на заняткі",
+    days: {
+      Poniedziałek: "Панядзелак",
+      Wtorek: "Аўторак",
+      Środa: "Серада",
+      Czwartek: "Чацвер",
+      Piątek: "Пятніца",
+      Sobota: "Субота",
+      Niedziela: "Нядзеля",
+    },
+    locations: {
+      "Mokotów": "Макотув",
+      "Praga": "Прага Паўночная",
+      "Praga Północ": "Прага Паўночная",
+    },
+    disciplines: {
+      "Karate": "Каратэ",
+      "Karate (dzieci 10+, zaczynające)": "Каратэ (дзеці 10+, пачаткоўцы)",
+      "Karate (dorośli)": "Каратэ (дарослыя)",
+      "Karate (sportowa grupa)": "Каратэ (спартыўная група)",
+      "Karate (dzieci 1-й и 2-й rok nauki)": "Каратэ (дзеці 1-2 год)",
+      "Karate (1-й rok)": "Каратэ (1-й год)",
+      "Karate (2-й rok)": "Каратэ (2-й год)",
+      "Muay Thai": "Муай Тай / Кікбоксінг",
+      "Muay Thai (młodzież)": "Муай Тай / Кікбоксінг (моладзь)",
+      "Boks": "Бокс",
+      "Kickboxing": "Кікбоксінг",
+      "VolatMOVE Junior": "VolatMOVE Junior",
+      "VolatMOVE Kids": "VolatMOVE Kids",
+      "Judo (dzieci)": "Дзюдо (дзеці)",
+      "Judo": "Дзюдо",
+      "MMA Dziecięce": "ММА (дзеці)",
+      "MMA Młodzież": "ММА (моладзь)",
+      "MMA Dorośli": "ММА (дарослыя)",
+      "MMA": "ММА",
+      "Szachy": "Шахматы",
+    }
   }
 }
 
@@ -283,7 +431,7 @@ export default function CoachDetailPageClient({ coachesData }: CoachDetailPageCl
                 </div>
 
                 <div>
-                  <h3 className="text-2xl font-sans font-bold text-white mb-4 text-center lg:text-left">Osiągnięcia</h3>
+                  <h3 className="text-2xl font-sans font-bold text-white mb-4 text-center lg:text-left">{t.achievements}</h3>
                   <ul className="space-y-2">
                     {coachT.achievements.map((achievement, index) => (
                       <li key={index} className="text-gray-300 font-serif text-lg flex items-center justify-center lg:justify-start text-center lg:text-left">
@@ -310,8 +458,8 @@ export default function CoachDetailPageClient({ coachesData }: CoachDetailPageCl
                             <Clock className="w-6 h-6 text-white" />
                           </div>
                           <div>
-                            <CardTitle className="font-sans text-lg text-gray-300">{session.discipline}</CardTitle>
-                            <p className="text-gray-400 font-serif">{session.day}</p>
+                            <CardTitle className="font-sans text-lg text-gray-300">{t.disciplines[session.discipline as keyof typeof t.disciplines] || session.discipline}</CardTitle>
+                            <p className="text-gray-400 font-serif">{t.days[session.day as keyof typeof t.days] || session.day}</p>
                           </div>
                         </div>
                         <div className="space-y-2">
@@ -321,7 +469,7 @@ export default function CoachDetailPageClient({ coachesData }: CoachDetailPageCl
                           </div>
                           <div className="flex items-center gap-2">
                             <MapPin className="w-4 h-4 text-red-400" />
-                            <span className="text-gray-300 font-serif">{session.location}</span>
+                            <span className="text-gray-300 font-serif">{t.locations[session.location as keyof typeof t.locations] || session.location}</span>
                           </div>
                         </div>
                       </CardHeader>
