@@ -5,6 +5,7 @@ import "./globals.css"
 import Navigation from "@/components/navigation"
 import { LanguageProvider } from "@/components/language-provider"
 import Analytics from "@/components/analytics"
+import StructuredData from "@/components/structured-data"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -104,6 +105,46 @@ export const metadata: Metadata = {
   },
 }
 
+const organizationStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "VOLAT - Centrum Sportu i Edukacji",
+  url: "https://volat.pl",
+  logo: "https://volat.pl/volat-logo-simple.png",
+  description: "Nowoczesne centrum sportu i edukacji w Warszawie oferujące kompleksowe szkolenia w zakresie karate, judo, muay thai, MMA oraz programy kulturalne i edukacyjne.",
+  address: [
+    {
+      "@type": "PostalAddress",
+      streetAddress: "ul. Artura Malawskiego 6",
+      addressLocality: "Warszawa",
+      addressRegion: "Mazowieckie",
+      postalCode: "02-341",
+      addressCountry: "PL",
+      addressRegion: "Mokotów"
+    },
+    {
+      "@type": "PostalAddress",
+      streetAddress: "ul. Kowieńska 12/20",
+      addressLocality: "Warszawa",
+      addressRegion: "Mazowieckie",
+      postalCode: "03-470",
+      addressCountry: "PL",
+      addressRegion: "Praga Północ"
+    }
+  ],
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: "+48-733-451-982",
+    contactType: "customer service",
+    email: "vasilvolkau@gmail.com",
+    areaServed: "PL",
+    availableLanguage: ["Polish", "Russian", "English", "Belarusian"]
+  },
+  sameAs: [
+    // Добавьте ссылки на соц. сети, когда они будут созданы
+  ]
+}
+
 export default function RootLayout({
   children,
 }: {
@@ -117,6 +158,7 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
       </head>
       <body>
+        <StructuredData type="Organization" data={organizationStructuredData} />
         <Analytics />
         <LanguageProvider>
           <Navigation />
