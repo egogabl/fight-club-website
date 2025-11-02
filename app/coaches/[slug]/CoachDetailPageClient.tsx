@@ -193,6 +193,29 @@ const coachTranslations: Record<string, Record<string, {
   }
 }
 
+const translations = {
+  pl: {
+    upcomingSessions: "Najbliższe zajęcia trenera",
+    viewFullSchedule: "Zobacz pełny rozkład trenera",
+    bookNow: "Zapisz się na zajęcia"
+  },
+  uk: {
+    upcomingSessions: "Найближчі заняття тренера",
+    viewFullSchedule: "Переглянути повний розклад тренера",
+    bookNow: "Записатися на заняття"
+  },
+  en: {
+    upcomingSessions: "Coach's upcoming sessions",
+    viewFullSchedule: "View full coach schedule",
+    bookNow: "Book now"
+  },
+  by: {
+    upcomingSessions: "Найбліжэйшыя заняткі трэнера",
+    viewFullSchedule: "Паглядзець поўны расклад трэнера",
+    bookNow: "Запісацца на заняткі"
+  }
+}
+
 export default function CoachDetailPageClient({ coachesData }: CoachDetailPageClientProps) {
   const params = useParams()
   const slug = params.slug as string
@@ -204,6 +227,7 @@ export default function CoachDetailPageClient({ coachesData }: CoachDetailPageCl
     description: coach?.description || "",
     achievements: coach?.achievements || []
   }
+  const t = translations[currentLang] || translations.pl
 
   if (!coach) {
     return (
@@ -268,7 +292,7 @@ export default function CoachDetailPageClient({ coachesData }: CoachDetailPageCl
 
             <div className="mt-16">
               <h2 className="text-4xl font-sans font-black bg-gradient-to-r from-red-500 via-white to-red-500 bg-clip-text text-transparent mb-8 text-center">
-                Najbliższe zajęcia trenera
+                {t.upcomingSessions}
               </h2>
               <div className="grid md:grid-cols-3 gap-6">
                 {coach.upcomingSessions.map((session, index) => (
@@ -302,9 +326,17 @@ export default function CoachDetailPageClient({ coachesData }: CoachDetailPageCl
               <div className="text-center mt-8">
                 <Link href={`/schedule?coach=${slug}`} className="inline-block">
                   <Button className="bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700 font-serif text-xl px-8 py-4 rounded-2xl shadow-lg font-bold h-[56px] flex items-center justify-center whitespace-nowrap">
-                    Zobacz pełny rozkład trenera
+                    {t.viewFullSchedule}
                   </Button>
                 </Link>
+                <a
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSdDvBi8fQgmTj10i6GPoU19q3RanUSyJLCZS3QACu5sS9aoMA/viewform"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-gradient-to-r from-gray-600 to-gray-700 text-white font-medium text-lg px-8 py-4 rounded-2xl shadow-lg w-full sm:w-auto h-[56px] flex items-center justify-center whitespace-nowrap text-center no-underline mt-4 sm:mt-0 sm:ml-4 inline-block"
+                >
+                  {t.bookNow}
+                </a>
               </div>
             </div>
           </div>

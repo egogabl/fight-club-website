@@ -193,6 +193,29 @@ const coachTranslations: Record<string, Record<string, {
   }
 }
 
+const translations = {
+  pl: {
+    upcomingSessions: "Najbliższe zajęcia trenera",
+    viewFullSchedule: "Zobacz pełny rozkład trenera",
+    bookNow: "Zapisz się na zajęcia"
+  },
+  uk: {
+    upcomingSessions: "Найближчі заняття тренера",
+    viewFullSchedule: "Переглянути повний розклад тренера",
+    bookNow: "Записатися на заняття"
+  },
+  en: {
+    upcomingSessions: "Coach's upcoming sessions",
+    viewFullSchedule: "View full coach schedule",
+    bookNow: "Book now"
+  },
+  by: {
+    upcomingSessions: "Найбліжэйшыя заняткі трэнера",
+    viewFullSchedule: "Паглядзець поўны расклад трэнера",
+    bookNow: "Запісацца на заняткі"
+  }
+}
+
 export default function CoachDetailClient({ coach, slug }: CoachDetailClientProps) {
   const { currentLang } = useLanguage()
   const coachT = coachTranslations[slug]?.[currentLang] || coachTranslations[slug]?.pl || {
@@ -201,6 +224,7 @@ export default function CoachDetailClient({ coach, slug }: CoachDetailClientProp
     description: coach?.description || "",
     achievements: coach?.achievements || []
   }
+  const t = translations[currentLang] || translations.pl
   
   if (!coach) {
     return (
@@ -274,7 +298,7 @@ export default function CoachDetailClient({ coach, slug }: CoachDetailClientProp
 
             <div className="mt-16">
               <h2 className="text-4xl font-sans font-black bg-gradient-to-r from-red-500 via-white to-red-500 bg-clip-text text-transparent mb-8 text-center">
-                Najbliższe zajęcia trenera
+                {t.upcomingSessions}
               </h2>
               <div className="grid md:grid-cols-3 gap-6">
                 {coach.upcomingSessions.map((session, index) => (
@@ -308,7 +332,7 @@ export default function CoachDetailClient({ coach, slug }: CoachDetailClientProp
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-8">
                 <Link href={`/schedule?coach=${slug}`} className="w-full sm:w-auto">
                   <Button className="bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700 font-medium text-lg px-8 py-4 rounded-2xl shadow-lg w-full h-[56px] flex items-center justify-center whitespace-nowrap">
-                    Zobacz pełny rozkład trenera
+                    {t.viewFullSchedule}
                   </Button>
                 </Link>
                 <a
@@ -317,7 +341,7 @@ export default function CoachDetailClient({ coach, slug }: CoachDetailClientProp
                   rel="noopener noreferrer"
                   className="bg-gradient-to-r from-gray-600 to-gray-700 text-white font-medium text-lg px-8 py-4 rounded-2xl shadow-lg w-full sm:w-auto h-[56px] flex items-center justify-center whitespace-nowrap text-center no-underline"
                 >
-                  Zapisz się na zajęcia
+                  {t.bookNow}
                 </a>
               </div>
             </div>
