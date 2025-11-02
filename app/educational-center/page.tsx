@@ -1,14 +1,7 @@
 "use client"
 
-import { useState } from "react"
 import Footer from "@/components/footer"
-
-const languageFlags = {
-  pl: "🇵🇱",
-  uk: "🇺🇦",
-  en: "🇺🇸",
-  by: "⚪🔴⚪",
-}
+import { useLanguage } from "@/components/language-provider"
 
 const translations = {
   pl: {
@@ -194,8 +187,7 @@ const translations = {
 }
 
 export default function EducationalCenterPage() {
-  const [currentLang, setCurrentLang] = useState<"pl" | "uk" | "en" | "by">("pl")
-
+  const { currentLang } = useLanguage()
   const t = translations[currentLang] || translations.pl
 
   return (
