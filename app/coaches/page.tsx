@@ -417,6 +417,7 @@ const translations = {
 
 export default function CoachesPage() {
   const { currentLang } = useLanguage()
+  const router = useRouter()
   const t = translations[currentLang] || translations.pl
 
   return (
