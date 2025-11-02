@@ -809,7 +809,7 @@ export default function SchedulePage() {
   return (
     <div className="min-h-screen bg-black text-white">
       
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 pt-24 pb-8">
         <div className="text-center mb-8">
           <h1 className="text-4xl sm:text-5xl font-bold mb-4 bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent">
             {t.title}
