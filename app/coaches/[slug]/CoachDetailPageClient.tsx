@@ -75,17 +75,17 @@ export default function CoachDetailPageClient({ coachesData }: CoachDetailPageCl
                       {coach.specialty}
                     </Badge>
                   </div>
-                  <p className="text-xl sm:text-2xl text-gray-300 font-serif mb-6 font-light break-words">{coach.experience}</p>
-                  <p className="text-lg sm:text-xl text-gray-400 font-serif leading-relaxed font-light break-words">{coach.description}</p>
+                  <p className="text-xl sm:text-2xl text-gray-300 font-serif mb-6 font-light break-words text-center lg:text-left">{coach.experience}</p>
+                  <p className="text-lg sm:text-xl text-gray-400 font-serif leading-relaxed font-light break-words text-center lg:text-left">{coach.description}</p>
                 </div>
 
                 <div>
-                  <h3 className="text-2xl font-sans font-bold text-white mb-4">Osiągnięcia</h3>
-                  <ul className="space-y-2 text-left lg:text-left">
+                  <h3 className="text-2xl font-sans font-bold text-white mb-4 text-center lg:text-left">Osiągnięcia</h3>
+                  <ul className="space-y-2">
                     {coach.achievements.map((achievement, index) => (
-                      <li key={index} className="text-gray-300 font-serif text-lg flex items-center justify-center lg:justify-start">
+                      <li key={index} className="text-gray-300 font-serif text-lg flex items-center justify-center lg:justify-start text-center lg:text-left">
                         <span className="w-2 h-2 bg-red-500 rounded-full mr-3 flex-shrink-0"></span>
-                        {achievement}
+                        <span className="break-words">{achievement}</span>
                       </li>
                     ))}
                   </ul>
