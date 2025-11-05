@@ -6,7 +6,7 @@ const coaches = {
   "vital-rak": {
     name: "Vital Rak",
     specialty: "Główny trener, karate (sportowa grupa, dorośli), trening funkcjonalny",
-    experience: "15+ lat doświadczenia",
+    experience: "23 lata doświadczenia",
     description:
       "Główny trener klubu VOLAT z wieloletnim doświadczeniem w karate i treningu funkcjonalnym. Mistrz sportu, certyfikowany instruktor WKF. Specjalizuje się w przygotowaniu zawodników do zawodów międzynarodowych. Prowadzi karate sportową grupę i zajęcia dla dorosłych oraz trening funkcjonalny.",
     image: "/vital-rak.png",
@@ -18,17 +18,17 @@ const coaches = {
       "Specjalista Rehabilitacji Sportowej"
     ],
     upcomingSessions: [
-      { day: "Wtorek", time: "17:15-18:15", discipline: "Karate (dzieci 10+, zaczynające)", location: "Mokotów" },
+      { day: "Wtorek", time: "17:15-18:15", discipline: "Karate (dzieci 10+, początkujący)", location: "Mokotów" },
       { day: "Piątek", time: "20:30-22:00", discipline: "Karate (dorośli)", location: "Mokotów" },
       { day: "Sobota", time: "15:00-17:00", discipline: "Karate (sportowa grupa)", location: "Mokotów" },
     ],
   },
   "volha-yefimenka": {
     name: "Volha Yefimenka",
-    specialty: "Karate (dzieci 1-й и 2-й год обучения), trening motoryczny VolatMOVE Junior, Muay Thai",
+    specialty: "Karate (dzieci 1. i 2. rok nauki), trening motoryczny VolatMOVE Junior, Muay Thai",
     experience: "12+ lat doświadczenia",
     description:
-      "Specjalistka w karate dla dzieci oraz treningu motorycznym. Prowadzi zajęcia karate dla dzieci w wieku 7-11 lat (1-й и 2-й rok nauki), trening motoryczny VolatMOVE Junior oraz zajęcia Muay Thai. Ma wyjątkowe podejście do najmłodszych zawodników. Certyfikowana instruktorka z wieloletnim doświadczeniem w pracy z dziećmi.",
+      "Specjalistka w karate dla dzieci oraz treningu motorycznym. Prowadzi zajęcia karate dla dzieci w wieku 7-11 lat (1. i 2. rok nauki), trening motoryczny VolatMOVE Junior oraz zajęcia Muay Thai. Ma wyjątkowe podejście do najmłodszych zawodników. Certyfikowana instruktorka z wieloletnim doświadczeniem w pracy z dziećmi.",
     image: "/volha-yefimenka.png",
     achievements: [
       "Mistrzyni Białorusi w Karate",
@@ -39,8 +39,8 @@ const coaches = {
       "Ekspert Rozwoju Koordynacji"
     ],
     upcomingSessions: [
-      { day: "Wtorek", time: "16:00-17:15", discipline: "Karate (2-й rok)", location: "Mokotów" },
-      { day: "Wtorek", time: "17:15-18:15", discipline: "Karate (1-й rok)", location: "Mokotów" },
+      { day: "Wtorek", time: "16:00-17:15", discipline: "Karate (2. rok)", location: "Mokotów" },
+      { day: "Wtorek", time: "17:15-18:15", discipline: "Karate (1. rok)", location: "Mokotów" },
       { day: "Wtorek", time: "18:15-19:15", discipline: "VolatMOVE Junior", location: "Mokotów" },
       { day: "Sobota", time: "11:00-12:30", discipline: "Muay Thai (młodzież)", location: "Mokotów" },
     ],
@@ -68,9 +68,9 @@ const coaches = {
   "wiktor-muronczyk": {
     name: "Wiktor Murończyk",
     specialty: "Trener szkoły szachowej",
-    experience: "25+ lat doświadczenia",
+    experience: "2 lata doświadczenia",
     description:
-      "Mistrz szachowy prowadzący zajęcia dla wszystkich grup wiekowych. Specjalizuje się w rozwoju strategicznego myślenia i przygotowaniu do turniejów. Wieloletni doświadczenie w pracy z dziećmi i dorosłymi.",
+      "Mistrz szachowy prowadzący zajęcia dla wszystkich grup wiekowych. Specjalizuje się w rozwoju strategicznego myślenia i przygotowaniu do turniejów. Młody trener z dużym doświadczeniem turniejowym.",
     image: "/wiktor-muronczyk.png",
     achievements: [
       "Międzynarodowy Mistrz Szachowy",

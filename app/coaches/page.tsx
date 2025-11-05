@@ -13,7 +13,7 @@ const coaches = [
     id: "vital-rak",
     name: "Vital Rak",
     specialty: "Główny trener, karate (sportowa grupa, dorośli), trening funkcjonalny",
-    experience: "15+ lat doświadczenia",
+    experience: "23 lata doświadczenia",
     description:
       "Główny trener klubu VOLAT z wieloletnim doświadczeniem w karate i treningu funkcjonalnym. Mistrz sportu, certyfikowany instruktor WKF. Specjalizuje się w przygotowaniu zawodników do zawodów międzynarodowych. Prowadzi karate sportową grupę i zajęcia dla dorosłych oraz trening funkcjonalny.",
     image: "/vital-rak.png",
@@ -32,10 +32,10 @@ const coaches = [
   {
     id: "volha-yefimenka",
     name: "Volha Yefimenka",
-    specialty: "Karate (dzieci 1-й и 2-й год обучения), trening motoryczny VolatMOVE Junior, Muay Thai",
+    specialty: "Karate (dzieci 1. i 2. rok nauki), trening motoryczny VolatMOVE Junior, Muay Thai",
     experience: "12+ lat doświadczenia",
     description:
-      "Specjalistka w karate dla dzieci oraz treningu motorycznym. Prowadzi zajęcia karate dla dzieci w wieku 7-11 lat (1-й и 2-й rok nauki), trening motoryczny VolatMOVE Junior oraz zajęcia Muay Thai. Ma wyjątkowe podejście do najmłodszych zawodników. Certyfikowana instruktorka z wieloletnim doświadczeniem w pracy z dziećmi.",
+      "Specjalistka w karate dla dzieci oraz treningu motorycznym. Prowadzi zajęcia karate dla dzieci w wieku 7-11 lat (1. i 2. rok nauki), trening motoryczny VolatMOVE Junior oraz zajęcia Muay Thai. Ma wyjątkowe podejście do najmłodszych zawodników. Certyfikowana instruktorka z wieloletnim doświadczeniem w pracy z dziećmi.",
     image: "/volha-yefimenka.png",
     achievements: [
       "Mistrzyni Białorusi w Karate",
@@ -74,9 +74,9 @@ const coaches = [
     id: "wiktor-muronczyk",
     name: "Wiktor Murończyk",
     specialty: "Trener szkoły szachowej",
-    experience: "25+ lat doświadczenia",
+    experience: "2 lata doświadczenia",
     description:
-      "Mistrz szachowy prowadzący zajęcia dla wszystkich grup wiekowych. Specjalizuje się w rozwoju strategicznego myślenia i przygotowaniu do turniejów. Wieloletni doświadczenie w pracy z dziećmi i dorosłymi.",
+      "Mistrz szachowy prowadzący zajęcia dla wszystkich grup wiekowych. Specjalizuje się w rozwoju strategicznego myślenia i przygotowaniu do turniejów. Młody trener z dużym doświadczeniem turniejowym.",
     image: "/wiktor-muronczyk.png",
     achievements: [
       "Międzynarodowy Mistrz Szachowy",
@@ -145,7 +145,7 @@ const coachTranslations: Record<string, Record<string, {
   "vital-rak": {
     pl: {
       specialty: "Główny trener, karate",
-      experience: "15+ lat doświadczenia",
+      experience: "23 lata doświadczenia",
       description: "Główny trener klubu VOLAT z wieloletnim doświadczeniem w karate i treningu funkcjonalnym. Mistrz sportu, certyfikowany instruktor WKF. Specjalizuje się w przygotowaniu zawodników do zawodów międzynarodowych. Prowadzi karate sportową grupę i zajęcia dla dorosłych oraz trening funkcjonalny.",
       achievements: ["Mistrz Sportu w Karate", "Certyfikat WKF 3 Dan", "Trener Kadry Narodowej", "Instruktor Treningu Funkcjonalnego", "Specjalista Rehabilitacji Sportowej"],
       specialties: ["Karate WKF (sportowa grupa)", "Trening Funkcjonalny", "Przygotowanie Fizyczne", "Przygotowanie do Zawodów"],
@@ -153,7 +153,7 @@ const coachTranslations: Record<string, Record<string, {
     },
     uk: {
       specialty: "Головний тренер, карате",
-      experience: "15+ років досвіду",
+      experience: "23 роки досвіду",
       description: "Головний тренер клубу VOLAT з багаторічним досвідом у карате та функціональному тренінгу. Майстер спорту, сертифікований інструктор WKF. Спеціалізується на підготовці спортсменів до міжнародних змагань. Проводить спортивну групу карате та заняття для дорослих, а також функціональний тренінг.",
       achievements: ["Майстер спорту з карате", "Сертифікат WKF 3 Дан", "Тренер національної збірної", "Інструктор функціонального тренінгу", "Спеціаліст спортивної реабілітації"],
       specialties: ["Карате WKF (спортивна група)", "Функціональний тренінг", "Фізична підготовка", "Підготовка до змагань"],
@@ -161,7 +161,7 @@ const coachTranslations: Record<string, Record<string, {
     },
     en: {
       specialty: "Head coach, karate",
-      experience: "15+ years of experience",
+      experience: "23 years of experience",
       description: "Head coach of VOLAT club with years of experience in karate and functional training. Master of Sports, certified WKF instructor. Specializes in preparing athletes for international competitions. Conducts sports karate group and adult classes as well as functional training.",
       achievements: ["Master of Sports in Karate", "WKF 3 Dan Certificate", "National Team Coach", "Functional Training Instructor", "Sports Rehabilitation Specialist"],
       specialties: ["Karate WKF (sports group)", "Functional Training", "Physical Preparation", "Competition Preparation"],
@@ -169,7 +169,7 @@ const coachTranslations: Record<string, Record<string, {
     },
     by: {
       specialty: "Галоўны трэнер, каратэ",
-      experience: "15+ гадоў вопыту",
+      experience: "23 гады вопыту",
       description: "Галоўны трэнер клуба VOLAT з шматгадовым вопытам у каратэ і функцыянальных трэніроўках. Майстар спорту, сертыфікаваны інструктар WKF. Спецыялізуецца на падрыхтоўцы спартсменаў да міжнародных спаборніцтваў. Праводзіць спартыўную групу каратэ і заняткі для дарослых, а таксама функцыянальныя трэніроўкі.",
       achievements: ["Майстар спорту па каратэ", "Сертыфікат WKF 3 Дан", "Трэнер нацыянальнай зборнай", "Інструктар функцыянальных трэніровак", "Спецыяліст спартыўнай рэабілітацыі"],
       specialties: ["Каратэ WKF (спартыўная група)", "Функцыянальныя трэніроўкі", "Фізічная падрыхтоўка", "Падрыхтоўка да спаборніцтваў"],
@@ -180,7 +180,7 @@ const coachTranslations: Record<string, Record<string, {
     pl: {
       specialty: "Karate (dzieci), Muay Thai",
       experience: "12+ lat doświadczenia",
-      description: "Specjalistka w karate dla dzieci oraz treningu motorycznym. Prowadzi zajęcia karate dla dzieci w wieku 7-11 lat (1-й и 2-й rok nauki), trening motoryczny VolatMOVE Junior oraz zajęcia Muay Thai. Ma wyjątkowe podejście do najmłodszych zawodników. Certyfikowana instruktorka z wieloletnim doświadczeniem w pracy z dziećmi.",
+      description: "Specjalistka w karate dla dzieci oraz treningu motorycznym. Prowadzi zajęcia karate dla dzieci w wieku 7-11 lat (1. i 2. rok nauki), trening motoryczny VolatMOVE Junior oraz zajęcia Muay Thai. Ma wyjątkowe podejście do najmłodszych zawodników. Certyfikowana instruktorka z wieloletnim doświadczeniem w pracy z dziećmi.",
       achievements: ["Mistrzyni Białorusi w Karate", "Certyfikat Instruktora Dziecięcego", "Specjalistka Treningu Motorycznego", "Trener Grup Dziecięcych", "Instruktor VolatMOVE Junior", "Ekspert Rozwoju Koordynacji"],
       specialties: ["Karate (dzieci 1-2 rok)", "Trening Motoryczny VolatMOVE Junior", "Muay Thai", "Rozwój Koordynacji"],
       students: "160+ uczniów"
@@ -247,32 +247,32 @@ const coachTranslations: Record<string, Record<string, {
   "wiktor-muronczyk": {
     pl: {
       specialty: "Trener szachów",
-      experience: "25+ lat doświadczenia",
-      description: "Mistrz szachowy prowadzący zajęcia dla wszystkich grup wiekowych. Specjalizuje się w rozwoju strategicznego myślenia i przygotowaniu do turniejów. Wieloletni doświadczenie w pracy z dziećmi i dorosłymi.",
+      experience: "2 lata doświadczenia",
+      description: "Mistrz szachowy prowadzący zajęcia dla wszystkich grup wiekowych. Specjalizuje się w rozwoju strategicznego myślenia i przygotowaniu do turniejów. Młody trener z dużym doświadczeniem turniejowym.",
       achievements: ["Międzynarodowy Mistrz Szachowy", "Trener FIDE", "Sędzia Turniejów Szachowych", "Autor Programów Edukacyjnych", "Specjalista Psychologii Sportu"],
       specialties: ["Szachy", "Strategia", "Logika", "Rozwój Intelektualny"],
       students: "300+ uczniów"
     },
     uk: {
       specialty: "Тренер шахів",
-      experience: "25+ років досвіду",
-      description: "Шаховий майстер, який проводить заняття для всіх вікових груп. Спеціалізується на розвитку стратегічного мислення та підготовці до турнірів. Багаторічний досвід роботи з дітьми та дорослими.",
+      experience: "2 роки досвіду",
+      description: "Шаховий майстер, який проводить заняття для всіх вікових груп. Спеціалізується на розвитку стратегічного мислення та підготовці до турнірів. Молодий тренер з великим турнірним досвідом.",
       achievements: ["Міжнародний шаховий майстер", "Тренер FIDE", "Суддя шахових турнірів", "Автор освітніх програм", "Спеціаліст спортивної психології"],
       specialties: ["Шахи", "Стратегія", "Логіка", "Інтелектуальний розвиток"],
       students: "300+ учнів"
     },
     en: {
       specialty: "Chess coach",
-      experience: "25+ years of experience",
-      description: "Chess master conducting classes for all age groups. Specializes in developing strategic thinking and tournament preparation. Years of experience working with children and adults.",
+      experience: "2 years of experience",
+      description: "Chess master conducting classes for all age groups. Specializes in developing strategic thinking and tournament preparation. Young trainer with extensive tournament experience.",
       achievements: ["International Chess Master", "FIDE Coach", "Chess Tournament Judge", "Educational Program Author", "Sports Psychology Specialist"],
       specialties: ["Chess", "Strategy", "Logic", "Intellectual Development"],
       students: "300+ students"
     },
     by: {
       specialty: "Трэнер шахмат",
-      experience: "25+ гадоў вопыту",
-      description: "Шахматны майстар, які праводзіць заняткі для ўсіх узроставых груп. Спецыялізуецца на развіцці стратэгічнага мыслення і падрыхтоўцы да турніраў. Шматгадовы вопыт працы з дзецьмі і дарослымі.",
+      experience: "2 гады вопыту",
+      description: "Шахматны майстар, які праводзіць заняткі для ўсіх узроставых груп. Спецыялізуецца на развіцці стратэгічнага мыслення і падрыхтоўцы да турніраў. Малады трэнер з вялікім турнірным вопытам.",
       achievements: ["Міжнародны шахматны майстар", "Трэнер FIDE", "Суддзя шахматных турніраў", "Аўтар адукацыйных праграм", "Спецыяліст спартыўнай псіхалогіі"],
       specialties: ["Шахматы", "Стратэгія", "Логіка", "Інтэлектуальнае развіццё"],
       students: "300+ вучняў"
@@ -549,12 +549,12 @@ export default function CoachesPage() {
                         }}
                         style={{ touchAction: 'manipulation' }}
                       >
-                        <button 
+                  <button
                           className="w-full px-4 py-2.5 bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800 text-white text-sm font-medium rounded-xl shadow-lg hover:shadow-xl"
                           style={{ touchAction: 'manipulation' }}
                         >
                           {t.viewDetails}
-                        </button>
+                  </button>
                       </Link>
                     </div>
                 </div>
