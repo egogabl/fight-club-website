@@ -16,6 +16,7 @@ const translations = {
   pl: {
     nav: {
       home: "Główna",
+      about: "O nas",
       directions: "Kierunki sportu",
       disciplines: "Dyscypliny",
       educationalCenter: "Centrum Edukacyjne",
@@ -29,6 +30,7 @@ const translations = {
   uk: {
     nav: {
       home: "Головна",
+      about: "Про нас",
       directions: "Напрямки",
       disciplines: "Дисципліни",
       educationalCenter: "Освітній Центр",
@@ -42,6 +44,7 @@ const translations = {
   en: {
     nav: {
       home: "Home",
+      about: "About Us",
       directions: "Directions",
       disciplines: "Disciplines",
       educationalCenter: "Educational Center",
@@ -55,6 +58,7 @@ const translations = {
   by: {
     nav: {
       home: "Галоўная",
+      about: "Пра нас",
       directions: "Кірункі",
       disciplines: "Дысцыпліны",
       educationalCenter: "Адукацыйны цэнтр",
@@ -116,6 +120,8 @@ export default function Navigation() {
     
     if (sectionId === "home") {
       router.push("/")
+    } else if (sectionId === "about") {
+      router.push("/about")
     } else if (sectionId === "directions") {
       router.push("/#activities")
     } else if (sectionId === "educationalCenter") {
@@ -267,6 +273,12 @@ export default function Navigation() {
                     className="text-left font-medium text-white/90 hover:text-white transition-all duration-200 ease-out py-3 px-5 rounded-xl hover:bg-white/10 text-base hover:shadow-lg hover:shadow-white/10"
                   >
                     {t.nav.home}
+                  </button>
+                  <button
+                    onClick={() => handleNavigation("about")}
+                    className="text-left font-medium text-white/90 hover:text-white transition-all duration-200 ease-out py-3 px-5 rounded-xl hover:bg-white/10 text-base hover:shadow-lg hover:shadow-white/10"
+                  >
+                    {t.nav.about}
                   </button>
                   <button
                     onClick={() => handleNavigation("directions")}
