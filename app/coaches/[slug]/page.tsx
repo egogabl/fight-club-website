@@ -25,10 +25,10 @@ const coaches = {
   },
   "volha-yefimenka": {
     name: "Volha Yefimenka",
-    specialty: "Karate (dzieci 1. i 2. rok nauki), trening motoryczny VolatMOVE Junior, Muay Thai",
+    specialty: "Karate (dzieci 1. i 2. rok nauki), trening motoryczny VolatMOVE Junior",
     experience: "12+ lat doświadczenia",
     description:
-      "Specjalistka w karate dla dzieci oraz treningu motorycznym. Prowadzi zajęcia karate dla dzieci w wieku 7-11 lat (1. i 2. rok nauki), trening motoryczny VolatMOVE Junior oraz zajęcia Muay Thai. Ma wyjątkowe podejście do najmłodszych zawodników. Certyfikowana instruktorka z wieloletnim doświadczeniem w pracy z dziećmi.",
+      "Specjalistka w karate dla dzieci oraz treningu motorycznym. Prowadzi zajęcia karate dla dzieci w wieku 7-11 lat (1. i 2. rok nauki) oraz trening motoryczny VolatMOVE Junior. Ma wyjątkowe podejście do najmłodszych zawodników. Certyfikowana instruktorka z wieloletnim doświadczeniem w pracy z dziećmi.",
     image: "/volha-yefimenka.png",
     achievements: [
       "Mistrzyni Białorusi w Karate",
@@ -42,7 +42,6 @@ const coaches = {
       { day: "Wtorek", time: "16:00-17:15", discipline: "Karate (2. rok)", location: "Mokotów" },
       { day: "Wtorek", time: "17:15-18:15", discipline: "Karate (1. rok)", location: "Mokotów" },
       { day: "Wtorek", time: "18:15-19:15", discipline: "VolatMOVE Junior", location: "Mokotów" },
-      { day: "Sobota", time: "11:00-12:30", discipline: "Muay Thai (młodzież)", location: "Mokotów" },
     ],
   },
   "mikola-taczylin": {
@@ -60,9 +59,9 @@ const coaches = {
       "Specjalista Techniki Uderzeń"
     ],
     upcomingSessions: [
-      { day: "Poniedziałek", time: "20:00-21:30", discipline: "Muay Thai", location: "Praga" },
-      { day: "Środa", time: "19:00-20:30", discipline: "Boks", location: "Mokotów" },
-      { day: "Piątek", time: "20:00-21:30", discipline: "Kickboxing", location: "Praga" },
+      { day: "Wtorek", time: "18:15-19:15", discipline: "Muay Thai / Kickboxing (dzieci 8-13 lat)", location: "Mokotów" },
+      { day: "Wtorek", time: "19:15-20:45", discipline: "Muay Thai / Kickboxing (młodzież 14+ i dorośli)", location: "Mokotów" },
+      { day: "Wtorek", time: "20:45-22:00", discipline: "Muay Thai / Kickboxing (dorośli)", location: "Mokotów" },
     ],
   },
   "wiktor-muronczyk": {
@@ -100,9 +99,9 @@ const coaches = {
       "Ekspert Walki w Parterze"
     ],
     upcomingSessions: [
-      { day: "Wtorek", time: "16:00-17:30", discipline: "MMA Dziecięce", location: "Mokotów" },
-      { day: "Czwartek", time: "19:00-20:30", discipline: "MMA Młodzież", location: "Praga" },
-      { day: "Sobota", time: "11:00-12:30", discipline: "MMA Dorośli", location: "Mokotów" },
+      { day: "Poniedziałek", time: "19:30-20:30", discipline: "MMA (dzieci i młodzież 6-14 lat)", location: "Mokotów" },
+      { day: "Poniedziałek", time: "20:30-22:00", discipline: "MMA (młodzież 14+ i dorośli)", location: "Mokotów" },
+      { day: "Środa", time: "19:30-20:30", discipline: "MMA (dzieci i młodzież 6-14 lat)", location: "Mokotów" },
     ],
   },
   "daria-koba": {

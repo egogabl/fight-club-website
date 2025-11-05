@@ -63,27 +63,27 @@ const coachTranslations: Record<string, Record<string, {
   },
   "volha-yefimenka": {
     pl: {
-      specialty: "Karate (dzieci), Muay Thai",
+      specialty: "Karate (dzieci)",
       experience: "12+ lat doświadczenia",
-      description: "Specjalistka w karate dla dzieci oraz treningu motorycznym. Prowadzi zajęcia karate dla dzieci w wieku 7-11 lat (1. i 2. rok nauki), trening motoryczny VolatMOVE Junior oraz zajęcia Muay Thai. Ma wyjątkowe podejście do najmłodszych zawodników. Certyfikowana instruktorka z wieloletnim doświadczeniem w pracy z dziećmi.",
+      description: "Specjalistka w karate dla dzieci oraz treningu motorycznym. Prowadzi zajęcia karate dla dzieci w wieku 7-11 lat (1. i 2. rok nauki) oraz trening motoryczny VolatMOVE Junior. Ma wyjątkowe podejście do najmłodszych zawodników. Certyfikowana instruktorka z wieloletnim doświadczeniem w pracy z dziećmi.",
       achievements: ["Mistrzyni Białorusi w Karate", "Certyfikat Instruktora Dziecięcego", "Specjalistka Treningu Motorycznego", "Trener Grup Dziecięcych", "Instruktor VolatMOVE Junior", "Ekspert Rozwoju Koordynacji"]
     },
     uk: {
-      specialty: "Карате (діти), Муай Тай",
+      specialty: "Карате (діти)",
       experience: "12+ років досвіду",
-      description: "Спеціалістка з карате для дітей та моторичного тренінгу. Проводить заняття карате для дітей віком 7-11 років (1-й та 2-й рік навчання), моторичний тренінг VolatMOVE Junior та заняття Муай Тай. Має унікальний підхід до наймолодших спортсменів. Сертифікована інструкторка з багаторічним досвідом роботи з дітьми.",
+      description: "Спеціалістка з карате для дітей та моторичного тренінгу. Проводить заняття карате для дітей віком 7-11 років (1-й та 2-й рік навчання) та моторичний тренінг VolatMOVE Junior. Має унікальний підхід до наймолодших спортсменів. Сертифікована інструкторка з багаторічним досвідом роботи з дітьми.",
       achievements: ["Чемпіонка Білорусі з карате", "Сертифікат дитячого інструктора", "Спеціалістка моторичного тренінгу", "Тренер дитячих груп", "Інструктор VolatMOVE Junior", "Експерт розвитку координації"]
     },
     en: {
-      specialty: "Karate (children), Muay Thai",
+      specialty: "Karate (children)",
       experience: "12+ years of experience",
-      description: "Specialist in children's karate and motor training. Conducts karate classes for children aged 7-11 (1st and 2nd year), VolatMOVE Junior motor training, and Muay Thai classes. Has a unique approach to the youngest athletes. Certified instructor with years of experience working with children.",
+      description: "Specialist in children's karate and motor training. Conducts karate classes for children aged 7-11 (1st and 2nd year) and VolatMOVE Junior motor training. Has a unique approach to the youngest athletes. Certified instructor with years of experience working with children.",
       achievements: ["Belarus Karate Champion", "Children's Instructor Certificate", "Motor Training Specialist", "Children's Group Coach", "VolatMOVE Junior Instructor", "Coordination Development Expert"]
     },
     by: {
-      specialty: "Каратэ (дзеці), Муай Тай",
+      specialty: "Каратэ (дзеці)",
       experience: "12+ гадоў вопыту",
-      description: "Спецыялістка па каратэ для дзяцей і маторных трэніроўках. Праводзіць заняткі каратэ для дзяцей ва ўзросце 7-11 гадоў (1-й і 2-й год навучання), маторныя трэніроўкі VolatMOVE Junior і заняткі Муай Тай. Мае унікальны падыход да самых маладых спартсменаў. Сертыфікаваная інструктарка з шматгадовым вопытам працы з дзецьмі.",
+      description: "Спецыялістка па каратэ для дзяцей і маторных трэніроўках. Праводзіць заняткі каратэ для дзяцей ва ўзросце 7-11 гадоў (1-й і 2-й год навучання) і маторныя трэніроўкі VolatMOVE Junior. Мае унікальны падыход да самых маладых спартсменаў. Сертыфікаваная інструктарка з шматгадовым вопытам працы з дзецьмі.",
       achievements: ["Чэмпіёнка Беларусі па каратэ", "Сертыфікат дзіцячага інструктара", "Спецыялістка маторных трэніровак", "Трэнер дзіцячых груп", "Інструктар VolatMOVE Junior", "Эксперт развіцця каардынацыі"]
     }
   },
