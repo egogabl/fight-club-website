@@ -34,9 +34,9 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  title: "VOLAT - Centrum Sportu i Edukacji | Sztuki Walki Warszawa",
+  title: "VOLAT - Centrum Sportu i Edukacji | Sztuki Walki Warszawa Mokotów i Praga",
   description:
-    "Nowoczesne centrum sportu i edukacji w Warszawie oferujące kompleksowe szkolenia w zakresie karate, judo, muay thai, MMA oraz programy kulturalne i edukacyjne. Zajęcia dla dzieci, młodzieży i dorosłych.",
+    "Nowoczesne centrum sportu i edukacji w Warszawie oferujące kompleksowe szkolenia w zakresie karate WKF, judo, muay thai, MMA, trening funkcjonalny oraz programy edukacyjne. Zajęcia dla dzieci, młodzieży i dorosłych. Lokalizacje: Mokotów ul. Artura Malawskiego 6 i Praga Północ ul. Kowieńska 12/20.",
   keywords: [
     "karate warszawa",
     "sztuki walki warszawa",
@@ -48,7 +48,16 @@ export const metadata: Metadata = {
     "trening funkcjonalny warszawa",
     "zajęcia dla dzieci warszawa",
     "VOLAT",
-    "centrum sportu warszawa"
+    "centrum sportu warszawa",
+    "karate warszawa mokotów",
+    "karate warszawa praga",
+    "sztuki walki mokotów",
+    "sztuki walki praga północ",
+    "ul. artura malawskiego 6",
+    "ul. kowieńska 12/20",
+    "volatmove kids",
+    "volatmove junior",
+    "szkoła szachowa warszawa",
   ],
   authors: [{ name: "VOLAT" }],
   creator: "VOLAT",
