@@ -554,6 +554,40 @@ const scheduleData = [
     ageGroup: "dzieci",
     room: "Mała",
   },
+  // Szachy - Wtorek, Czwartek, Sobota
+  {
+    day: "Wtorek",
+    time: "18:00-19:30",
+    discipline: "Szachy",
+    location: "Mokotów - Mała",
+    coach: { name: "Wiktor Murończyk", slug: "wiktor-muronczyk" },
+    sport: "szachy",
+    branch: "mokotow",
+    ageGroup: "wszystkie",
+    room: "Mała",
+  },
+  {
+    day: "Czwartek",
+    time: "17:00-18:30",
+    discipline: "Szachy",
+    location: "Praga - Sala",
+    coach: { name: "Wiktor Murończyk", slug: "wiktor-muronczyk" },
+    sport: "szachy",
+    branch: "praga",
+    ageGroup: "wszystkie",
+    room: "Sala",
+  },
+  {
+    day: "Sobota",
+    time: "14:00-15:30",
+    discipline: "Szachy",
+    location: "Mokotów - Mała",
+    coach: { name: "Wiktor Murończyk", slug: "wiktor-muronczyk" },
+    sport: "szachy",
+    branch: "mokotow",
+    ageGroup: "wszystkie",
+    room: "Mała",
+  },
   
   // PRAGA - Понедельник | Среда
   {
@@ -635,13 +669,14 @@ const translations = {
       "functional-training": "Trening motoryczny i funkcjonalny",
       judo: "Judo",
       karate: "Karate",
-      "karate-year-2": "Karate (2-й rok nauki)",
-      "karate-year-1": "Karate (1-й rok nauki)",
+      "karate-year-2": "Karate (2. rok nauki)",
+      "karate-year-1": "Karate (1. rok nauki)",
       "karate-beginners": "Karate (dzieci 10+, początkujący)",
       "karate-sport": "Karate (grupa sportowa)",
       muaythai: "Muay Thai / Kickboxing",
       mma: "MMA",
       motoryka: "Motoryka",
+      szachy: "Szachy",
     },
   },
   uk: {
@@ -683,6 +718,7 @@ const translations = {
       muaythai: "Муай Тай / Кікбоксинг",
       mma: "ММА",
       motoryka: "Моторика",
+      szachy: "Шахи",
     },
   },
   en: {
@@ -724,6 +760,7 @@ const translations = {
       muaythai: "Muay Thai / Kickboxing",
       mma: "MMA",
       motoryka: "Motor Skills",
+      szachy: "Chess",
     },
   },
   by: {
@@ -765,6 +802,7 @@ const translations = {
       muaythai: "Муай Тай / Кікбоксінг",
       mma: "ММА",
       motoryka: "Маторыка",
+      szachy: "Шахматы",
     },
   },
 }
@@ -916,6 +954,17 @@ export default function SchedulePage() {
           >
             🏃 {t.disciplines.motoryka || "Motoryka"}
           </Button>
+          <Button
+            onClick={() => setSelectedSport("szachy")}
+            size="lg"
+            className={`px-4 sm:px-6 py-2 sm:py-3 rounded-xl font-accent text-sm sm:text-base border shadow-md ${
+              selectedSport === "szachy"
+                ? "bg-gradient-to-r from-red-500 to-red-600 text-white font-bold border-red-500"
+                : "bg-gray-900 text-gray-300 hover:bg-gray-800 border-gray-700 hover:border-gray-600"
+            }`}
+          >
+            ♟️ {t.disciplines.szachy || "Szachy"}
+          </Button>
         </div>
 
         <div className="flex justify-center gap-2 sm:gap-4 mb-8 flex-wrap">
@@ -992,6 +1041,7 @@ export default function SchedulePage() {
                         if (discipline.includes("спортивная") || discipline.includes("sportowa")) return "karate-sport"
                         if (discipline.includes("Муай Тай") || discipline.includes("Muay Thai")) return "muaythai"
                         if (discipline.includes("ММА") || discipline === "MMA") return "mma"
+                        if (discipline.includes("Szachy") || discipline.includes("Шахи") || discipline.includes("Шахматы") || discipline.includes("Chess")) return "szachy"
                         return null
                       }
                       const disciplineKey = getDisciplineKey(item.discipline)
@@ -1032,7 +1082,7 @@ export default function SchedulePage() {
                               {item.sport === "mma" && `🥋 ${t.disciplines.mma || "MMA"}`}
                               {item.sport === "judo" && `🥋 ${t.disciplines.judo || "Judo"}`}
                               {item.sport === "motoryka" && `🏃 ${t.disciplines.motoryka || "Motoryka"}`}
-                              {item.sport === "szachy" && "♟️ Szachy"}
+                              {item.sport === "szachy" && `♟️ ${t.disciplines.szachy || "Szachy"}`}
                             </Badge>
                             <Badge variant="outline" className="border-blue-500 text-blue-500">
                               {t.ageGroups[item.ageGroup as keyof typeof t.ageGroups]}
