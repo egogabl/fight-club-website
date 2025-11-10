@@ -43,7 +43,11 @@ const translations = {
           "Polski (od zera, B1/B2, Biznes)",
           "Matematyka (klasy 4–8, liceum)",
           "Przygotowanie do egzaminu ósmoklasisty i matury"
-        ]
+        ],
+        schedule: "Grafik zajęć",
+        scheduleInfo: "Angielski: Środa 15:15-16:15 (7-9 lat, A0), 16:20-17:20 (9-11 lat, A0+), 17:30-18:30 (12-14 lat, A2+). Szczegóły innych kursów prosimy uzgodnić telefonicznie.",
+        contactInfo: "Szczegóły dotyczące kursów polskiego i matematyki prosimy uzgodnić telefonicznie lub mailowo",
+        viewDetails: "Zapisz się na kurs"
       },
       educational: {
         title: "Dlaczego my?",
@@ -93,7 +97,11 @@ const translations = {
           "Польська (з нуля, B1/B2, Бізнес)",
           "Математика (4-8 класи, ліцей)",
           "Підготовка до іспиту восьмого класу та матури"
-        ]
+        ],
+        schedule: "Розклад занять",
+        scheduleInfo: "Англійська: Середа 15:15-16:15 (7-9 років, A0), 16:20-17:20 (9-11 років, A0+), 17:30-18:30 (12-14 років, A2+). Деталі інших курсів просимо узгодити телефоном.",
+        contactInfo: "Деталі щодо курсів польської та математики просимо узгодити телефоном або електронною поштою",
+        viewDetails: "Записатися на курс"
       },
       educational: {
         title: "Освітні Програми",
@@ -143,7 +151,11 @@ const translations = {
           "Polish (from scratch, B1/B2, Business)",
           "Mathematics (grades 4–8, high school)",
           "Preparation for 8th grade exam and matura"
-        ]
+        ],
+        schedule: "Class schedule",
+        scheduleInfo: "English: Wednesday 15:15-16:15 (7-9 years, A0), 16:20-17:20 (9-11 years, A0+), 17:30-18:30 (12-14 years, A2+). Details of other courses please arrange by phone.",
+        contactInfo: "Details regarding Polish and Mathematics courses please arrange by phone or email",
+        viewDetails: "Sign up for course"
       },
       educational: {
         title: "Educational Programs",
@@ -193,7 +205,11 @@ const translations = {
           "Польская (з нуля, B1/B2, Бізнес)",
           "Матэматыка (4-8 класы, ліцэй)",
           "Падрыхтоўка да іспыту восьмага класа і матуры"
-        ]
+        ],
+        schedule: "Расклад заняткаў",
+        scheduleInfo: "Англійская: Серада 15:15-16:15 (7-9 гадоў, A0), 16:20-17:20 (9-11 гадоў, A0+), 17:30-18:30 (12-14 гадоў, A2+). Дэталі іншых курсаў просім узгадніць тэлефонам.",
+        contactInfo: "Дэталі адносна курсаў польскай і матэматыкі просім узгадніць тэлефонам або электроннай поштай",
+        viewDetails: "Запісацца на курс"
       },
       educational: {
         title: "Адукацыйныя Праграмы",
@@ -276,8 +292,8 @@ export default function EducationalCenterPage() {
 
             <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl p-8 hover:border-red-500/50 transition-all duration-300 flex flex-col">
               <h3 className="text-2xl font-display font-bold text-white mb-4 bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">{t.sections.language.title}</h3>
-              <p className="text-white/70 mb-6 font-primary">{t.sections.language.description}</p>
-              <ul className="space-y-2 mb-6 flex-grow">
+              <p className="text-white/70 mb-4 font-primary">{t.sections.language.description}</p>
+              <ul className="space-y-2 mb-4 flex-grow">
                 {t.sections.language.features.map((feature: string, index: number) => (
                   <li key={index} className="text-white/80 text-sm flex items-center font-primary">
                     <span className="w-2 h-2 bg-gradient-to-r from-red-500 to-red-400 rounded-full mr-3 flex-shrink-0"></span>
@@ -285,13 +301,21 @@ export default function EducationalCenterPage() {
                   </li>
                 ))}
               </ul>
+              <div className="mb-4 p-3 bg-white/5 rounded-lg border border-white/10">
+                <div className="flex items-center gap-2 mb-1">
+                  <Calendar className="w-4 h-4 text-red-400" />
+                  <span className="text-white/90 text-xs font-semibold">{t.sections.language.schedule}</span>
+                </div>
+                <p className="text-white/70 text-xs font-primary mb-2">{t.sections.language.scheduleInfo}</p>
+                <p className="text-white/60 text-xs font-primary italic">{t.sections.language.contactInfo}</p>
+              </div>
               <a
                 href="https://docs.google.com/forms/d/1LhF3J7PteAcxbpV8jA2c8SA6aBDkPmN8yBp_j5UQTPU/viewform"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full px-4 py-2.5 bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 text-white text-sm font-accent font-medium rounded-lg shadow-lg transition-all duration-200 flex items-center justify-center gap-2 h-[42px]"
               >
-                {t.bookNow}
+                {t.sections.language.viewDetails}
               </a>
             </div>
 
