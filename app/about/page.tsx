@@ -1,9 +1,10 @@
 "use client"
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Award, Globe, Dumbbell, Users, Target, Heart, Trophy, MapPin, BookOpen, TreePine, GraduationCap } from "lucide-react"
+import { Award, Globe, Dumbbell, Users, Target, Heart, Trophy, MapPin, BookOpen, TreePine, GraduationCap, Snowflake, Sun, Building2 } from "lucide-react"
 import { useLanguage } from "@/components/language-provider"
 import { lazy, Suspense } from "react"
+import Link from "next/link"
 
 const Footer = lazy(() => import("@/components/footer"))
 
