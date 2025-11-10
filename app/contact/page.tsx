@@ -126,7 +126,7 @@ const translations = {
     streetParking: "Street parking"
   },
   by: {
-    title: "Кантакт",
+    title: "Кантакты",
     subtitle: "Звязацца з намі і пачаць сваю прыгоду з баявымі мастацтвамі",
     description: "У нас ёсць дзве лакацыі ў Варшаве - абярыце найбліжэйшую для вас",
     facilities: "Удобствы",

@@ -114,7 +114,7 @@ const formatDate = (dateString: string, lang: string): string => {
     pl: 'pl-PL',
     uk: 'uk-UA',
     en: 'en-US',
-    by: 'ru-RU', // Белорусский использует русскую локализацию
+    by: 'be-BY', // Белорусская локализация
   }
   
   return date.toLocaleDateString(locales[lang] || 'pl-PL', options)
