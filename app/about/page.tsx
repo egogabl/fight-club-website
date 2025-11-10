@@ -46,8 +46,17 @@ const translations = {
     membershipsSubtitle: "Polskiej Unii Karate, Mazowieckiego Związku Karate oraz Polskiego Związku Szachowego",
     additionalActivity: "Inna działalność",
     additionalActivityDesc: "Oprócz treningów organizujemy obozy miejskie i wyjazdowe, łączące sport, aktywny wypoczynek i edukację. Tworzymy również możliwości rywalizacji dla naszych szachistów - prowadzimy ligę szachową \"Szachowy Volat\", która cieszy się rosnącą liczbą uczestników.",
+    camps: "Obozy Sportowe",
+    campsDesc: "Organizujemy obozy miejskie i wyjazdowe, łączące sport, aktywny wypoczynek i edukację. Zimowe i letnie obozy dla dzieci i młodzieży.",
+    winterCamp: "Obozy Zimowe",
+    winterCampDesc: "Intensywne treningi karate, zajęcia sportowe, edukacyjne i integracyjne. Idealne połączenie sportu i wypoczynku.",
+    summerCamp: "Obozy Letnie",
+    summerCampDesc: "Aktywne wakacje z treningami, zajęciami sportowymi i rekreacyjnymi. Rozwój fizyczny i intelektualny w przyjaznej atmosferze.",
+    cityCamp: "Półkolonie",
+    cityCampDesc: "Miejskie obozy dla dzieci w wieku szkolnym. Zajęcia sportowe, edukacyjne i integracyjne w Warszawie.",
     touristClub: "Klub Turystyczny",
     touristClubDesc: "Dla wszystkich miłośników podróży w naszym klubie działa Klub Turystyczny, który łączy dzieci, młodzież i dorosłych. Organizujemy ciekawe wyprawy, wycieczki, spacery oraz sportowo-edukacyjne wydarzenia na świeżym powietrzu.",
+    learnMore: "Dowiedz się więcej",
     branches: "Nasze oddziały w Warszawie",
     mokotow: "Malawskiego, 6 (Mokotów)",
     praga: "Kowieńska, 12/20 (Praga Północ)",
@@ -95,8 +104,17 @@ const translations = {
     membershipsSubtitle: "Польської спілки карате, Мазовецького союзу карате та Польського шахового союзу",
     additionalActivity: "Інша діяльність",
     additionalActivityDesc: "Окрім тренувань, ми організуємо міські та виїзні табори, що поєднують спорт, активний відпочинок та освіту. Ми також створюємо можливості для змагань наших шахістів - ведемо шахову лігу \"Шаховий Волят\", яка набирає все більше учасників.",
+    camps: "Спортивні табори",
+    campsDesc: "Організуємо міські та виїзні табори, що поєднують спорт, активний відпочинок та освіту. Зимові та літні табори для дітей та молоді.",
+    winterCamp: "Зимові табори",
+    winterCampDesc: "Інтенсивні тренування з карате, спортивні, освітні та інтеграційні заняття. Ідеальне поєднання спорту та відпочинку.",
+    summerCamp: "Літні табори",
+    summerCampDesc: "Активні канікули з тренуваннями, спортивними та рекреаційними заняттями. Фізичний та інтелектуальний розвиток у дружній атмосфері.",
+    cityCamp: "Міські табори",
+    cityCampDesc: "Міські табори для дітей шкільного віку. Спортивні, освітні та інтеграційні заняття у Варшаві.",
     touristClub: "Туристичний клуб",
     touristClubDesc: "Для всіх любителів подорожей у нашому клубі працює Туристичний клуб, який об'єднує дітей, молодь та дорослих. Ми організуємо цікаві походи, екскурсії, прогулянки та спортивно-освітні події на свіжому повітрі.",
+    learnMore: "Дізнатися більше",
     branches: "Наші філії у Варшаві",
     mokotow: "Малавського, 6 (Мокотув)",
     praga: "Ковенська, 12/20 (Прага Північна)",
@@ -144,8 +162,17 @@ const translations = {
     membershipsSubtitle: "Polish Karate Union, Mazovian Karate Union and Polish Chess Union",
     additionalActivity: "Other Activities",
     additionalActivityDesc: "In addition to training, we organize urban and away camps that combine sport, active recreation and education. We also create competition opportunities for our chess players - we run the 'Chess Volat' league, which is gaining more and more participants.",
+    camps: "Sports Camps",
+    campsDesc: "We organize urban and away camps that combine sport, active recreation and education. Winter and summer camps for children and youth.",
+    winterCamp: "Winter Camps",
+    winterCampDesc: "Intensive karate training, sports, educational and integration activities. Perfect combination of sport and recreation.",
+    summerCamp: "Summer Camps",
+    summerCampDesc: "Active holidays with training, sports and recreational activities. Physical and intellectual development in a friendly atmosphere.",
+    cityCamp: "City Camps",
+    cityCampDesc: "Urban camps for school-age children. Sports, educational and integration activities in Warsaw.",
     touristClub: "Tourist Club",
     touristClubDesc: "For all travel lovers in our club, there is a Tourist Club that brings together children, youth and adults. We organize interesting trips, excursions, walks and sports and educational events in the fresh air.",
+    learnMore: "Learn more",
     branches: "Our branches in Warsaw",
     mokotow: "Malawskiego, 6 (Mokotów)",
     praga: "Kowieńska, 12/20 (Praga Północ)",
@@ -193,8 +220,17 @@ const translations = {
     membershipsSubtitle: "Польскага саюза каратэ, Мазавецкага саюза каратэ і Польскага шахматнага саюза",
     additionalActivity: "Іншая дзейнасць",
     additionalActivityDesc: "Акрамя трэніровак, мы арганізуем гарадскія і выезныя лагеры, якія аб'ядноўваюць спорт, актыўны адпачынак і адукацыю. Мы таксама ствараем магчымасці для спаборніцтваў нашых шахматыстаў - вядзем шахматную лігу \"Шахматы Волят\", якая набірае ўсё больш удзельнікаў.",
+    camps: "Спартыўныя лагеры",
+    campsDesc: "Арганізуем гарадскія і выезныя лагеры, якія аб'ядноўваюць спорт, актыўны адпачынак і адукацыю. Зімовыя і летнія лагеры для дзяцей і моладзі.",
+    winterCamp: "Зімовыя лагеры",
+    winterCampDesc: "Інтэнсіўныя трэніроўкі па каратэ, спартыўныя, адукацыйныя і інтэграцыйныя заняткі. Ідэальнае спалучэнне спорту і адпачынку.",
+    summerCamp: "Летнія лагеры",
+    summerCampDesc: "Актыўныя канікулы з трэніроўкамі, спартыўнымі і рэкреацыйнымі заняткамі. Фізічнае і інтэлектуальнае развіццё ў сяброўскай атмасферы.",
+    cityCamp: "Гарадскія лагеры",
+    cityCampDesc: "Гарадскія лагеры для дзяцей школьнага ўзросту. Спартыўныя, адукацыйныя і інтэграцыйныя заняткі ў Варшаве.",
     touristClub: "Турыстычны клуб",
     touristClubDesc: "Для ўсіх аматараў падарожжаў у нашым клубе працуе Турыстычны клуб, які аб'ядноўвае дзяцей, моладзь і дарослых. Мы арганізуем цікавыя паходы, экскурсіі, прагулкі і спартыўна-адукацыйныя мерапрыемствы на свежым паветры.",
+    learnMore: "Даведацца больш",
     branches: "Нашы філіялы ў Варшаве",
     mokotow: "Малавскага, 6 (Мокотув)",
     praga: "Кавенска, 12/20 (Прага Паўночная)",
@@ -450,7 +486,53 @@ export default function AboutPage() {
               <p className="text-lg text-gray-300 font-serif leading-relaxed mb-6">
                 {t.additionalActivityDesc}
               </p>
-              <div className="flex items-start space-x-4 mt-6">
+              
+              {/* Camps Section */}
+              <div className="mb-6">
+                <h3 className="text-2xl font-sans font-bold text-white mb-4">{t.camps}</h3>
+                <p className="text-gray-300 font-serif leading-relaxed mb-4">{t.campsDesc}</p>
+                <div className="grid md:grid-cols-3 gap-4 mt-4">
+                  <Card className="bg-gray-800/50 border-gray-700">
+                    <CardContent className="p-4">
+                      <div className="flex items-center gap-3 mb-3">
+                        <Snowflake className="w-6 h-6 text-red-400 flex-shrink-0" />
+                        <h4 className="text-lg font-sans font-bold text-white">{t.winterCamp}</h4>
+                      </div>
+                      <p className="text-gray-300 text-sm font-serif mb-3">{t.winterCampDesc}</p>
+                      <Link href="/winter-camp">
+                        <button className="text-red-400 hover:text-red-300 text-sm font-medium">
+                          {t.learnMore} →
+                        </button>
+                      </Link>
+                    </CardContent>
+                  </Card>
+                  
+                  <Card className="bg-gray-800/50 border-gray-700">
+                    <CardContent className="p-4">
+                      <div className="flex items-center gap-3 mb-3">
+                        <Sun className="w-6 h-6 text-red-400 flex-shrink-0" />
+                        <h4 className="text-lg font-sans font-bold text-white">{t.summerCamp}</h4>
+                      </div>
+                      <p className="text-gray-300 text-sm font-serif mb-3">{t.summerCampDesc}</p>
+                      <p className="text-gray-400 text-xs font-serif italic">Szczegóły wkrótce</p>
+                    </CardContent>
+                  </Card>
+                  
+                  <Card className="bg-gray-800/50 border-gray-700">
+                    <CardContent className="p-4">
+                      <div className="flex items-center gap-3 mb-3">
+                        <Building2 className="w-6 h-6 text-red-400 flex-shrink-0" />
+                        <h4 className="text-lg font-sans font-bold text-white">{t.cityCamp}</h4>
+                      </div>
+                      <p className="text-gray-300 text-sm font-serif mb-3">{t.cityCampDesc}</p>
+                      <p className="text-gray-400 text-xs font-serif italic">Szczegóły wkrótce</p>
+                    </CardContent>
+                  </Card>
+                </div>
+              </div>
+              
+              {/* Tourist Club */}
+              <div className="flex items-start space-x-4 mt-6 pt-6 border-t border-white/10">
                 <TreePine className="w-6 h-6 text-red-400 mt-1 flex-shrink-0" />
                 <div>
                   <h3 className="text-xl font-sans font-bold text-white mb-2">{t.touristClub}</h3>
