@@ -136,6 +136,10 @@ export default function Navigation() {
       router.push("/contact")
     } else if (sectionId === "news") {
       router.push("/news")
+    } else if (sectionId === "winterCamp") {
+      router.push("/winter-camp")
+    } else if (sectionId === "rental") {
+      router.push("/rental")
     }
   }
 
