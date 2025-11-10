@@ -2,6 +2,8 @@
 
 import { lazy, Suspense } from "react"
 import { useLanguage } from "@/components/language-provider"
+import Link from "next/link"
+import { Calendar, ExternalLink } from "lucide-react"
 
 const Footer = lazy(() => import("@/components/footer"))
 
@@ -26,7 +28,12 @@ const translations = {
           "Turnieje i zawody",
           "Przygotowanie do zawodów",
           "Szkoła szachowa dla dzieci"
-        ]
+        ],
+        schedule: "Grafik zajęć",
+        scheduleInfo: "Wtorek 18:00-19:30 (Mokotów), Czwartek 17:00-18:30 (Praga), Sobota 14:00-15:30 (Mokotów)",
+        viewSchedule: "Zobacz grafik",
+        viewDetails: "Szczegóły o szachach",
+        trainer: "Trener: Wiktor Murończyk"
       },
       language: {
         title: "Kursy językowe",
@@ -71,7 +78,12 @@ const translations = {
           "Турніри та змагання",
           "Підготовка до змагань",
           "Шахова школа для дітей"
-        ]
+        ],
+        schedule: "Розклад занять",
+        scheduleInfo: "Вівторок 18:00-19:30 (Мокотув), Четвер 17:00-18:30 (Прага), Субота 14:00-15:30 (Мокотув)",
+        viewSchedule: "Переглянути розклад",
+        viewDetails: "Деталі про шахи",
+        trainer: "Тренер: Wiktor Murończyk"
       },
       language: {
         title: "Мовні курси",
@@ -116,7 +128,12 @@ const translations = {
           "Tournaments and competitions",
           "Competition preparation",
           "Chess school for children"
-        ]
+        ],
+        schedule: "Class schedule",
+        scheduleInfo: "Tuesday 18:00-19:30 (Mokotów), Thursday 17:00-18:30 (Praga), Saturday 14:00-15:30 (Mokotów)",
+        viewSchedule: "View schedule",
+        viewDetails: "Chess details",
+        trainer: "Coach: Wiktor Murończyk"
       },
       language: {
         title: "Language courses",
@@ -161,7 +178,12 @@ const translations = {
           "Турніры і спаборніцтвы",
           "Падрыхтоўка да спаборніцтваў",
           "Шахматная школа для дзяцей"
-        ]
+        ],
+        schedule: "Расклад заняткаў",
+        scheduleInfo: "Аўторак 18:00-19:30 (Макотув), Чацвер 17:00-18:30 (Прага), Субота 14:00-15:30 (Макотув)",
+        viewSchedule: "Паглядзець расклад",
+        viewDetails: "Дэталі пра шахматы",
+        trainer: "Трэнер: Wiktor Murończyk"
       },
       language: {
         title: "Моўныя курсы",
@@ -207,34 +229,58 @@ export default function EducationalCenterPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl p-8 hover:border-red-500/50 transition-all duration-300">
+            <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl p-8 hover:border-red-500/50 transition-all duration-300 flex flex-col">
               <h3 className="text-2xl font-display font-bold text-white mb-4 bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">{t.sections.chess.title}</h3>
-              <p className="text-white/70 mb-6 font-primary">{t.sections.chess.description}</p>
-              <ul className="space-y-2 mb-6">
+              <p className="text-white/70 mb-4 font-primary">{t.sections.chess.description}</p>
+              <p className="text-white/60 text-xs mb-2 font-primary italic">{t.sections.chess.trainer}</p>
+              <ul className="space-y-2 mb-4 flex-grow">
                 {t.sections.chess.features.map((feature: string, index: number) => (
                   <li key={index} className="text-white/80 text-sm flex items-center font-primary">
-                    <span className="w-2 h-2 bg-gradient-to-r from-red-500 to-red-400 rounded-full mr-3"></span>
+                    <span className="w-2 h-2 bg-gradient-to-r from-red-500 to-red-400 rounded-full mr-3 flex-shrink-0"></span>
                     {feature}
                   </li>
                 ))}
               </ul>
-              <a
-                href="https://docs.google.com/forms/d/1LhF3J7PteAcxbpV8jA2c8SA6aBDkPmN8yBp_j5UQTPU/viewform"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full px-6 py-3 bg-gradient-to-r from-red-600 to-red-500 text-white text-sm font-accent font-medium rounded-xl shadow-lg block text-center"
-              >
-                {t.bookNow}
-              </a>
+              <div className="mb-4 p-3 bg-white/5 rounded-lg border border-white/10">
+                <div className="flex items-center gap-2 mb-1">
+                  <Calendar className="w-4 h-4 text-red-400" />
+                  <span className="text-white/90 text-xs font-semibold">{t.sections.chess.schedule}</span>
+                </div>
+                <p className="text-white/70 text-xs font-primary">{t.sections.chess.scheduleInfo}</p>
+              </div>
+              <div className="space-y-2">
+                <Link
+                  href="/schedule?sport=szachy"
+                  className="w-full px-4 py-2.5 bg-white/10 hover:bg-white/20 border border-white/20 hover:border-red-500/50 text-white text-sm font-medium rounded-lg transition-all duration-200 flex items-center justify-center gap-2"
+                >
+                  <Calendar className="w-4 h-4" />
+                  {t.sections.chess.viewSchedule}
+                </Link>
+                <Link
+                  href="/disciplines/chess"
+                  className="w-full px-4 py-2.5 bg-white/10 hover:bg-white/20 border border-white/20 hover:border-red-500/50 text-white text-sm font-medium rounded-lg transition-all duration-200 flex items-center justify-center gap-2"
+                >
+                  <ExternalLink className="w-4 h-4" />
+                  {t.sections.chess.viewDetails}
+                </Link>
+                <a
+                  href="https://docs.google.com/forms/d/1LhF3J7PteAcxbpV8jA2c8SA6aBDkPmN8yBp_j5UQTPU/viewform"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full px-4 py-2.5 bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 text-white text-sm font-accent font-medium rounded-lg shadow-lg transition-all duration-200 flex items-center justify-center gap-2 h-[42px]"
+                >
+                  {t.bookNow}
+                </a>
+              </div>
             </div>
 
-            <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl p-8 hover:border-red-500/50 transition-all duration-300">
+            <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl p-8 hover:border-red-500/50 transition-all duration-300 flex flex-col">
               <h3 className="text-2xl font-display font-bold text-white mb-4 bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">{t.sections.language.title}</h3>
               <p className="text-white/70 mb-6 font-primary">{t.sections.language.description}</p>
-              <ul className="space-y-2 mb-6">
+              <ul className="space-y-2 mb-6 flex-grow">
                 {t.sections.language.features.map((feature: string, index: number) => (
                   <li key={index} className="text-white/80 text-sm flex items-center font-primary">
-                    <span className="w-2 h-2 bg-gradient-to-r from-red-500 to-red-400 rounded-full mr-3"></span>
+                    <span className="w-2 h-2 bg-gradient-to-r from-red-500 to-red-400 rounded-full mr-3 flex-shrink-0"></span>
                     {feature}
                   </li>
                 ))}
@@ -243,19 +289,19 @@ export default function EducationalCenterPage() {
                 href="https://docs.google.com/forms/d/1LhF3J7PteAcxbpV8jA2c8SA6aBDkPmN8yBp_j5UQTPU/viewform"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full px-6 py-3 bg-gradient-to-r from-red-600 to-red-500 text-white text-sm font-accent font-medium rounded-xl shadow-lg block text-center"
+                className="w-full px-4 py-2.5 bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 text-white text-sm font-accent font-medium rounded-lg shadow-lg transition-all duration-200 flex items-center justify-center gap-2 h-[42px]"
               >
                 {t.bookNow}
               </a>
             </div>
 
-            <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl p-8 hover:border-red-500/50 transition-all duration-300">
+            <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl p-8 hover:border-red-500/50 transition-all duration-300 flex flex-col">
               <h3 className="text-2xl font-display font-bold text-white mb-4 bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">{t.sections.educational.title}</h3>
               <p className="text-white/70 mb-6 font-primary">{t.sections.educational.description}</p>
-              <ul className="space-y-2 mb-6">
+              <ul className="space-y-2 mb-6 flex-grow">
                 {t.sections.educational.features.map((feature: string, index: number) => (
                   <li key={index} className="text-white/80 text-sm flex items-center font-primary">
-                    <span className="w-2 h-2 bg-gradient-to-r from-red-500 to-red-400 rounded-full mr-3"></span>
+                    <span className="w-2 h-2 bg-gradient-to-r from-red-500 to-red-400 rounded-full mr-3 flex-shrink-0"></span>
                     {feature}
                   </li>
                 ))}
@@ -264,7 +310,7 @@ export default function EducationalCenterPage() {
                 href="https://docs.google.com/forms/d/1LhF3J7PteAcxbpV8jA2c8SA6aBDkPmN8yBp_j5UQTPU/viewform"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full px-6 py-3 bg-gradient-to-r from-red-600 to-red-500 text-white text-sm font-accent font-medium rounded-xl shadow-lg block text-center"
+                className="w-full px-4 py-2.5 bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 text-white text-sm font-accent font-medium rounded-lg shadow-lg transition-all duration-200 flex items-center justify-center gap-2 h-[42px]"
               >
                 {t.bookNow}
               </a>
