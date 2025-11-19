@@ -193,42 +193,42 @@ export default function ReviewsPage() {
           {/* Reviews Grid */}
           <div className="grid lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
             {reviews.map((review, index) => (
-                <Card
-                  key={index}
+              <Card
+                key={index}
                   className="border-2 border-red-400/30 shadow-2xl rounded-3xl bg-gradient-to-br from-gray-900 to-black hover:shadow-red-400/20 hover:shadow-3xl transition-all duration-300 group backdrop-blur-md"
-                >
-                  <CardHeader className="p-8">
-                    <div className="flex items-start gap-6">
+              >
+                <CardHeader className="p-8">
+                  <div className="flex items-start gap-6">
                       <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-300 shadow-2xl">
-                        <span className="text-white font-sans font-bold text-lg">{review.avatar}</span>
+                      <span className="text-white font-sans font-bold text-lg">{review.avatar}</span>
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-center justify-between mb-2">
+                        <h3 className="font-sans text-xl text-gray-300 font-bold">{review.name}</h3>
+                        <div className="flex items-center gap-1">
+                          {[...Array(review.rating)].map((_, i) => (
+                            <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                          ))}
+                        </div>
                       </div>
-                      <div className="flex-1">
-                        <div className="flex items-center justify-between mb-2">
-                          <h3 className="font-sans text-xl text-gray-300 font-bold">{review.name}</h3>
-                          <div className="flex items-center gap-1">
-                            {[...Array(review.rating)].map((_, i) => (
-                              <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                            ))}
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-4 mb-4">
-                          <Badge variant="secondary" className="bg-red-600 text-white px-3 py-1 text-sm font-bold">
-                            {review.sport}
-                          </Badge>
-                          <span className="text-gray-500 font-serif text-sm">{review.date}</span>
-                        </div>
+                      <div className="flex items-center gap-4 mb-4">
+                        <Badge variant="secondary" className="bg-red-600 text-white px-3 py-1 text-sm font-bold">
+                          {review.sport}
+                        </Badge>
+                        <span className="text-gray-500 font-serif text-sm">{review.date}</span>
                       </div>
                     </div>
-                  </CardHeader>
+                  </div>
+                </CardHeader>
 
-                  <CardContent className="px-8 pb-8">
-                    <div className="relative">
-                      <Quote className="w-8 h-8 text-red-400 opacity-50 absolute -top-2 -left-2" />
-                      <p className="text-gray-300 font-serif text-lg leading-relaxed font-light pl-6">{review.review}</p>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+                <CardContent className="px-8 pb-8">
+                  <div className="relative">
+                    <Quote className="w-8 h-8 text-red-400 opacity-50 absolute -top-2 -left-2" />
+                    <p className="text-gray-300 font-serif text-lg leading-relaxed font-light pl-6">{review.review}</p>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
           </div>
 
           <div className="text-center mt-16">

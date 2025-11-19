@@ -1,26 +1,21 @@
 "use client"
 
-import { Card, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { Clock, MapPin, Calendar, ArrowLeft } from "lucide-react"
+import { ArrowLeft, Award, GraduationCap, Trophy } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 import { useLanguage } from "@/components/language-provider"
+import { useState, useMemo } from "react"
+import FAQAccordion from "@/components/faq-accordion"
 
 interface Coach {
   name: string
   specialty: string
   experience: string
   description: string
-  image: string
+  education: string
   achievements: string[]
-  upcomingSessions: {
-    day: string
-    time: string
-    discipline: string
-    location: string
-  }[]
+  image: string
 }
 
 interface CoachDetailClientProps {
@@ -28,167 +23,351 @@ interface CoachDetailClientProps {
   slug: string
 }
 
-// Translations for coach data
 const coachTranslations: Record<string, Record<string, {
   specialty: string
   experience: string
   description: string
+  education: string
   achievements: string[]
 }>> = {
   "vital-rak": {
     pl: {
-      specialty: "Główny trener, karate",
-      experience: "23 lata doświadczenia",
-      description: "Główny trener klubu VOLAT z wieloletnim doświadczeniem w karate i treningu funkcjonalnym. Mistrz sportu, certyfikowany instruktor WKF. Specjalizuje się w przygotowaniu zawodników do zawodów międzynarodowych. Prowadzi karate sportową grupę i zajęcia dla dorosłych oraz trening funkcjonalny.",
-      achievements: ["Mistrz Sportu w Karate", "Certyfikat WKF 3 Dan", "Trener Kadry Narodowej", "Instruktor Treningu Funkcjonalnego", "Specjalista Rehabilitacji Sportowej"]
+      specialty: "Główny trener klubu. Trener karate i treningu funkcjonalnego",
+      experience: "30 lat w sporcie, 23 lata doświadczenia trenerskiego",
+      description: "Główny trener klubu VOLAT. Mistrz Republiki Białorusi w karate WKF w 2015 roku. Wielokrotny laureat mistrzostw i pucharów Republiki Białorusi w karate WKF. Brązowy laureat Pucharu Europy w Karate Shotokan wersji NSKF 2012 roku w wadze absolutnej. Mistrz miasta Mińsk w karate WKF 2014 i 2015 roku. Przygotował ponad 25 mistrzów i zwycięzców mistrzostwa Białorusi, 5 mistrzów sportu, medalistę Mistrzostw Świata 2017 roku w karate oraz wielu zwycięzców międzynarodowych i krajowych turniejów w karate, wushu sanda, pankrationie i walce wręcz.",
+      education: "Białoruski Pedagogiczny Uniwersytet Państwowy im. Maksyma Tanka (2006), specjalność \"Biologia i waleologia\", dyplom z wyróżnieniem; Białoruski Uniwersytet Kultury Fizycznej i Sportu (2009), specjalizacja trener karate, dyplom z wyróżnieniem",
+      achievements: [
+        "Mistrz Republiki Białorusi w karate WKF w 2015 roku",
+        "Mistrz miasta Mińsk w karate WKF 2014 i 2015 roku",
+        "Brązowy laureat Pucharu Europy w Karate Shotokan wersji NSKF 2012 roku w wadze absolutnej",
+        "Wielokrotny laureat mistrzostw i pucharów Republiki Białorusi w karate WKF",
+        "Przygotował ponad 25 mistrzów i zwycięzców mistrzostwa Białorusi",
+        "Przygotował 5 mistrzów sportu",
+        "Przygotował medalistę Mistrzostw Świata 2017 roku w karate",
+        "Przygotował wielu zwycięzców międzynarodowych i krajowych turniejów w karate, wushu sanda, pankrationie i walce wręcz"
+      ]
     },
     uk: {
-      specialty: "Головний тренер, карате",
-      experience: "23 роки досвіду",
-      description: "Головний тренер клубу VOLAT з багаторічним досвідом у карате та функціональному тренінгу. Майстер спорту, сертифікований інструктор WKF. Спеціалізується на підготовці спортсменів до міжнародних змагань. Проводить спортивну групу карате та заняття для дорослих, а також функціональний тренінг.",
-      achievements: ["Майстер спорту з карате", "Сертифікат WKF 3 Дан", "Тренер національної збірної", "Інструктор функціонального тренінгу", "Спеціаліст спортивної реабілітації"]
+      specialty: "Головний тренер клубу. Тренер карате та функціонального тренінгу",
+      experience: "30 років у спорті, 23 роки тренерського досвіду",
+      description: "Головний тренер клубу VOLAT. Чемпіон Республіки Білорусь з карате WKF у 2015 році. Багаторазовий лауреат чемпіонатів і кубків Республіки Білорусь з карате WKF. Бронзовий лауреат Кубка Європи з карате Сьотокан версії NSKF 2012 року в абсолютній вазі. Чемпіон міста Мінськ з карате WKF 2014 і 2015 року. Підготував понад 25 чемпіонів і переможців чемпіонату Білорусі, 5 майстрів спорту, медаліста Чемпіонату світу 2017 року з карате та багатьох переможців міжнародних і національних турнірів з карате, вушу санда, панкратіону та рукопашного бою.",
+      education: "Білоруський Педагогічний Державний Університет ім. Максима Танка (2006), спеціальність \"Біологія і валіологія\", диплом з відзнакою; Білоруський Університет Фізичної Культури і Спорту (2009), спеціалізація тренер карате, диплом з відзнакою",
+      achievements: [
+        "Чемпіон Республіки Білорусь з карате WKF у 2015 році",
+        "Чемпіон міста Мінськ з карате WKF 2014 і 2015 року",
+        "Бронзовий лауреат Кубка Європи з карате Сьотокан версії NSKF 2012 року в абсолютній вазі",
+        "Багаторазовий лауреат чемпіонатів і кубків Республіки Білорусь з карате WKF",
+        "Підготував понад 25 чемпіонів і переможців чемпіонату Білорусі",
+        "Підготував 5 майстрів спорту",
+        "Підготував медаліста Чемпіонату світу 2017 року з карате",
+        "Підготував багатьох переможців міжнародних і національних турнірів з карате, вушу санда, панкратіону та рукопашного бою"
+      ]
     },
     en: {
-      specialty: "Head coach, karate",
-      experience: "23 years of experience",
-      description: "Head coach of VOLAT club with years of experience in karate and functional training. Master of Sports, certified WKF instructor. Specializes in preparing athletes for international competitions. Conducts sports karate group and adult classes as well as functional training.",
-      achievements: ["Master of Sports in Karate", "WKF 3 Dan Certificate", "National Team Coach", "Functional Training Instructor", "Sports Rehabilitation Specialist"]
+      specialty: "Head coach of the club. Karate and functional training coach",
+      experience: "30 years in sports, 23 years of coaching experience",
+      description: "Head coach of VOLAT club. Champion of the Republic of Belarus in WKF karate in 2015. Multiple winner of championships and cups of the Republic of Belarus in WKF karate. Bronze winner of the European Cup in Shotokan Karate NSKF version 2012 in absolute weight. Champion of Minsk city in WKF karate 2014 and 2015. Prepared over 25 champions and winners of the Belarus championship, 5 masters of sports, medalist of the 2017 World Championship in karate, and many winners of international and national tournaments in karate, wushu sanda, pankration and hand-to-hand combat.",
+      education: "Maxim Tank Belarusian State Pedagogical University (2006), specialty \"Biology and Valeology\", diploma with honors; Belarusian University of Physical Culture and Sports (2009), specialization karate coach, diploma with honors",
+      achievements: [
+        "Champion of the Republic of Belarus in WKF karate in 2015",
+        "Champion of Minsk city in WKF karate 2014 and 2015",
+        "Bronze winner of the European Cup in Shotokan Karate NSKF version 2012 in absolute weight",
+        "Multiple winner of championships and cups of the Republic of Belarus in WKF karate",
+        "Prepared over 25 champions and winners of the Belarus championship",
+        "Prepared 5 masters of sports",
+        "Prepared medalist of the 2017 World Championship in karate",
+        "Prepared many winners of international and national tournaments in karate, wushu sanda, pankration and hand-to-hand combat"
+      ]
     },
     by: {
-      specialty: "Галоўны трэнер, каратэ",
-      experience: "23 гады вопыту",
-      description: "Галоўны трэнер клуба VOLAT з шматгадовым вопытам у каратэ і функцыянальных трэніроўках. Майстар спорту, сертыфікаваны інструктар WKF. Спецыялізуецца на падрыхтоўцы спартсменаў да міжнародных спаборніцтваў. Праводзіць спартыўную групу каратэ і заняткі для дарослых, а таксама функцыянальныя трэніроўкі.",
-      achievements: ["Майстар спорту па каратэ", "Сертыфікат WKF 3 Дан", "Трэнер нацыянальнай зборнай", "Інструктар функцыянальных трэніровак", "Спецыяліст спартыўнай рэабілітацыі"]
+      specialty: "Галоўны трэнер клуба. Трэнер каратэ і функцыянальных трэніровак",
+      experience: "30 гадоў у спорце, 23 гады трэнерскага вопыту",
+      description: "Галоўны трэнер клуба VOLAT. Чэмпіён Рэспублікі Беларусь па каратэ WKF у 2015 годзе. Шматразовы лаўрэат чэмпіянатаў і кубкаў Рэспублікі Беларусь па каратэ WKF. Бронзавы лаўрэат Кубка Еўропы па каратэ Сётакан версіі NSKF 2012 года ў абсалютнай вазе. Чэмпіён горада Мінск па каратэ WKF 2014 і 2015 года. Падрыхтаваў больш за 25 чэмпіёнаў і пераможцаў чэмпіянату Беларусі, 5 майстроў спорту, медаліста Чэмпіянату свету 2017 года па каратэ, а таксама многіх пераможцаў міжнародных і нацыянальных турніраў па каратэ, вушу санда, панкратыёне і рукапашным баі.",
+      education: "Беларускі Педагагічны Дзяржаўны Універсітэт ім. Максіма Танка (2006), спецыяльнасць \"Біялогія і валеалогія\", дыплом з адзнакай; Беларускі Універсітэт Фізічнай Культуры і Спорту (2009), спецыялізацыя трэнер каратэ, дыплом з адзнакай",
+      achievements: [
+        "Чэмпіён Рэспублікі Беларусь па каратэ WKF у 2015 годзе",
+        "Чэмпіён горада Мінск па каратэ WKF 2014 і 2015 года",
+        "Бронзавы лаўрэат Кубка Еўропы па каратэ Сётакан версіі NSKF 2012 года ў абсалютнай вазе",
+        "Шматразовы лаўрэат чэмпіянатаў і кубкаў Рэспублікі Беларусь па каратэ WKF",
+        "Падрыхтаваў больш за 25 чэмпіёнаў і пераможцаў чэмпіянату Беларусі",
+        "Падрыхтаваў 5 майстроў спорту",
+        "Падрыхтаваў медаліста Чэмпіянату свету 2017 года па каратэ",
+        "Падрыхтаваў многіх пераможцаў міжнародных і нацыянальных турніраў па каратэ, вушу санда, панкратыёне і рукапашным баі"
+      ]
     }
   },
   "volha-yefimenka": {
     pl: {
-      specialty: "Karate (dzieci)",
-      experience: "12+ lat doświadczenia",
-      description: "Specjalistka w karate dla dzieci oraz treningu motorycznym. Prowadzi zajęcia karate dla dzieci w wieku 7-11 lat (1. i 2. rok nauki) oraz trening motoryczny VolatMOVE Junior. Ma wyjątkowe podejście do najmłodszych zawodników. Certyfikowana instruktorka z wieloletnim doświadczeniem w pracy z dziećmi.",
-      achievements: ["Mistrzyni Białorusi w Karate", "Certyfikat Instruktora Dziecięcego", "Specjalistka Treningu Motorycznego", "Trener Grup Dziecięcych", "Instruktor VolatMOVE Junior", "Ekspert Rozwoju Koordynacji"]
+      specialty: "Trenerka karate, treningu motorycznego dla przedszkolaków oraz dzieci 8–15 lat",
+      experience: "Pracuje jako trener od 2007 roku",
+      description: "Mistrz sportu karate (kumite, WKF) Republiki Białorusi. Przygotowała jednego mistrza sportu Republiki Białorusi. Przygotowała medalistę młodzieżowych mistrzostw Europy (2021, Finlandia). Przeszła szkolenie w zakresie ogólnego treningu fizycznego dla dzieci 4–6, 6–8, 8–9, 10–12 lat oraz szkolenie korekcyjne dla dzieci i młodzieży z problemami stóp, postawy i ruchomości stawów. Prowadzi treningi w filiach Volat Mokotów oraz Volat Praga.",
+      education: "Wyższe wykształcenie (specjalizacja \"trener karate\")",
+      achievements: [
+        "Mistrz sportu karate (kumite, WKF) Republiki Białorusi",
+        "Przygotowała jednego mistrza sportu Republiki Białorusi",
+        "Przygotowała medalistę młodzieżowych mistrzostw Europy (2021, Finlandia)",
+        "Szkolenie w zakresie ogólnego treningu fizycznego dla dzieci 4–6, 6–8, 8–9, 10–12 lat",
+        "Szkolenie korekcyjne dla dzieci i młodzieży z problemami stóp, postawy i ruchomości stawów"
+      ]
     },
     uk: {
-      specialty: "Карате (діти)",
-      experience: "12+ років досвіду",
-      description: "Спеціалістка з карате для дітей та моторичного тренінгу. Проводить заняття карате для дітей віком 7-11 років (1-й та 2-й рік навчання) та моторичний тренінг VolatMOVE Junior. Має унікальний підхід до наймолодших спортсменів. Сертифікована інструкторка з багаторічним досвідом роботи з дітьми.",
-      achievements: ["Чемпіонка Білорусі з карате", "Сертифікат дитячого інструктора", "Спеціалістка моторичного тренінгу", "Тренер дитячих груп", "Інструктор VolatMOVE Junior", "Експерт розвитку координації"]
+      specialty: "Тренерка карате, моторичного тренінгу для дошкільнят та дітей 8–15 років",
+      experience: "Працює як тренер з 2007 року",
+      description: "Майстер спорту з карате (куміте, WKF) Республіки Білорусь. Підготувала одного майстра спорту Республіки Білорусь. Підготувала медаліста молодіжних чемпіонатів Європи (2021, Фінляндія). Пройшла навчання в галузі загального фізичного тренінгу для дітей 4–6, 6–8, 8–9, 10–12 років та корекційне навчання для дітей та молоді з проблемами стоп, постави та рухливості суглобів. Проводить тренування у філіях Volat Мокотув та Volat Прага.",
+      education: "Вища освіта (спеціалізація \"тренер карате\")",
+      achievements: [
+        "Майстер спорту з карате (куміте, WKF) Республіки Білорусь",
+        "Підготувала одного майстра спорту Республіки Білорусь",
+        "Підготувала медаліста молодіжних чемпіонатів Європи (2021, Фінляндія)",
+        "Навчання в галузі загального фізичного тренінгу для дітей 4–6, 6–8, 8–9, 10–12 років",
+        "Корекційне навчання для дітей та молоді з проблемами стоп, постави та рухливості суглобів"
+      ]
     },
     en: {
-      specialty: "Karate (children)",
-      experience: "12+ years of experience",
-      description: "Specialist in children's karate and motor training. Conducts karate classes for children aged 7-11 (1st and 2nd year) and VolatMOVE Junior motor training. Has a unique approach to the youngest athletes. Certified instructor with years of experience working with children.",
-      achievements: ["Belarus Karate Champion", "Children's Instructor Certificate", "Motor Training Specialist", "Children's Group Coach", "VolatMOVE Junior Instructor", "Coordination Development Expert"]
+      specialty: "Karate coach, motor training for preschoolers and children 8–15 years old",
+      experience: "Working as a coach since 2007",
+      description: "Master of Sports in karate (kumite, WKF) of the Republic of Belarus. Prepared one master of sports of the Republic of Belarus. Prepared medalist of youth European championships (2021, Finland). Completed training in general physical training for children 4–6, 6–8, 8–9, 10–12 years old and corrective training for children and youth with foot, posture and joint mobility problems. Conducts training at Volat Mokotów and Volat Praga branches.",
+      education: "Higher education (specialization \"karate coach\")",
+      achievements: [
+        "Master of Sports in karate (kumite, WKF) of the Republic of Belarus",
+        "Prepared one master of sports of the Republic of Belarus",
+        "Prepared medalist of youth European championships (2021, Finland)",
+        "Training in general physical training for children 4–6, 6–8, 8–9, 10–12 years old",
+        "Corrective training for children and youth with foot, posture and joint mobility problems"
+      ]
     },
     by: {
-      specialty: "Каратэ (дзеці)",
-      experience: "12+ гадоў вопыту",
-      description: "Спецыялістка па каратэ для дзяцей і маторных трэніроўках. Праводзіць заняткі каратэ для дзяцей ва ўзросце 7-11 гадоў (1. і 2. год навучання) і маторныя трэніроўкі VolatMOVE Junior. Мае унікальны падыход да самых маладых спартсменаў. Сертыфікаваная інструктарка з шматгадовым вопытам працы з дзецьмі.",
-      achievements: ["Чэмпіёнка Беларусі па каратэ", "Сертыфікат дзіцячага інструктара", "Спецыялістка маторных трэніровак", "Трэнер дзіцячых груп", "Інструктар VolatMOVE Junior", "Эксперт развіцця каардынацыі"]
-    }
-  },
-  "mikola-taczylin": {
-    pl: {
-      specialty: "Trener Muay Thai",
-      experience: "18+ lat doświadczenia",
-      description: "Ekspert w Muay Thai z wieloletnim doświadczeniem zawodowym. Były zawodnik, obecnie trener przygotowujący zawodników do walk i zawodów na najwyższym poziomie. Specjalizuje się w trenowaniu wszystkich grup wiekowych.",
-      achievements: ["Były Zawodnik Muay Thai", "Mistrz Europy Kickboxingu", "Certyfikat IFMA", "Trener Grup Dziecięcych", "Specjalista Techniki Uderzeń"]
-    },
-    uk: {
-      specialty: "Тренер Муай Тай",
-      experience: "18+ років досвіду",
-      description: "Експерт з Муай Тай з багаторічним професійним досвідом. Колишній спортсмен, нині тренер, який готує спортсменів до боїв і змагань найвищого рівня. Спеціалізується на тренуванні всіх вікових груп.",
-      achievements: ["Колишній спортсмен Муай Тай", "Чемпіон Європи з кікбоксингу", "Сертифікат IFMA", "Тренер дитячих груп", "Спеціаліст техніки ударів"]
-    },
-    en: {
-      specialty: "Muay Thai coach",
-      experience: "18+ years of experience",
-      description: "Expert in Muay Thai with years of professional experience. Former athlete, now coach preparing athletes for fights and competitions at the highest level. Specializes in training all age groups.",
-      achievements: ["Former Muay Thai Athlete", "European Kickboxing Champion", "IFMA Certificate", "Children's Group Coach", "Strike Technique Specialist"]
-    },
-    by: {
-      specialty: "Трэнер Муай Тай",
-      experience: "18+ гадоў вопыту",
-      description: "Эксперт па Муай Тай з шматгадовым прафесійным вопытам. Былы спартсмен, цяпер трэнер, які рыхтуе спартсменаў да баёў і спаборніцтваў найвышэйшага ўзроўню. Спецыялізуецца на трэніроўцы ўсіх узроставых груп.",
-      achievements: ["Былы спартсмен Муай Тай", "Чэмпіён Еўропы па кікбоксінгу", "Сертыфікат IFMA", "Трэнер дзіцячых груп", "Спецыяліст тэхнікі удараў"]
-    }
-  },
-  "wiktor-muronczyk": {
-    pl: {
-      specialty: "Trener szachów",
-      experience: "2 lata doświadczenia",
-      description: "Mistrz szachowy prowadzący zajęcia dla wszystkich grup wiekowych. Specjalizuje się w rozwoju strategicznego myślenia i przygotowaniu do turniejów. Młody trener z dużym doświadczeniem turniejowym.",
-      achievements: ["Międzynarodowy Mistrz Szachowy", "Trener FIDE", "Sędzia Turniejów Szachowych", "Autor Programów Edukacyjnych", "Specjalista Psychologii Sportu"]
-    },
-    uk: {
-      specialty: "Тренер шахів",
-      experience: "2 роки досвіду",
-      description: "Шаховий майстер, який проводить заняття для всіх вікових груп. Спеціалізується на розвитку стратегічного мислення та підготовці до турнірів. Молодий тренер з великим турнірним досвідом.",
-      achievements: ["Міжнародний шаховий майстер", "Тренер FIDE", "Суддя шахових турнірів", "Автор освітніх програм", "Спеціаліст спортивної психології"]
-    },
-    en: {
-      specialty: "Chess coach",
-      experience: "2 years of experience",
-      description: "Chess master conducting classes for all age groups. Specializes in developing strategic thinking and tournament preparation. Young trainer with extensive tournament experience.",
-      achievements: ["International Chess Master", "FIDE Coach", "Chess Tournament Judge", "Educational Program Author", "Sports Psychology Specialist"]
-    },
-    by: {
-      specialty: "Трэнер шахмат",
-      experience: "2 гады вопыту",
-      description: "Шахматны майстар, які праводзіць заняткі для ўсіх узроставых груп. Спецыялізуецца на развіцці стратэгічнага мыслення і падрыхтоўцы да турніраў. Малады трэнер з вялікім турнірным вопытам.",
-      achievements: ["Міжнародны шахматны майстар", "Трэнер FIDE", "Суддзя шахматных турніраў", "Аўтар адукацыйных праграм", "Спецыяліст спартыўнай псіхалогіі"]
-    }
-  },
-  "pawel-szymkowicz": {
-    pl: {
-      specialty: "Trener MMA",
-      experience: "10+ lat doświadczenia",
-      description: "Specjalista w MMA z wieloletnim doświadczeniem w trenowaniu zawodników wszystkich grup wiekowych. Certyfikowany instruktor z międzynarodowymi osiągnięciami. Specjalizuje się w technikach mieszanych sztuk walki.",
-      achievements: ["Mistrz Polski w MMA", "Certyfikat Instruktora MMA", "Trener Grup Dziecięcych", "Specjalista Technik Mieszanych", "Ekspert Walki w Parterze"]
-    },
-    uk: {
-      specialty: "Тренер ММА",
-      experience: "10+ років досвіду",
-      description: "Спеціаліст з ММА з багаторічним досвідом тренування спортсменів всіх вікових груп. Сертифікований інструктор з міжнародними досягненнями. Спеціалізується на техніках змішаних бойових мистецтв.",
-      achievements: ["Чемпіон Польщі з ММА", "Сертифікат інструктора ММА", "Тренер дитячих груп", "Спеціаліст змішаних технік", "Експерт партерної боротьби"]
-    },
-    en: {
-      specialty: "MMA coach",
-      experience: "10+ years of experience",
-      description: "MMA specialist with years of experience training athletes of all age groups. Certified instructor with international achievements. Specializes in mixed martial arts techniques.",
-      achievements: ["Polish MMA Champion", "MMA Instructor Certificate", "Children's Group Coach", "Mixed Techniques Specialist", "Ground Fighting Expert"]
-    },
-    by: {
-      specialty: "Трэнер ММА",
-      experience: "10+ гадоў вопыту",
-      description: "Спецыяліст па ММА з шматгадовым вопытам трэніроўкі спартсменаў усіх узроставых груп. Сертыфікаваны інструктар з міжнароднымі дасягненнямі. Спецыялізуецца на тэхніках змяшаных баявых мастацтваў.",
-      achievements: ["Чэмпіён Польшчы па ММА", "Сертыфікат інструктара ММА", "Трэнер дзіцячых груп", "Спецыяліст змяшаных тэхнік", "Эксперт партэрнай барацьбы"]
+      specialty: "Трэнерка каратэ, маторных трэніровак для дашкольнікаў і дзяцей 8–15 гадоў",
+      experience: "Працуе як трэнер з 2007 года",
+      description: "Майстар спорту па каратэ (кумітэ, WKF) Рэспублікі Беларусь. Падрыхтавала аднаго майстра спорту Рэспублікі Беларусь. Падрыхтавала медаліста моладзевых чэмпіянатаў Еўропы (2021, Фінляндыя). Прайшла навучанне ў галіне агульнай фізічнай падрыхтоўкі для дзяцей 4–6, 6–8, 8–9, 10–12 гадоў і карэкцыйнае навучанне для дзяцей і моладзі з праблемамі ступняў, паставы і рухомасці суставаў. Праводзіць трэніроўкі ў філіялах Volat Макотув і Volat Прага.",
+      education: "Вышэйшая адукацыя (спецыялізацыя \"трэнер каратэ\")",
+      achievements: [
+        "Майстар спорту па каратэ (кумітэ, WKF) Рэспублікі Беларусь",
+        "Падрыхтавала аднаго майстра спорту Рэспублікі Беларусь",
+        "Падрыхтавала медаліста моладзевых чэмпіянатаў Еўропы (2021, Фінляндыя)",
+        "Навучанне ў галіне агульнай фізічнай падрыхтоўкі для дзяцей 4–6, 6–8, 8–9, 10–12 гадоў",
+        "Карэкцыйнае навучанне для дзяцей і моладзі з праблемамі ступняў, паставы і рухомасці суставаў"
+      ]
     }
   },
   "daria-koba": {
     pl: {
-      specialty: "Judo (dzieci), VolatMOVE Kids",
-      experience: "8+ lat doświadczenia",
-      description: "Specjalistka w treningu motorycznym dla najmłodszych dzieci oraz judo. Ma wyjątkowe podejście do pracy z dziećmi w wieku przedszkolnym i szkolnym. Certyfikowana instruktorka z wieloletnim doświadczeniem w rozwoju podstawowych umiejętności motorycznych oraz treningu judo dla dzieci.",
-      achievements: ["Certyfikat Instruktora Treningu Motorycznego", "Certyfikat Instruktora Judo", "Specjalistka Pracy z Dziećmi", "Trener Grup Dziecięcych", "Ekspert Rozwoju Koordynacji", "Instruktor VolatMOVE Kids"]
+      specialty: "Trenerka judo, treningu motorycznego dla przedszkolaków",
+      experience: "Doświadczenie w pracy z dziećmi w wieku od 3 do 13 lat",
+      description: "Instruktorka judo z bogatą historią sportową. Od 5. do 16. roku życia trenowała sambo pod okiem swojego ojca na Ukrainie, równocześnie startując w zawodach judo. Wielokrotna medalistka mistrzostw Ukrainy w sambo, 5. miejsce na Mistrzostwach Europy Kadetów, medalistka ogólnoukraińskich turniejów w judo.",
+      education: "AWF w Warszawie, kierunek: wychowanie fizyczne, specjalizacja: judo (studia licencjackie)",
+      achievements: [
+        "Wielokrotna medalistka mistrzostw Ukrainy w sambo",
+        "5. miejsce na Mistrzostwach Europy Kadetów w sambo",
+        "Uczestniczka zgrupowań kadry narodowej",
+        "Medalistka ogólnoukraińskich turniejów w judo",
+        "Posiadaczka brązowego pasa w judo",
+        "Doświadczenie w zapasach w stylu wolnym oraz brazylijskim jiu-jitsu"
+      ]
     },
     uk: {
-      specialty: "Дзюдо (діти), VolatMOVE Kids",
-      experience: "8+ років досвіду",
-      description: "Спеціалістка з моторичного тренінгу для наймолодших дітей та дзюдо. Має унікальний підхід до роботи з дітьми дошкільного та шкільного віку. Сертифікована інструкторка з багаторічним досвідом розвитку базових моторичних навичок та тренінгу дзюдо для дітей.",
-      achievements: ["Сертифікат інструктора моторичного тренінгу", "Сертифікат інструктора дзюдо", "Спеціалістка роботи з дітьми", "Тренер дитячих груп", "Експерт розвитку координації", "Інструктор VolatMOVE Kids"]
+      specialty: "Тренерка дзюдо, моторичного тренінгу для дошкільнят",
+      experience: "Досвід роботи з дітьми віком від 3 до 13 років",
+      description: "Інструкторка дзюдо з багатою спортивною історією. Від 5 до 16 років тренувала самбо під керівництвом свого батька в Україні, одночасно виступаючи в змаганнях з дзюдо. Багаторазова медалістка чемпіонатів України з самбо, 5 місце на Чемпіонаті Європи серед кадетів, медалістка загальноукраїнських турнірів з дзюдо.",
+      education: "AWF у Варшаві, напрямок: фізичне виховання, спеціалізація: дзюдо (бакалаврат)",
+      achievements: [
+        "Багаторазова медалістка чемпіонатів України з самбо",
+        "5 місце на Чемпіонаті Європи серед кадетів з самбо",
+        "Учасниця зборів національної збірної",
+        "Медалістка загальноукраїнських турнірів з дзюдо",
+        "Володарка бронзового поясу з дзюдо",
+        "Досвід у вільній боротьбі та бразильському джіу-джитсу"
+      ]
     },
     en: {
-      specialty: "Judo (children), VolatMOVE Kids",
-      experience: "8+ years of experience",
-      description: "Specialist in motor training for the youngest children and judo. Has a unique approach to working with preschool and school-age children. Certified instructor with years of experience developing basic motor skills and judo training for children.",
-      achievements: ["Motor Training Instructor Certificate", "Judo Instructor Certificate", "Children's Work Specialist", "Children's Group Coach", "Coordination Development Expert", "VolatMOVE Kids Instructor"]
+      specialty: "Judo coach, motor training for preschoolers",
+      experience: "Experience working with children aged 3 to 13 years",
+      description: "Judo instructor with a rich sports history. From 5 to 16 years old, trained sambo under her father's guidance in Ukraine, while competing in judo competitions. Multiple medalist of Ukrainian sambo championships, 5th place at the European Cadet Championships, medalist of all-Ukrainian judo tournaments.",
+      education: "AWF in Warsaw, field: physical education, specialization: judo (bachelor's degree)",
+      achievements: [
+        "Multiple medalist of Ukrainian sambo championships",
+        "5th place at the European Cadet Championships in sambo",
+        "Participant in national team training camps",
+        "Medalist of all-Ukrainian judo tournaments",
+        "Holder of brown belt in judo",
+        "Experience in freestyle wrestling and Brazilian jiu-jitsu"
+      ]
     },
     by: {
-      specialty: "Дзюдо (дзеці), VolatMOVE Kids",
-      experience: "8+ гадоў вопыту",
-      description: "Спецыялістка па маторных трэніроўках для самых маладых дзяцей і дзюдо. Мае унікальны падыход да працы з дзецьмі дашкольнага і школьнага ўзросту. Сертыфікаваная інструктарка з шматгадовым вопытам развіцця асноўных маторных навыкаў і трэніроўкі дзюдо для дзяцей.",
-      achievements: ["Сертыфікат інструктара маторных трэніровак", "Сертыфікат інструктара дзюдо", "Спецыялістка працы з дзецьмі", "Трэнер дзіцячых груп", "Эксперт развіцця каардынацыі", "Інструктар VolatMOVE Kids"]
+      specialty: "Трэнерка дзюдо, маторных трэніровак для дашкольнікаў",
+      experience: "Вопыт працы з дзецьмі ва ўзросце ад 3 да 13 гадоў",
+      description: "Інструктарка дзюдо з багатай спартыўнай гісторыяй. Ад 5 да 16 гадоў трэніравала самба пад кіраўніцтвам свайго бацькі ва Украіне, адначасова выступаючы ў спаборніцтвах па дзюдо. Шматразовая медалістка чэмпіянатаў Украіны па самба, 5 месца на Чэмпіянаце Еўропы сярод кадэтаў, медалістка агульнаўкраінскіх турніраў па дзюдо.",
+      education: "AWF у Варшаве, напрамак: фізічнае выхаванне, спецыялізацыя: дзюдо (бакалаўрыят)",
+      achievements: [
+        "Шматразовая медалістка чэмпіянатаў Украіны па самба",
+        "5 месца на Чэмпіянаце Еўропы сярод кадэтаў па самба",
+        "Удзельніца збораў нацыянальнай зборнай",
+        "Медалістка агульнаўкраінскіх турніраў па дзюдо",
+        "Уладальніца бронзавага пояса па дзюдо",
+        "Вопыт у вольнай барацьбе і бразільскім джыу-джыцу"
+      ]
+    }
+  },
+  "mikola-taczylin": {
+    pl: {
+      specialty: "Trener Muay Thai dla dzieci, młodzieży i dorosłych",
+      experience: "Ponad 15 lat praktyki trenerskiej",
+      description: "Doświadczony trener kickboxingu i Muay Thai (boksu tajskiego). Przez wiele lat prowadził zajęcia w klubie „Patriot\" w Barysawie (Białoruś). Specjalizuje się w treningach w formule K1 oraz boksie tajskim (Muay Thai). Wychował wielu zawodników, którzy zdobywali tytuły mistrzów Białorusi, Europy i świata.",
+      education: "Doświadczony trener z wieloletnią praktyką",
+      achievements: [
+        "Wieloletnia praktyka trenerska w klubie „Patriot\" w Barysawie",
+        "Wychował wielu mistrzów Białorusi, Europy i świata",
+        "Specjalizacja w formule K1 oraz boksie tajskim (Muay Thai)",
+        "Wychował Dzmitry Filonchyk - wielokrotnego mistrza Białorusi, członka kadry narodowej",
+        "Wychował Aliaksiej Wawreniuk - wielokrotnego mistrza Białorusi, zwycięzcę międzynarodowych zawodów"
+      ]
+    },
+    uk: {
+      specialty: "Тренер Муай Тай для дітей, молоді та дорослих",
+      experience: "Понад 15 років тренерської практики",
+      description: "Досвідчений тренер кікбоксингу та Муай Тай (тайського боксу). Багато років проводив заняття в клубі „Патріот\" в Борисові (Білорусь). Спеціалізується на тренуваннях у форматі K1 та тайському боксі (Муай Тай). Виховав багатьох спортсменів, які завойовували титули чемпіонів Білорусі, Європи та світу.",
+      education: "Досвідчений тренер з багаторічною практикою",
+      achievements: [
+        "Багаторічна тренерська практика в клубі „Патріот\" в Борисові",
+        "Виховав багатьох чемпіонів Білорусі, Європи та світу",
+        "Спеціалізація у форматі K1 та тайському боксі (Муай Тай)",
+        "Виховав Дзмітры Філончык - багаторазового чемпіона Білорусі, члена національної збірної",
+        "Виховав Аляксей Ваўренюк - багаторазового чемпіона Білорусі, переможця міжнародних змагань"
+      ]
+    },
+    en: {
+      specialty: "Muay Thai coach for children, youth and adults",
+      experience: "Over 15 years of coaching practice",
+      description: "Experienced kickboxing and Muay Thai (Thai boxing) coach. For many years conducted classes at the \"Patriot\" club in Barysaw (Belarus). Specializes in K1 format training and Thai boxing (Muay Thai). Raised many athletes who won titles of champions of Belarus, Europe and the world.",
+      education: "Experienced coach with years of practice",
+      achievements: [
+        "Years of coaching practice at the \"Patriot\" club in Barysaw",
+        "Raised many champions of Belarus, Europe and the world",
+        "Specialization in K1 format and Thai boxing (Muay Thai)",
+        "Raised Dzmitry Filonchyk - multiple champion of Belarus, member of the national team",
+        "Raised Aliaksiej Wawreniuk - multiple champion of Belarus, winner of international competitions"
+      ]
+    },
+    by: {
+      specialty: "Трэнер Муай Тай для дзяцей, моладзі і дарослых",
+      experience: "Больш за 15 гадоў трэнерскай практыкі",
+      description: "Вопытны трэнер кікбоксінгу і Муай Тай (тайскага боксу). Шмат гадоў праводзіў заняткі ў клубе „Патрыёт\" у Барысаве (Беларусь). Спецыялізуецца на трэніроўках у фармаце K1 і тайскім боксе (Муай Тай). Выхаваў многіх спартсменаў, якія заваёўвалі тытулы чэмпіёнаў Беларусі, Еўропы і свету.",
+      education: "Вопытны трэнер з шматгадовай практыкай",
+      achievements: [
+        "Шматгадовая трэнерская практыка ў клубе „Патрыёт\" у Барысаве",
+        "Выхаваў многіх чэмпіёнаў Беларусі, Еўропы і свету",
+        "Спецыялізацыя ў фармаце K1 і тайскім боксе (Муай Тай)",
+        "Выхаваў Дзмітры Філончык - шматразовага чэмпіёна Беларусі, члена нацыянальнай зборнай",
+        "Выхаваў Аляксей Ваўренюк - шматразовага чэмпіёна Беларусі, пераможцу міжнародных спаборніцтваў"
+      ]
+    }
+  },
+  "pawel-szymkowicz": {
+    pl: {
+      specialty: "Trener MMA dla dzieci od 6 lat, młodzieży i dorosłych",
+      experience: "Wieloletnie doświadczenie sportowe i kilkuletnia praktyka trenerska",
+      description: "Absolwent Białoruskiego Państwowego Uniwersytetu Kultury Fizycznej, specjalizacja – działalność trenerska w zakresie sambo. Trener samoobrony i treningu funkcjonalnego. Na treningach łączy wiedzę akademicką z praktyką sportową, oferując skuteczne i bezpieczne metody pracy.",
+      education: "Białoruski Państwowy Uniwersytet Kultury Fizycznej, specjalizacja – działalność trenerska w zakresie sambo",
+      achievements: [
+        "Absolwent Białoruskiego Państwowego Uniwersytetu Kultury Fizycznej",
+        "Trener samoobrony i treningu funkcjonalnego",
+        "Specjalizacja w zakresie sambo",
+        "Indywidualne podejście do każdego zawodnika",
+        "Rozwój sprawności i budowanie pewności siebie"
+      ]
+    },
+    uk: {
+      specialty: "Тренер ММА для дітей від 6 років, молоді та дорослих",
+      experience: "Багаторічний спортивний досвід і кількарічна тренерська практика",
+      description: "Випускник Білоруського Державного Університету Фізичної Культури, спеціалізація – тренерська діяльність у сфері самбо. Тренер самооборони та функціонального тренінгу. На тренуваннях поєднує академічні знання зі спортивною практикою, пропонуючи ефективні та безпечні методи роботи.",
+      education: "Білоруський Державний Університет Фізичної Культури, спеціалізація – тренерська діяльність у сфері самбо",
+      achievements: [
+        "Випускник Білоруського Державного Університету Фізичної Культури",
+        "Тренер самооборони та функціонального тренінгу",
+        "Спеціалізація у сфері самбо",
+        "Індивідуальний підхід до кожного спортсмена",
+        "Розвиток спритності та впевненості в собі"
+      ]
+    },
+    en: {
+      specialty: "MMA coach for children from 6 years old, youth and adults",
+      experience: "Years of sports experience and several years of coaching practice",
+      description: "Graduate of the Belarusian State University of Physical Culture, specialization – coaching activities in sambo. Self-defense and functional training coach. In training, combines academic knowledge with sports practice, offering effective and safe working methods.",
+      education: "Belarusian State University of Physical Culture, specialization – coaching activities in sambo",
+      achievements: [
+        "Graduate of the Belarusian State University of Physical Culture",
+        "Self-defense and functional training coach",
+        "Specialization in sambo",
+        "Individual approach to each athlete",
+        "Development of agility and building self-confidence"
+      ]
+    },
+    by: {
+      specialty: "Трэнер ММА для дзяцей ад 6 гадоў, моладзі і дарослых",
+      experience: "Шматгадовы спартыўны вопыт і некалькігадовая трэнерская практыка",
+      description: "Выпускнік Беларускага Дзяржаўнага Універсітэта Фізічнай Культуры, спецыялізацыя – трэнерская дзейнасць у сферы самба. Трэнер самаабароны і функцыянальных трэніровак. На трэніроўках аб'ядноўвае акадэмічныя веды са спартыўнай практыкай, прапаноўваючы эфектыўныя і бяспечныя метады працы.",
+      education: "Беларускі Дзяржаўны Універсітэт Фізічнай Культуры, спецыялізацыя – трэнерская дзейнасць у сферы самба",
+      achievements: [
+        "Выпускнік Беларускага Дзяржаўнага Універсітэта Фізічнай Культуры",
+        "Трэнер самаабароны і функцыянальных трэніровак",
+        "Спецыялізацыя ў сферы самба",
+        "Індывідуальны падыход да кожнага спартсмена",
+        "Развіццё спрытнасці і будаванне ўпэўненасці ў сабе"
+      ]
+    }
+  },
+  "wiktor-muronczyk": {
+    pl: {
+      specialty: "Trener szkoły szachowej",
+      experience: "2 lata doświadczenia w nauczaniu",
+      description: "Młody trener szachowy z dużym doświadczeniem turniejowym. Wielokrotny zwycięzca w turniejach rapidu, blitza oraz szachów klasycznych. Uczeń Mistrza Międzynarodowego i wielokrotnego mistrza Polski. Swobodnie mówi w języku polskim oraz rosyjskim.",
+      education: "Uczeń Mistrza Międzynarodowego i wielokrotnego mistrza Polski",
+      achievements: [
+        "Duże doświadczenie turniejowe w turniejach klasy międzynarodowej",
+        "Wielokrotny zwycięzca w turniejach rapidu",
+        "Wielokrotny zwycięzca w turniejach blitza",
+        "Wielokrotny zwycięzca w turniejach szachów klasycznych",
+        "Uczeń Mistrza Międzynarodowego i wielokrotnego mistrza Polski"
+      ]
+    },
+    uk: {
+      specialty: "Тренер шахової школи",
+      experience: "2 роки досвіду в навчанні",
+      description: "Молодий шаховий тренер з великим турнірним досвідом. Багаторазовий переможець у турнірах рапіду, бліцу та класичних шахів. Учень Міжнародного Майстра та багаторазового чемпіона Польщі. Вільно розмовляє польською та російською мовами.",
+      education: "Учень Міжнародного Майстра та багаторазового чемпіона Польщі",
+      achievements: [
+        "Великий турнірний досвід у турнірах міжнародного класу",
+        "Багаторазовий переможець у турнірах рапіду",
+        "Багаторазовий переможець у турнірах бліцу",
+        "Багаторазовий переможець у турнірах класичних шахів",
+        "Учень Міжнародного Майстра та багаторазового чемпіона Польщі"
+      ]
+    },
+    en: {
+      specialty: "Chess school coach",
+      experience: "2 years of teaching experience",
+      description: "Young chess coach with extensive tournament experience. Multiple winner in rapid, blitz and classical chess tournaments. Student of International Master and multiple Polish champion. Fluent in Polish and Russian.",
+      education: "Student of International Master and multiple Polish champion",
+      achievements: [
+        "Extensive tournament experience in international class tournaments",
+        "Multiple winner in rapid tournaments",
+        "Multiple winner in blitz tournaments",
+        "Multiple winner in classical chess tournaments",
+        "Student of International Master and multiple Polish champion"
+      ]
+    },
+    by: {
+      specialty: "Трэнер шахматнай школы",
+      experience: "2 гады вопыту ў навучанні",
+      description: "Малады шахматны трэнер з вялікім турнірным вопытам. Шматразовы пераможца ў турнірах рапіду, бліцу і класічных шахмат. Вучань Міжнароднага Майстра і шматразовага чэмпіёна Польшчы. Вольна размаўляе польскай і рускай мовамі.",
+      education: "Вучань Міжнароднага Майстра і шматразовага чэмпіёна Польшчы",
+      achievements: [
+        "Вялікі турнірны вопыт у турнірах міжнароднага класу",
+        "Шматразовы пераможца ў турнірах рапіду",
+        "Шматразовы пераможца ў турнірах бліцу",
+        "Шматразовы пераможца ў турнірах класічных шахмат",
+        "Вучань Міжнароднага Майстра і шматразовага чэмпіёна Польшчы"
+      ]
     }
   }
 }
@@ -196,197 +375,167 @@ const coachTranslations: Record<string, Record<string, {
 const translations = {
   pl: {
     backToCoaches: "Powrót do trenerów",
+    specialty: "Specjalizacja",
+    experience: "Doświadczenie",
+    education: "Wykształcenie",
     achievements: "Osiągnięcia",
-    upcomingSessions: "Najbliższe zajęcia trenera",
-    viewFullSchedule: "Zobacz pełny rozkład trenera",
     bookNow: "Zapisz się na zajęcia",
-    days: {
-      Poniedziałek: "Poniedziałek",
-      Wtorek: "Wtorek",
-      Środa: "Środa",
-      Czwartek: "Czwartek",
-      Piątek: "Piątek",
-      Sobota: "Sobota",
-      Niedziela: "Niedziela",
-    },
-    locations: {
-      "Mokotów": "Mokotów",
-      "Praga": "Praga Północ",
-      "Praga Północ": "Praga Północ",
-    },
-    disciplines: {
-      "Karate": "Karate",
-      "Karate (dzieci 10+, zaczynające)": "Karate (dzieci 10+, początkujący)",
-      "Karate (dorośli)": "Karate (dorośli)",
-      "Karate (sportowa grupa)": "Karate (grupa sportowa)",
-      "Karate (dzieci 1. i 2. rok nauki)": "Karate (dzieci 1-2 rok)",
-      "Karate (1. rok)": "Karate (1. rok)",
-      "Karate (2. rok)": "Karate (2. rok)",
-      "Muay Thai": "Muay Thai / Kickboxing",
-      "Muay Thai (młodzież)": "Muay Thai / Kickboxing (młodzież)",
-      "Boks": "Boks",
-      "Kickboxing": "Kickboxing",
-      "VolatMOVE Junior": "VolatMOVE Junior",
-      "VolatMOVE Kids": "VolatMOVE Kids",
-      "Judo (dzieci)": "Judo (dzieci)",
-      "Judo": "Judo",
-      "MMA Dziecięce": "MMA (dzieci)",
-      "MMA Młodzież": "MMA (młodzież)",
-      "MMA Dorośli": "MMA (dorośli)",
-      "MMA": "MMA",
-      "Szachy": "Szachy",
-    }
+    faqTitle: "Często zadawane pytania",
+    faq: [
+      {
+        question: "Jakie doświadczenie ma trener?",
+        answer: "Każdy z naszych trenerów posiada wieloletnie doświadczenie w swojej dziedzinie oraz odpowiednie wykształcenie i certyfikaty."
+      },
+      {
+        question: "Dla jakich grup wiekowych prowadzone są zajęcia?",
+        answer: "Oferujemy zajęcia dla wszystkich grup wiekowych - od przedszkolaków po dorosłych. Każdy trener specjalizuje się w pracy z określonymi grupami wiekowymi."
+      },
+      {
+        question: "Jakie osiągnięcia mają nasi trenerzy?",
+        answer: "Wśród naszych trenerów są mistrzowie sportu, wielokrotni zwycięzcy mistrzostw i turniejów, a także doświadczeni instruktorzy z międzynarodowymi certyfikatami i wieloletnim doświadczeniem."
+      },
+      {
+        question: "Gdzie prowadzone są zajęcia?",
+        answer: "Zajęcia prowadzone są w naszych filiach w Warszawie - Mokotów i Praga Północ. Szczegóły dotyczące lokalizacji znajdziesz w rozkładzie zajęć."
+      }
+    ]
   },
   uk: {
     backToCoaches: "Повернутися до тренерів",
+    specialty: "Спеціалізація",
+    experience: "Досвід",
+    education: "Освіта",
     achievements: "Досягнення",
-    upcomingSessions: "Найближчі заняття тренера",
-    viewFullSchedule: "Переглянути повний розклад тренера",
     bookNow: "Записатися на заняття",
-    days: {
-      Poniedziałek: "Понеділок",
-      Wtorek: "Вівторок",
-      Środa: "Середа",
-      Czwartek: "Четвер",
-      Piątek: "П'ятниця",
-      Sobota: "Субота",
-      Niedziela: "Неділя",
-    },
-    locations: {
-      "Mokotów": "Мокотув",
-      "Praga": "Прага Північна",
-      "Praga Północ": "Прага Північна",
-    },
-    disciplines: {
-      "Karate": "Карате",
-      "Karate (dzieci 10+, zaczynające)": "Карате (діти 10+, початківці)",
-      "Karate (dorośli)": "Карате (дорослі)",
-      "Karate (sportowa grupa)": "Карате (спортивна група)",
-      "Karate (dzieci 1. i 2. rok nauki)": "Карате (діти 1-2 рік)",
-      "Karate (1. rok)": "Карате (1-й рік)",
-      "Karate (2. rok)": "Карате (2-й рік)",
-      "Muay Thai": "Муай Тай / Кікбоксинг",
-      "Muay Thai (młodzież)": "Муай Тай / Кікбоксинг (молодь)",
-      "Boks": "Бокс",
-      "Kickboxing": "Кікбоксинг",
-      "VolatMOVE Junior": "VolatMOVE Junior",
-      "VolatMOVE Kids": "VolatMOVE Kids",
-      "Judo (dzieci)": "Дзюдо (діти)",
-      "Judo": "Дзюдо",
-      "MMA Dziecięce": "ММА (діти)",
-      "MMA Młodzież": "ММА (молодь)",
-      "MMA Dorośli": "ММА (дорослі)",
-      "MMA": "ММА",
-      "Szachy": "Шахи",
-    }
+    faqTitle: "Часто задавані питання",
+    faq: [
+      {
+        question: "Який досвід має тренер?",
+        answer: "Кожен з наших тренерів має багаторічний досвід у своїй галузі та відповідну освіту та сертифікати."
+      },
+      {
+        question: "Для яких вікових груп проводяться заняття?",
+        answer: "Ми пропонуємо заняття для всіх вікових груп - від дошкільнят до дорослих. Кожен тренер спеціалізується на роботі з певними віковими групами."
+      },
+      {
+        question: "Які досягнення мають наші тренери?",
+        answer: "Серед наших тренерів є майстри спорту, багаторазові переможці чемпіонатів і турнірів, а також досвідчені інструктори з міжнародними сертифікатами та багаторічним досвідом."
+      },
+      {
+        question: "Де проводяться заняття?",
+        answer: "Заняття проводяться в наших філіях у Варшаві - Мокотув та Прага Північна. Деталі щодо локації ви знайдете в розкладі занять."
+      }
+    ]
   },
   en: {
     backToCoaches: "Back to coaches",
+    specialty: "Specialty",
+    experience: "Experience",
+    education: "Education",
     achievements: "Achievements",
-    upcomingSessions: "Coach's upcoming sessions",
-    viewFullSchedule: "View full coach schedule",
     bookNow: "Book now",
-    days: {
-      Poniedziałek: "Monday",
-      Wtorek: "Tuesday",
-      Środa: "Wednesday",
-      Czwartek: "Thursday",
-      Piątek: "Friday",
-      Sobota: "Saturday",
-      Niedziela: "Sunday",
-    },
-    locations: {
-      "Mokotów": "Mokotów",
-      "Praga": "Praga Północ",
-      "Praga Północ": "Praga Północ",
-    },
-    disciplines: {
-      "Karate": "Karate",
-      "Karate (dzieci 10+, zaczynające)": "Karate (children 10+, beginners)",
-      "Karate (dorośli)": "Karate (adults)",
-      "Karate (sportowa grupa)": "Karate (sports group)",
-      "Karate (dzieci 1. i 2. rok nauki)": "Karate (children 1-2 year)",
-      "Karate (1. rok)": "Karate (1st year)",
-      "Karate (2. rok)": "Karate (2nd year)",
-      "Muay Thai": "Muay Thai / Kickboxing",
-      "Muay Thai (młodzież)": "Muay Thai / Kickboxing (youth)",
-      "Boks": "Boxing",
-      "Kickboxing": "Kickboxing",
-      "VolatMOVE Junior": "VolatMOVE Junior",
-      "VolatMOVE Kids": "VolatMOVE Kids",
-      "Judo (dzieci)": "Judo (children)",
-      "Judo": "Judo",
-      "MMA Dziecięce": "MMA (children)",
-      "MMA Młodzież": "MMA (youth)",
-      "MMA Dorośli": "MMA (adults)",
-      "MMA": "MMA",
-      "Szachy": "Chess",
-    }
+    faqTitle: "Frequently asked questions",
+    faq: [
+      {
+        question: "What experience does the coach have?",
+        answer: "Each of our coaches has years of experience in their field and appropriate education and certificates."
+      },
+      {
+        question: "For which age groups are classes conducted?",
+        answer: "We offer classes for all age groups - from preschoolers to adults. Each coach specializes in working with specific age groups."
+      },
+      {
+        question: "What achievements do our coaches have?",
+        answer: "Among our coaches are masters of sports, multiple winners of championships and tournaments, as well as experienced instructors with international certificates and years of experience."
+      },
+      {
+        question: "Where are classes conducted?",
+        answer: "Classes are conducted at our branches in Warsaw - Mokotów and Praga Północ. Details about the location can be found in the class schedule."
+      }
+    ]
   },
   by: {
     backToCoaches: "Вярнуцца да трэнераў",
+    specialty: "Спецыялізацыя",
+    experience: "Вопыт",
+    education: "Адукацыя",
     achievements: "Дасягненні",
-    upcomingSessions: "Найбліжэйшыя заняткі трэнера",
-    viewFullSchedule: "Паглядзець поўны расклад трэнера",
     bookNow: "Запісацца на заняткі",
-    days: {
-      Poniedziałek: "Панядзелак",
-      Wtorek: "Аўторак",
-      Środa: "Серада",
-      Czwartek: "Чацвер",
-      Piątek: "Пятніца",
-      Sobota: "Субота",
-      Niedziela: "Нядзеля",
-    },
-    locations: {
-      "Mokotów": "Макотув",
-      "Praga": "Прага Паўночная",
-      "Praga Północ": "Прага Паўночная",
-    },
-    disciplines: {
-      "Karate": "Каратэ",
-      "Karate (dzieci 10+, zaczynające)": "Каратэ (дзеці 10+, пачаткоўцы)",
-      "Karate (dorośli)": "Каратэ (дарослыя)",
-      "Karate (sportowa grupa)": "Каратэ (спартыўная група)",
-      "Karate (dzieci 1. i 2. rok nauki)": "Каратэ (дзеці 1-2 год)",
-      "Karate (1. rok)": "Каратэ (1-й год)",
-      "Karate (2. rok)": "Каратэ (2-й год)",
-      "Muay Thai": "Муай Тай / Кікбоксінг",
-      "Muay Thai (młodzież)": "Муай Тай / Кікбоксінг (моладзь)",
-      "Boks": "Бокс",
-      "Kickboxing": "Кікбоксінг",
-      "VolatMOVE Junior": "VolatMOVE Junior",
-      "VolatMOVE Kids": "VolatMOVE Kids",
-      "Judo (dzieci)": "Дзюдо (дзеці)",
-      "Judo": "Дзюдо",
-      "MMA Dziecięce": "ММА (дзеці)",
-      "MMA Młodzież": "ММА (моладзь)",
-      "MMA Dorośli": "ММА (дарослыя)",
-      "MMA": "ММА",
-      "Szachy": "Шахматы",
-    }
+    faqTitle: "Часта задаваныя пытанні",
+    faq: [
+      {
+        question: "Які вопыт мае трэнер?",
+        answer: "Кожны з нашых трэнераў мае шматгадовы вопыт у сваёй галіне і адпаведную адукацыю і сертыфікаты."
+      },
+      {
+        question: "Для якіх узроставых груп праводзяцца заняткі?",
+        answer: "Мы прапануем заняткі для ўсіх узроставых груп - ад дашкольнікаў да дарослых. Кожны трэнер спецыялізуецца на працы з пэўнымі узроставымі групамі."
+      },
+      {
+        question: "Якія дасягненні маюць нашы трэнеры?",
+        answer: "Сярод нашых трэнераў ёсць майстры спорту, шматразовыя пераможцы чэмпіянатаў і турніраў, а таксама вопытныя інструктары з міжнароднымі сертыфікатамі і шматгадовым вопытам."
+      },
+      {
+        question: "Дзе праводзяцца заняткі?",
+        answer: "Заняткі праводзяцца ў нашых філіялах у Варшаве - Макотув і Прага Паўночная. Дэталі адносна лакацыі вы знойдзеце ў раскладзе заняткаў."
+      }
+    ]
   }
 }
 
 export default function CoachDetailClient({ coach, slug }: CoachDetailClientProps) {
   const { currentLang } = useLanguage()
-  const coachT = coachTranslations[slug]?.[currentLang] || coachTranslations[slug]?.pl || {
-    specialty: coach?.specialty || "",
-    experience: coach?.experience || "",
-    description: coach?.description || "",
-    achievements: coach?.achievements || []
-  }
-  const t = translations[currentLang] || translations.pl
   
+  // Используем примитивные значения для зависимостей useMemo
+  const coachSpecialty = coach?.specialty || ""
+  const coachExperience = coach?.experience || ""
+  const coachDescription = coach?.description || ""
+  const coachEducation = coach?.education || ""
+  const coachAchievements = Array.isArray(coach?.achievements) ? coach.achievements : []
+  
+  const coachT = useMemo(() => {
+    try {
+      const translated = coachTranslations[slug]?.[currentLang] || coachTranslations[slug]?.pl
+      if (translated && translated.achievements && Array.isArray(translated.achievements)) {
+        return translated
+      }
+      return {
+        specialty: coachSpecialty,
+        experience: coachExperience,
+        description: coachDescription,
+        education: coachEducation,
+        achievements: coachAchievements
+      }
+    } catch (error) {
+      console.error("Error loading coach translations:", error)
+      return {
+        specialty: coachSpecialty,
+        experience: coachExperience,
+        description: coachDescription,
+        education: coachEducation,
+        achievements: coachAchievements
+      }
+    }
+  }, [slug, currentLang, coachSpecialty, coachExperience, coachDescription, coachEducation, coachAchievements.length])
+  
+  const t = useMemo(() => {
+    try {
+      return translations[currentLang] || translations.pl
+    } catch (error) {
+      console.error("Error loading translations:", error)
+      return translations.pl
+    }
+  }, [currentLang])
+  
+  // Если тренер не найден, это обрабатывается в page.tsx через notFound()
+  // Но на всякий случай добавим проверку
   if (!coach) {
-    const { currentLang: errorLang } = useLanguage()
-    const errorT = translations[errorLang] || translations.pl
     return (
       <div className="min-h-screen bg-black flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-4xl font-bold text-white mb-4">Trener nie znaleziony</h1>
           <Link href="/coaches">
-            <Button className="bg-red-600 hover:bg-red-700">{errorT.backToCoaches}</Button>
+            <Button className="bg-red-600 hover:bg-red-700">Powrót do trenerów</Button>
           </Link>
         </div>
       </div>
@@ -398,12 +547,11 @@ export default function CoachDetailClient({ coach, slug }: CoachDetailClientProp
       <section className="pt-28 sm:pt-32 pb-20 bg-gradient-to-br from-black via-gray-900 to-black">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-6xl mx-auto w-full">
-            {/* Кнопка "Назад" */}
             <div className="mb-8 flex justify-center sm:justify-start">
               <Link href="/coaches">
                 <Button className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-6 py-3 rounded-xl shadow-lg font-medium">
                   <ArrowLeft className="w-4 h-4 mr-2" />
-                  {t.backToCoaches}
+                  {t?.backToCoaches || "Powrót do trenerów"}
                 </Button>
               </Link>
             </div>
@@ -411,93 +559,111 @@ export default function CoachDetailClient({ coach, slug }: CoachDetailClientProp
               <div className="w-full max-w-md lg:max-w-full h-[500px] sm:h-[600px] lg:h-[700px] overflow-hidden rounded-3xl shadow-2xl relative bg-transparent bg-gradient-to-br from-gray-900 to-black mx-auto">
                 <Image
                   src={coach.image || "/placeholder.svg"}
-                  alt={`${coach.name} - ${coach.specialty} w klubie VOLAT Warszawa`}
-                  title={`${coach.name} - Trener ${coach.specialty} w klubie VOLAT Warszawa`}
+                  alt={`${coach.name} - ${coachT?.specialty || coach.specialty} w klubie VOLAT Warszawa`}
+                  title={`${coach.name} - ${coachT?.specialty || coach.specialty} w klubie VOLAT Warszawa`}
                   fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 600px"
-                  className="object-contain transition-opacity duration-300"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 50vw, 600px"
+                  className="object-cover"
                   priority
                   loading="eager"
-                  quality={60}
+                  quality={85}
+                  placeholder="blur"
+                  fetchPriority="high"
+                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                 />
               </div>
 
-              <div className="w-full space-y-8 text-center lg:text-left">
+              <div className="w-full space-y-6 text-center lg:text-left flex flex-col">
                 <div>
-                  <h1 className="text-4xl sm:text-5xl lg:text-6xl font-sans font-black bg-gradient-to-r from-red-500 via-white to-red-500 bg-clip-text text-transparent mb-4 break-words">
+                  <h1 className="text-4xl sm:text-5xl lg:text-6xl font-sans font-black bg-gradient-to-r from-red-500 via-white to-red-500 bg-clip-text text-transparent mb-6 break-words">
                     {coach.name}
                   </h1>
-                  <div className="flex justify-center lg:justify-start mb-6">
-                    <Badge className="bg-gradient-to-r from-red-500 to-red-600 text-white px-4 sm:px-6 py-2 sm:py-3 text-base sm:text-lg font-bold break-words text-center max-w-full">
-                      {coachT.specialty}
-                    </Badge>
-                  </div>
-                  <p className="text-xl sm:text-2xl text-gray-300 font-serif mb-6 font-light break-words text-center lg:text-left">{coachT.experience}</p>
-                  <p className="text-lg sm:text-xl text-gray-400 font-serif leading-relaxed font-light break-words text-center lg:text-left">{coachT.description}</p>
                 </div>
 
-                <div>
-                  <h3 className="text-2xl font-sans font-bold text-white mb-4 text-center lg:text-left">{t.achievements}</h3>
-                  <ul className="space-y-2">
-                    {coachT.achievements.map((achievement, index) => (
-                      <li key={index} className="text-gray-300 font-serif text-lg flex items-center justify-center lg:justify-start text-center lg:text-left">
-                        <span className="w-2 h-2 bg-red-500 rounded-full mr-3 flex-shrink-0"></span>
-                        <span className="break-words">{achievement}</span>
-                      </li>
-                    ))}
-                  </ul>
+                <div className="bg-gradient-to-br from-gray-900/90 to-gray-800/90 backdrop-blur-sm rounded-xl border border-red-500/20 p-6 min-h-[100px] shadow-lg">
+                  <h3 className="text-red-400 font-semibold text-lg mb-3">{t?.specialty || "Specjalizacja"}</h3>
+                  <p className="text-gray-300 text-base leading-relaxed">{coachT?.specialty || coach.specialty || ""}</p>
+                </div>
+
+                <div className="bg-gradient-to-br from-gray-900/90 to-gray-800/90 backdrop-blur-sm rounded-xl border border-red-500/20 p-6 min-h-[100px] shadow-lg">
+                  <h3 className="text-red-400 font-semibold text-lg mb-3 flex items-center gap-2">
+                    <Trophy className="w-5 h-5" />
+                    {t?.experience || "Doświadczenie"}
+                  </h3>
+                  <p className="text-gray-300 text-base leading-relaxed">{coachT?.experience || coach.experience || ""}</p>
+                </div>
+
+                <div className="bg-gradient-to-br from-gray-900/90 to-gray-800/90 backdrop-blur-sm rounded-xl border border-red-500/20 p-6 min-h-[120px] shadow-lg">
+                  <h3 className="text-red-400 font-semibold text-lg mb-3 flex items-center gap-2">
+                    <GraduationCap className="w-5 h-5" />
+                    {t?.education || "Wykształcenie"}
+                  </h3>
+                  <p className="text-gray-300 text-sm leading-relaxed">{coachT?.education || coach.education || ""}</p>
+                </div>
+
+                <div className="bg-gradient-to-br from-gray-900/90 to-gray-800/90 backdrop-blur-sm rounded-xl border border-red-500/20 p-6 min-h-[150px] shadow-lg">
+                  <p className="text-gray-400 text-base leading-relaxed">{coachT?.description || coach.description || ""}</p>
+                </div>
+
+                <div className="pt-4">
+                  <a
+                    href="https://docs.google.com/forms/d/1LhF3J7PteAcxbpV8jA2c8SA6aBDkPmN8yBp_j5UQTPU/viewform"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block w-full sm:w-auto"
+                  >
+                    <Button className="bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700 font-medium text-lg px-8 py-4 rounded-2xl shadow-lg w-full sm:w-auto">
+                      {t?.bookNow || "Zapisz się na zajęcia"}
+                    </Button>
+                  </a>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
 
-            <div className="mt-16">
-              <h2 className="text-4xl font-sans font-black bg-gradient-to-r from-red-500 via-white to-red-500 bg-clip-text text-transparent mb-8 text-center">
-                {t.upcomingSessions}
-              </h2>
-              <div className="grid md:grid-cols-3 gap-6">
-                {coach.upcomingSessions.map((session, index) => (
-                  <Link key={index} href={`/schedule?coach=${slug}`}>
-                    <Card className="border-2 border-red-400/30 shadow-2xl rounded-3xl bg-gradient-to-br from-gray-900 to-black hover:shadow-red-400/20 hover:shadow-3xl transition-all duration-200 group cursor-pointer">
-                      <CardHeader className="p-6">
-                        <div className="flex items-center gap-4 mb-4">
-                          <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center">
-                            <Clock className="w-6 h-6 text-white" />
-                          </div>
-                          <div>
-                            <CardTitle className="font-sans text-lg text-gray-300">{t.disciplines[session.discipline as keyof typeof t.disciplines] || session.discipline}</CardTitle>
-                            <p className="text-gray-400 font-serif">{t.days[session.day as keyof typeof t.days] || session.day}</p>
-                          </div>
-                        </div>
-                        <div className="space-y-2">
-                          <div className="flex items-center gap-2">
-                            <Calendar className="w-4 h-4 text-red-400" />
-                            <span className="text-gray-300 font-serif">{session.time}</span>
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <MapPin className="w-4 h-4 text-red-400" />
-                            <span className="text-gray-300 font-serif">{t.locations[session.location as keyof typeof t.locations] || session.location}</span>
-                          </div>
-                        </div>
-                      </CardHeader>
-                    </Card>
-                  </Link>
-                ))}
-              </div>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-8">
-                <Link href={`/schedule?coach=${slug}`} className="w-full sm:w-auto">
-                  <Button className="bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700 font-medium text-lg px-8 py-4 rounded-2xl shadow-lg w-full h-[56px] flex items-center justify-center whitespace-nowrap">
-                    {t.viewFullSchedule}
-                  </Button>
-                </Link>
-                <a
-                  href="https://docs.google.com/forms/d/1LhF3J7PteAcxbpV8jA2c8SA6aBDkPmN8yBp_j5UQTPU/viewform"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-gradient-to-r from-gray-600 to-gray-700 text-white font-medium text-lg px-8 py-4 rounded-2xl shadow-lg w-full sm:w-auto h-[56px] flex items-center justify-center whitespace-nowrap text-center no-underline"
-                >
-                  {t.bookNow}
-                </a>
-              </div>
+      {/* Achievements Section - Full Width Outside Container */}
+      <section className="py-12 bg-gradient-to-br from-black via-gray-900 to-black">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
+          <div className="w-full">
+            <div className="bg-gradient-to-br from-gray-900/95 via-red-900/10 to-gray-900/95 backdrop-blur-sm rounded-2xl border-2 border-red-500/30 p-8 sm:p-10 lg:p-12 shadow-2xl">
+              <h3 className="text-3xl sm:text-4xl font-sans font-bold text-white mb-6 flex items-center justify-center gap-3">
+                <Award className="w-8 h-8 text-red-500" />
+                <span className="bg-gradient-to-r from-red-400 via-white to-red-400 bg-clip-text text-transparent">
+                  {t?.achievements || "Osiągnięcia"}
+                </span>
+              </h3>
+              <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-stretch">
+                {coachT && Array.isArray(coachT.achievements) && coachT.achievements.length > 0 ? (
+                  coachT.achievements.map((achievement: string, index: number) => (
+                    <li key={index} className="text-gray-300 text-sm sm:text-base flex items-start gap-3 p-5 bg-black/30 rounded-lg border border-red-500/10 h-full min-h-[80px]">
+                      <span className="w-2 h-2 bg-gradient-to-r from-red-500 to-red-600 rounded-full flex-shrink-0 mt-2 shadow-lg shadow-red-500/50"></span>
+                      <span className="break-words leading-relaxed flex-1">{achievement}</span>
+                    </li>
+                  ))
+                ) : (
+                  <li className="text-gray-400 text-sm col-span-full text-center py-4">
+                    {t?.achievements || "Osiągnięcia"} - Brak danych
+                  </li>
+                )}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-12 bg-gradient-to-br from-black via-gray-900 to-black">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-4xl font-sans font-black bg-gradient-to-r from-red-500 via-white to-red-500 bg-clip-text text-transparent mb-8 text-center">
+              {t?.faqTitle || "Często zadawane pytania"}
+            </h2>
+            <div className="max-w-3xl mx-auto">
+              {t?.faq && Array.isArray(t.faq) ? (
+                <FAQAccordion items={t.faq} />
+              ) : null}
             </div>
           </div>
         </div>

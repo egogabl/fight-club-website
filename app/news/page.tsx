@@ -150,11 +150,11 @@ export default function NewsPage() {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-            {newsItems.map((item) => (
-              <article
-                key={item.id}
+          {newsItems.map((item) => (
+            <article
+              key={item.id}
                 className="bg-gradient-to-br from-gray-900 via-gray-800 to-black border border-gray-700 rounded-xl overflow-hidden hover:border-red-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-red-500/20 group"
-              >
+            >
                 {item.image && (
                   <div className="relative w-full h-48 overflow-hidden">
                     <Image
@@ -165,27 +165,30 @@ export default function NewsPage() {
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       className="object-cover transition-opacity duration-300"
                       loading="lazy"
+                      quality={75}
+                      placeholder="blur"
+                      blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                   </div>
                 )}
-                <div className="p-6">
+              <div className="p-6">
                   <div className="text-red-400 text-sm mb-3 font-accent">
                     {formatDate(item.date, currentLang)}
                   </div>
                   <h2 className="text-xl font-display font-bold mb-3 hover:text-red-400 transition-colors duration-300 text-white">
                     {item.title[currentLang] || item.title.pl}
-                  </h2>
+                </h2>
                   <p className="text-gray-300 text-sm mb-4 font-primary leading-relaxed">
                     {item.excerpt[currentLang] || item.excerpt.pl}
                   </p>
                   <button className="text-red-400 hover:text-red-300 text-sm font-medium font-accent">
                     {t.readMore} →
-                  </button>
-                </div>
-              </article>
-            ))}
-          </div>
+                </button>
+              </div>
+            </article>
+          ))}
+        </div>
         )}
 
         {/* Место для будущих событий */}

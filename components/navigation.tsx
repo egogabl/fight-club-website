@@ -107,7 +107,7 @@ export default function Navigation() {
     
     return () => {
       if (typeof window !== 'undefined') {
-        document.body.style.overflow = ''
+      document.body.style.overflow = ''
       }
     }
   }, [isMobileMenuOpen])
@@ -250,22 +250,22 @@ export default function Navigation() {
               <div className="flex-shrink-0 p-6 pb-4">
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex items-center space-x-3">
-                    <img
-                      src="/volat-logo-simple.png"
-                      alt="VOLAT Logo"
+                  <img
+                    src="/volat-logo-simple.png"
+                    alt="VOLAT Logo"
                       className="h-8 w-auto object-contain"
-                    />
+                  />
                     <span className="text-white font-bold text-lg">VOLAT</span>
-                  </div>
-                  <button
-                    onClick={() => setIsMobileMenuOpen(false)}
+                </div>
+                <button
+                  onClick={() => setIsMobileMenuOpen(false)}
                     className="p-2 rounded-xl bg-white/10 hover:bg-white/20 transition-all duration-200 ease-out hover:shadow-lg hover:shadow-white/10"
-                    aria-label="Close menu"
-                  >
+                  aria-label="Close menu"
+                >
                     <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                  </button>
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
                 </div>
               </div>
 

@@ -1,8 +1,11 @@
 "use client"
 
+import { useMemo } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useLanguage } from '@/components/language-provider'
+import LocationMap from '@/components/location-map'
+import FAQAccordion from '@/components/faq-accordion'
 
 interface DisciplinePageClientProps {
   discipline: {
@@ -21,237 +24,14 @@ interface DisciplinePageClientProps {
     ageGroups: string
     price: string
   }
+  locations?: {
+    mokotow?: boolean
+    praga?: boolean
+  }
 }
 
-export default function DisciplinePageClient({ discipline }: DisciplinePageClientProps) {
-  const { currentLang } = useLanguage()
-
-  // Переводы названий дисциплин
-  const disciplineTranslations: Record<string, Record<string, string>> = {
-    "karate-wkf": {
-      pl: "Karate WKF",
-      uk: "Карате WKF",
-      en: "Karate WKF",
-      by: "Каратэ WKF"
-    },
-    "muaythai": {
-      pl: "Muay Thai / Kickboxing",
-      uk: "Муай Тай / Кікбоксинг",
-      en: "Muay Thai / Kickboxing",
-      by: "Муай Тай / Кікбоксінг"
-    },
-    "judo": {
-      pl: "Judo",
-      uk: "Дзюдо",
-      en: "Judo",
-      by: "Дзюдо"
-    },
-    "mma": {
-      pl: "MMA",
-      uk: "ММА",
-      en: "MMA",
-      by: "ММА"
-    },
-    "volatmove-kids": {
-      pl: "VolatMove! KIDS. Trening Motoryczny",
-      uk: "VolatMove! KIDS. Моторичний тренінг",
-      en: "VolatMove! KIDS. Motor Training",
-      by: "VolatMove! KIDS. Маторныя трэніроўкі"
-    },
-    "volatmove-junior": {
-      pl: "VolatMove! JUNIOR. Trening Motoryczny",
-      uk: "VolatMove! JUNIOR. Моторичний тренінг",
-      en: "VolatMove! JUNIOR. Motor Training",
-      by: "VolatMove! JUNIOR. Маторныя трэніроўкі"
-    },
-    "functional-training": {
-      pl: "Trening Funkcjonalny",
-      uk: "Функціональний тренінг",
-      en: "Functional Training",
-      by: "Функцыянальныя трэніроўкі"
-    },
-    "chess": {
-      pl: "Szachy",
-      uk: "Шахи",
-      en: "Chess",
-      by: "Шахматы"
-    }
-  }
-
-  // Переводы описаний
-  const descriptionTranslations: Record<string, Record<string, string>> = {
-    "karate-wkf": {
-      pl: "Sztuki walki",
-      uk: "Бойові мистецтва",
-      en: "Martial arts",
-      by: "Баявыя мастацтвы"
-    },
-    "muaythai": {
-      pl: "Sztuki walki",
-      uk: "Бойові мистецтва",
-      en: "Martial arts",
-      by: "Баявыя мастацтвы"
-    },
-    "judo": {
-      pl: "Sztuki walki",
-      uk: "Бойові мистецтва",
-      en: "Martial arts",
-      by: "Баявыя мастацтвы"
-    },
-    "mma": {
-      pl: "Sztuki walki",
-      uk: "Бойові мистецтва",
-      en: "Martial arts",
-      by: "Баявыя мастацтвы"
-    },
-    "volatmove-kids": {
-      pl: "Trening motoryczny dla dzieci 5-7 lat",
-      uk: "Моторичний тренінг для дітей 5-7 років",
-      en: "Motor training for children 5-7 years",
-      by: "Маторныя трэніроўкі для дзяцей 5-7 гадоў"
-    },
-    "volatmove-junior": {
-      pl: "Trening motoryczny dla dzieci 8-15 lat",
-      uk: "Моторичний тренінг для дітей 8-15 років",
-      en: "Motor training for children 8-15 years",
-      by: "Маторныя трэніроўкі для дзяцей 8-15 гадоў"
-    },
-    "functional-training": {
-      pl: "Trening funkcjonalny i motoryczny",
-      uk: "Функціональний та моторичний тренінг",
-      en: "Functional and motor training",
-      by: "Функцыянальныя і маторныя трэніроўкі"
-    },
-    "chess": {
-      pl: "Gra strategiczna",
-      uk: "Стратегічна гра",
-      en: "Strategic game",
-      by: "Стратэгічная гульня"
-    }
-  }
-
-  // Переводы цен
-  const priceTranslations: Record<string, Record<string, string>> = {
-    "default": {
-      pl: "Dzieci: 220 zł/miesiąc, Dorośli: 280 zł/miesiąc",
-      uk: "Діти: 220 zł/місяць, Дорослі: 280 zł/місяць",
-      en: "Children: 220 zł/month, Adults: 280 zł/month",
-      by: "Дзеці: 220 zł/месяц, Дарослыя: 280 zł/месяц"
-    },
-    "ask": {
-      pl: "Zapytaj o cenę",
-      uk: "Запитайте про ціну",
-      en: "Ask about price",
-      by: "Спытайце пра цану"
-    }
-  }
-
-  // Переводы полных описаний
-  const fullDescriptionTranslations: Record<string, Record<string, string>> = {
-    "karate-wkf": {
-      pl: "Karate WKF to tradycyjna sztuka walki pochodząca z Japonii, która łączy techniki uderzeń, kopnięć i bloków. Trening rozwija siłę, szybkość, koordynację, dyscyplinę i koncentrację. Prowadzimy zajęcia dla dzieci od 7 lat z Volha Yefimenka, młodzieży i dorosłych z Vital Rak. Klub jest członkiem Polskiej Unii Karate i Mazowieckiego Związku Karate, co zapewnia profesjonalny poziom nauczania.",
-      uk: "Карате WKF - це традиційне бойове мистецтво з Японії, яке поєднує техніки ударів, ударів ногами та блокувань. Тренування розвиває силу, швидкість, координацію, дисципліну та концентрацію. Ми проводимо заняття для дітей від 7 років з Volha Yefimenka, молоді та дорослих з Vital Rak. Клуб є членом Польської Спілки Карате та Мазовецької Спілки Карате, що забезпечує професійний рівень навчання.",
-      en: "Karate WKF is a traditional martial art from Japan that combines striking, kicking, and blocking techniques. Training develops strength, speed, coordination, discipline, and concentration. We conduct classes for children from 7 years old with Volha Yefimenka, youth and adults with Vital Rak. The club is a member of the Polish Karate Union and the Mazovian Karate Association, ensuring a professional level of instruction.",
-      by: "Каратэ WKF - гэта традыцыйнае баявое мастацтва з Японіі, якое аб'ядноўвае тэхнікі удараў, удараў нагамі і блакаванняў. Трэніроўка развівае сілу, хуткасць, каардынацыю, дысцыпліну і канцэнтрацыю. Мы праводзім заняткі для дзяцей ад 7 гадоў з Volha Yefimenka, моладзі і дарослых з Vital Rak. Клуб з'яўляецца членам Польскай Асацыяцыі Каратэ і Мазавецкай Асацыяцыі Каратэ, што забяспечвае прафесійны ўзровень навучання."
-    },
-    "muaythai": {
-      pl: "Muay Thai / Kickboxing to tajski boks i kickboxing, jedna z najskuteczniejszych sztuk walki na świecie. Charakteryzuje się użyciem uderzeń pięściami, łokciami, kolanami i kopnięciami. Trening jest bardzo intensywny i rozwija wytrzymałość, siłę, szybkość i refleks. Prowadzimy zajęcia dla różnych grup wiekowych, od dzieci po dorosłych, dostosowując program do poziomu zaawansowania uczestników.",
-      uk: "Муай Тай / Кікбоксинг - це тайський бокс і кікбоксинг, один з найефективніших видів бойових мистецтв у світі. Характеризується використанням ударів кулаками, ліктями, колінами та ногами. Тренування дуже інтенсивне і розвиває витривалість, силу, швидкість та рефлекси. Ми проводимо заняття для різних вікових груп, від дітей до дорослих, адаптуючи програму до рівня підготовки учасників.",
-      en: "Muay Thai / Kickboxing is Thai boxing and kickboxing, one of the most effective martial arts in the world. It is characterized by the use of punches, elbows, knees, and kicks. Training is very intense and develops endurance, strength, speed, and reflexes. We conduct classes for various age groups, from children to adults, adapting the program to the participants' skill level.",
-      by: "Муай Тай / Кікбоксінг - гэта тайскі бокс і кікбоксінг, адзін з самых эфектыўных відаў баявых мастацтваў у свеце. Характарызуецца выкарыстаннем удараў кулакамі, локцямі, каленямі і нагамі. Трэніроўка вельмі інтэнсіўная і развівае вынослівасць, сілу, хуткасць і рэфлексы. Мы праводзім заняткі для розных узроставых груп, ад дзяцей да дарослых, адаптуючы праграму да ўзроўню падрыхтоўкі ўдзельнікаў."
-    },
-    "judo": {
-      pl: "Judo to japońska sztuka walki olimpijska, która uczy rzutów, trzymań i dźwigni. Trening rozwija siłę, elastyczność, koordynację i równowagę. Prowadzimy zajęcia dla dzieci w wieku 6-12 lat, dostosowując program do możliwości młodych uczestników. Prowadzi Daria Koba - certyfikowana instruktorka judo z wieloletnim doświadczeniem, która zapewnia bezpieczne i efektywne nauczanie.",
-      uk: "Дзюдо - це японське олімпійське бойове мистецтво, яке навчає кидків, утримань та заломів. Тренування розвиває силу, гнучкість, координацію та рівновагу. Ми проводимо заняття для дітей віком 6-12 років, адаптуючи програму до можливостей молодих учасників. Проводить Daria Koba - сертифікований інструктор дзюдо з багаторічним досвідом, який забезпечує безпечне та ефективне навчання.",
-      en: "Judo is an Olympic Japanese martial art that teaches throws, holds, and locks. Training develops strength, flexibility, coordination, and balance. We conduct classes for children aged 6-12, adapting the program to young participants' capabilities. Led by Daria Koba - a certified judo instructor with years of experience who ensures safe and effective teaching.",
-      by: "Дзюдо - гэта японскае алімпійскае баявое мастацтва, якое навучае кідкоў, трыманняў і заломаў. Трэніроўка развівае сілу, гнуткасць, каардынацыю і раўнавагу. Мы праводзім заняткі для дзяцей ва ўзросце 6-12 гадоў, адаптуючы праграму да магчымасцей маладых удзельнікаў. Праводзіць Daria Koba - сертыфікаваны інструктар дзюдо з шматгадовым досведам, які забяспечвае бяспечнае і эфектыўнае навучанне."
-    },
-    "mma": {
-      pl: "MMA (Mixed Martial Arts) to mieszane sztuki walki, które łączą techniki z różnych dyscyplin. Trening obejmuje walkę w stójce i parterze, uderzenia, kopnięcia, rzuty i dźwignie. MMA łączy techniki boksu, zapasów, judo, brazylijskiego jiu-jitsu, kickboxingu i innych sztuk walki. Prowadzimy zajęcia dla młodzieży od 15 lat i dorosłych z różnym poziomem zaawansowania. Prowadzi Paweł Szymkowicz. Dostępne w filii Volat Mokotów.",
-      uk: "ММА (Mixed Martial Arts) - це змішані бойові мистецтва, які поєднують техніки з різних дисциплін. Тренування включає боротьбу у стійці та партері, удари, удари ногами, кидки та заломи. ММА поєднує техніки боксу, боротьби, дзюдо, бразильського дзю-дзюцу, кікбоксингу та інших бойових мистецтв. Ми проводимо заняття для молоді від 15 років та дорослих з різним рівнем підготовки. Проводить Paweł Szymkowicz. Доступно у філії Volat Mokotów.",
-      en: "MMA (Mixed Martial Arts) is mixed martial arts that combines techniques from various disciplines. Training includes stand-up and ground fighting, strikes, kicks, throws, and locks. MMA combines techniques from boxing, wrestling, judo, Brazilian jiu-jitsu, kickboxing, and other martial arts. We conduct classes for youth from 15 years old and adults with various skill levels. Led by Paweł Szymkowicz. Available at Volat Mokotów branch.",
-      by: "ММА (Mixed Martial Arts) - гэта змешаныя баявыя мастацтвы, якія аб'ядноўваюць тэхнікі з розных дысцыплін. Трэніроўка ўключае барацьбу ў стаянцы і партэры, удары, удары нагамі, кідкі і заломы. ММА аб'ядноўвае тэхнікі боксу, барацьбы, дзюдо, бразільскага дзю-дзюцу, кікбоксінгу і іншых баявых мастацтваў. Мы праводзім заняткі для моладзі ад 15 гадоў і дарослых з розным узроўнем падрыхтоўкі. Праводзіць Paweł Szymkowicz. Даступна ў філіяле Volat Mokotów."
-    },
-    "volatmove-kids": {
-      pl: "VolatMove! KIDS to ogólne przygotowanie motoryczne dla przedszkolaków, rozwój koordynacji i motoryki dużej. Program specjalnie zaprojektowany dla najmłodszych dzieci w wieku 5-7 lat, skupiający się na podstawowych umiejętnościach ruchowych i równowadze. Zajęcia prowadzą Volha Yefimenka i Daria Koba, które dostosowują program do możliwości każdego dziecka. Treningi odbywają się w przyjaznej atmosferze, zachęcając do aktywności fizycznej. Dostępne w filiach Volat Mokotów i Volat Praga.",
-      uk: "VolatMove! KIDS - це загальна моторична підготовка для дошкільнят, розвиток координації та великої моторики. Програма спеціально розроблена для наймолодших дітей віком 5-7 років, зосереджуючись на основних рухових навичках та рівновазі. Заняття проводять Volha Yefimenka та Daria Koba, які адаптують програму до можливостей кожної дитини. Тренування проходять у дружній атмосфері, заохочуючи до фізичної активності. Доступно у філіях Volat Mokotów та Volat Praga.",
-      en: "VolatMove! KIDS is general motor preparation for preschoolers, development of coordination and gross motor skills. The program is specially designed for the youngest children aged 5-7, focusing on basic movement skills and balance. Classes are conducted by Volha Yefimenka and Daria Koba, who adapt the program to each child's capabilities. Training takes place in a friendly atmosphere, encouraging physical activity. Available at Volat Mokotów and Volat Praga branches.",
-      by: "VolatMove! KIDS - гэта агульная маторная падрыхтоўка для дашкольнікаў, развіццё каардынацыі і буйной маторыкі. Праграма спецыяльна распрацавана для самых маладых дзяцей ва ўзросце 5-7 гадоў, засяроджваючыся на асноўных рухавых навыках і раўнавазе. Заняткі праводзяць Volha Yefimenka і Daria Koba, якія адаптуюць праграму да магчымасцей кожнага дзіцяці. Трэніроўкі праходзяць у сяброўскай атмасферы, заахвочваючы да фізічнай актыўнасці. Даступна ў філіялах Volat Mokotów і Volat Praga."
-    },
-    "volatmove-junior": {
-      pl: "VolatMove! JUNIOR to trening motoryczny dla dzieci 8-15 lat, skupiający się na korekcji problemów w ruchomości stawów i kształtowaniu prawidłowej postawy. Program obejmuje wzmocnienie stóp, poprawę elastyczności i rozwój siły mięśniowej. Zajęcia specjalnie zaprojektowane dla starszych dzieci i młodzieży, dostosowane do ich potrzeb rozwojowych. Prowadzi Volha Yefimenka z wieloletnim doświadczeniem w pracy z młodymi sportowcami. Dostępne w filiach Volat Mokotów i Volat Praga.",
-      uk: "VolatMove! JUNIOR - це моторичний тренінг для дітей 8-15 років, зосереджений на корекції проблем рухливості суглобів та формуванні правильної постави. Програма включає зміцнення стоп, покращення гнучкості та розвиток м'язової сили. Заняття спеціально розроблені для старших дітей та молоді, адаптовані до їхніх розвиткових потреб. Проводить Volha Yefimenka з багаторічним досвідом роботи з молодими спортсменами. Доступно у філіях Volat Mokotów та Volat Praga.",
-      en: "VolatMove! JUNIOR is motor training for children 8-15 years, focusing on correcting joint mobility issues and forming proper posture. The program includes strengthening the feet, improving flexibility, and developing muscle strength. Classes are specially designed for older children and youth, adapted to their developmental needs. Led by Volha Yefimenka with years of experience working with young athletes. Available at Volat Mokotów and Volat Praga branches.",
-      by: "VolatMove! JUNIOR - гэта маторныя трэніроўкі для дзяцей 8-15 гадоў, засяроджаныя на карэкцыі праблем рухомасці суставаў і фарміраванні правільнай паставы. Праграма ўключае ўмацаванне стоп, паляпшэнне гнуткасці і развіццё цягліцавай сілы. Заняткі спецыяльна распрацаваны для старэйшых дзяцей і моладзі, адаптаваныя да іх развіццёвых патрэб. Праводзіць Volha Yefimenka з шматгадовым досведам працы з маладымі спартсменамі. Даступна ў філіялах Volat Mokotów і Volat Praga."
-    },
-    "functional-training": {
-      pl: "Trening funkcjonalny i motoryczny dla młodzieży od 15 lat i dorosłych. Rozwój siły mięśni, szybkości reakcji, wytrzymałości, elastyczności i koordynacji, korekcja nadwagi. Program kompleksowy, skupiający się na ruchach naturalnych dla człowieka. Prowadzi Vital Rak. Dostępne w filii Volat Mokotów.",
-      uk: "Функціональний та моторичний тренінг для молоді від 15 років та дорослих. Розвиток м'язової сили, швидкості реакції, витривалості, гнучкості та координації, корекція надмірної ваги. Комплексна програма, зосереджена на природних рухах людини. Проводить Vital Rak. Доступно у філії Volat Mokotów.",
-      en: "Functional and motor training for youth from 15 years old and adults. Development of muscle strength, reaction speed, endurance, flexibility, and coordination, correction of excess weight. A comprehensive program focused on natural human movements. Led by Vital Rak. Available at Volat Mokotów branch.",
-      by: "Функцыянальныя і маторныя трэніроўкі для моладзі ад 15 гадоў і дарослых. Развіццё цягліцавай сілы, хуткасці рэакцыі, вынослівасці, гнуткасці і каардынацыі, карэкцыя лішняй вагі. Камплексная праграма, засяроджаная на натуральных рухах чалавека. Праводзіць Vital Rak. Даступна ў філіяле Volat Mokotów."
-    },
-    "chess": {
-      pl: "Szachy to gra strategiczna, która rozwija logiczne myślenie, koncentrację i umiejętności planowania. Trening szachowy poprawia pamięć, cierpliwość i umiejętności analityczne. Idealne dla osób w każdym wieku. Prowadzi Wiktor Murończyk - międzynarodowy mistrz szachowy.",
-      uk: "Шахи - це стратегічна гра, яка розвиває логічне мислення, концентрацію та навички планування. Шаховий тренінг покращує пам'ять, терпіння та аналітичні навички. Ідеально підходить для людей будь-якого віку. Проводить Wiktor Murończyk - міжнародний шаховий майстер.",
-      en: "Chess is a strategic game that develops logical thinking, concentration, and planning skills. Chess training improves memory, patience, and analytical skills. Perfect for people of all ages. Led by Wiktor Murończyk - an international chess master.",
-      by: "Шахматы - гэта стратэгічная гульня, якая развівае лагічнае мысленне, канцэнтрацыю і навыкі планавання. Шахматная трэніроўка паляпшае памяць, цярпенне і аналітычныя навыкі. Ідэальна падыходзіць для людзей любога ўзросту. Праводзіць Wiktor Murończyk - міжнародны шахматны майстар."
-    }
-  }
-
-  // Переводы преимуществ
-  const benefitsTranslations: Record<string, Record<string, string[]>> = {
-    "karate-wkf": {
-      pl: ["Poprawa kondycji fizycznej", "Rozwój koordynacji ruchowej", "Wzrost pewności siebie", "Nauka samodyscypliny", "Redukcja stresu"],
-      uk: ["Покращення фізичної форми", "Розвиток рухової координації", "Зростання впевненості в собі", "Навчання самодисципліні", "Зниження стресу"],
-      en: ["Improved physical fitness", "Development of motor coordination", "Increased self-confidence", "Learning self-discipline", "Stress reduction"],
-      by: ["Паляпшэнне фізічнай формы", "Развіццё руховай каардынацыі", "Рост упэўненасці ў сабе", "Навучанне самадысцыпліне", "Зніжэнне стрэсу"]
-    },
-    "muaythai": {
-      pl: ["Maksymalna spalanie kalorii", "Rozwój siły i wytrzymałości", "Nauka samoobrony", "Poprawa refleksu", "Wzrost pewności siebie"],
-      uk: ["Максимальне спалювання калорій", "Розвиток сили та витривалості", "Навчання самообороні", "Покращення рефлексів", "Зростання впевненості в собі"],
-      en: ["Maximum calorie burning", "Development of strength and endurance", "Self-defense training", "Improved reflexes", "Increased self-confidence"],
-      by: ["Максімальнае спальванне калорый", "Развіццё сілы і вынослівасці", "Навучанне самаабароне", "Паляпшэнне рэфлексаў", "Рост упэўненасці ў сабе"]
-    },
-    "judo": {
-      pl: ["Rozwój siły i elastyczności", "Nauka technik rzutów", "Poprawa koordynacji", "Nauka szacunku", "Rozwój charakteru"],
-      uk: ["Розвиток сили та гнучкості", "Навчання технік кидків", "Покращення координації", "Навчання поваги", "Розвиток характеру"],
-      en: ["Development of strength and flexibility", "Learning throwing techniques", "Improved coordination", "Learning respect", "Character development"],
-      by: ["Развіццё сілы і гнуткасці", "Навучанне тэхнік кідкоў", "Паляпшэнне каардынацыі", "Навучанне павагі", "Развіццё характару"]
-    },
-    "mma": {
-      pl: ["Wszechstronny rozwój", "Nauka różnych technik", "Maksymalna spalanie kalorii", "Poprawa kondycji", "Nauka strategii walki"],
-      uk: ["Всебічний розвиток", "Навчання різних технік", "Максимальне спалювання калорій", "Покращення форми", "Навчання стратегії боротьби"],
-      en: ["Comprehensive development", "Learning various techniques", "Maximum calorie burning", "Improved fitness", "Learning fight strategy"],
-      by: ["Усебаковае развіццё", "Навучанне розных тэхнік", "Максімальнае спальванне калорый", "Паляпшэнне формы", "Навучанне стратэгіі барацьбы"]
-    },
-    "volatmove-kids": {
-      pl: ["Rozwój koordynacji ruchowej", "Rozwój motoryki dużej", "Kształtowanie podstawowych umiejętności ruchowych", "Poprawa równowagi i elastyczności", "Przygotowanie do aktywności sportowych"],
-      uk: ["Розвиток рухової координації", "Розвиток великої моторики", "Формування основних рухових навичок", "Покращення рівноваги та гнучкості", "Підготовка до спортивних активностей"],
-      en: ["Development of motor coordination", "Development of gross motor skills", "Formation of basic movement skills", "Improved balance and flexibility", "Preparation for sports activities"],
-      by: ["Развіццё руховай каардынацыі", "Развіццё буйной маторыкі", "Фарміраванне асноўных рухавых навыкаў", "Паляпшэнне раўнавагі і гнуткасці", "Падрыхтоўка да спартыўных актыўнасцей"]
-    },
-    "volatmove-junior": {
-      pl: ["Korekcja ruchomości stawów", "Kształtowanie prawidłowej postawy", "Wzmocnienie stóp", "Poprawa elastyczności", "Rozwój siły i koordynacji"],
-      uk: ["Корекція рухливості суглобів", "Формування правильної постави", "Зміцнення стоп", "Покращення гнучкості", "Розвиток сили та координації"],
-      en: ["Correction of joint mobility", "Formation of proper posture", "Strengthening the feet", "Improved flexibility", "Development of strength and coordination"],
-      by: ["Карэкцыя рухомасці суставаў", "Фарміраванне правільнай паставы", "Умацаванне стоп", "Паляпшэнне гнуткасці", "Развіццё сілы і каардынацыі"]
-    },
-    "functional-training": {
-      pl: ["Rozwój siły mięśni", "Poprawa szybkości reakcji", "Rozwój wytrzymałości", "Poprawa elastyczności i koordynacji", "Korekcja nadwagi"],
-      uk: ["Розвиток м'язової сили", "Покращення швидкості реакції", "Розвиток витривалості", "Покращення гнучкості та координації", "Корекція надмірної ваги"],
-      en: ["Development of muscle strength", "Improved reaction speed", "Development of endurance", "Improved flexibility and coordination", "Correction of excess weight"],
-      by: ["Развіццё цягліцавай сілы", "Паляпшэнне хуткасці рэакцыі", "Развіццё вынослівасці", "Паляпшэнне гнуткасці і каардынацыі", "Карэкцыя лішняй вагі"]
-    },
-    "chess": {
-      pl: ["Rozwój logicznego myślenia", "Poprawa koncentracji", "Nauka strategii i planowania", "Rozwój pamięci", "Nauka cierpliwości"],
-      uk: ["Розвиток логічного мислення", "Покращення концентрації", "Навчання стратегії та планування", "Розвиток пам'яті", "Навчання терпіння"],
-      en: ["Development of logical thinking", "Improved concentration", "Learning strategy and planning", "Memory development", "Learning patience"],
-      by: ["Развіццё лагічнага мыслення", "Паляпшэнне канцэнтрацыі", "Навучанне стратэгіі і планавання", "Развіццё памяці", "Навучанне цярплівасці"]
-    }
-  }
-
-  // Переводы расписания и возрастных групп
-  const scheduleTranslations: Record<string, Record<string, string>> = {
+// Выносим все переводы за пределы компонента для оптимизации
+const scheduleTranslations: Record<string, Record<string, string>> = {
     "karate-wkf": {
       pl: "Poniedziałek, Środa, Piątek, Wtorek, Czwartek, Sobota (Mokotów) | Poniedziałek, Środa 18:00-19:00 (Praga)",
       uk: "Понеділок, Середа, П'ятниця, Вівторок, Четвер, Субота (Мокотув) | Понеділок, Середа 18:00-19:00 (Прага)",
@@ -300,9 +80,228 @@ export default function DisciplinePageClient({ discipline }: DisciplinePageClien
       en: "Ask about schedule",
       by: "Спытайце пра расклад"
     }
-  }
+}
 
-  const ageGroupsTranslations: Record<string, Record<string, string>> = {
+const disciplineTranslations: Record<string, Record<string, string>> = {
+    "karate-wkf": {
+      pl: "Karate WKF",
+      uk: "Карате WKF",
+      en: "Karate WKF",
+      by: "Каратэ WKF"
+    },
+    "muaythai": {
+      pl: "Muay Thai / Kickboxing",
+      uk: "Муай Тай / Кікбоксинг",
+      en: "Muay Thai / Kickboxing",
+      by: "Муай Тай / Кікбоксінг"
+    },
+    "judo": {
+      pl: "Judo",
+      uk: "Дзюдо",
+      en: "Judo",
+      by: "Дзюдо"
+    },
+    "mma": {
+      pl: "MMA",
+      uk: "ММА",
+      en: "MMA",
+      by: "ММА"
+    },
+    "volatmove-kids": {
+      pl: "VolatMove! KIDS. Trening Motoryczny",
+      uk: "VolatMove! KIDS. Моторичний тренінг",
+      en: "VolatMove! KIDS. Motor Training",
+      by: "VolatMove! KIDS. Маторныя трэніроўкі"
+    },
+    "volatmove-junior": {
+      pl: "VolatMove! JUNIOR. Trening Motoryczny",
+      uk: "VolatMove! JUNIOR. Моторичний тренінг",
+      en: "VolatMove! JUNIOR. Motor Training",
+      by: "VolatMove! JUNIOR. Маторныя трэніроўкі"
+    },
+    "functional-training": {
+      pl: "Trening Funkcjonalny",
+      uk: "Функціональний тренінг",
+      en: "Functional Training",
+      by: "Функцыянальныя трэніроўкі"
+    },
+    "chess": {
+      pl: "Szachy",
+      uk: "Шахи",
+      en: "Chess",
+      by: "Шахматы"
+    }
+}
+
+const descriptionTranslations: Record<string, Record<string, string>> = {
+    "karate-wkf": {
+      pl: "Sztuki walki",
+      uk: "Бойові мистецтва",
+      en: "Martial arts",
+      by: "Баявыя мастацтвы"
+    },
+    "muaythai": {
+      pl: "Sztuki walki",
+      uk: "Бойові мистецтва",
+      en: "Martial arts",
+      by: "Баявыя мастацтвы"
+    },
+    "judo": {
+      pl: "Sztuki walki",
+      uk: "Бойові мистецтва",
+      en: "Martial arts",
+      by: "Баявыя мастацтвы"
+    },
+    "mma": {
+      pl: "Sztuki walki",
+      uk: "Бойові мистецтва",
+      en: "Martial arts",
+      by: "Баявыя мастацтвы"
+    },
+    "volatmove-kids": {
+      pl: "Trening motoryczny dla dzieci 5-7 lat",
+      uk: "Моторичний тренінг для дітей 5-7 років",
+      en: "Motor training for children 5-7 years",
+      by: "Маторныя трэніроўкі для дзяцей 5-7 гадоў"
+    },
+    "volatmove-junior": {
+      pl: "Trening motoryczny dla dzieci 8-15 lat",
+      uk: "Моторичний тренінг для дітей 8-15 років",
+      en: "Motor training for children 8-15 years",
+      by: "Маторныя трэніроўкі для дзяцей 8-15 гадоў"
+    },
+    "functional-training": {
+      pl: "Trening funkcjonalny i motoryczny",
+      uk: "Функціональний та моторичний тренінг",
+      en: "Functional and motor training",
+      by: "Функцыянальныя і маторныя трэніроўкі"
+    },
+    "chess": {
+      pl: "Gra strategiczna",
+      uk: "Стратегічна гра",
+      en: "Strategic game",
+      by: "Стратэгічная гульня"
+    }
+}
+
+const priceTranslations: Record<string, Record<string, string>> = {
+    "default": {
+      pl: "Dzieci: 220 zł/miesiąc, Dorośli: 280 zł/miesiąc",
+      uk: "Діти: 220 zł/місяць, Дорослі: 280 zł/місяць",
+      en: "Children: 220 zł/month, Adults: 280 zł/month",
+      by: "Дзеці: 220 zł/месяц, Дарослыя: 280 zł/месяц"
+    },
+    "ask": {
+      pl: "Zapytaj o cenę",
+      uk: "Запитайте про ціну",
+      en: "Ask about price",
+      by: "Спытайце пра цану"
+    }
+}
+
+const fullDescriptionTranslations: Record<string, Record<string, string>> = {
+    "karate-wkf": {
+      pl: "Karate WKF to tradycyjna sztuka walki pochodząca z Japonii, która łączy techniki uderzeń, kopnięć i bloków. Trening rozwija siłę, szybkość, koordynację, dyscyplinę i koncentrację. Prowadzimy zajęcia dla dzieci od 7 lat z Volha Yefimenka, młodzieży i dorosłych z Vital Rak. Klub jest członkiem Polskiej Unii Karate i Mazowieckiego Związku Karate, co zapewnia profesjonalny poziom nauczania.",
+      uk: "Карате WKF - це традиційне бойове мистецтво з Японії, яке поєднує техніки ударів, ударів ногами та блокувань. Тренування розвиває силу, швидкість, координацію, дисципліну та концентрацію. Ми проводимо заняття для дітей від 7 років з Volha Yefimenka, молоді та дорослих з Vital Rak. Клуб є членом Польської Спілки Карате та Мазовецької Спілки Карате, що забезпечує професійний рівень навчання.",
+      en: "Karate WKF is a traditional martial art from Japan that combines striking, kicking, and blocking techniques. Training develops strength, speed, coordination, discipline, and concentration. We conduct classes for children from 7 years old with Volha Yefimenka, youth and adults with Vital Rak. The club is a member of the Polish Karate Union and the Mazovian Karate Association, ensuring a professional level of instruction.",
+      by: "Каратэ WKF - гэта традыцыйнае баявое мастацтва з Японіі, якое аб'ядноўвае тэхнікі удараў, удараў нагамі і блакаванняў. Трэніроўка развівае сілу, хуткасць, каардынацыю, дысцыпліну і канцэнтрацыю. Мы праводзім заняткі для дзяцей ад 7 гадоў з Volha Yefimenka, моладзі і дарослых з Vital Rak. Клуб з'яўляецца членам Польскай Асацыяцыі Каратэ і Мазавецкай Асацыяцыі Каратэ, што забяспечвае прафесійны ўзровень навучання."
+    },
+    "muaythai": {
+      pl: "Muay Thai / Kickboxing to tajski boks i kickboxing, jedna z najskuteczniejszych sztuk walki na świecie. Charakteryzuje się użyciem uderzeń pięściami, łokciami, kolanami i kopnięciami. Trening jest bardzo intensywny i rozwija wytrzymałość, siłę, szybkość i refleks. Prowadzimy zajęcia dla dzieci od 7 lat, młodzieży i dorosłych, dostosowując program do poziomu zaawansowania uczestników. Prowadzi Mikoła Taczylin - doświadczony trener z ponad 15-letnim doświadczeniem.",
+      uk: "Муай Тай / Кікбоксинг - це тайський бокс і кікбоксинг, один з найефективніших видів бойових мистецтв у світі. Характеризується використанням ударів кулаками, ліктями, колінами та ногами. Тренування дуже інтенсивне і розвиває витривалість, силу, швидкість та рефлекси. Ми проводимо заняття для дітей від 7 років, молоді та дорослих, адаптуючи програму до рівня підготовки учасників. Проводить Mikoła Taczylin - досвідчений тренер з понад 15-річним досвідом.",
+      en: "Muay Thai / Kickboxing is Thai boxing and kickboxing, one of the most effective martial arts in the world. It is characterized by the use of punches, elbows, knees, and kicks. Training is very intense and develops endurance, strength, speed, and reflexes. We conduct classes for children from 7 years, youth, and adults, adapting the program to the participants' skill level. Led by Mikoła Taczylin - an experienced coach with over 15 years of experience.",
+      by: "Муай Тай / Кікбоксінг - гэта тайскі бокс і кікбоксінг, адзін з самых эфектыўных відаў баявых мастацтваў у свеце. Характарызуецца выкарыстаннем удараў кулакамі, локцямі, каленямі і нагамі. Трэніроўка вельмі інтэнсіўная і развівае вынослівасць, сілу, хуткасць і рэфлексы. Мы праводзім заняткі для дзяцей ад 7 гадоў, моладзі і дарослых, адаптуючы праграму да ўзроўню падрыхтоўкі ўдзельнікаў. Праводзіць Mikoła Taczylin - вопытны трэнер з больш чым 15-гадовым досведам."
+    },
+    "judo": {
+      pl: "Judo to japońska sztuka walki olimpijska, która uczy rzutów, trzymań i dźwigni. Trening rozwija siłę, elastyczność, koordynację i równowagę. Prowadzimy zajęcia dla dzieci w wieku 7-12 lat, dostosowując program do możliwości młodych uczestników. Prowadzi Daria Koba - certyfikowana instruktorka judo z wieloletnim doświadczeniem, która zapewnia bezpieczne i efektywne nauczanie.",
+      uk: "Дзюдо - це японське олімпійське бойове мистецтво, яке навчає кидків, утримань та заломів. Тренування розвиває силу, гнучкість, координацію та рівновагу. Ми проводимо заняття для дітей віком 7-12 років, адаптуючи програму до можливостей молодих учасників. Проводить Daria Koba - сертифікований інструктор дзюдо з багаторічним досвідом, який забезпечує безпечне та ефективне навчання.",
+      en: "Judo is an Olympic Japanese martial art that teaches throws, holds, and locks. Training develops strength, flexibility, coordination, and balance. We conduct classes for children aged 7-12, adapting the program to young participants' capabilities. Led by Daria Koba - a certified judo instructor with years of experience who ensures safe and effective teaching.",
+      by: "Дзюдо - гэта японскае алімпійскае баявое мастацтва, якое навучае кідкоў, трыманняў і заломаў. Трэніроўка развівае сілу, гнуткасць, каардынацыю і раўнавагу. Мы праводзім заняткі для дзяцей ва ўзросце 7-12 гадоў, адаптуючы праграму да магчымасцей маладых удзельнікаў. Праводзіць Daria Koba - сертыфікаваны інструктар дзюдо з шматгадовым досведам, які забяспечвае бяспечнае і эфектыўнае навучанне."
+    },
+    "mma": {
+      pl: "MMA (Mixed Martial Arts) to mieszane sztuki walki, które łączą techniki z różnych dyscyplin. Trening obejmuje walkę w stójce i parterze, uderzenia, kopnięcia, rzuty i dźwignie. MMA łączy techniki boksu, zapasów, judo, brazylijskiego jiu-jitsu, kickboxingu i innych sztuk walki. Prowadzimy zajęcia dla dzieci od 6 lat, młodzieży od 14 lat i dorosłych z różnym poziomem zaawansowania. Prowadzi Paweł Szymkowicz. Dostępne w filii Volat Mokotów.",
+      uk: "ММА (Mixed Martial Arts) - це змішані бойові мистецтва, які поєднують техніки з різних дисциплін. Тренування включає боротьбу у стійці та партері, удари, удари ногами, кидки та заломи. ММА поєднує техніки боксу, боротьби, дзюдо, бразильського дзю-дзюцу, кікбоксингу та інших бойових мистецтв. Ми проводимо заняття для дітей від 6 років, молоді від 14 років та дорослих з різним рівнем підготовки. Проводить Paweł Szymkowicz. Доступно у філії Volat Mokotów.",
+      en: "MMA (Mixed Martial Arts) is mixed martial arts that combines techniques from various disciplines. Training includes stand-up and ground fighting, strikes, kicks, throws, and locks. MMA combines techniques from boxing, wrestling, judo, Brazilian jiu-jitsu, kickboxing, and other martial arts. We conduct classes for children from 6 years, youth from 14 years, and adults with various skill levels. Led by Paweł Szymkowicz. Available at Volat Mokotów branch.",
+      by: "ММА (Mixed Martial Arts) - гэта змешаныя баявыя мастацтвы, якія аб'ядноўваюць тэхнікі з розных дысцыплін. Трэніроўка ўключае барацьбу ў стаянцы і партэры, удары, удары нагамі, кідкі і заломы. ММА аб'ядноўвае тэхнікі боксу, барацьбы, дзюдо, бразільскага дзю-дзюцу, кікбоксінгу і іншых баявых мастацтваў. Мы праводзім заняткі для дзяцей ад 6 гадоў, моладзі ад 14 гадоў і дарослых з розным узроўнем падрыхтоўкі. Праводзіць Paweł Szymkowicz. Даступна ў філіяле Volat Mokotów."
+    },
+    "volatmove-kids": {
+      pl: "VolatMove! KIDS to ogólne przygotowanie motoryczne dla przedszkolaków, rozwój koordynacji i motoryki dużej. Program specjalnie zaprojektowany dla najmłodszych dzieci w wieku 5-7 lat, skupiający się na podstawowych umiejętnościach ruchowych i równowadze. Zajęcia prowadzą Volha Yefimenka i Daria Koba, które dostosowują program do możliwości każdego dziecka. Treningi odbywają się w przyjaznej atmosferze, zachęcając do aktywności fizycznej. Dostępne w filiach Volat Mokotów i Volat Praga.",
+      uk: "VolatMove! KIDS - це загальна моторична підготовка для дошкільнят, розвиток координації та великої моторики. Програма спеціально розроблена для наймолодших дітей віком 5-7 років, зосереджуючись на основних рухових навичках та рівновазі. Заняття проводять Volha Yefimenka та Daria Koba, які адаптують програму до можливостей кожної дитини. Тренування проходять у дружній атмосфері, заохочуючи до фізичної активності. Доступно у філіях Volat Mokotów та Volat Praga.",
+      en: "VolatMove! KIDS is general motor preparation for preschoolers, development of coordination and gross motor skills. The program is specially designed for the youngest children aged 5-7, focusing on basic movement skills and balance. Classes are conducted by Volha Yefimenka and Daria Koba, who adapt the program to each child's capabilities. Training takes place in a friendly atmosphere, encouraging physical activity. Available at Volat Mokotów and Volat Praga branches.",
+      by: "VolatMove! KIDS - гэта агульная маторная падрыхтоўка для дашкольнікаў, развіццё каардынацыі і буйной маторыкі. Праграма спецыяльна распрацавана для самых маладых дзяцей ва ўзросце 5-7 гадоў, засяроджваючыся на асноўных рухавых навыках і раўнавазе. Заняткі праводзяць Volha Yefimenka і Daria Koba, якія адаптуюць праграму да магчымасцей кожнага дзіцяці. Трэніроўкі праходзяць у сяброўскай атмасферы, заахвочваючы да фізічнай актыўнасці. Даступна ў філіялах Volat Mokotów і Volat Praga."
+    },
+    "volatmove-junior": {
+      pl: "VolatMove! JUNIOR to trening motoryczny i korekcyjny dla dzieci 8-13 lat, skupiający się na korekcji problemów w ruchomości stawów i kształtowaniu prawidłowej postawy. Program obejmuje wzmocnienie stóp, poprawę elastyczności i rozwój siły mięśniowej. Zajęcia specjalnie zaprojektowane dla starszych dzieci, dostosowane do ich potrzeb rozwojowych. Prowadzi Volha Yefimenka z wieloletnim doświadczeniem w pracy z młodymi sportowcami. Dostępne w filiach Volat Mokotów i Volat Praga.",
+      uk: "VolatMove! JUNIOR - це моторичний та корекційний тренінг для дітей 8-13 років, зосереджений на корекції проблем рухливості суглобів та формуванні правильної постави. Програма включає зміцнення стоп, покращення гнучкості та розвиток м'язової сили. Заняття спеціально розроблені для старших дітей, адаптовані до їхніх розвиткових потреб. Проводить Volha Yefimenka з багаторічним досвідом роботи з молодими спортсменами. Доступно у філіях Volat Mokotów та Volat Praga.",
+      en: "VolatMove! JUNIOR is motor and corrective training for children 8-13 years, focusing on correcting joint mobility issues and forming proper posture. The program includes strengthening the feet, improving flexibility, and developing muscle strength. Classes are specially designed for older children, adapted to their developmental needs. Led by Volha Yefimenka with years of experience working with young athletes. Available at Volat Mokotów and Volat Praga branches.",
+      by: "VolatMove! JUNIOR - гэта маторныя і карэкцыйныя трэніроўкі для дзяцей 8-13 гадоў, засяроджаныя на карэкцыі праблем рухомасці суставаў і фарміраванні правільнай паставы. Праграма ўключае ўмацаванне стоп, паляпшэнне гнуткасці і развіццё цягліцавай сілы. Заняткі спецыяльна распрацаваны для старэйшых дзяцей, адаптаваныя да іх развіццёвых патрэб. Праводзіць Volha Yefimenka з шматгадовым досведам працы з маладымі спартсменамі. Даступна ў філіялах Volat Mokotów і Volat Praga."
+    },
+    "functional-training": {
+      pl: "Trening funkcjonalny i motoryczny dla młodzieży od 15 lat i dorosłych. Rozwój siły mięśni, szybkości reakcji, wytrzymałości, elastyczności i koordynacji, korekcja nadwagi. Program kompleksowy, skupiający się na ruchach naturalnych dla człowieka. Prowadzi Vital Rak. Dostępne w filiach Volat Mokotów i Praga Północ.",
+      uk: "Функціональний та моторичний тренінг для молоді від 15 років та дорослих. Розвиток м'язової сили, швидкості реакції, витривалості, гнучкості та координації, корекція надмірної ваги. Комплексна програма, зосереджена на природних рухах людини. Проводить Vital Rak. Доступно у філіях Volat Mokotów та Praga Północ.",
+      en: "Functional and motor training for youth from 15 years old and adults. Development of muscle strength, reaction speed, endurance, flexibility, and coordination, correction of excess weight. A comprehensive program focused on natural human movements. Led by Vital Rak. Available at Volat Mokotów and Praga Północ branches.",
+      by: "Функцыянальныя і маторныя трэніроўкі для моладзі ад 15 гадоў і дарослых. Развіццё цягліцавай сілы, хуткасці рэакцыі, вынослівасці, гнуткасці і каардынацыі, карэкцыя лішняй вагі. Камплексная праграма, засяроджаная на натуральных рухах чалавека. Праводзіць Vital Rak. Даступна ў філіялах Volat Mokotów і Praga Północ."
+    },
+    "chess": {
+      pl: "Szachy to gra strategiczna, która rozwija logiczne myślenie, koncentrację i umiejętności planowania. Trening szachowy poprawia pamięć, cierpliwość i umiejętności analityczne. Idealne dla osób w każdym wieku. Prowadzi Wiktor Murończyk - międzynarodowy mistrz szachowy.",
+      uk: "Шахи - це стратегічна гра, яка розвиває логічне мислення, концентрацію та навички планування. Шаховий тренінг покращує пам'ять, терпіння та аналітичні навички. Ідеально підходить для людей будь-якого віку. Проводить Wiktor Murończyk - міжнародний шаховий майстер.",
+      en: "Chess is a strategic game that develops logical thinking, concentration, and planning skills. Chess training improves memory, patience, and analytical skills. Perfect for people of all ages. Led by Wiktor Murończyk - an international chess master.",
+      by: "Шахматы - гэта стратэгічная гульня, якая развівае лагічнае мысленне, канцэнтрацыю і навыкі планавання. Шахматная трэніроўка паляпшае памяць, цярпенне і аналітычныя навыкі. Ідэальна падыходзіць для людзей любога ўзросту. Праводзіць Wiktor Murończyk - міжнародны шахматны майстар."
+    }
+}
+
+const benefitsTranslations: Record<string, Record<string, string[]>> = {
+    "karate-wkf": {
+      pl: ["Poprawa kondycji fizycznej", "Rozwój koordynacji ruchowej", "Wzrost pewności siebie", "Nauka samodyscypliny", "Redukcja stresu"],
+      uk: ["Покращення фізичної форми", "Розвиток рухової координації", "Зростання впевненості в собі", "Навчання самодисципліні", "Зниження стресу"],
+      en: ["Improved physical fitness", "Development of motor coordination", "Increased self-confidence", "Learning self-discipline", "Stress reduction"],
+      by: ["Паляпшэнне фізічнай формы", "Развіццё руховай каардынацыі", "Рост упэўненасці ў сабе", "Навучанне самадысцыпліне", "Зніжэнне стрэсу"]
+    },
+    "muaythai": {
+      pl: ["Maksymalna spalanie kalorii", "Rozwój siły i wytrzymałości", "Nauka samoobrony", "Poprawa refleksu", "Wzrost pewności siebie"],
+      uk: ["Максимальне спалювання калорій", "Розвиток сили та витривалості", "Навчання самообороні", "Покращення рефлексів", "Зростання впевненості в собі"],
+      en: ["Maximum calorie burning", "Development of strength and endurance", "Self-defense training", "Improved reflexes", "Increased self-confidence"],
+      by: ["Максімальнае спальванне калорый", "Развіццё сілы і вынослівасці", "Навучанне самаабароне", "Паляпшэнне рэфлексаў", "Рост упэўненасці ў сабе"]
+    },
+    "judo": {
+      pl: ["Rozwój siły i elastyczności", "Nauka technik rzutów", "Poprawa koordynacji", "Nauka szacunku", "Rozwój charakteru"],
+      uk: ["Розвиток сили та гнучкості", "Навчання технік кидків", "Покращення координації", "Навчання поваги", "Розвиток характеру"],
+      en: ["Development of strength and flexibility", "Learning throwing techniques", "Improved coordination", "Learning respect", "Character development"],
+      by: ["Развіццё сілы і гнуткасці", "Навучанне тэхнік кідкоў", "Паляпшэнне каардынацыі", "Навучанне павагі", "Развіццё характару"]
+    },
+    "mma": {
+      pl: ["Wszechstronny rozwój", "Nauka różnych technik", "Maksymalna spalanie kalorii", "Poprawa kondycji", "Nauka strategii walki"],
+      uk: ["Всебічний розвиток", "Навчання різних технік", "Максимальне спалювання калорій", "Покращення форми", "Навчання стратегії боротьби"],
+      en: ["Comprehensive development", "Learning various techniques", "Maximum calorie burning", "Improved fitness", "Learning fight strategy"],
+      by: ["Усебаковае развіццё", "Навучанне розных тэхнік", "Максімальнае спальванне калорый", "Паляпшэнне формы", "Навучанне стратэгіі барацьбы"]
+    },
+    "volatmove-kids": {
+      pl: ["Rozwój koordynacji ruchowej", "Rozwój motoryki dużej", "Kształtowanie podstawowych umiejętności ruchowych", "Poprawa równowagi i elastyczności", "Przygotowanie do aktywności sportowych"],
+      uk: ["Розвиток рухової координації", "Розвиток великої моторики", "Формування основних рухових навичок", "Покращення рівноваги та гнучкості", "Підготовка до спортивних активностей"],
+      en: ["Development of motor coordination", "Development of gross motor skills", "Formation of basic movement skills", "Improved balance and flexibility", "Preparation for sports activities"],
+      by: ["Развіццё руховай каардынацыі", "Развіццё буйной маторыкі", "Фарміраванне асноўных рухавых навыкаў", "Паляпшэнне раўнавагі і гнуткасці", "Падрыхтоўка да спартыўных актыўнасцей"]
+    },
+    "volatmove-junior": {
+      pl: ["Korekcja ruchomości stawów", "Kształtowanie prawidłowej postawy", "Wzmocnienie stóp", "Poprawa elastyczności", "Rozwój siły i koordynacji"],
+      uk: ["Корекція рухливості суглобів", "Формування правильної постави", "Зміцнення стоп", "Покращення гнучкості", "Розвиток сили та координації"],
+      en: ["Correction of joint mobility", "Formation of proper posture", "Strengthening the feet", "Improved flexibility", "Development of strength and coordination"],
+      by: ["Карэкцыя рухомасці суставаў", "Фарміраванне правільнай паставы", "Умацаванне стоп", "Паляпшэнне гнуткасці", "Развіццё сілы і каардынацыі"]
+    },
+    "functional-training": {
+      pl: ["Rozwój siły mięśni", "Poprawa szybkości reakcji", "Rozwój wytrzymałości", "Poprawa elastyczności i koordynacji", "Korekcja nadwagi"],
+      uk: ["Розвиток м'язової сили", "Покращення швидкості реакції", "Розвиток витривалості", "Покращення гнучкості та координації", "Корекція надмірної ваги"],
+      en: ["Development of muscle strength", "Improved reaction speed", "Development of endurance", "Improved flexibility and coordination", "Correction of excess weight"],
+      by: ["Развіццё цягліцавай сілы", "Паляпшэнне хуткасці рэакцыі", "Развіццё вынослівасці", "Паляпшэнне гнуткасці і каардынацыі", "Карэкцыя лішняй вагі"]
+    },
+    "chess": {
+      pl: ["Rozwój logicznego myślenia", "Poprawa koncentracji", "Nauka strategii i planowania", "Rozwój pamięci", "Nauka cierpliwości"],
+      uk: ["Розвиток логічного мислення", "Покращення концентрації", "Навчання стратегії та планування", "Розвиток пам'яті", "Навчання терпіння"],
+      en: ["Development of logical thinking", "Improved concentration", "Learning strategy and planning", "Memory development", "Learning patience"],
+      by: ["Развіццё лагічнага мыслення", "Паляпшэнне канцэнтрацыі", "Навучанне стратэгіі і планавання", "Развіццё памяці", "Навучанне цярплівасці"]
+    }
+}
+
+const ageGroupsTranslations: Record<string, Record<string, string>> = {
     "karate-wkf": {
       pl: "Dzieci od 7 lat, Młodzież, Dorośli",
       uk: "Діти від 7 років, Молодь, Дорослі",
@@ -310,22 +309,22 @@ export default function DisciplinePageClient({ discipline }: DisciplinePageClien
       by: "Дзеці ад 7 гадоў, Моладзь, Дарослыя"
     },
     "muaythai": {
-      pl: "Młodzież 14+, Dorośli",
-      uk: "Молодь 14+, Дорослі",
-      en: "Youth 14+, Adults",
-      by: "Моладзь 14+, Дарослыя"
+      pl: "Dzieci od 7 lat, Młodzież, Dorośli",
+      uk: "Діти від 7 років, Молодь, Дорослі",
+      en: "Children from 7 years, Youth, Adults",
+      by: "Дзеці ад 7 гадоў, Моладзь, Дарослыя"
     },
     "judo": {
-      pl: "Dzieci 5+, Młodzież, Dorośli",
-      uk: "Діти 5+, Молодь, Дорослі",
-      en: "Children 5+, Youth, Adults",
-      by: "Дзеці 5+, Моладзь, Дарослыя"
+      pl: "Dzieci 7-12 lat",
+      uk: "Діти 7-12 років",
+      en: "Children 7-12 years",
+      by: "Дзеці 7-12 гадоў"
     },
     "mma": {
-      pl: "Młodzież 15+, Dorośli",
-      uk: "Молодь 15+, Дорослі",
-      en: "Youth 15+, Adults",
-      by: "Моладзь 15+, Дарослыя"
+      pl: "Dzieci od 6 lat, Młodzież od 14 lat, Dorośli",
+      uk: "Діти від 6 років, Молодь від 14 років, Дорослі",
+      en: "Children from 6 years, Youth from 14 years, Adults",
+      by: "Дзеці ад 6 гадоў, Моладзь ад 14 гадоў, Дарослыя"
     },
     "volatmove-kids": {
       pl: "Dzieci 5-7 lat",
@@ -334,10 +333,10 @@ export default function DisciplinePageClient({ discipline }: DisciplinePageClien
       by: "Дзеці 5-7 гадоў"
     },
     "volatmove-junior": {
-      pl: "Dzieci 8-15 lat",
-      uk: "Діти 8-15 років",
-      en: "Children 8-15 years",
-      by: "Дзеці 8-15 гадоў"
+      pl: "Dzieci 8-13 lat",
+      uk: "Діти 8-13 років",
+      en: "Children 8-13 years",
+      by: "Дзеці 8-13 гадоў"
     },
     "functional-training": {
       pl: "Młodzież 15+, Dorośli",
@@ -351,9 +350,9 @@ export default function DisciplinePageClient({ discipline }: DisciplinePageClien
       en: "Children 6+, Youth, Adults",
       by: "Дзеці 6+, Моладзь, Дарослыя"
     }
-  }
+}
 
-  const translations = {
+const translations = {
     pl: {
       backToDisciplines: "← Wróć do dyscyplin",
       bookNow: "Zapisz się",
@@ -426,18 +425,31 @@ export default function DisciplinePageClient({ discipline }: DisciplinePageClien
       pragaInfo: "Прасторная трэнавальная зала. Раздзявальні з душэм, рэцэпцыя, кандыцыянер.",
       viewOnMap: "Паглядзець на карце"
     }
-  }
+}
 
-  const t = translations[currentLang] || translations.pl
+export default function DisciplinePageClient({ discipline, locations }: DisciplinePageClientProps) {
+  const { currentLang } = useLanguage()
+  
+  // Мемоизируем переводы для оптимизации
+  const t = useMemo(() => translations[currentLang] || translations.pl, [currentLang])
+  
+  // Определяем локации - используем переданные locations или проверяем расписание как fallback
+  const hasMokotow = useMemo(() => 
+    locations?.mokotow ?? (scheduleTranslations[discipline.slug]?.[currentLang] || discipline.schedule).includes("Mokotów"),
+    [locations?.mokotow, discipline.slug, currentLang, discipline.schedule]
+  )
+  const hasPraga = useMemo(() => 
+    locations?.praga ?? (scheduleTranslations[discipline.slug]?.[currentLang] || discipline.schedule).includes("Praga"),
+    [locations?.praga, discipline.slug, currentLang, discipline.schedule]
+  )
 
-  // Определяем локации для FAQ
-  const hasMokotow = (scheduleTranslations[discipline.slug]?.[currentLang] || discipline.schedule).includes("Mokotów")
-  const hasPraga = (scheduleTranslations[discipline.slug]?.[currentLang] || discipline.schedule).includes("Praga")
+  // FAQ items для каждой дисциплины - мемоизируем для оптимизации
+  const disciplineName = useMemo(() => 
+    disciplineTranslations[discipline.slug]?.[currentLang] || discipline.name,
+    [discipline.slug, currentLang, discipline.name]
+  )
   
-  // FAQ items для каждой дисциплины
-  const disciplineName = disciplineTranslations[discipline.slug]?.[currentLang] || discipline.name
-  
-  const faqItems = [
+  const faqItems = useMemo(() => [
     {
       question: currentLang === 'pl' ? `Jakie są ceny zajęć ${disciplineName}?` 
         : currentLang === 'uk' ? `Які ціни занять ${disciplineName}?`
@@ -497,7 +509,7 @@ export default function DisciplinePageClient({ discipline }: DisciplinePageClien
         : currentLang === 'en' ? "For the first class, comfortable sportswear is enough. All specialized equipment is available at the club. The trainer will inform you about details after the first class."
         : "На першыя заняткі дастаткова зручнага спартыўнага адзення. Увесь спецыялізаваны інвентар даступны ў клубе. Трэнер паведаміць пра дэталі пасля першага занятка."
     }
-  ]
+  ], [disciplineName, hasMokotow, hasPraga, discipline.price, discipline.slug, discipline.ageGroups, currentLang])
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black">
@@ -526,10 +538,14 @@ export default function DisciplinePageClient({ discipline }: DisciplinePageClien
                   alt={discipline.imageAlt || `${disciplineTranslations[discipline.slug]?.[currentLang] || discipline.name} - trening w klubie VOLAT Warszawa`}
                   title={`${disciplineTranslations[discipline.slug]?.[currentLang] || discipline.name} - zajęcia w klubie VOLAT Warszawa, trener ${discipline.trainer}`}
                   fill
-                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, (max-width: 1280px) 50vw, 600px"
                   className="object-cover"
                   priority
                   loading="eager"
+                  quality={85}
+                  placeholder="blur"
+                  fetchPriority="high"
+                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
               </div>
@@ -558,9 +574,13 @@ export default function DisciplinePageClient({ discipline }: DisciplinePageClien
                           alt={altText}
                           title={`${disciplineTranslations[discipline.slug]?.[currentLang] || discipline.name} - ${altText}`}
                           fill
-                          sizes="(max-width: 1024px) 33vw, 16vw"
+                          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 25vw, 300px"
                           className="object-cover"
                           loading="lazy"
+                          quality={70}
+                          placeholder="blur"
+                          fetchPriority="low"
+                          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
                       </div>
@@ -681,38 +701,38 @@ export default function DisciplinePageClient({ discipline }: DisciplinePageClien
               {t.locations || "Lokalizacje"}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {(scheduleTranslations[discipline.slug]?.[currentLang] || discipline.schedule).includes("Mokotów") && (
-                <div className="bg-transparent backdrop-blur-sm border border-gray-700/50 rounded-xl p-6">
+              {hasMokotow && (
+                <div className="bg-transparent backdrop-blur-sm border border-gray-700/50 rounded-xl p-6 flex flex-col">
                   <h3 className="text-xl font-display font-bold text-white mb-3">VOLAT Mokotów</h3>
                   <p className="text-gray-300 font-primary mb-2 break-words">ul. Artura Malawskiego 6, Warszawa</p>
-                  <p className="text-gray-400 font-primary text-sm mb-4 break-words">
+                  <p className="text-gray-400 font-primary text-sm mb-4 break-words flex-grow">
                     {t.mokotowInfo || "Nowoczesna sala treningowa z pełnym wyposażeniem. Szatnie z prysznicami, parking, klimatyzacja."}
                   </p>
-                  <a 
-                    href="https://maps.google.com/?q=ul.+Artura+Malawskiego+6,+Warszawa"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-red-400 hover:text-red-300 font-accent text-sm inline-flex items-center"
-                  >
-                    {t.viewOnMap || "Zobacz na mapie"} →
-                  </a>
+                  <div className="mt-auto">
+                    <LocationMap 
+                      address="ul. Artura Malawskiego 6, Warszawa"
+                      name="VOLAT Mokotów"
+                      viewMapText={t.viewOnMap || "Zobacz na mapie"}
+                      className="mt-4"
+                    />
+                  </div>
                 </div>
               )}
-              {(scheduleTranslations[discipline.slug]?.[currentLang] || discipline.schedule).includes("Praga") && (
-                <div className="bg-transparent backdrop-blur-sm border border-gray-700/50 rounded-xl p-6">
+              {hasPraga && (
+                <div className="bg-transparent backdrop-blur-sm border border-gray-700/50 rounded-xl p-6 flex flex-col">
                   <h3 className="text-xl font-display font-bold text-white mb-3">VOLAT Praga Północ</h3>
                   <p className="text-gray-300 font-primary mb-2 break-words">ul. Kowieńska 12/20, Warszawa</p>
-                  <p className="text-gray-400 font-primary text-sm mb-4 break-words">
+                  <p className="text-gray-400 font-primary text-sm mb-4 break-words flex-grow">
                     {t.pragaInfo || "Przestronna sala treningowa. Szatnie z prysznicami, recepcja, klimatyzacja."}
                   </p>
-                  <a 
-                    href="https://maps.google.com/?q=ul.+Kowieńska+12/20,+Warszawa"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-red-400 hover:text-red-300 font-accent text-sm inline-flex items-center"
-                  >
-                    {t.viewOnMap || "Zobacz na mapie"} →
-                  </a>
+                  <div className="mt-auto">
+                    <LocationMap 
+                      address="ul. Kowieńska 12/20, Warszawa"
+                      name="VOLAT Praga Północ"
+                      viewMapText={t.viewOnMap || "Zobacz na mapie"}
+                      className="mt-4"
+                    />
+                  </div>
                 </div>
               )}
             </div>
@@ -720,17 +740,10 @@ export default function DisciplinePageClient({ discipline }: DisciplinePageClien
 
           {/* FAQ Section */}
           <div className="mt-12 space-y-6">
-            <h2 className="text-3xl font-display font-bold text-white mb-6 text-center lg:text-left">
+            <h2 className="text-3xl font-display font-bold text-white mb-6 text-center lg:text-left bg-gradient-to-r from-red-400 via-white to-red-400 bg-clip-text text-transparent">
               {t.faq || "Często zadawane pytania"}
             </h2>
-            <div className="space-y-4">
-              {faqItems.map((faq, index) => (
-                <div key={index} className="bg-transparent backdrop-blur-sm border border-gray-700/50 rounded-xl p-6">
-                  <h3 className="text-xl font-display font-bold text-white mb-3">{faq.question}</h3>
-                  <p className="text-gray-300 font-primary leading-relaxed break-words">{faq.answer}</p>
-                </div>
-              ))}
-            </div>
+            <FAQAccordion items={faqItems} />
           </div>
         </div>
       </main>

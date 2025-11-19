@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { MapPin, Phone, Mail, Clock, Navigation, Car, Bus } from "lucide-react"
 import { useLanguage } from "@/components/language-provider"
+import LocationMap from "@/components/location-map"
 
 const locations = [
   {
@@ -63,7 +64,8 @@ const translations = {
     availableConnections: "Dostępne połączenia komunikacyjne",
     busLines: "Linie autobusowe w okolicy",
     clientParking: "Parking dla klientów",
-    streetParking: "Parking uliczny"
+    streetParking: "Parking uliczny",
+    viewOnMap: "Zobacz na mapie"
   },
   uk: {
     title: "Контакти",
@@ -93,7 +95,8 @@ const translations = {
     availableConnections: "Доступні транспортні сполучення",
     busLines: "Автобусні маршрути поблизу",
     clientParking: "Парковка для клієнтів",
-    streetParking: "Вулична парковка"
+    streetParking: "Вулична парковка",
+    viewOnMap: "Подивитися на карті"
   },
   en: {
     title: "Contact",
@@ -123,7 +126,8 @@ const translations = {
     availableConnections: "Available transport connections",
     busLines: "Bus lines in the area",
     clientParking: "Parking for clients",
-    streetParking: "Street parking"
+    streetParking: "Street parking",
+    viewOnMap: "View on map"
   },
   by: {
     title: "Кантакты",
@@ -153,7 +157,8 @@ const translations = {
     availableConnections: "Даступныя транспартныя злучэнні",
     busLines: "Аўтобусныя маршруты побач",
     clientParking: "Паркоўка для кліентаў",
-    streetParking: "Вулічная паркоўка"
+    streetParking: "Вулічная паркоўка",
+    viewOnMap: "Паглядзець на карце"
   }
 }
 
@@ -270,6 +275,16 @@ export default function ContactPage() {
                           <span>{location.transport.parking === "Parking dla klientów" ? t.clientParking : t.streetParking}</span>
                         </div>
                       </div>
+                    </div>
+
+                    {/* Map */}
+                    <div className="mt-6">
+                      <LocationMap 
+                        address={location.address} 
+                        name={location.name}
+                        viewMapText={t.viewOnMap}
+                        className="mt-4"
+                      />
                     </div>
                   </div>
                 </CardContent>

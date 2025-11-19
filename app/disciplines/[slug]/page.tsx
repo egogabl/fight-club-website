@@ -46,7 +46,7 @@ export const disciplines = [
       "Wzrost pewności siebie"
     ],
     schedule: "Wtorek, Czwartek 19:00-20:30",
-    ageGroups: "Młodzież 14+, Dorośli",
+    ageGroups: "Dzieci od 7 lat, Młodzież, Dorośli",
     price: "Dzieci: 220 zł/miesiąc, Dorośli: 280 zł/miesiąc"
   },
   {
@@ -58,7 +58,7 @@ export const disciplines = [
     trainerId: "daria-koba", 
     image: "/judo-martial-arts-icon.jpg",
     gallery: [] as string[],
-    fullDescription: "Judo to japońska sztuka walki olimpijska, która uczy rzutów, trzymań i dźwigni. Trening rozwija siłę, elastyczność, koordynację i równowagę. Prowadzimy zajęcia dla dzieci w wieku 6-12 lat, dostosowując program do możliwości młodych uczestników. Prowadzi Daria Koba - certyfikowana instruktorka judo z wieloletnim doświadczeniem, która zapewnia bezpieczne i efektywne nauczanie.",
+    fullDescription: "Judo to japońska sztuka walki olimpijska, która uczy rzutów, trzymań i dźwigni. Trening rozwija siłę, elastyczność, koordynację i równowagę. Prowadzimy zajęcia dla dzieci w wieku 7-12 lat, dostosowując program do możliwości młodych uczestników. Prowadzi Daria Koba - certyfikowana instruktorka judo z wieloletnim doświadczeniem, która zapewnia bezpieczne i efektywne nauczanie.",
     benefits: [
       "Rozwój siły i elastyczności",
       "Nauka technik rzutów",
@@ -67,7 +67,7 @@ export const disciplines = [
       "Rozwój charakteru"
     ],
     schedule: "Wtorek, Czwartek 18:00-19:30",
-    ageGroups: "Dzieci 5+, Młodzież, Dorośli",
+    ageGroups: "Dzieci 7-12 lat",
     price: "Dzieci: 220 zł/miesiąc, Dorośli: 280 zł/miesiąc"
   },
   {
@@ -80,7 +80,7 @@ export const disciplines = [
     image: "/mma-trening-volat.jpg",
     imageAlt: "MMA trening w klubie VOLAT - mieszane sztuki walki, walka w parterze i techniki grapplingu z trenerem Paweł Szymkowicz",
     gallery: ["/mma-trening-grappling-volat.jpg", "/mma-trening-parter-volat.jpg", "/mma-trening-volat-3.jpg"],
-    fullDescription: "MMA (Mixed Martial Arts) to mieszane sztuki walki, które łączą techniki z różnych dyscyplin. Trening obejmuje walkę w stójce i parterze, uderzenia, kopnięcia, rzuty i dźwignie. MMA łączy techniki boksu, zapasów, judo, brazylijskiego jiu-jitsu, kickboxingu i innych sztuk walki. Prowadzimy zajęcia dla młodzieży od 15 lat i dorosłych z różnym poziomem zaawansowania. Prowadzi Paweł Szymkowicz. Dostępne w filii Volat Mokotów.",
+    fullDescription: "MMA (Mixed Martial Arts) to mieszane sztuki walki, które łączą techniki z różnych dyscyplin. Trening obejmuje walkę w stójce i parterze, uderzenia, kopnięcia, rzuty i dźwignie. MMA łączy techniki boksu, zapasów, judo, brazylijskiego jiu-jitsu, kickboxingu i innych sztuk walki. Prowadzimy zajęcia dla dzieci od 6 lat, młodzieży od 14 lat i dorosłych z różnym poziomem zaawansowania. Prowadzi Paweł Szymkowicz. Dostępne w filii Volat Mokotów.",
     benefits: [
       "Wszechstronny rozwój",
       "Nauka różnych technik",
@@ -89,7 +89,7 @@ export const disciplines = [
       "Nauka strategii walki"
     ],
     schedule: "Zapytaj o harmonogram",
-    ageGroups: "Młodzież 15+, Dorośli",
+    ageGroups: "Dzieci od 6 lat, Młodzież od 14 lat, Dorośli",
     price: "Dzieci: 220 zł/miesiąc, Dorośli: 280 zł/miesiąc"
   },
   {
@@ -124,7 +124,7 @@ export const disciplines = [
     image: "/volatmove-junior-trening-volat.jpg",
     imageAlt: "VolatMove! JUNIOR trening motoryczny dla dzieci 8-15 lat w klubie VOLAT - korekcja postawy i wzmocnienie stóp",
     gallery: [] as string[],
-    fullDescription: "VolatMove! JUNIOR to trening motoryczny dla dzieci 8-15 lat, skupiający się na korekcji problemów w ruchomości stawów i kształtowaniu prawidłowej postawy. Program obejmuje wzmocnienie stóp, poprawę elastyczności i rozwój siły mięśniowej. Zajęcia specjalnie zaprojektowane dla starszych dzieci i młodzieży, dostosowane do ich potrzeb rozwojowych. Prowadzi Volha Yefimenka z wieloletnim doświadczeniem w pracy z młodymi sportowcami. Dostępne w filiach Volat Mokotów i Volat Praga.",
+    fullDescription: "VolatMove! JUNIOR to trening motoryczny i korekcyjny dla dzieci 8-13 lat, skupiający się na korekcji problemów w ruchomości stawów i kształtowaniu prawidłowej postawy. Program obejmuje wzmocnienie stóp, poprawę elastyczności i rozwój siły mięśniowej. Zajęcia specjalnie zaprojektowane dla starszych dzieci, dostosowane do ich potrzeb rozwojowych. Prowadzi Volha Yefimenka z wieloletnim doświadczeniem w pracy z młodymi sportowcami. Dostępne w filiach Volat Mokotów i Volat Praga.",
     benefits: [
       "Korekcja ruchomości stawów",
       "Kształtowanie prawidłowej postawy",
@@ -133,7 +133,7 @@ export const disciplines = [
       "Rozwój siły i koordynacji"
     ],
     schedule: "Zapytaj o harmonogram",
-    ageGroups: "Dzieci 8-15 lat",
+    ageGroups: "Dzieci 8-13 lat",
     price: "Zapytaj o cenę"
   },
   {
@@ -146,7 +146,7 @@ export const disciplines = [
     image: "/functional-trening-1-volat.jpg",
     imageAlt: "Trening funkcjonalny i motoryczny w klubie VOLAT - rozwój siły, wytrzymałości i koordynacji z trenerem Vital Rak",
     gallery: ["/functional-trening-2-volat.jpg", "/functional-trening-3-volat.jpg", "/functional-trening-4-volat.jpg"],
-    fullDescription: "Trening funkcjonalny i motoryczny dla młodzieży od 15 lat i dorosłych. Rozwój siły mięśni, szybkości reakcji, wytrzymałości, elastyczności i koordynacji, korekcja nadwagi. Program kompleksowy, skupiający się na ruchach naturalnych dla człowieka. Prowadzi Vital Rak. Dostępne w filii Volat Mokotów.",
+    fullDescription: "Trening funkcjonalny i motoryczny dla młodzieży od 15 lat i dorosłych. Rozwój siły mięśni, szybkości reakcji, wytrzymałości, elastyczności i koordynacji, korekcja nadwagi. Program kompleksowy, skupiający się na ruchach naturalnych dla człowieka. Prowadzi Vital Rak. Dostępne w filiach Volat Mokotów i Praga Północ.",
     benefits: [
       "Rozwój siły mięśni",
       "Poprawa szybkości reakcji",
@@ -197,7 +197,7 @@ const disciplineLocations: Record<string, { mokotow?: boolean; praga?: boolean }
   "mma": { mokotow: true },
   "volatmove-kids": { mokotow: true, praga: true },
   "volatmove-junior": { mokotow: true, praga: true },
-  "functional-training": { mokotow: true },
+  "functional-training": { mokotow: true, praga: true },
   "chess": { mokotow: true, praga: true },
 }
 
@@ -455,7 +455,7 @@ export default async function DisciplinePage({ params }: { params: Promise<{ slu
       <StructuredData type="Course" data={courseStructuredData} />
       <StructuredData type="BreadcrumbList" data={breadcrumbStructuredData} />
       <StructuredData type="FAQPage" data={faqStructuredData} />
-      <DisciplinePageClient discipline={discipline} />
+      <DisciplinePageClient discipline={discipline} locations={{ mokotow: hasMokotow, praga: hasPraga }} />
     </>
   )
 }

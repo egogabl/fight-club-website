@@ -1,132 +1,102 @@
 import { Metadata } from 'next'
+import { notFound } from 'next/navigation'
 import CoachDetailClient from "./coach-detail-client"
 import StructuredData from '@/components/structured-data'
 
-const coaches = {
+const coaches: Record<string, any> = {
   "vital-rak": {
     name: "Vital Rak",
-    specialty: "Główny trener, karate (sportowa grupa, dorośli), trening funkcjonalny",
-    experience: "23 lata doświadczenia",
-    description:
-      "Główny trener klubu VOLAT z wieloletnim doświadczeniem w karate i treningu funkcjonalnym. Mistrz sportu, certyfikowany instruktor WKF. Specjalizuje się w przygotowaniu zawodników do zawodów międzynarodowych. Prowadzi karate sportową grupę i zajęcia dla dorosłych oraz trening funkcjonalny.",
-    image: "/vital-rak.png",
+    specialty: "Główny trener klubu. Trener karate i treningu funkcjonalnego",
+    experience: "30 lat w sporcie, 23 lata doświadczenia trenerskiego",
+    description: "Główny trener klubu VOLAT. Mistrz Republiki Białorusi w karate WKF w 2015 roku. Wielokrotny laureat mistrzostw i pucharów Republiki Białorusi w karate WKF. Brązowy laureat Pucharu Europy w Karate Shotokan wersji NSKF 2012 roku w wadze absolutnej. Mistrz miasta Mińsk w karate WKF 2014 i 2015 roku. Przygotował ponad 25 mistrzów i zwycięzców mistrzostwa Białorusi, 5 mistrzów sportu, medalistę Mistrzostw Świata 2017 roku w karate oraz wielu zwycięzców międzynarodowych i krajowych turniejów w karate, wushu sanda, pankrationie i walce wręcz.",
+    education: "Białoruski Pedagogiczny Uniwersytet Państwowy im. Maksyma Tanka (2006), specjalność \"Biologia i waleologia\", dyplom z wyróżnieniem; Białoruski Uniwersytet Kultury Fizycznej i Sportu (2009), specjalizacja trener karate, dyplom z wyróżnieniem",
     achievements: [
-      "Mistrz Sportu w Karate",
-      "Certyfikat WKF 3 Dan",
-      "Trener Kadry Narodowej",
-      "Instruktor Treningu Funkcjonalnego",
-      "Specjalista Rehabilitacji Sportowej"
+      "Mistrz Republiki Białorusi w karate WKF w 2015 roku",
+      "Mistrz miasta Mińsk w karate WKF 2014 i 2015 roku",
+      "Brązowy laureat Pucharu Europy w Karate Shotokan wersji NSKF 2012 roku w wadze absolutnej",
+      "Wielokrotny laureat mistrzostw i pucharów Republiki Białorusi w karate WKF",
+      "Przygotował ponad 25 mistrzów i zwycięzców mistrzostwa Białorusi",
+      "Przygotował 5 mistrzów sportu",
+      "Przygotował medalistę Mistrzostw Świata 2017 roku w karate",
+      "Przygotował wielu zwycięzców międzynarodowych i krajowych turniejów w karate, wushu sanda, pankrationie i walce wręcz"
     ],
-    upcomingSessions: [
-      { day: "Wtorek", time: "17:15-18:15", discipline: "Karate (dzieci 10+, początkujący)", location: "Mokotów" },
-      { day: "Piątek", time: "20:30-22:00", discipline: "Karate (dorośli)", location: "Mokotów" },
-      { day: "Sobota", time: "15:00-17:00", discipline: "Karate (sportowa grupa)", location: "Mokotów" },
-    ],
+    image: "/vital-rak.png",
   },
   "volha-yefimenka": {
     name: "Volha Yefimenka",
-    specialty: "Karate (dzieci 1. i 2. rok nauki), trening motoryczny VolatMOVE Junior",
-    experience: "12+ lat doświadczenia",
-    description:
-      "Specjalistka w karate dla dzieci oraz treningu motorycznym. Prowadzi zajęcia karate dla dzieci w wieku 7-11 lat (1. i 2. rok nauki) oraz trening motoryczny VolatMOVE Junior. Ma wyjątkowe podejście do najmłodszych zawodników. Certyfikowana instruktorka z wieloletnim doświadczeniem w pracy z dziećmi.",
-    image: "/volha-yefimenka.png",
+    specialty: "Trenerka karate, treningu motorycznego dla przedszkolaków oraz dzieci 8–15 lat",
+    experience: "Pracuje jako trener od 2007 roku",
+    description: "Mistrz sportu karate (kumite, WKF) Republiki Białorusi. Przygotowała jednego mistrza sportu Republiki Białorusi. Przygotowała medalistę młodzieżowych mistrzostw Europy (2021, Finlandia). Przeszła szkolenie w zakresie ogólnego treningu fizycznego dla dzieci 4–6, 6–8, 8–9, 10–12 lat oraz szkolenie korekcyjne dla dzieci i młodzieży z problemami stóp, postawy i ruchomości stawów. Prowadzi treningi w filiach Volat Mokotów oraz Volat Praga.",
+    education: "Wyższe wykształcenie (specjalizacja \"trener karate\")",
     achievements: [
-      "Mistrzyni Białorusi w Karate",
-      "Certyfikat Instruktora Dziecięcego",
-      "Specjalistka Treningu Motorycznego",
-      "Trener Grup Dziecięcych",
-      "Instruktor VolatMOVE Junior",
-      "Ekspert Rozwoju Koordynacji"
+      "Mistrz sportu karate (kumite, WKF) Republiki Białorusi",
+      "Przygotowała jednego mistrza sportu Republiki Białorusi",
+      "Przygotowała medalistę młodzieżowych mistrzostw Europy (2021, Finlandia)",
+      "Szkolenie w zakresie ogólnego treningu fizycznego dla dzieci 4–6, 6–8, 8–9, 10–12 lat",
+      "Szkolenie korekcyjne dla dzieci i młodzieży z problemami stóp, postawy i ruchomości stawów"
     ],
-    upcomingSessions: [
-      { day: "Wtorek", time: "16:00-17:15", discipline: "Karate (2. rok)", location: "Mokotów" },
-      { day: "Wtorek", time: "17:15-18:15", discipline: "Karate (1. rok)", location: "Mokotów" },
-      { day: "Wtorek", time: "18:15-19:15", discipline: "VolatMOVE Junior", location: "Mokotów" },
+    image: "/volha-yefimenka.png",
+  },
+  "daria-koba": {
+    name: "Daria Koba",
+    specialty: "Trenerka judo, treningu motorycznego dla przedszkolaków",
+    experience: "Doświadczenie w pracy z dziećmi w wieku od 3 do 13 lat",
+    description: "Instruktorka judo z bogatą historią sportową. Od 5. do 16. roku życia trenowała sambo pod okiem swojego ojca na Ukrainie, równocześnie startując w zawodach judo. Wielokrotna medalistka mistrzostw Ukrainy w sambo, 5. miejsce na Mistrzostwach Europy Kadetów, medalistka ogólnoukraińskich turniejów w judo.",
+    education: "AWF w Warszawie, kierunek: wychowanie fizyczne, specjalizacja: judo (studia licencjackie)",
+    achievements: [
+      "Wielokrotna medalistka mistrzostw Ukrainy w sambo",
+      "5. miejsce na Mistrzostwach Europy Kadetów w sambo",
+      "Uczestniczka zgrupowań kadry narodowej",
+      "Medalistka ogólnoukraińskich turniejów w judo",
+      "Posiadaczka brązowego pasa w judo",
+      "Doświadczenie w zapasach w stylu wolnym oraz brazylijskim jiu-jitsu"
     ],
+    image: "/daria-koba.png",
   },
   "mikola-taczylin": {
     name: "Mikoła Taczylin",
     specialty: "Trener Muay Thai dla dzieci, młodzieży i dorosłych",
-    experience: "18+ lat doświadczenia",
-    description:
-      "Ekspert w Muay Thai z wieloletnim doświadczeniem zawodowym. Były zawodnik, obecnie trener przygotowujący zawodników do walk i zawodów na najwyższym poziomie. Specjalizuje się w trenowaniu wszystkich grup wiekowych.",
+    experience: "Ponad 15 lat praktyki trenerskiej",
+    description: "Doświadczony trener kickboxingu i Muay Thai (boksu tajskiego). Przez wiele lat prowadził zajęcia w klubie „Patriot” w Barysawie (Białoruś). Specjalizuje się w treningach w formule K1 oraz boksie tajskim (Muay Thai). Wychował wielu zawodników, którzy zdobywali tytuły mistrzów Białorusi, Europy i świata.",
+    education: "Doświadczony trener z wieloletnią praktyką",
+    achievements: [
+      "Wieloletnia praktyka trenerska w klubie „Patriot\" w Barysawie",
+      "Wychował wielu mistrzów Białorusi, Europy i świata",
+      "Specjalizacja w formule K1 oraz boksie tajskim (Muay Thai)",
+      "Wychował Dzmitry Filonchyk - wielokrotnego mistrza Białorusi, członka kadry narodowej",
+      "Wychował Aliaksiej Wawreniuk - wielokrotnego mistrza Białorusi, zwycięzcę międzynarodowych zawodów"
+    ],
     image: "/mikola-taczylin.png",
-    achievements: [
-      "Były Zawodnik Muay Thai",
-      "Mistrz Europy Kickboxingu",
-      "Certyfikat IFMA",
-      "Trener Zawodników Profesjonalnych",
-      "Specjalista Techniki Uderzeń"
-    ],
-    upcomingSessions: [
-      { day: "Wtorek", time: "18:15-19:15", discipline: "Muay Thai / Kickboxing (dzieci 8-13 lat)", location: "Mokotów" },
-      { day: "Wtorek", time: "19:15-20:45", discipline: "Muay Thai / Kickboxing (młodzież 14+ i dorośli)", location: "Mokotów" },
-      { day: "Wtorek", time: "20:45-22:00", discipline: "Muay Thai / Kickboxing (dorośli)", location: "Mokotów" },
-    ],
-  },
-  "wiktor-muronczyk": {
-    name: "Wiktor Murończyk",
-    specialty: "Trener szkoły szachowej",
-    experience: "2 lata doświadczenia",
-    description:
-      "Mistrz szachowy prowadzący zajęcia dla wszystkich grup wiekowych. Specjalizuje się w rozwoju strategicznego myślenia i przygotowaniu do turniejów. Młody trener z dużym doświadczeniem turniejowym.",
-    image: "/wiktor-muronczyk.png",
-    achievements: [
-      "Międzynarodowy Mistrz Szachowy",
-      "Trener FIDE",
-      "Sędzia Turniejów Szachowych",
-      "Autor Programów Edukacyjnych",
-      "Specjalista Psychologii Sportu"
-    ],
-    upcomingSessions: [
-      { day: "Wtorek", time: "18:00-19:30", discipline: "Szachy", location: "Mokotów" },
-      { day: "Czwartek", time: "17:00-18:30", discipline: "Szachy", location: "Praga" },
-      { day: "Sobota", time: "14:00-15:30", discipline: "Szachy", location: "Mokotów" },
-    ],
   },
   "pawel-szymkowicz": {
     name: "Paweł Szymkowicz",
     specialty: "Trener MMA dla dzieci od 6 lat, młodzieży i dorosłych",
-    experience: "10+ lat doświadczenia",
-    description:
-      "Specjalista w MMA z wieloletnim doświadczeniem w trenowaniu zawodników wszystkich grup wiekowych. Certyfikowany instruktor z międzynarodowymi osiągnięciami. Specjalizuje się w technikach mieszanych sztuk walki.",
+    experience: "Wieloletnie doświadczenie sportowe i kilkuletnia praktyka trenerska",
+    description: "Absolwent Białoruskiego Państwowego Uniwersytetu Kultury Fizycznej, specjalizacja – działalność trenerska w zakresie sambo. Trener samoobrony i treningu funkcjonalnego. Na treningach łączy wiedzę akademicką z praktyką sportową, oferując skuteczne i bezpieczne metody pracy.",
+    education: "Białoruski Państwowy Uniwersytet Kultury Fizycznej, specjalizacja – działalność trenerska w zakresie sambo",
+    achievements: [
+      "Absolwent Białoruskiego Państwowego Uniwersytetu Kultury Fizycznej",
+      "Trener samoobrony i treningu funkcjonalnego",
+      "Specjalizacja w zakresie sambo",
+      "Indywidualne podejście do każdego zawodnika",
+      "Rozwój sprawności i budowanie pewności siebie"
+    ],
     image: "/pawel-szymkowicz.png",
-    achievements: [
-      "Mistrz Polski w MMA",
-      "Certyfikat Instruktora MMA",
-      "Trener Grup Dziecięcych",
-      "Specjalista Technik Mieszanych",
-      "Ekspert Walki w Parterze"
-    ],
-    upcomingSessions: [
-      { day: "Poniedziałek", time: "19:30-20:30", discipline: "MMA (dzieci i młodzież 6-14 lat)", location: "Mokotów" },
-      { day: "Poniedziałek", time: "20:30-22:00", discipline: "MMA (młodzież 14+ i dorośli)", location: "Mokotów" },
-      { day: "Środa", time: "19:30-20:30", discipline: "MMA (dzieci i młodzież 6-14 lat)", location: "Mokotów" },
-    ],
   },
-  "daria-koba": {
-    name: "Daria Koba",
-    specialty: "Trening motoryczny VolatMOVE Kids (dzieci 4-7 lat), Judo dla dzieci",
-    experience: "8+ lat doświadczenia",
-    description:
-      "Specjalistka w treningu motorycznym dla najmłodszych dzieci oraz judo. Ma wyjątkowe podejście do pracy z dziećmi w wieku przedszkolnym i szkolnym. Certyfikowana instruktorka z wieloletnim doświadczeniem w rozwoju podstawowych umiejętności motorycznych oraz treningu judo dla dzieci.",
-    image: "/daria-koba.png",
+  "wiktor-muronczyk": {
+    name: "Wiktor Murończyk",
+    specialty: "Trener szkoły szachowej",
+    experience: "2 lata doświadczenia w nauczaniu",
+    description: "Młody trener szachowy z dużym doświadczeniem turniejowym. Wielokrotny zwycięzca w turniejach rapidu, blitza oraz szachów klasycznych. Uczeń Mistrza Międzynarodowego i wielokrotnego mistrza Polski. Swobodnie mówi w języku polskim oraz rosyjskim.",
+    education: "Uczeń Mistrza Międzynarodowego i wielokrotnego mistrza Polski",
     achievements: [
-      "Certyfikat Instruktora Treningu Motorycznego",
-      "Certyfikat Instruktora Judo",
-      "Specjalistka Pracy z Dziećmi",
-      "Trener Grup Dziecięcych",
-      "Ekspert Rozwoju Koordynacji",
-      "Instruktor VolatMOVE Kids"
+      "Duże doświadczenie turniejowe w turniejach klasy międzynarodowej",
+      "Wielokrotny zwycięzca w turniejach rapidu",
+      "Wielokrotny zwycięzca w turniejach blitza",
+      "Wielokrotny zwycięzca w turniejach szachów klasycznych",
+      "Uczeń Mistrza Międzynarodowego i wielokrotnego mistrza Polski"
     ],
-    upcomingSessions: [
-      { day: "Poniedziałek", time: "17:30-18:15", discipline: "VolatMOVE Kids", location: "Mokotów" },
-      { day: "Poniedziałek", time: "18:15-19:15", discipline: "Judo (dzieci)", location: "Mokotów" },
-      { day: "Środa", time: "17:30-18:15", discipline: "VolatMOVE Kids", location: "Mokotów" },
-      { day: "Środa", time: "18:15-19:15", discipline: "Judo (dzieci)", location: "Mokotów" },
-      { day: "Piątek", time: "17:30-18:15", discipline: "VolatMOVE Kids", location: "Mokotów" },
-      { day: "Piątek", time: "18:15-19:15", discipline: "Judo (dzieci)", location: "Mokotów" },
-    ],
+    image: "/wiktor-muronczyk.png",
   },
 }
 
@@ -146,20 +116,90 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     }
   }
 
-  const title = `${coach.name} - Trener ${coach.specialty} w Warszawie | VOLAT`
-  const description = coach.description.substring(0, 160) + "..."
+  const title = `${coach.name} - ${coach.specialty} w Warszawie | VOLAT`
+  
+  // Создаем SEO-оптимизированное описание для превью
+  const createPreviewDescription = (coach: any) => {
+    const parts = []
+    
+    // Начинаем с имени и роли
+    if (coach.specialty.includes("Główny trener")) {
+      parts.push(`${coach.name} - główny trener klubu VOLAT w Warszawie.`)
+    } else {
+      parts.push(`${coach.name} - ${coach.specialty.toLowerCase()} w klubie VOLAT Warszawa.`)
+    }
+    
+    // Добавляем опыт (кратко)
+    if (coach.experience) {
+      const expShort = coach.experience.replace(/Pracuje jako trener od/, "Doświadczenie od").replace(/lat w sporcie.*/, "lat")
+      if (expShort.length < 50) {
+        parts.push(expShort + ".")
+      }
+    }
+    
+    // Добавляем одно ключевое достижение (самое важное и короткое)
+    if (coach.achievements && coach.achievements.length > 0) {
+      // Ищем самое короткое и информативное достижение
+      const shortAchievement = coach.achievements
+        .filter((a: string) => a.length < 80 && !a.includes("Przygotował"))
+        .sort((a: string, b: string) => a.length - b.length)[0]
+      
+      if (shortAchievement) {
+        parts.push(shortAchievement + ".")
+      }
+    }
+    
+    const fullDescription = parts.join(" ")
+    
+    // Ограничиваем до 155-160 символов для оптимального превью в соцсетях
+    if (fullDescription.length > 160) {
+      // Пытаемся обрезать по предложениям
+      const sentences = fullDescription.split(".")
+      let result = ""
+      for (const sentence of sentences) {
+        if ((result + sentence + ".").length <= 157) {
+          result += sentence + "."
+        } else {
+          break
+        }
+      }
+      return result || fullDescription.substring(0, 157) + "..."
+    }
+    
+    return fullDescription
+  }
+  
+  const description = createPreviewDescription(coach)
   
   return {
     title,
     description,
     keywords: [
       `${coach.name.toLowerCase()} trener warszawa`,
-      `trener ${coach.specialty.toLowerCase()}`,
-      `${coach.name.toLowerCase()} karate`,
+      `${coach.name.toLowerCase()} ${coach.specialty.toLowerCase()}`,
+      `trener ${coach.specialty.toLowerCase()} warszawa`,
       "trener sztuk walki warszawa",
+      "trener karate warszawa",
+      "trener muay thai warszawa",
+      "trener mma warszawa",
+      "trener judo warszawa",
+      "trener szachów warszawa",
       "VOLAT trenerzy",
-      "instruktor karate warszawa",
+      "instruktor sztuk walki warszawa",
+      "klub sportowy warszawa mokotów",
+      "klub sportowy warszawa praga",
     ],
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
     openGraph: {
       title,
       description,
@@ -167,36 +207,38 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       siteName: 'VOLAT',
       images: [
         {
-          url: coach.image.startsWith('/') ? `https://volat.pl${coach.image}` : coach.image,
+          url: coach.image?.startsWith('/') ? `https://volat.pl${coach.image}` : coach.image || '',
           width: 1200,
           height: 630,
-          alt: coach.name,
+          alt: `${coach.name} - ${coach.specialty}`,
         },
       ],
       locale: 'pl_PL',
-      type: 'profile',
+      type: 'website',
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
-      images: [coach.image.startsWith('/') ? `https://volat.pl${coach.image}` : coach.image],
+      images: [coach.image?.startsWith('/') ? `https://volat.pl${coach.image}` : coach.image || ''],
     },
     alternates: {
-      canonical: `/coaches/${slug}`,
+      canonical: `https://volat.pl/coaches/${slug}`,
     },
   }
 }
 
 export default async function CoachDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  const coach = coaches[slug as keyof typeof coaches] || null
+  const coach = coaches[slug as keyof typeof coaches]
 
   if (!coach) {
-    return <CoachDetailClient coach={coach} slug={slug} />
+    notFound()
   }
 
   const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Person",
     name: coach.name,
     jobTitle: coach.specialty,
     description: coach.description,
@@ -205,9 +247,13 @@ export default async function CoachDetailPage({ params }: { params: Promise<{ sl
       name: "VOLAT",
       url: "https://volat.pl"
     },
-    alumniOf: "Akademia Wychowania Fizycznego",
-    knowsAbout: [coach.specialty],
-    image: coach.image.startsWith('/') ? `https://volat.pl${coach.image}` : coach.image,
+    alumniOf: coach.education,
+    knowsAbout: coach.specialty,
+    image: coach.image?.startsWith('/') ? `https://volat.pl${coach.image}` : coach.image,
+    award: coach.achievements.map((achievement: string) => ({
+      "@type": "Thing",
+      name: achievement
+    })),
   }
 
   return (

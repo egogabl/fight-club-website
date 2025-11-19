@@ -636,15 +636,16 @@ const scheduleData = [
   },
 ]
 
-const translations = {
-  pl: {
-    title: "Rozkład zajęć",
+  const translations = {
+    pl: {
+      title: "Rozkład zajęć",
     subtitle: "Wybierz filię, sport i grupę wiekową",
-    mokotow: "Mokotów",
-    praga: "Praga Północ",
-    allSports: "Wszystkie sporty",
+      mokotow: "Mokotów",
+      praga: "Praga Północ",
+      allSports: "Wszystkie sporty",
     allAges: "Wszystkie grupy",
     filteredByCoach: "Filtrowane przez trenera",
+    clearCoachFilter: "Pokaż wszystkie zajęcia",
     bookClass: "Zapisz się na zajęcia",
     backToSchedule: "Powrót do rozkładu",
     noClassesFound: "Nie znaleziono zajęć dla wybranych filtrów",
@@ -678,15 +679,16 @@ const translations = {
       motoryka: "Motoryka",
       szachy: "Szachy",
     },
-  },
-  uk: {
-    title: "Розклад занять",
+    },
+    uk: {
+      title: "Розклад занять",
     subtitle: "Оберіть філію, спорт та вікову групу",
     mokotow: "Мокотув",
-    praga: "Прага Північна",
-    allSports: "Всі види спорту",
+      praga: "Прага Північна",
+      allSports: "Всі види спорту",
     allAges: "Всі групи",
     filteredByCoach: "Відфільтровано тренером",
+    clearCoachFilter: "Показати всі заняття",
     bookClass: "Записатися на заняття",
     backToSchedule: "Повернутися до розкладу",
     noClassesFound: "Не знайдено занять для обраних фільтрів",
@@ -720,15 +722,16 @@ const translations = {
       motoryka: "Моторика",
       szachy: "Шахи",
     },
-  },
-  en: {
-    title: "Schedule",
+    },
+    en: {
+      title: "Schedule",
     subtitle: "Choose branch, sport and age group",
-    mokotow: "Mokotów",
+      mokotow: "Mokotów",
     praga: "Praga Północ",
     allSports: "All sports",
     allAges: "All groups",
     filteredByCoach: "Filtered by coach",
+    clearCoachFilter: "Show all classes",
     bookClass: "Book class",
     backToSchedule: "Back to schedule",
     noClassesFound: "No classes found for selected filters",
@@ -762,15 +765,16 @@ const translations = {
       motoryka: "Motor Skills",
       szachy: "Chess",
     },
-  },
-  by: {
-    title: "Расклад заняткаў",
+    },
+    by: {
+      title: "Расклад заняткаў",
     subtitle: "Выберыце філіял, спорт і ўзроставую групу",
     mokotow: "Макотув",
-    praga: "Прага Паўночная",
-    allSports: "Усе віды спорту",
+      praga: "Прага Паўночная",
+      allSports: "Усе віды спорту",
     allAges: "Усе групы",
     filteredByCoach: "Адфільтравана трэнерам",
+    clearCoachFilter: "Паказаць усе заняткі",
     bookClass: "Запісацца на заняткі",
     backToSchedule: "Вярнуцца да раскладу",
     noClassesFound: "Не знойдзена заняткаў для абраных фільтраў",
@@ -807,11 +811,12 @@ const translations = {
   },
 }
 
-export default function SchedulePage() {
+function ScheduleContent() {
   const { currentLang } = useLanguage()
   const [selectedBranch, setSelectedBranch] = useState("mokotow")
   const [selectedSport, setSelectedSport] = useState("wszystkie")
   const [selectedAgeGroup, setSelectedAgeGroup] = useState("wszystkie")
+  const [selectedCoach, setSelectedCoach] = useState<string | null>(null)
   const searchParams = useSearchParams()
 
   const t = translations[currentLang] || translations.pl
@@ -819,12 +824,16 @@ export default function SchedulePage() {
   useEffect(() => {
     const coachSlug = searchParams.get("coach")
     if (coachSlug) {
+      setSelectedCoach(coachSlug)
+      // Не устанавливаем фильтры по спорту и возрастной группе - показываем все занятия тренера
       const coachData = scheduleData.find(item => item.coach.slug === coachSlug)
       if (coachData) {
         setSelectedBranch(coachData.branch)
-        setSelectedSport(coachData.sport)
-        setSelectedAgeGroup(coachData.ageGroup)
       }
+      setSelectedSport("wszystkie")
+      setSelectedAgeGroup("wszystkie")
+    } else {
+      setSelectedCoach(null)
     }
   }, [searchParams])
 
@@ -832,7 +841,8 @@ export default function SchedulePage() {
     const branchMatch = selectedBranch === "wszystkie" || item.branch === selectedBranch
     const sportMatch = selectedSport === "wszystkie" || item.sport === selectedSport
     const ageMatch = selectedAgeGroup === "wszystkie" || item.ageGroup === selectedAgeGroup
-    return branchMatch && sportMatch && ageMatch
+    const coachMatch = !selectedCoach || item.coach.slug === selectedCoach
+    return branchMatch && sportMatch && ageMatch && coachMatch
   })
 
   const groupedSchedule = filteredSchedule.reduce((acc, item) => {
@@ -847,100 +857,115 @@ export default function SchedulePage() {
 
   return (
     <div className="min-h-screen bg-black text-white">
-      
+
       <div className="container mx-auto px-4 pt-28 sm:pt-32 pb-8">
         <div className="text-center mb-8">
           <h1 className="text-4xl sm:text-5xl font-bold mb-4 bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-transparent">
-            {t.title}
-          </h1>
+              {t.title}
+            </h1>
           <p className="text-gray-300 text-lg sm:text-xl">
-            {t.subtitle}
-          </p>
+              {t.subtitle}
+            </p>
         </div>
 
-        {searchParams.get("coach") && (
-          <div className="text-center mb-6">
-            <Badge className="bg-red-600 text-white px-6 py-3 text-lg">{t.filteredByCoach}</Badge>
+        {selectedCoach && (
+          <div className="text-center mb-6 flex flex-col items-center gap-3">
+            <div className="flex items-center gap-3 flex-wrap justify-center">
+              <Badge className="bg-red-600 text-white px-6 py-3 text-lg">
+                {t.filteredByCoach}: {scheduleData.find(item => item.coach.slug === selectedCoach)?.coach.name || ""}
+              </Badge>
+              <Button
+                onClick={() => {
+                  setSelectedCoach(null)
+                  setSelectedSport("wszystkie")
+                  setSelectedAgeGroup("wszystkie")
+                  window.history.pushState({}, "", "/schedule")
+                }}
+                className="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-lg text-sm"
+              >
+                ✕ {t.clearCoachFilter}
+              </Button>
+            </div>
           </div>
         )}
 
-        <div className="flex justify-center gap-4 sm:gap-6 mb-10 flex-wrap">
+            <div className="flex justify-center gap-4 sm:gap-6 mb-10 flex-wrap">
           <button
-            onClick={() => setSelectedBranch("mokotow")}
+                onClick={() => setSelectedBranch("mokotow")}
             className={`px-6 sm:px-10 py-4 sm:py-5 rounded-2xl font-accent text-lg sm:text-xl border-2 shadow-lg inline-flex items-center justify-center gap-2 whitespace-nowrap ${
-              selectedBranch === "mokotow"
+                  selectedBranch === "mokotow"
                 ? "bg-gradient-to-r from-red-500 to-red-600 text-white font-bold border-red-500"
                 : "bg-black border-red-400 text-red-300 hover:bg-red-600 hover:text-white font-bold hover:border-red-500"
-            }`}
-          >
-            📍 {t.mokotow}
+                }`}
+              >
+                📍 {t.mokotow}
           </button>
           <button
-            onClick={() => setSelectedBranch("praga")}
+                onClick={() => setSelectedBranch("praga")}
             className={`px-6 sm:px-10 py-4 sm:py-5 rounded-2xl font-accent text-lg sm:text-xl border-2 shadow-lg inline-flex items-center justify-center gap-2 whitespace-nowrap ${
-              selectedBranch === "praga"
+                  selectedBranch === "praga"
                 ? "bg-gradient-to-r from-red-500 to-red-600 text-white font-bold border-red-500"
                 : "bg-black border-red-400 text-red-300 hover:bg-red-600 hover:text-white font-bold hover:border-red-500"
-            }`}
-          >
-            📍 {t.praga}
+                }`}
+              >
+                📍 {t.praga}
           </button>
-        </div>
+            </div>
 
-        <div className="flex justify-center gap-2 sm:gap-4 mb-8 flex-wrap">
-          <Button
-            onClick={() => setSelectedSport("wszystkie")}
-            size="lg"
+            <div className="flex justify-center gap-2 sm:gap-4 mb-8 flex-wrap">
+              <Button
+                onClick={() => setSelectedSport("wszystkie")}
+                size="lg"
             className={`px-4 sm:px-6 py-2 sm:py-3 rounded-xl font-accent text-sm sm:text-base border shadow-md ${
-              selectedSport === "wszystkie"
+                  selectedSport === "wszystkie"
                 ? "bg-gradient-to-r from-red-500 to-red-600 text-white font-bold border-red-500"
                 : "bg-gray-900 text-gray-300 hover:bg-gray-800 border-gray-700 hover:border-gray-600"
-            }`}
-          >
-            {t.allSports}
-          </Button>
-          <Button
-            onClick={() => setSelectedSport("karate")}
-            size="lg"
+                }`}
+              >
+                {t.allSports}
+              </Button>
+              <Button
+                onClick={() => setSelectedSport("karate")}
+                size="lg"
             className={`px-4 sm:px-6 py-2 sm:py-3 rounded-xl font-accent text-sm sm:text-base border shadow-md ${
-              selectedSport === "karate"
+                  selectedSport === "karate"
                 ? "bg-gradient-to-r from-red-500 to-red-600 text-white font-bold border-red-500"
                 : "bg-gray-900 text-gray-300 hover:bg-gray-800 border-gray-700 hover:border-gray-600"
-            }`}
-          >
+                }`}
+              >
             🥋 {t.disciplines.karate || "Karate"}
-          </Button>
-          <Button
-            onClick={() => setSelectedSport("muaythai")}
-            size="lg"
+              </Button>
+              <Button
+                onClick={() => setSelectedSport("muaythai")}
+                size="lg"
             className={`px-4 sm:px-6 py-2 sm:py-3 rounded-xl font-accent text-sm sm:text-base border shadow-md ${
-              selectedSport === "muaythai"
+                  selectedSport === "muaythai"
                 ? "bg-gradient-to-r from-red-500 to-red-600 text-white font-bold border-red-500"
                 : "bg-gray-900 text-gray-300 hover:bg-gray-800 border-gray-700 hover:border-gray-600"
-            }`}
-          >
+                }`}
+              >
             🥊 {t.disciplines.muaythai || "Muay Thai"}
-          </Button>
-          <Button
-            onClick={() => setSelectedSport("mma")}
-            size="lg"
+              </Button>
+              <Button
+                onClick={() => setSelectedSport("mma")}
+                size="lg"
             className={`px-4 sm:px-6 py-2 sm:py-3 rounded-xl font-accent text-sm sm:text-base border shadow-md ${
-              selectedSport === "mma"
+                  selectedSport === "mma"
                 ? "bg-gradient-to-r from-red-500 to-red-600 text-white font-bold border-red-500"
                 : "bg-gray-900 text-gray-300 hover:bg-gray-800 border-gray-700 hover:border-gray-600"
-            }`}
-          >
+                }`}
+              >
             🥋 {t.disciplines.mma || "MMA"}
-          </Button>
-          <Button
-            onClick={() => setSelectedSport("judo")}
-            size="lg"
+              </Button>
+              <Button
+                onClick={() => setSelectedSport("judo")}
+                size="lg"
             className={`px-4 sm:px-6 py-2 sm:py-3 rounded-xl font-accent text-sm sm:text-base border shadow-md ${
-              selectedSport === "judo"
+                  selectedSport === "judo"
                 ? "bg-gradient-to-r from-red-500 to-red-600 text-white font-bold border-red-500"
                 : "bg-gray-900 text-gray-300 hover:bg-gray-800 border-gray-700 hover:border-gray-600"
-            }`}
-          >
+                }`}
+              >
             🥋 {t.disciplines.judo || "Judo"}
           </Button>
           <Button
@@ -964,55 +989,55 @@ export default function SchedulePage() {
             }`}
           >
             ♟️ {t.disciplines.szachy || "Szachy"}
-          </Button>
-        </div>
+              </Button>
+            </div>
 
         <div className="flex justify-center gap-2 sm:gap-4 mb-8 flex-wrap">
-          <Button
+              <Button
             onClick={() => setSelectedAgeGroup("wszystkie")}
-            size="lg"
+                size="lg"
             className={`px-4 sm:px-6 py-2 sm:py-3 rounded-xl font-accent text-sm sm:text-base border shadow-md ${
               selectedAgeGroup === "wszystkie"
                 ? "bg-gradient-to-r from-red-500 to-red-600 text-white font-bold border-red-500"
                 : "bg-gray-900 text-gray-300 hover:bg-gray-800 border-gray-700 hover:border-gray-600"
-            }`}
-          >
+                }`}
+              >
             {t.allAges}
-          </Button>
-          <Button
+              </Button>
+              <Button
             onClick={() => setSelectedAgeGroup("dzieci")}
-            size="lg"
+                size="lg"
             className={`px-4 sm:px-6 py-2 sm:py-3 rounded-xl font-accent text-sm sm:text-base border shadow-md ${
               selectedAgeGroup === "dzieci"
                 ? "bg-gradient-to-r from-red-500 to-red-600 text-white font-bold border-red-500"
                 : "bg-gray-900 text-gray-300 hover:bg-gray-800 border-gray-700 hover:border-gray-600"
-            }`}
-          >
+                }`}
+              >
             👶 {t.ageGroups.dzieci}
-          </Button>
-          <Button
+              </Button>
+              <Button
             onClick={() => setSelectedAgeGroup("mlodziez")}
-            size="lg"
+                size="lg"
             className={`px-4 sm:px-6 py-2 sm:py-3 rounded-xl font-accent text-sm sm:text-base border shadow-md ${
               selectedAgeGroup === "mlodziez"
                 ? "bg-gradient-to-r from-red-500 to-red-600 text-white font-bold border-red-500"
                 : "bg-gray-900 text-gray-300 hover:bg-gray-800 border-gray-700 hover:border-gray-600"
-            }`}
-          >
+                }`}
+              >
             🧑 {t.ageGroups.mlodziez}
-          </Button>
-          <Button
+              </Button>
+              <Button
             onClick={() => setSelectedAgeGroup("dorosli")}
-            size="lg"
+                size="lg"
             className={`px-4 sm:px-6 py-2 sm:py-3 rounded-xl font-accent text-sm sm:text-base border shadow-md ${
               selectedAgeGroup === "dorosli"
                 ? "bg-gradient-to-r from-red-500 to-red-600 text-white font-bold border-red-500"
                 : "bg-gray-900 text-gray-300 hover:bg-gray-800 border-gray-700 hover:border-gray-600"
-            }`}
-          >
+                }`}
+              >
             👨 {t.ageGroups.dorosli}
-          </Button>
-        </div>
+              </Button>
+            </div>
 
         {Object.keys(groupedSchedule).length === 0 ? (
           <div className="text-center py-12">
@@ -1048,35 +1073,47 @@ export default function SchedulePage() {
                       const disciplineText = disciplineKey ? (t.disciplines[disciplineKey as keyof typeof t.disciplines] || item.discipline) : item.discipline
                       
                       return (
-                      <Card key={index} className="bg-gray-900 border-gray-700 flex flex-col min-h-[200px]">
-                        <CardContent className="p-6 flex flex-col flex-1">
-                          <div className="flex items-center gap-2 mb-3 bg-red-950/30 px-3 py-2 rounded-lg border border-red-500/20">
-                            <Clock className="h-5 w-5 text-red-400" />
-                            <span className="font-bold text-lg text-white">{item.time}</span>
+                      <Card key={index} className="group relative bg-gradient-to-br from-gray-900 via-gray-800 to-black border-2 border-gray-700 hover:border-red-500/50 flex flex-col min-h-[280px] transition-all duration-300 hover:shadow-2xl hover:shadow-red-500/20 overflow-hidden">
+                        {/* Decorative gradient overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        
+                        <CardContent className="p-6 flex flex-col flex-1 relative z-10">
+                          {/* Time badge with gradient */}
+                          <div className="flex items-center gap-2 mb-4 bg-gradient-to-r from-red-600/20 to-red-500/10 backdrop-blur-sm px-4 py-3 rounded-xl border border-red-500/30 shadow-lg">
+                            <div className="p-1.5 bg-gradient-to-br from-red-500 to-red-600 rounded-lg">
+                              <Clock className="h-4 w-4 text-white" />
+                            </div>
+                            <span className="font-bold text-lg text-white tracking-wide">{item.time}</span>
                           </div>
                           
-                          <h3 className="text-xl font-bold mb-2 text-white">
+                          {/* Discipline title with gradient text */}
+                          <h3 className="text-xl font-bold mb-4 text-white leading-tight bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent group-hover:from-red-400 group-hover:via-red-300 group-hover:to-red-400 transition-all duration-300">
                             {disciplineText}
                           </h3>
                           
-                          <div className="flex items-center gap-2 mb-3">
-                            <MapPin className="h-4 w-4 text-gray-400" />
-                            <span className="text-gray-300">{item.location}</span>
+                          {/* Location with icon */}
+                          <div className="flex items-center gap-2 mb-4 p-2 bg-gray-800/50 rounded-lg">
+                            <div className="p-1 bg-blue-500/20 rounded">
+                              <MapPin className="h-4 w-4 text-blue-400" />
+                            </div>
+                            <span className="text-gray-300 text-sm font-medium">{item.location}</span>
                             {item.room && (
-                              <Badge variant="outline" className="border-blue-500 text-blue-400 text-xs">
+                              <Badge variant="outline" className="border-blue-500/50 text-blue-400 bg-blue-500/10 text-xs ml-auto">
                                 {item.room}
                               </Badge>
                             )}
                           </div>
-                          
+
+                          {/* Coach badge with gradient */}
                           <div className="mb-4">
-                            <Badge className="bg-red-600 text-white">
-                              {item.coach.name}
+                            <Badge className="bg-gradient-to-r from-red-600 to-red-500 text-white px-4 py-1.5 text-sm font-semibold shadow-lg border border-red-400/30">
+                              👤 {item.coach.name}
                             </Badge>
                           </div>
                           
-                          <div className="flex gap-2 mb-4">
-                            <Badge variant="outline" className="border-red-500 text-red-500">
+                          {/* Sport and age badges */}
+                          <div className="flex gap-2 mb-4 flex-wrap">
+                            <Badge variant="outline" className="border-red-500/50 text-red-400 bg-red-500/10 px-3 py-1 text-xs font-medium">
                               {item.sport === "karate" && `🥋 ${t.disciplines.karate || "Karate"}`}
                               {item.sport === "muaythai" && `🥊 ${t.disciplines.muaythai?.split(" /")[0] || "Muay Thai"}`}
                               {item.sport === "mma" && `🥋 ${t.disciplines.mma || "MMA"}`}
@@ -1084,19 +1121,21 @@ export default function SchedulePage() {
                               {item.sport === "motoryka" && `🏃 ${t.disciplines.motoryka || "Motoryka"}`}
                               {item.sport === "szachy" && `♟️ ${t.disciplines.szachy || "Szachy"}`}
                             </Badge>
-                            <Badge variant="outline" className="border-blue-500 text-blue-500">
+                            <Badge variant="outline" className="border-blue-500/50 text-blue-400 bg-blue-500/10 px-3 py-1 text-xs font-medium">
                               {t.ageGroups[item.ageGroup as keyof typeof t.ageGroups]}
                             </Badge>
                           </div>
                           
-                          <div className="mt-auto">
+                          {/* Book button with enhanced styling */}
+                          <div className="mt-auto pt-2">
                             <a
                               href="https://docs.google.com/forms/d/1LhF3J7PteAcxbpV8jA2c8SA6aBDkPmN8yBp_j5UQTPU/viewform"
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="w-full px-4 py-2 bg-gradient-to-r from-red-500 to-red-600 text-white font-bold rounded-md block text-center"
+                              className="w-full px-4 py-3 bg-gradient-to-r from-red-600 via-red-500 to-red-600 text-white font-bold rounded-xl block text-center shadow-lg hover:shadow-xl hover:shadow-red-500/30 transition-all duration-300 hover:scale-[1.02] relative overflow-hidden group/button"
                             >
-                              {t.bookClass}
+                              <span className="relative z-10">{t.bookClass}</span>
+                              <span className="absolute inset-0 bg-gradient-to-r from-red-500 via-red-400 to-red-500 opacity-0 group-hover/button:opacity-100 transition-opacity duration-300 pointer-events-none"></span>
                             </a>
                           </div>
                         </CardContent>
@@ -1107,13 +1146,27 @@ export default function SchedulePage() {
                 </div>
               )
             })}
+              </div>
+            )}
           </div>
-        )}
-      </div>
       
       <Suspense fallback={null}>
         <Footer />
       </Suspense>
     </div>
+  )
+}
+
+export default function SchedulePage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-black text-white flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-gray-400">Ładowanie rozkładu...</p>
+        </div>
+      </div>
+    }>
+      <ScheduleContent />
+    </Suspense>
   )
 }

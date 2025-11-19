@@ -164,6 +164,13 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        {/* Preload критических ресурсов для SEO и скорости */}
+        <link rel="preload" href="/volat-logo-simple.png" as="image" type="image/png" fetchPriority="high" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* Оптимизация для Core Web Vitals */}
+        <meta name="theme-color" content="#000000" />
+        <meta name="color-scheme" content="dark" />
       </head>
       <body>
         <StructuredData type="Organization" data={organizationStructuredData} />

@@ -134,7 +134,7 @@ const disciplines = [
     trainerId: "vital-rak",
     image: "/functional-trening-1-volat.jpg",
     gallery: ["/functional-trening-2-volat.jpg", "/functional-trening-3-volat.jpg", "/functional-trening-4-volat.jpg"],
-    fullDescription: "Trening funkcjonalny i motoryczny dla młodzieży od 15 lat i dorosłych. Rozwój siły mięśni, szybkości reakcji, wytrzymałości, elastyczności i koordynacji, korekcja nadwagi. Program kompleksowy, skupiający się na ruchach naturalnych dla człowieka. Prowadzi Vital Rak. Dostępne w filii Volat Mokotów.",
+    fullDescription: "Trening funkcjonalny i motoryczny dla młodzieży od 15 lat i dorosłych. Rozwój siły mięśni, szybkości reakcji, wytrzymałości, elastyczności i koordynacji, korekcja nadwagi. Program kompleksowy, skupiający się na ruchach naturalnych dla człowieka. Prowadzi Vital Rak. Dostępne w filiach Volat Mokotów i Praga Północ.",
     benefits: [
       "Rozwój siły mięśni",
       "Poprawa szybkości reakcji",
@@ -218,13 +218,17 @@ export default function DisciplinesPageClient() {
             >
               <div className="relative h-64 sm:h-72 overflow-hidden">
                 <Image
+                  quality={75}
+                  placeholder="blur"
+                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                   src={discipline.image}
                   alt={`${discipline.name} - ${discipline.description} w klubie VOLAT Warszawa`}
                   title={`${discipline.name} - Zajęcia w klubie VOLAT`}
                   fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 400px"
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
                   loading="lazy"
+                  fetchPriority="low"
                 />
               </div>
               <div className="p-6 sm:p-8 flex-1 flex flex-col">
@@ -234,10 +238,10 @@ export default function DisciplinesPageClient() {
                 <p className="text-gray-400 font-primary mb-4 sm:mb-6 flex-1 line-clamp-3">
                   {discipline.fullDescription.substring(0, 120)}...
                 </p>
-                <div className="mt-auto pt-4 sm:pt-6 pb-0 flex flex-col gap-3">
+                <div className="mt-auto pt-4 sm:pt-6 pb-0 flex flex-col gap-3 relative z-10">
                   <Link
                     href={`/disciplines/${discipline.slug}`}
-                    className="w-full px-4 py-3 bg-gradient-to-r from-red-600 to-red-500 text-white text-sm font-accent font-medium rounded-xl shadow-lg h-[48px] flex items-center justify-center whitespace-nowrap no-underline"
+                    className="w-full px-4 py-3 bg-gradient-to-r from-red-600 to-red-500 hover:from-red-700 hover:to-red-600 text-white text-sm font-accent font-medium rounded-xl shadow-lg h-[48px] flex items-center justify-center whitespace-nowrap no-underline transition-all duration-200 cursor-pointer relative z-10"
                   >
                     <span className="text-center">{t.viewDetails}</span>
                   </Link>
@@ -245,7 +249,7 @@ export default function DisciplinesPageClient() {
                     href="https://docs.google.com/forms/d/1LhF3J7PteAcxbpV8jA2c8SA6aBDkPmN8yBp_j5UQTPU/viewform"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full px-4 py-3 bg-gradient-to-r from-white to-gray-100 text-black text-sm font-accent font-medium rounded-xl shadow-lg border border-gray-200 h-[48px] flex items-center justify-center whitespace-nowrap no-underline"
+                    className="w-full px-4 py-3 bg-gradient-to-r from-white to-gray-100 hover:from-gray-50 hover:to-gray-200 text-black text-sm font-accent font-medium rounded-xl shadow-lg border border-gray-200 h-[48px] flex items-center justify-center whitespace-nowrap no-underline transition-all duration-200 cursor-pointer relative z-10"
                   >
                     <span className="text-center">{t.bookNow}</span>
                   </a>

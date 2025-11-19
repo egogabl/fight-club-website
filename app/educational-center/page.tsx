@@ -245,36 +245,39 @@ export default function EducationalCenterPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl p-8 hover:border-red-500/50 transition-all duration-300 flex flex-col">
-              <h3 className="text-2xl font-display font-bold text-white mb-4 bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">{t.sections.chess.title}</h3>
-              <p className="text-white/70 mb-4 font-primary">{t.sections.chess.description}</p>
-              <p className="text-white/60 text-xs mb-2 font-primary italic">{t.sections.chess.trainer}</p>
-              <ul className="space-y-2 mb-4 flex-grow">
+            {/* Chess Card */}
+            <div className="bg-gradient-to-br from-gray-900/95 to-black/95 backdrop-blur-lg border-2 border-red-400/30 rounded-2xl p-8 hover:border-red-500/50 hover:shadow-2xl hover:shadow-red-500/20 transition-all duration-300 flex flex-col min-h-[500px]">
+              <h3 className="text-2xl font-display font-bold text-white mb-4 bg-gradient-to-r from-red-400 via-white to-red-400 bg-clip-text text-transparent">
+                {t.sections.chess.title}
+              </h3>
+              <p className="text-gray-300 mb-6 font-primary leading-relaxed">{t.sections.chess.description}</p>
+              <p className="text-gray-400 text-sm mb-6 font-primary italic">{t.sections.chess.trainer}</p>
+              <ul className="space-y-3 mb-6 flex-grow">
                 {t.sections.chess.features.map((feature: string, index: number) => (
-                  <li key={index} className="text-white/80 text-sm flex items-center font-primary">
-                    <span className="w-2 h-2 bg-gradient-to-r from-red-500 to-red-400 rounded-full mr-3 flex-shrink-0"></span>
-                    {feature}
+                  <li key={index} className="text-gray-300 text-sm flex items-start font-primary">
+                    <span className="w-2 h-2 bg-gradient-to-r from-red-500 to-red-400 rounded-full mr-3 flex-shrink-0 mt-2"></span>
+                    <span className="flex-1">{feature}</span>
                   </li>
                 ))}
               </ul>
-              <div className="mb-4 p-3 bg-white/5 rounded-lg border border-white/10">
-                <div className="flex items-center gap-2 mb-1">
+              <div className="mb-6 p-4 bg-gray-800/50 rounded-xl border border-gray-700/50">
+                <div className="flex items-center gap-2 mb-2">
                   <Calendar className="w-4 h-4 text-red-400" />
-                  <span className="text-white/90 text-xs font-semibold">{t.sections.chess.schedule}</span>
+                  <span className="text-white/90 text-sm font-semibold">{t.sections.chess.schedule}</span>
                 </div>
-                <p className="text-white/70 text-xs font-primary">{t.sections.chess.scheduleInfo}</p>
+                <p className="text-gray-300 text-sm font-primary leading-relaxed">{t.sections.chess.scheduleInfo}</p>
               </div>
-              <div className="space-y-2">
+              <div className="space-y-3 mt-auto">
                 <Link
                   href="/schedule?sport=szachy"
-                  className="w-full px-4 py-2.5 bg-white/10 hover:bg-white/20 border border-white/20 hover:border-red-500/50 text-white text-sm font-medium rounded-lg transition-all duration-200 flex items-center justify-center gap-2"
+                  className="w-full px-4 py-3 bg-gray-800/50 hover:bg-gray-700/50 border border-gray-700 hover:border-red-500/50 text-white text-sm font-medium rounded-xl transition-all duration-200 flex items-center justify-center gap-2"
                 >
                   <Calendar className="w-4 h-4" />
                   {t.sections.chess.viewSchedule}
                 </Link>
                 <Link
                   href="/disciplines/chess"
-                  className="w-full px-4 py-2.5 bg-white/10 hover:bg-white/20 border border-white/20 hover:border-red-500/50 text-white text-sm font-medium rounded-lg transition-all duration-200 flex items-center justify-center gap-2"
+                  className="w-full px-4 py-3 bg-gray-800/50 hover:bg-gray-700/50 border border-gray-700 hover:border-red-500/50 text-white text-sm font-medium rounded-xl transition-all duration-200 flex items-center justify-center gap-2"
                 >
                   <ExternalLink className="w-4 h-4" />
                   {t.sections.chess.viewDetails}
@@ -283,61 +286,71 @@ export default function EducationalCenterPage() {
                   href="https://docs.google.com/forms/d/1LhF3J7PteAcxbpV8jA2c8SA6aBDkPmN8yBp_j5UQTPU/viewform"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full px-4 py-2.5 bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 text-white text-sm font-accent font-medium rounded-lg shadow-lg transition-all duration-200 flex items-center justify-center gap-2 h-[42px]"
+                  className="w-full px-4 py-3 bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 text-white text-sm font-accent font-medium rounded-xl shadow-lg transition-all duration-200 flex items-center justify-center gap-2"
                 >
                   {t.bookNow}
                 </a>
               </div>
             </div>
 
-            <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl p-8 hover:border-red-500/50 transition-all duration-300 flex flex-col">
-              <h3 className="text-2xl font-display font-bold text-white mb-4 bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">{t.sections.language.title}</h3>
-              <p className="text-white/70 mb-4 font-primary">{t.sections.language.description}</p>
-              <ul className="space-y-2 mb-4 flex-grow">
+            {/* Language Courses Card */}
+            <div className="bg-gradient-to-br from-gray-900/95 to-black/95 backdrop-blur-lg border-2 border-red-400/30 rounded-2xl p-8 hover:border-red-500/50 hover:shadow-2xl hover:shadow-red-500/20 transition-all duration-300 flex flex-col min-h-[500px]">
+              <h3 className="text-2xl font-display font-bold text-white mb-4 bg-gradient-to-r from-red-400 via-white to-red-400 bg-clip-text text-transparent">
+                {t.sections.language.title}
+              </h3>
+              <p className="text-gray-300 mb-6 font-primary leading-relaxed">{t.sections.language.description}</p>
+              <ul className="space-y-3 mb-6 flex-grow">
                 {t.sections.language.features.map((feature: string, index: number) => (
-                  <li key={index} className="text-white/80 text-sm flex items-center font-primary">
-                    <span className="w-2 h-2 bg-gradient-to-r from-red-500 to-red-400 rounded-full mr-3 flex-shrink-0"></span>
-                    {feature}
+                  <li key={index} className="text-gray-300 text-sm flex items-start font-primary">
+                    <span className="w-2 h-2 bg-gradient-to-r from-red-500 to-red-400 rounded-full mr-3 flex-shrink-0 mt-2"></span>
+                    <span className="flex-1">{feature}</span>
                   </li>
                 ))}
               </ul>
-              <div className="mb-4 p-3 bg-white/5 rounded-lg border border-white/10">
-                <div className="flex items-center gap-2 mb-1">
+              <div className="mb-6 p-4 bg-gray-800/50 rounded-xl border border-gray-700/50">
+                <div className="flex items-center gap-2 mb-2">
                   <Calendar className="w-4 h-4 text-red-400" />
-                  <span className="text-white/90 text-xs font-semibold">{t.sections.language.schedule}</span>
+                  <span className="text-white/90 text-sm font-semibold">{t.sections.language.schedule}</span>
                 </div>
-                <p className="text-white/70 text-xs font-primary mb-2">{t.sections.language.scheduleInfo}</p>
-                <p className="text-white/60 text-xs font-primary italic">{t.sections.language.contactInfo}</p>
+                <p className="text-gray-300 text-sm font-primary leading-relaxed mb-2">{t.sections.language.scheduleInfo}</p>
+                <p className="text-gray-400 text-xs font-primary italic">{t.sections.language.contactInfo}</p>
               </div>
-              <a
-                href="https://docs.google.com/forms/d/1LhF3J7PteAcxbpV8jA2c8SA6aBDkPmN8yBp_j5UQTPU/viewform"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full px-4 py-2.5 bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 text-white text-sm font-accent font-medium rounded-lg shadow-lg transition-all duration-200 flex items-center justify-center gap-2 h-[42px]"
-              >
-                {t.sections.language.viewDetails}
-              </a>
+              <div className="mt-auto">
+                <a
+                  href="https://docs.google.com/forms/d/1LhF3J7PteAcxbpV8jA2c8SA6aBDkPmN8yBp_j5UQTPU/viewform"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full px-4 py-3 bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 text-white text-sm font-accent font-medium rounded-xl shadow-lg transition-all duration-200 flex items-center justify-center gap-2"
+                >
+                  {t.sections.language.viewDetails}
+                </a>
+              </div>
             </div>
 
-            <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl p-8 hover:border-red-500/50 transition-all duration-300 flex flex-col">
-              <h3 className="text-2xl font-display font-bold text-white mb-4 bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">{t.sections.educational.title}</h3>
-              <p className="text-white/70 mb-6 font-primary">{t.sections.educational.description}</p>
-              <ul className="space-y-2 mb-6 flex-grow">
+            {/* Educational Programs Card */}
+            <div className="bg-gradient-to-br from-gray-900/95 to-black/95 backdrop-blur-lg border-2 border-red-400/30 rounded-2xl p-8 hover:border-red-500/50 hover:shadow-2xl hover:shadow-red-500/20 transition-all duration-300 flex flex-col min-h-[500px]">
+              <h3 className="text-2xl font-display font-bold text-white mb-4 bg-gradient-to-r from-red-400 via-white to-red-400 bg-clip-text text-transparent">
+                {t.sections.educational.title}
+              </h3>
+              <p className="text-gray-300 mb-6 font-primary leading-relaxed">{t.sections.educational.description}</p>
+              <ul className="space-y-3 mb-8 flex-grow">
                 {t.sections.educational.features.map((feature: string, index: number) => (
-                  <li key={index} className="text-white/80 text-sm flex items-center font-primary">
-                    <span className="w-2 h-2 bg-gradient-to-r from-red-500 to-red-400 rounded-full mr-3 flex-shrink-0"></span>
-                    {feature}
+                  <li key={index} className="text-gray-300 text-sm flex items-start font-primary">
+                    <span className="w-2 h-2 bg-gradient-to-r from-red-500 to-red-400 rounded-full mr-3 flex-shrink-0 mt-2"></span>
+                    <span className="flex-1">{feature}</span>
                   </li>
                 ))}
               </ul>
-              <a
-                href="https://docs.google.com/forms/d/1LhF3J7PteAcxbpV8jA2c8SA6aBDkPmN8yBp_j5UQTPU/viewform"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full px-4 py-2.5 bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 text-white text-sm font-accent font-medium rounded-lg shadow-lg transition-all duration-200 flex items-center justify-center gap-2 h-[42px]"
-              >
-                {t.bookNow}
-              </a>
+              <div className="mt-auto">
+                <a
+                  href="https://docs.google.com/forms/d/1LhF3J7PteAcxbpV8jA2c8SA6aBDkPmN8yBp_j5UQTPU/viewform"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full px-4 py-3 bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 text-white text-sm font-accent font-medium rounded-xl shadow-lg transition-all duration-200 flex items-center justify-center gap-2"
+                >
+                  {t.bookNow}
+                </a>
+              </div>
             </div>
           </div>
         </div>

@@ -234,7 +234,7 @@ const activities = {
       trainerId: "volha-yefimenka",
       detailedDescription: "VolatMove! JUNIOR - це моторичний тренінг для дітей 8-15 років, зосереджений на корекції проблем рухливості суглобів та формуванні правильної постави. Програма включає зміцнення стоп, покращення гнучкості та розвиток м'язової сили. Заняття спеціально розроблені для старших дітей та молоді, адаптовані до їхніх розвиткових потреб. Проводить Volha Yefimenka з багаторічним досвідом роботи з молодими спортсменами."
     },
-    { 
+    {
       name: "Функціональний тренінг", 
       description: "Функціональний та моторичний тренінг", 
       slug: "functional-training",
@@ -284,7 +284,7 @@ const activities = {
       trainerId: "pawel-szymkowicz",
       detailedDescription: "MMA (Mixed Martial Arts) is mixed martial arts that combines techniques from various disciplines. Training includes stand-up and ground fighting, strikes, kicks, throws, and locks. MMA combines techniques from boxing, wrestling, judo, Brazilian jiu-jitsu, kickboxing, and other martial arts. We conduct classes for youth from 15 years old and adults with various skill levels. Led by Paweł Szymkowicz."
     },
-    { 
+    {
       name: "VolatMove! KIDS. Motor Training", 
       description: "Motor training for children 5-7 years", 
       slug: "volatmove-kids",
@@ -308,7 +308,7 @@ const activities = {
       trainerId: "vital-rak",
       detailedDescription: "Functional and motor training for youth from 15 years old and adults. Development of muscle strength, reaction speed, endurance, flexibility, and coordination, correction of excess weight. A comprehensive program focused on natural human movements. Led by Vital Rak."
     },
-    { 
+    {
       name: "Chess", 
       description: "Strategic game", 
       slug: "chess",
@@ -366,7 +366,7 @@ const activities = {
       trainerId: "volha-yefimenka",
       detailedDescription: "VolatMove! JUNIOR - гэта маторныя трэніроўкі для дзяцей 8-15 гадоў, засяроджаныя на карэкцыі праблем рухомасці суставаў і фарміраванні правільнай паставы. Праграма ўключае ўмацаванне стоп, паляпшэнне гнуткасці і развіццё цягліцавай сілы. Заняткі спецыяльна распрацаваны для старэйшых дзяцей і моладзі, адаптаваныя да іх развіццёвых патрэб. Праводзіць Volha Yefimenka з шматгадовым досведам працы з маладымі спартсменамі."
     },
-    { 
+    {
       name: "Функцыянальныя трэніроўкі", 
       description: "Функцыянальныя і маторныя трэніроўкі", 
       slug: "functional-training",
@@ -418,11 +418,11 @@ function HomePage() {
     <div className="min-h-screen relative bg-black">
       <div className="relative h-screen overflow-hidden">
         <Suspense fallback={<div className="absolute inset-0 bg-black" />}>
-          <VideoBackground
-            desktopToken="GaKXZ3b0Vmk"
-            mobileToken="WblQx6xivHQ"
-            overlayOpacity={0.15}
-          />
+        <VideoBackground
+          desktopToken="GaKXZ3b0Vmk"
+          mobileToken="WblQx6xivHQ"
+          overlayOpacity={0.15}
+        />
         </Suspense>
 
         <main className="relative z-50 h-full">
@@ -475,25 +475,25 @@ function HomePage() {
               >
                 {/* Header Section - Fixed Height */}
                 <div className="p-6 flex-shrink-0">
-                  <div className="flex items-center justify-between">
-                    <div className="text-center flex-1">
+                    <div className="flex items-center justify-between">
+                      <div className="text-center flex-1">
                       <h3 className="text-xl font-display font-bold text-white mb-3 group-hover:text-red-400 transition-colors duration-300 break-words leading-tight min-h-[60px]">
                         {currentActivity.name}
-                      </h3>
+                        </h3>
                       <p className="text-white/70 text-sm group-hover:text-white/90 transition-colors duration-300 font-primary min-h-[40px]">
                         {currentActivity.description}
-                      </p>
-                    </div>
+                        </p>
+                      </div>
                     <div className="ml-4 flex-shrink-0">
                       <button
                         onClick={() => toggleActivity(index)}
                         className="p-2 rounded-lg hover:bg-white/10 transition-colors"
                       >
-                        {expandedActivities.has(index) ? (
-                          <ChevronUpIcon className="w-6 h-6 text-white/70 group-hover:text-red-400 transition-colors duration-300" />
-                        ) : (
-                          <ChevronDownIcon className="w-6 h-6 text-white/70 group-hover:text-red-400 transition-colors duration-300" />
-                        )}
+                      {expandedActivities.has(index) ? (
+                        <ChevronUpIcon className="w-6 h-6 text-white/70 group-hover:text-red-400 transition-colors duration-300" />
+                      ) : (
+                        <ChevronDownIcon className="w-6 h-6 text-white/70 group-hover:text-red-400 transition-colors duration-300" />
+                      )}
                       </button>
                     </div>
                   </div>
@@ -550,7 +550,7 @@ function HomePage() {
                           className="w-full px-6 py-3 bg-gradient-to-r from-white to-gray-100 text-black text-sm font-accent font-medium rounded-xl shadow-lg border border-gray-200 h-[48px] flex items-center justify-center whitespace-nowrap no-underline"
                         >
                           <span className="text-center">{t.activities.bookNow}</span>
-                        </a>
+                </a>
                       </div>
                     </div>
                   </div>
@@ -563,7 +563,7 @@ function HomePage() {
       </section>
 
       <Suspense fallback={null}>
-        <Footer currentLang={currentLang} />
+      <Footer currentLang={currentLang} />
       </Suspense>
     </div>
   )
