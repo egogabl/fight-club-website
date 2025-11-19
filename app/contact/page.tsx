@@ -250,10 +250,10 @@ export default function ContactPage() {
                           const facilityKey = facilityMap[facility] ? Object.keys(facilityMap).find(k => facilityMap[k]?.pl === facility) : null
                           const translatedFacility = facilityKey && facilityMap[facilityKey] ? facilityMap[facilityKey][currentLang] || facility : facility
                           return (
-                            <li key={i} className="flex items-center gap-2">
-                              <div className="w-1.5 h-1.5 bg-red-400 rounded-full"></div>
+                          <li key={i} className="flex items-center gap-2">
+                            <div className="w-1.5 h-1.5 bg-red-400 rounded-full"></div>
                               {translatedFacility}
-                            </li>
+                          </li>
                           )
                         })}
                       </ul>

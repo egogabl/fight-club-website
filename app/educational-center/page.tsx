@@ -32,7 +32,6 @@ const translations = {
         schedule: "Grafik zajęć",
         scheduleInfo: "Wtorek 18:00-19:30 (Mokotów), Czwartek 17:00-18:30 (Praga), Sobota 14:00-15:30 (Mokotów)",
         viewSchedule: "Zobacz grafik",
-        viewDetails: "Szczegóły o szachach",
         trainer: "Trener: Wiktor Murończyk"
       },
       language: {
@@ -47,7 +46,7 @@ const translations = {
         schedule: "Grafik zajęć",
         scheduleInfo: "Angielski: Środa 15:15-16:15 (7-9 lat, A0), 16:20-17:20 (9-11 lat, A0+), 17:30-18:30 (12-14 lat, A2+). Szczegóły innych kursów prosimy uzgodnić telefonicznie.",
         contactInfo: "Szczegóły dotyczące kursów polskiego i matematyki prosimy uzgodnić telefonicznie lub mailowo",
-        viewDetails: "Zapisz się na kurs"
+        viewDetails: "Szczegóły o kursach językowych"
       },
       educational: {
         title: "Dlaczego my?",
@@ -86,7 +85,6 @@ const translations = {
         schedule: "Розклад занять",
         scheduleInfo: "Вівторок 18:00-19:30 (Мокотув), Четвер 17:00-18:30 (Прага), Субота 14:00-15:30 (Мокотув)",
         viewSchedule: "Переглянути розклад",
-        viewDetails: "Деталі про шахи",
         trainer: "Тренер: Wiktor Murończyk"
       },
       language: {
@@ -101,7 +99,7 @@ const translations = {
         schedule: "Розклад занять",
         scheduleInfo: "Англійська: Середа 15:15-16:15 (7-9 років, A0), 16:20-17:20 (9-11 років, A0+), 17:30-18:30 (12-14 років, A2+). Деталі інших курсів просимо узгодити телефоном.",
         contactInfo: "Деталі щодо курсів польської та математики просимо узгодити телефоном або електронною поштою",
-        viewDetails: "Записатися на курс"
+        viewDetails: "Деталі про мовні курси"
       },
       educational: {
         title: "Освітні Програми",
@@ -140,7 +138,6 @@ const translations = {
         schedule: "Class schedule",
         scheduleInfo: "Tuesday 18:00-19:30 (Mokotów), Thursday 17:00-18:30 (Praga), Saturday 14:00-15:30 (Mokotów)",
         viewSchedule: "View schedule",
-        viewDetails: "Chess details",
         trainer: "Coach: Wiktor Murończyk"
       },
       language: {
@@ -155,7 +152,7 @@ const translations = {
         schedule: "Class schedule",
         scheduleInfo: "English: Wednesday 15:15-16:15 (7-9 years, A0), 16:20-17:20 (9-11 years, A0+), 17:30-18:30 (12-14 years, A2+). Details of other courses please arrange by phone.",
         contactInfo: "Details regarding Polish and Mathematics courses please arrange by phone or email",
-        viewDetails: "Sign up for course"
+        viewDetails: "Language courses details"
       },
       educational: {
         title: "Educational Programs",
@@ -194,7 +191,6 @@ const translations = {
         schedule: "Расклад заняткаў",
         scheduleInfo: "Аўторак 18:00-19:30 (Макотув), Чацвер 17:00-18:30 (Прага), Субота 14:00-15:30 (Макотув)",
         viewSchedule: "Паглядзець расклад",
-        viewDetails: "Дэталі пра шахматы",
         trainer: "Трэнер: Wiktor Murończyk"
       },
       language: {
@@ -209,7 +205,7 @@ const translations = {
         schedule: "Расклад заняткаў",
         scheduleInfo: "Англійская: Серада 15:15-16:15 (7-9 гадоў, A0), 16:20-17:20 (9-11 гадоў, A0+), 17:30-18:30 (12-14 гадоў, A2+). Дэталі іншых курсаў просім узгадніць тэлефонам.",
         contactInfo: "Дэталі адносна курсаў польскай і матэматыкі просім узгадніць тэлефонам або электроннай поштай",
-        viewDetails: "Запісацца на курс"
+        viewDetails: "Дэталі пра моўныя курсы"
       },
       educational: {
         title: "Адукацыйныя Праграмы",
@@ -267,21 +263,7 @@ export default function EducationalCenterPage() {
                 </div>
                 <p className="text-gray-300 text-sm font-primary leading-relaxed">{t.sections.chess.scheduleInfo}</p>
               </div>
-              <div className="space-y-3 mt-auto">
-                <Link
-                  href="/schedule?sport=szachy"
-                  className="w-full px-4 py-3 bg-gray-800/50 hover:bg-gray-700/50 border border-gray-700 hover:border-red-500/50 text-white text-sm font-medium rounded-xl transition-all duration-200 flex items-center justify-center gap-2"
-                >
-                  <Calendar className="w-4 h-4" />
-                  {t.sections.chess.viewSchedule}
-                </Link>
-                <Link
-                  href="/disciplines/chess"
-                  className="w-full px-4 py-3 bg-gray-800/50 hover:bg-gray-700/50 border border-gray-700 hover:border-red-500/50 text-white text-sm font-medium rounded-xl transition-all duration-200 flex items-center justify-center gap-2"
-                >
-                  <ExternalLink className="w-4 h-4" />
-                  {t.sections.chess.viewDetails}
-                </Link>
+              <div className="mt-auto">
                 <a
                   href="https://docs.google.com/forms/d/1LhF3J7PteAcxbpV8jA2c8SA6aBDkPmN8yBp_j5UQTPU/viewform"
                   target="_blank"
@@ -315,14 +297,21 @@ export default function EducationalCenterPage() {
                 <p className="text-gray-300 text-sm font-primary leading-relaxed mb-2">{t.sections.language.scheduleInfo}</p>
                 <p className="text-gray-400 text-xs font-primary italic">{t.sections.language.contactInfo}</p>
               </div>
-              <div className="mt-auto">
+              <div className="space-y-3 mt-auto">
+                <Link
+                  href="/educational-center/language-courses"
+                  className="w-full px-4 py-3 bg-gray-800/50 hover:bg-gray-700/50 border border-gray-700 hover:border-red-500/50 text-white text-sm font-medium rounded-xl transition-all duration-200 flex items-center justify-center gap-2"
+                >
+                  <ExternalLink className="w-4 h-4" />
+                  {t.sections.language.viewDetails}
+                </Link>
                 <a
                   href="https://docs.google.com/forms/d/1LhF3J7PteAcxbpV8jA2c8SA6aBDkPmN8yBp_j5UQTPU/viewform"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full px-4 py-3 bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 text-white text-sm font-accent font-medium rounded-xl shadow-lg transition-all duration-200 flex items-center justify-center gap-2"
                 >
-                  {t.sections.language.viewDetails}
+                  {t.bookNow}
                 </a>
               </div>
             </div>
