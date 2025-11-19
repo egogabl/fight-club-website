@@ -164,6 +164,9 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        {/* Preconnect для Google Maps для ускорения загрузки карт */}
+        <link rel="preconnect" href="https://maps.google.com" />
+        <link rel="dns-prefetch" href="https://maps.google.com" />
         {/* Preload критических ресурсов для SEO и скорости */}
         <link rel="preload" href="/volat-logo-simple.png" as="image" type="image/png" fetchPriority="high" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
