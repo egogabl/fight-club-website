@@ -644,8 +644,10 @@ const scheduleData = [
       praga: "Praga Północ",
       allSports: "Wszystkie sporty",
     allAges: "Wszystkie grupy",
+    allCoaches: "Wszyscy trenerzy",
     filteredByCoach: "Filtrowane przez trenera",
     clearCoachFilter: "Pokaż wszystkie zajęcia",
+    selectCoach: "Wybierz trenera",
     bookClass: "Zapisz się na zajęcia",
     backToSchedule: "Powrót do rozkładu",
     noClassesFound: "Nie znaleziono zajęć dla wybranych filtrów",
@@ -687,8 +689,10 @@ const scheduleData = [
       praga: "Прага Північна",
       allSports: "Всі види спорту",
     allAges: "Всі групи",
+    allCoaches: "Всі тренери",
     filteredByCoach: "Відфільтровано тренером",
     clearCoachFilter: "Показати всі заняття",
+    selectCoach: "Оберіть тренера",
     bookClass: "Записатися на заняття",
     backToSchedule: "Повернутися до розкладу",
     noClassesFound: "Не знайдено занять для обраних фільтрів",
@@ -730,8 +734,10 @@ const scheduleData = [
     praga: "Praga Północ",
     allSports: "All sports",
     allAges: "All groups",
+    allCoaches: "All coaches",
     filteredByCoach: "Filtered by coach",
     clearCoachFilter: "Show all classes",
+    selectCoach: "Select coach",
     bookClass: "Book class",
     backToSchedule: "Back to schedule",
     noClassesFound: "No classes found for selected filters",
@@ -773,8 +779,10 @@ const scheduleData = [
       praga: "Прага Паўночная",
       allSports: "Усе віды спорту",
     allAges: "Усе групы",
+    allCoaches: "Усе трэнеры",
     filteredByCoach: "Адфільтравана трэнерам",
     clearCoachFilter: "Паказаць усе заняткі",
+    selectCoach: "Абярыце трэнера",
     bookClass: "Запісацца на заняткі",
     backToSchedule: "Вярнуцца да раскладу",
     noClassesFound: "Не знойдзена заняткаў для абраных фільтраў",
@@ -870,22 +878,20 @@ function ScheduleContent() {
 
         {selectedCoach && (
           <div className="text-center mb-6 flex flex-col items-center gap-3">
-            <div className="flex items-center gap-3 flex-wrap justify-center">
-              <Badge className="bg-red-600 text-white px-6 py-3 text-lg">
-                {t.filteredByCoach}: {scheduleData.find(item => item.coach.slug === selectedCoach)?.coach.name || ""}
-              </Badge>
-              <Button
-                onClick={() => {
-                  setSelectedCoach(null)
-                  setSelectedSport("wszystkie")
-                  setSelectedAgeGroup("wszystkie")
-                  window.history.pushState({}, "", "/schedule")
-                }}
-                className="bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded-lg text-sm"
-              >
-                ✕ {t.clearCoachFilter}
-              </Button>
-            </div>
+            <Badge 
+              className="bg-red-600 text-white px-6 py-3 text-lg cursor-pointer hover:bg-red-700 transition-colors inline-flex items-center gap-2"
+              onClick={() => {
+                setSelectedCoach(null)
+                setSelectedSport("wszystkie")
+                setSelectedAgeGroup("wszystkie")
+                const url = new URL(window.location.href)
+                url.searchParams.delete("coach")
+                window.history.pushState({}, "", url.pathname + url.search)
+              }}
+            >
+              {t.filteredByCoach}: {scheduleData.find(item => item.coach.slug === selectedCoach)?.coach.name || ""}
+              <span className="ml-2 text-xl font-bold">✕</span>
+            </Badge>
           </div>
         )}
 

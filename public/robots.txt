@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://volat-sport.netlify.app/sitemap.xml
+Sitemap: https://volat.pl/sitemap.xml
 
 # Disallow admin areas
 Disallow: /admin/

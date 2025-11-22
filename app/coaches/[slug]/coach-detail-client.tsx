@@ -380,6 +380,7 @@ const translations = {
     education: "Wykształcenie",
     achievements: "Osiągnięcia",
     bookNow: "Zapisz się na zajęcia",
+    viewSchedule: "Zobacz grafik",
     faqTitle: "Często zadawane pytania",
     faq: [
       {
@@ -407,6 +408,7 @@ const translations = {
     education: "Освіта",
     achievements: "Досягнення",
     bookNow: "Записатися на заняття",
+    viewSchedule: "Переглянути розклад",
     faqTitle: "Часто задавані питання",
     faq: [
       {
@@ -434,6 +436,7 @@ const translations = {
     education: "Education",
     achievements: "Achievements",
     bookNow: "Book now",
+    viewSchedule: "View schedule",
     faqTitle: "Frequently asked questions",
     faq: [
       {
@@ -461,6 +464,7 @@ const translations = {
     education: "Адукацыя",
     achievements: "Дасягненні",
     bookNow: "Запісацца на заняткі",
+    viewSchedule: "Паглядзець расклад",
     faqTitle: "Часта задаваныя пытанні",
     faq: [
       {
@@ -606,7 +610,15 @@ export default function CoachDetailClient({ coach, slug }: CoachDetailClientProp
                   <p className="text-gray-400 text-base leading-relaxed">{coachT?.description || coach.description || ""}</p>
                 </div>
 
-                <div className="pt-4">
+                <div className="pt-4 flex flex-col sm:flex-row gap-3">
+                  <Link
+                    href={`/schedule?coach=${slug}`}
+                    className="inline-block w-full sm:w-auto"
+                  >
+                    <Button className="bg-gradient-to-r from-white to-gray-100 text-black hover:from-gray-50 hover:to-gray-200 font-medium text-lg px-8 py-4 rounded-2xl shadow-lg w-full sm:w-auto">
+                      {t?.viewSchedule || "Zobacz grafik"}
+                    </Button>
+                  </Link>
                   <a
                     href="https://docs.google.com/forms/d/1LhF3J7PteAcxbpV8jA2c8SA6aBDkPmN8yBp_j5UQTPU/viewform"
                     target="_blank"

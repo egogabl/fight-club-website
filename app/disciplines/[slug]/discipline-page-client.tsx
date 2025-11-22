@@ -578,7 +578,7 @@ export default function DisciplinePageClient({ discipline, locations }: Discipli
                           sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 25vw, 300px"
                           className="object-cover"
                           loading="lazy"
-                          quality={65}
+                          quality={60}
                           placeholder="blur"
                           fetchPriority="low"
                           decoding="async"
